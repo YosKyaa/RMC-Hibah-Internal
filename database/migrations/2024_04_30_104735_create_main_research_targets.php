@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('main_research_targets', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
+            $table->string('title');
             $table->timestamps();
         });
     }
