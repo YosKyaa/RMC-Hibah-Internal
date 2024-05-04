@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\DepartementController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\StudyProgramController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -56,5 +58,19 @@ Route::group(['prefix' => 'setting','middleware' => ['auth']],function () {
             Route::any('/edit/{id}', [RoleController::class, 'edit'])->name('roles.edit');
             Route::delete('/destroy', [RoleController::class, 'destroy'])->name('roles.destroy');
         });
+        Route::group(['prefix' => 'manage_studyprogram'], function () { //route to manage study program
+            Route::any('/', [StudyProgramController::class, 'index'])->name('program.index');
+            Route::get('/data', [StudyProgramController::class, 'data'])->name('program.data');
+            Route::delete('/delete', [StudyProgramController::class, 'delete'])->name('program.delete');
+            Route::get('/edit/{id}', [StudyProgramController::class, 'edit'])->name('program.edit');
+            Route::put('/update/{id}', [StudyProgramController::class, 'update'])->name('program.update');
+          });
+          Route::group(['prefix' => 'manage_departement'], function () { //route to manage study program
+            Route::any('/', [DepartementController::class, 'index'])->name('dept.index')->middleware('auth');
+            Route::get('/data', [DepartementController::class, 'data'])->name('dept.data');
+            Route::delete('/delete', [DepartementController::class, 'delete'])->name('dept.delete');
+            Route::get('/edit/{id}', [DepartementController::class, 'edit'])->name('dept.edit');
+          });
     });
+
 });
