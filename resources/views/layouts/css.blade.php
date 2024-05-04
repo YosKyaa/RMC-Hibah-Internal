@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/vendor/libs/typeahead-js/typeahead.css')}}" />
 
+
     <!-- Page CSS -->
 
     <!-- Helpers -->
@@ -51,4 +52,5 @@
             background: #333;
         }
     </style>
+
     @yield('css')
