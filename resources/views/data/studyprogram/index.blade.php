@@ -192,8 +192,8 @@
                     {
                         render: function(data, type, row, meta) {
                             var html =
-                                `<a class=" text-success" title="Edit" href="{{ url('data/studyprogram/edit/` +
-                                                                row.id + `') }}"><i class="bx bxs-edit"></i></a> 
+                                `<a class=" text-success" title="Edit" href="{{ url('setting/manage_studyprogram/studyprogram/edit/` +
+                                                                                                row.id + `') }}"><i class="bx bxs-edit"></i></a> 
                             <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row
                                 .id + `\',\'` + row.name + `\')" ><i class="bx bx-trash"></i></a>`;
                             return html;

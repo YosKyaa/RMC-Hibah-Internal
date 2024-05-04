@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'setting','middleware' => ['auth']],function () {
     // Route::resource('roles', RoleController::class); 
