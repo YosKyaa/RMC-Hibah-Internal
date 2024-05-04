@@ -29,17 +29,26 @@ class UserController extends Controller
         if ($request->isMethod('post')) { //jika menerima method post dari form
             //validasi input form
             $this->validate($request, [ 
-                'username'=> ['required', 'string', 'max:255', Rule::unique('users')],
                 'name'=> ['required', 'string', 'max:255'],
+                'username'=> ['required', 'string', 'max:255', Rule::unique('users')],
+                'form_title'=> ['required', 'string', 'max:255'],
+                'back_title'=> ['required', 'string', 'max:255'],
                 'email'=> ['required', 'email', 'max:255', Rule::unique('users')],
+                'nidn'=> ['required', 'string', 'max:255', Rule::unique('users')],
+                'department'=> ['required', 'string', 'max:255'],
+                'study_program'=> ['required', 'string', 'max:255'],
                 'new_password' => ['required', 'string', 'min:8'],
                 'confirm_password' => ['required', 'string', 'min:8','same:new_password'],
                 'roles'=> ['required']
             ]);
             //memasukkan data ke database
             $data=User::create([
-                'username' => $request->username,
                 'name' => $request->name,
+                'username' => $request->username,
+                'font_title' => $request->form_title,
+                'back_title' => $request->back_title,
+                'nidn' => $request->nidn,
+                'department' => $request->department,
                 'email' => $request->email,
                 'password'=> Hash::make($request->new_password),
                 'email_verified_at' => Carbon::now(),
