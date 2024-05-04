@@ -75,5 +75,12 @@ class User extends Authenticatable
         return $this->user_avatar;
       }
     }
-   
+    public function getUserAvatarAttribute()
+    { 
+      if($this->gender == 'F'){
+        return asset('assets/img/avatars/user-f.png');
+      } else {
+        return asset('assets/img/avatars/user.png');
+      }
+    }
 }

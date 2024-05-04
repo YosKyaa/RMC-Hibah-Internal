@@ -3,7 +3,7 @@
     <span class="text-muted fw-light">Setting /</span>
     <span class="text-muted fw-light">Manage Data /</span>
 @endsection
-@section('title', 'Study Program')
+@section('title', 'Departenment')
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
@@ -63,7 +63,7 @@
                 <div class="offcanvas offcanvas-end @if ($errors->all()) show @endif" tabindex="-1"
                     id="newrecord" aria-labelledby="offcanvasEndLabel">
                     <div class="offcanvas-header">
-                        <h5 id="offcanvasEndLabel" class="offcanvas-title">Add Study Program</h5>
+                        <h5 id="offcanvasEndLabel" class="offcanvas-title">Add Departement</h5>
                         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                             aria-label="Close"></button>
                     </div>
@@ -72,12 +72,11 @@
                             id="form-add-new-record" method="POST" action="">
                             @csrf
                             <div class="col-sm-12 fv-plugins-icon-container">
-                                <label class="form-label" for="basicDate">Name Study Program</label>
+                                <label class="form-label" for="basicDate">Name Departement</label>
                                 <div class="input-group input-group-merge has-validation">
-                                    <input type="text" class="form-control @error('name_program') is-invalid @enderror"
-                                        name="name_program" placeholder="Name Study Program"
-                                        value="{{ old('name_program') }}">
-                                    @error('name_program')
+                                    <input type="text" class="form-control @error('name_dept') is-invalid @enderror"
+                                        name="name_dept" placeholder="Name Departement" value="{{ old('name_dept') }}">
+                                    @error('name_dept')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -91,7 +90,7 @@
                             </div>
                             <br>
                             <span class="invalid-feedback" role="alert"><br>
-                                <strong>Masukan Program Studi Sesuai Data yang ada</strong>
+                                <strong>Masukan Departement Sesuai Data yang ada</strong>
                             </span>
                             <div></div><input type="hidden">
                         </form>
@@ -103,7 +102,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Name Study Program</th>
+                        <th>Departement</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -167,7 +166,7 @@
                     // url: "{{ asset('assets/vendor/libs/datatables/id.json') }}"
                 },
                 ajax: {
-                    url: "{{ route('program.data') }}",
+                    url: "{{ route('dept.data') }}",
                     data: function(d) {
                         d.search = $('#datatable_filter input[type="search"]').val()
                     },
@@ -185,7 +184,7 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.name_program;
+                            var html = row.name_dept;
                             return html;
                         }
                     },
@@ -193,7 +192,7 @@
                         render: function(data, type, row, meta) {
                             var html =
                                 `<a class=" text-success" title="Edit" href="{{ url('setting/manage_studyprogram/studyprogram/edit/` +
-                                                                                                                                row.id + `') }}"><i class="bx bxs-edit"></i></a> 
+                                                                                                                                                                                                                                                                row.id + `') }}"><i class="bx bxs-edit"></i></a> 
                             <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row
                                 .id + `\',\'` + row.name + `\')" ><i class="bx bx-trash"></i></a>`;
                             return html;
@@ -217,7 +216,7 @@
                 .then((willDelete) => {
                     if (willDelete) {
                         $.ajax({
-                            url: "{{ route('program.delete') }}",
+                            url: "{{ route('dept.delete') }}",
                             type: "DELETE",
                             data: {
                                 "id": id,

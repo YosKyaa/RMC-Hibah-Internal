@@ -52,7 +52,7 @@
                     @can('read role')
                         <li class="menu-item {{ request()->segment(2) == 'roles' ? 'active' : '' }}">
                             <a href="" class="menu-link menu-toggle">
-                                <div>Data</div>
+                                <div>Manage Data</div>
                             </a>
                             <ul class="menu-sub">
                                 <li class="menu-item {{ request()->segment(3) == 'manage_studyprogram' ? 'active' : '' }}">

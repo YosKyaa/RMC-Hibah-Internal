@@ -4,62 +4,79 @@ namespace App\Http\Controllers;
 
 use App\Models\Departement;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class DepartementController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->isMethod('POST')) { 
+            $this->validate($request, [ 
+                'name_dept' => 'required',
+            ]);
+            $new = Departement::create([
+                'name_dept' => $request->name_dept,
+            ]);
+            if($new){
+                return redirect()->route('dept.index')->with('msg','Data atas ('.$request->name_dept.') BERHASIL ditambahkan!');
+            }
+        }
+            $departement = Departement::select("*")->get();
+            // dd($data);
+            return view('data.departement.index', compact('departement'));
+        }
+
+    public function data(Request $request){
+        $data = Departement::select('*')->orderBy("id");
+            return DataTables::of($data)
+                    ->filter(function ($instance) use ($request) {
+                        if (!empty($request->get('search'))) {
+                            $search = $request->get('search');
+                            $instance->where('name_dept', 'LIKE', "%$search%");
+                        }
+                    })->make(true);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function datatables()
     {
-        //
+        $departement = Departement::select('*');
+        return DataTables::of($departement)->make(true);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+   
+    public function edit($id)
     {
-        //
+        $departement = Departement::findOrFail($id);
+        return view('data.departement.edit', compact('departement'));
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Departement $departement)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name_dept' => 'required',
+        ]);
+
+        $departement = Departement::findOrFail($id);
+        $departement->update([
+            'name_dept' => $request->name_dept,
+        ]);
+
+        return redirect()->route('dept.index')->with('Departement,', 'Departement berhasil diperbarui.');
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Departement $departement)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Departement $departement)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Departement $departement)
-    {
-        //
+    public function delete(Request $request){
+        $data = Departement::find($request->id);
+        if($data){
+            $data->delete();
+            return response()->json([
+                'success' => true,
+                'message' => 'Berhasil dihapus!'
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal dihapus!'
+            ]);
+        }
     }
 }
