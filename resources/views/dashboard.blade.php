@@ -34,7 +34,8 @@
                         @else
                             <p class="mb-2">You have access rights as
                                 @foreach (Auth::user()->roles as $x)
-                                    <i class="badge rounded-pill bg-label-secondary m-0">{{ $x->name }}</i>
+                                    <i class="badge rounded-pill m-0"
+                                        style="background-color:{{ $x->color }}">{{ $x->name }}</i>
                                 @endforeach
                             </p>
                         @endif
