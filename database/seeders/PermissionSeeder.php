@@ -41,6 +41,10 @@ class PermissionSeeder extends Seeder
             ["guard_name" => "web", "name" => "setting/manage_data/department.read"],
             ["guard_name" => "web", "name" => "setting/manage_data/department.update"],
             ["guard_name" => "web", "name" => "setting/manage_data/department.delete"],
+            ["guard_name" => "web", "name" => "manage_announcement.read"],
+            ["guard_name" => "web", "name" => "manage_announcement.create"],
+            ["guard_name" => "web", "name" => "manage_announcement.delete"],
+            ["guard_name" => "web", "name" => "manage_announcement.update"],
 
             
             //tambahkan permissionnya disini
