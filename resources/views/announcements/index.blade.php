@@ -67,7 +67,7 @@
                     </div>
                     <div class="offcanvas-body my-auto mx-0 flex-grow-1">
                         <form class="add-new-record pt-0 row g-2 fv-plugins-bootstrap5 fv-plugins-framework"
-                            id="form-add-new-record" method="POST" action="">
+                            id="form-add-new-record" method="POST" action="" enctype="multipart/form-data">
                             @csrf
                             <div class="col-sm-12 fv-plugins-icon-container">
                                 <label class="form-label" for="basicDate">Title</label>
@@ -93,12 +93,11 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-sm-12 fv-plugins-icon-container">
-                                <label class="form-label" for="basicDate">Upload Annoucements</label>
-                                <div class="input-group input-group-merge has-validation">
-                                    <input type="file" class="form-control @error('file_path') is-invalid @enderror"
-                                        name="image" id="image" placeholder="Upload Poster"
-                                        value="{{ old('file_path') }}">
+                            <div class="col-sm-12">
+                                <label class="form-label">Upload Images<i class="text-danger">*</i></label>
+                                <div class="input-group mb-3">
+                                    <input class="form-control @error('file_path') is-invalid @enderror" name="file_path"
+                                        type="file" accept=".jpg, .jpeg, .png" title="JPG/PNG">
                                     @error('file_path')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -223,7 +222,24 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.name_program;
+                            var html = row.title;
+                            return html;
+                        }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            var html = row.date;
+                            return html;
+                        }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            var html = row.file_path;
+                            return html;
+                        }
+                    }, {
+                        render: function(data, type, row, meta) {
+                            var html = row.description;
                             return html;
                         }
                     },
@@ -231,7 +247,7 @@
                         render: function(data, type, row, meta) {
                             var html =
                                 `<a class=" text-success" title="Edit" href="{{ url('setting/manage_studyprogram/studyprogram/edit/` +
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                row.id + `') }}"><i class="bx bxs-edit"></i></a> 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                row.id + `') }}"><i class="bx bxs-edit"></i></a> 
                             <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row
                                 .id + `\',\'` + row.name + `\')" ><i class="bx bx-trash"></i></a>`;
                             return html;
