@@ -6,108 +6,129 @@
         <div class="container" id="container">
             <div class="form-container sign-up-container">
                 <form action="#">
-                    <h1>Create Account</h1>
-                    <span>or use your email for registration</span>
-                    @csrf
-
-                    <div class="row mb-3">
-                        <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
-
-                        <div class="col-md-6">
-                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                            @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                <!-- <div class="d-flex col-lg-5 align-items-center authentication-bg p-sm-5 p-4"> -->
+            <div class="w-px-270 mx-auto text-center justify-content-center">
+                <!-- Logo -->
+                <div class="app-brand justify-content-center mb-4">
+                        <span class="app-brand-logo demo">
+                            <img src="{{ asset('assets/img/CIS.png') }}" width="250">
+                        </span>
+                    </div>
+                <!-- /Logo -->
+                <h4>Sing up</h4>
+                <div class="row">
+                    <div class="my-2">
+                        <div class="mb-2">Metode Masuk</div>
+                        @error('msg')
+                        <br><span class="text-danger text-center">{!! $message !!}</span>
+                        @enderror
+                    </div>
+                    <div class="col-6 mb-1">
+                        <div class="btn-showcase">
+                            <button class="btn btn-outline-dark btn-block w-100" onclick="Klas2Login()"
+                                title="Single Sign-On JGU">
+                                <img style="max-height: 20px;" src="{{asset('assets/img/favicon.png')}}">
+                                <span>SSO JGU</span>
+                            </button>
                         </div>
                     </div>
-
-                    <div class="row mb-3">
-                        <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                        <div class="col-md-6">
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                    <div class="col-6 mb-1">
+                        <div class="btn-showcase">
+                            <a class="btn btn-outline-dark btn-block w-100" href="{{ url('login/google') }}"
+                                title="Log in with Email">
+                                <img style="max-height: 20px;"
+                                    src="https://avatars.githubusercontent.com/u/19180220?s=200&v=4">
+                                <span>Google</span>
+                            </a>
                         </div>
                     </div>
-                    <div class="row mb-3">
-                        <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                        <div class="col-md-6">
-                            <input id="password" type="password"
-                                class="form-control @error('password') is-invalid @enderror" name="password" required
-                                autocomplete="new-password">
-
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">
-                        {{ __('Register') }}
-                    </button>
+                </div>
+                <br><br>
+                <div class="divider mt-3">
+                    <div class="divider-text">© {{ (date('Y')=="2022"?date('Y'):"2022-".date('Y')) }}</div>
+                </div>
+                <div class="footer">
+                    <span class="mr-2">Dikembangkan oleh </span>
+                    <a href="https://itic.jgu.ac.id/" target="_blank" class="footer-link fw-bolder ml-2">ITIC JGU</a>
+                </div>
+                <small class="ml-4 text-center text-sm text-light sm:text-right sm:ml-0">
+                    v{{ Illuminate\Foundation\Application::VERSION }} (v{{ PHP_VERSION }})
+                </small>
+            </div>
+        <!-- </div> -->
+        <!-- /Login -->
                 </form>
             </div>
             <div class="form-container sign-in-container">
                 <form id="formAuthentication" class="mb-3" method="POST" action="{{ route('login') }}">
-                    <h1>Sign in</h1>
-                    @csrf
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input id="email" type="text" class="form-control @error('email') is-invalid @enderror"
-                            name="email" value="{{ old('email') }}" required autofocus autocomplete="username">
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+                    <div class="app-brand justify-content-center mb-4">
+                        <span class="app-brand-logo demo">
+                            <img src="{{ asset('assets/img/CIS.png') }}" width="250">
+                        </span>
                     </div>
-                    <div class="mb-3 form-password-toggle">
-                        <div class="d-flex justify-content-between">
-                            <label class="form-label" for="password">Password</label>
-                            <a href="{{ route('password.request') }}   ">
-                                <small>Forgot Password?</small>
-                            </a>
+                <h4>Sing in</h4>
+                     @csrf
+                     <!-- email -->
+                    <div class="mb-3">
+                        <div class="field-outlined">
+				<input type="text" class="input form-control @error('email') is-invalid @enderror"
+                                name="email" value="{{ old('email') }}" required autocomplete="email" required>
+				<label for="" class="label">Email</label>
+				<span class="line"></span>
+                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-                        <div class="input-group input-group-merge">
+                    </div>
+                    <!-- end email -->
+                    <!-- pass -->
+                    <div class="mb-3">
+                        <div class="field-outlined">
                             <input id="password" type="password"
-                                class="form-control @error('password') is-invalid @enderror" name="password" required
-                                autocomplete="current-password">
+                                class="input form-control @error('password') is-invalid @enderror" name="password" required
+                                autocomplete="current-password" required>
+                            <label for="" class="label">Password</label>
+                            <span class="line"></span>
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                            <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                         </div>
+                        <!-- end pass -->
                     </div>
                     <div class="mb-3">
-                        <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                        <button class="btn btn-outline-dark btn-block w-100" type="submit">Sign in</button>
                     </div>
                 </form>
             </div>
             <div class="overlay-container">
                 <div class="overlay">
                     <div class="overlay-panel overlay-left">
+                    <div class="app-brand justify-content-center mb-4">
+                    <a href="https://jgu.ac.id/" target="_blank" class="app-brand-link gap-2">
+                        <span class="app-brand-logo demo">
+                            <img src="{{asset('assets/img/jgu.png')}}" width="150">
+                        </span>
+                    </a>
+                </div>
                         <h1>Welcome Back!</h1>
                         <p>To keep connected with us please login with your personal info</p>
-                        <button class="ghost" id="signIn">Sign In</button>
+                        <button class="btn btn-outline-light" id="signIn">Sign In</button>
                     </div>
                     <div class="overlay-panel overlay-right">
-                        <h1>Hello, Friend!</h1>
+                    <div class="app-brand justify-content-center mb-4">
+                    <a href="https://jgu.ac.id/" target="_blank" class="app-brand-link gap-2">
+                        <span class="app-brand-logo demo">
+                            <img src="{{asset('assets/img/jgu.png')}}" width="150">
+                        </span>
+                    </a>
+                </div>
+                        <h1>RMC System JGU</h1>
                         <p>Enter your personal details and start journey with us</p>
-                        <button class="ghost" id="signUp">Sign Up</button>
+                        <button class="btn btn-outline-light" id="signUp">Sign Up</button>
                     </div>
                 </div>
             </div>
@@ -149,6 +170,7 @@
 
         h1 {
             font-weight: 700px;
+            color: #fff;
         }
 
         p {
@@ -170,6 +192,76 @@
             margin: 15px 0;
         }
 
+        .field-outlined {
+            display: block;
+            position: relative;
+        }
+
+        .field-outlined > .input {
+            width: 100%;
+            height: 56px;
+            font-size: 16px;
+            font-weight: 500;
+            color: rgba(0, 0, 0, 0.87);
+            outline: none;
+        }
+        
+        .field-outlined > .label{
+            font-size: 16px;
+            font-weight: 500;
+            color: rgba(0, 0, 0, 0.6);
+            pointer-events: none;
+            transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: absolute;
+            top: 16px;
+        }
+
+        .field-outlined > .input:focus ~ .label, .field-outlined > .input:valid ~ .label {
+            background: #ffffff;
+            top: -8px;
+            left: 10px;
+            font-size: 12px;
+            padding: 0 8px;
+        }
+
+        .field-outlined > .input {
+            padding: 0 16px;
+            border-radius: 4px;
+            border: 1px solid rgba(0, 0, 0, 0.22);
+        }
+
+        .field-outlined > .input:hover {
+            border-color: rgba(0, 0, 0, 0.42);
+        }
+
+        .field-outlined > .input:focus {
+            border: 2px solid #e1a440;
+        }
+
+        .field-outlined > .input:focus ~ .label {
+            color: #e1a440;
+        }
+
+        .field-outlined > .label {
+            left: 16px;
+        }
+
+        .valid .field-outlined > input:valid {
+            border: 2px solid #e1a440;
+        }
+
+        .valid input:valid ~ label {
+            color: #e1a440;
+        }
+
+        .valid input:valid ~ .line {
+            width: 100%;
+            background: #e1a440;
+        }
+
+        /*  */
+
+        /*  */
         .container {
             background: #fff;
             border-radius: 10px;
@@ -211,7 +303,7 @@
         }
 
         .form-container input {
-            background: #eeeeee;
+            /* background: #eeeeee; */
             border: none;
             padding: 12px 15px;
             width: 100%;
@@ -246,8 +338,8 @@
 
         .overlay {
             background: #ff416c;
-            background: -webkit-gradient(linear, left top, right top, from(#ff4b2b), to(#ff416c)) no-repeat 0 0/cover;
-            background: linear-gradient(to right, #ff4b2b, #ff416c) no-repeat 0 0/cover;
+            background: -webkit-gradient(linear, left top, right top, from(#e1a440), to(#ff416c)) no-repeat 0 0/cover;
+            background: linear-gradient(to right, #e1a440, #ff416c) no-repeat 0 0/cover;
             color: #fff;
             position: relative;
             left: -100%;
@@ -323,8 +415,8 @@
 
         button {
             border-radius: 20px;
-            border: 1px solid #ff4b2b;
-            background: #ff4b2b;
+            border: 1px solid #e1a440;
+            background: #e1a440;
             color: #fff;
             font-size: 12px;
             font-weight: 700px;
@@ -457,7 +549,7 @@
             }
 
             input {
-                background: #eeeeee;
+                /* background: #eeeeee; */
                 border: none;
                 padding: 12px 15px;
                 width: 100%;
@@ -490,7 +582,7 @@
 
         .overlay {
             background: #ff416c;
-            background: linear-gradient(to right, #ff4b2b, #ff416c) no-repeat 0 0 / cover;
+            background: linear-gradient(to right, #e1a440, #e1a440) no-repeat 0 0 / cover;
             color: #fff;
             position: relative;
             left: -100%;
@@ -541,8 +633,8 @@
 
         button {
             border-radius: 20px;
-            border: 1px solid #ff4b2b;
-            background: #ff4b2b;
+            border: 1px solid #e1a440;
+            background: #e1a440;
             color: #fff;
             font-size: 12px;
             font-weight: 700px;
