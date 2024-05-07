@@ -129,7 +129,7 @@
                                                                 {{ $data->permissions->contains('id', $permission->id) ? 'checked' : '' }}
                                                                 name="permissions[]" class="permissioncheckbox"
                                                                 class="rounded-md border" type="checkbox"
-                                                                value="{{ $permission->id }}">
+                                                                value="{{ $permission->name }}">
                                                             @php
                                                                 if (str_contains($permission->name, '.')) {
                                                                     $perm = substr(
