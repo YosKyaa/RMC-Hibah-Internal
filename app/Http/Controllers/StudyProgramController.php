@@ -11,12 +11,17 @@ class StudyProgramController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct() {
+        $this->middleware('auth');
+    }
     public function index(Request $request)
     {
+        $this->authorize('setting/manage_data/study_program.read');
         if ($request->isMethod('POST')) { 
             $this->validate($request, [ 
                 'name_program' => 'required',
             ]);
+            $this->authorize('setting/manage_data/study_program.create');
             $new = StudyProgram::create([
                 'name_program' => $request->name_program,
             ]);
@@ -30,6 +35,7 @@ class StudyProgramController extends Controller
         }
 
     public function data(Request $request){
+        $this->authorize('setting/manage_data/study_program.read');
         $data = StudyProgram::select('*')->orderBy("id");
             return DataTables::of($data)
                     ->filter(function ($instance) use ($request) {
@@ -48,6 +54,7 @@ class StudyProgramController extends Controller
    
     public function edit($id)
     {
+        $this->authorize('setting/manage_data/study_program.update');
         $studyprogram = StudyProgram::findOrFail($id);
         return view('data.studyprogram.edit', compact('studyprogram'));
     }
@@ -65,6 +72,7 @@ class StudyProgramController extends Controller
         return redirect()->route('data.studyprogram.index')->with('Study Progra,', 'Study Program berhasil diperbarui.');
     }
     public function delete(Request $request){
+        $this->authorize('setting/manage_data/study_program.delete');
         $data = StudyProgram::find($request->id);
         if($data){
             $data->delete();

@@ -12,11 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('font_title')->nullable();
-            $table->string('back_title')->nullable();
-            $table->string('nidn')->unique()->nullable();
-            $table->string('username')->after('name')->nullable();
 
+        $table->unsignedBigInteger('departments_id')->nullable();
+        $table->foreign('departments_id')->references('id')->on('departments');
+
+        $table->unsignedBigInteger('study_programs_id')->nullable();
+        $table->foreign('study_programs_id')->references('id')->on('study_programs');
         });
     }
 
@@ -26,10 +27,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('font_title');
-            $table->dropColumn('back_title');
-            $table->dropColumn('study_program');
-            $table->dropColumn('username');
+            //
         });
     }
 };

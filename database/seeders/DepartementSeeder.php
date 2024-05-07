@@ -2,7 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Departement;
+
+use App\Models\Department;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,25 +14,25 @@ class DepartementSeeder extends Seeder
      */
     public function run(): void
     {
-        Departement::create([
+        Department::create([
             'name_dept' => 'Academic and Educational Support Service (BAAK)',
         ]);
-        Departement::create([
+        Department::create([
             'name_dept' => 'Engagement and Enrollment',
         ]);
-        Departement::create([
+        Department::create([
             'name_dept' => 'Examination',
         ]);
-        Departement::create([
+        Department::create([
             'name_dept' => 'Finance',
         ]);
-        Departement::create([
+        Department::create([
             'name_dept' => 'Laboratory',
         ]);
-        Departement::create([
+        Department::create([
             'name_dept' => 'Library & Recource Center',
         ]);
-        Departement::create([
+        Department::create([
             'name_dept' => 'Student Center Alumni & Community service',
         ]);
     }

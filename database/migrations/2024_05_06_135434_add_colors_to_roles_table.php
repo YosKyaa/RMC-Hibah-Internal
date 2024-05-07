@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('announcement', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->timestamps();
+        Schema::table('roles', function (Blueprint $table) {
+            $table->string('color')->after('name')->nullable()->default("#8592a3");
+            $table->string('description')->after('name')->nullable();
         });
     }
 
@@ -23,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('announcement');
+        Schema::table('roles', function (Blueprint $table) {
+            //
+        });
     }
 };
