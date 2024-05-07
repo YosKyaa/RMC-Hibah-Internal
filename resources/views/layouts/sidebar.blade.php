@@ -1,7 +1,7 @@
 <!-- Menu -->
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme no-print">
     <div class="app-brand demo ">
-        <a href="{{ route('index') }}" class="app-brand-link">
+        <a href="{{ route('dashboard') }}" class="app-brand-link">
             <span class="app-brand-logo demo" style="margin-left: -10px">
                 <img src="{{ asset('assets/img/CIS.png') }}" height="44">
             </span>
@@ -20,6 +20,12 @@
             <a href="{{ route('dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Dashboards">Dashboard</div>
+            </a>
+        </li>
+        <li class="menu-item {{ request()->segment(1) == 'announcements' ? 'active' : '' }}">
+            <a href="{{ route('announcements.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-upload"></i>
+                <div data-i18n="Dashboards">Announcements</div>
             </a>
         </li>
         @can('control panel.read')

@@ -29,6 +29,13 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::group(['prefix' => 'announcements'], function () { 
+    Route::any('/', [AnnouncementController::class, 'index'])->name('announcements.index')->middleware('auth');
+    Route::get('/data', [AnnouncementController::class, 'data'])->name('announcements.data');
+    Route::delete('/delete', [AnnouncementController::class, 'delete'])->name('announcements.delete');
+    Route::get('/edit/{id}', [AnnouncementController::class, 'edit'])->name('announcements.edit');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -75,12 +82,4 @@ Route::group(['prefix' => 'setting','middleware' => ['auth']],function () {
             Route::get('/edit/{id}', [DepartmentController::class, 'edit'])->name('dept.edit');
         });
     });
-     Route::group(['prefix' => 'announcements'], function () { 
-        Route::get('/', [AnnouncementController::class, 'index'])->name('announcements.index');
-        Route::get('/create', [AnnouncementController::class, 'create'])->name('announcements.create');
-        Route::post('/', [AnnouncementController::class, 'store'])->name('announcements.store');
-        Route::get('/{id}/edit', [AnnouncementController::class, 'edit'])->name('announcements.edit');
-        Route::put('/announcements/{id}', [AnnouncementController::class, 'update'])->name('announcements.update');
-        Route::delete('/announcements/{id}', [AnnouncementController::class, 'destroy'])->name('announcements.destroy');
-    });
-     });
+});
