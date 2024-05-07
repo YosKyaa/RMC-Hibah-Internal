@@ -84,4 +84,3 @@ Route::group(['prefix' => 'setting','middleware' => ['auth']],function () {
         Route::delete('/announcements/{id}', [AnnouncementController::class, 'destroy'])->name('announcements.destroy');
     });
      });
-});
