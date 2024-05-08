@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartementController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ProfileController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\StudyProgramController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +27,11 @@ Route::get('/', function () {
     return view('auth.login');
 })->name('index');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
 Route::group(['prefix' => 'announcements'], function () { 
     Route::any('/', [AnnouncementController::class, 'index'])->name('announcements.index')->middleware('auth');
@@ -65,7 +69,6 @@ Route::group(['prefix' => 'setting','middleware' => ['auth']],function () {
             Route::any('/', [PermissionController::class, 'index'])->name('permissions.index');
             Route::get('/data', [PermissionController::class, 'data'])->name('permissions.data');
         });
-
     });
     Route::group(['prefix' => 'manage_data'], function () {
         Route::group(['prefix' => 'studyprogram'], function () { //route to manage study program

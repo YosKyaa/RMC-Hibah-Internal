@@ -69,7 +69,7 @@ class StudyProgramController extends Controller
             'name_program' => $request->name_program,
         ]);
 
-        return redirect()->route('data.studyprogram.index')->with('Study Progra,', 'Study Program berhasil diperbarui.');
+        return redirect()->route('program.index')->with('Study Program,', 'Study Program berhasil diperbarui.');
     }
     public function delete(Request $request){
         $this->authorize('setting/manage_data/study_program.delete');

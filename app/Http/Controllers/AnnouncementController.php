@@ -47,9 +47,10 @@ class AnnouncementController extends Controller
                     $fileName = "";
                 }
             }
+            $date = Carbon::parse($request->date)->format('Y-m-d');
             $data = Announcement::create([
                 'title' => $request->title,
-                'date' => $request->date,
+                'date' => $date,
                 'file_path' => $fileName,
                 'description' => $request->description,
             ]);

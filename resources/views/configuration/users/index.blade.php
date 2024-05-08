@@ -268,7 +268,7 @@
                         render: function(data, type, row, meta) {
                             var html = `<a class="text-primary" title="` + row.name +
                                 `" href="{{ url('setting/manage_account/users/edit/` +
-                                                            row.idd + `') }}">` +
+                                                                                            row.idd + `') }}">` +
                                 row.name + `</a>`;
                             return html;
                         },
@@ -296,7 +296,8 @@
                                 row.roles.forEach((e) => {
                                     x += '<li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="' +
                                         e.name +
-                                        '"><i class="badge rounded-pill bg-secondary"  style="font-size:8pt;">' +
+                                        '"><i class="badge rounded-pill"  style="font-size:8pt;background-color:' +
+                                        e.color + '">' +
                                         e.name +
                                         '</i></li>';
                                 });
@@ -309,9 +310,9 @@
                         render: function(data, type, row, meta) {
                             var html =
                                 `<a class=" text-info" title="Reset Password" href="{{ url('setting/manage_account/users/reset_password/` +
-                                                            row.idd + `') }}"><i class="bx bxs-lock-open"></i></a>
+                                                                                            row.idd + `') }}"><i class="bx bxs-lock-open"></i></a>
                             <a class=" text-success" title="Edit" href="{{ url('setting/manage_account/users/edit/` +
-                                                        row.idd + `') }}"><i class="bx bxs-edit"></i></a>`;
+                                                                                    row.idd + `') }}"><i class="bx bxs-edit"></i></a>`;
                             if ("{{ Auth::user()->id }}" == row.id) {
                                 html +=
                                     ` <a class=" text-light" title="Delete" style="cursor:not-allowed"><i class="bx bx-trash"></i></a>`;
