@@ -18,7 +18,7 @@
                 <h4>Sing up</h4>
                 <div class="row">
                     <div class="my-2">
-                        <div class="mb-2">Metode Masuk</div>
+                        <div class="mb-2">Create your account with</div>
                         @error('msg')
                         <br><span class="text-danger text-center">{!! $message !!}</span>
                         @enderror
