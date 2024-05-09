@@ -74,7 +74,8 @@
         </thead>
     </table>
     <ul class="list-group">
-        <div class="card-container"><li class="list-group-item">
+        <div class="card-container">
+            <li class="list-group-item">
             @foreach ($announcements as $anc)
                 <br>
                 <div class="card">
