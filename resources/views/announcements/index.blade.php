@@ -173,7 +173,8 @@
                                             </div>
                                             <br>
                                             <span class="invalid-feedback" role="alert"><br>
-                                                <strong>Gambar Max 10mb</strong>
+                                                <strong>Rasio 1:1</strong> <br>
+                                                <strong>Img Size Max 5mb</strong>
                                             </span>
                                             <div></div><input type="hidden">
                                         </form>
