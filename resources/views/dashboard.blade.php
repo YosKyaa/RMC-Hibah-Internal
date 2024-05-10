@@ -154,7 +154,7 @@
 @section('script')
     <script>
         // Misalkan $anc->date adalah string tanggal dalam format YYYY-MM-DD
-        var dateString = "{{ $anc->date }}";
+
         var dateObj = new Date(dateString);
 
         var day = dateObj.getDate();
