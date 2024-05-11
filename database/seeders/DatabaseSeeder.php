@@ -17,6 +17,11 @@ class DatabaseSeeder extends Seeder
         $this->call([PermissionSeeder::class]);
         $this->call([StudyProgramSeeder::class]);
         $this->call([DepartementSeeder::class]);
+        $this->call([TktTypesSeeder::class]);
+        $this->call([MainResearchTargetSeeder::class]);
+        $this->call([StatusSeeder::class]);
+        // $this->call([ResearchTypesSeeder::class]);
+        $this->call([CayegoryResearchSeeder::class]);
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',

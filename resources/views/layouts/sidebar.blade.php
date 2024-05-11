@@ -28,6 +28,12 @@
                 <div data-i18n="Dashboards">Announcements</div>
             </a>
         </li>
+        <li class="menu-item {{ request()->segment(1) == 'proposal' ? 'active' : '' }}">
+            <a href="{{ route('proposals.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-upload"></i>
+                <div data-i18n="Dashboards">Submit Proposal</div>
+            </a>
+        </li>
         @can('control panel.read')
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Control Panel</span>
@@ -73,7 +79,7 @@
                     @can('setting/manage_data.read')
                         <li class="menu-item {{ request()->segment(2) == 'manage_data' ? 'active' : '' }}">
                             <a href="" class="menu-link menu-toggle">
-                                <div>Manage Data</div>
+                                <div>Manage Lookup</div>
                             </a>
                             <ul class="menu-sub">
                                 @can('setting/manage_data/study_program.read')

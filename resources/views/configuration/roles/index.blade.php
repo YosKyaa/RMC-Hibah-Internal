@@ -248,7 +248,7 @@
                         render: function(data, type, row, meta) {
                             var html = `<a class="text-primary" title="` + row.name +
                                 `" href="{{ url('setting/manage_account/roles/edit/` +
-                                                            row.idd + `') }}">` +
+                                                                                            row.idd + `') }}">` +
                                 row.name + `</a>`;
                             return html;
                         },
@@ -289,7 +289,7 @@
                             @can('setting/manage_account/roles.update')
                                 html +=
                                     `<a class=" text-success" title="Edit" href="{{ url('setting/manage_account/roles/edit/` +
-                                                                row.idd + `') }}"><i class="bx bxs-edit"></i></a>`;
+                                                                                                    row.idd + `') }}"><i class="bx bxs-edit"></i></a>`;
                             @endcan
                             @can('setting/manage_account/roles.delete')
                                 if ("admin" == row.name) {

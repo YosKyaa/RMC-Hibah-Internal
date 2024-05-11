@@ -7,6 +7,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\StudyProgramController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,13 @@ Route::group(['prefix' => 'announcements'], function () {
     Route::get('/data', [AnnouncementController::class, 'data'])->name('announcements.data');
     Route::delete('/delete', [AnnouncementController::class, 'delete'])->name('announcements.delete');
     Route::get('/edit/{id}', [AnnouncementController::class, 'edit'])->name('announcements.edit');
+});
+
+Route::group(['prefix' => 'proposals'], function () { 
+    Route::any('/', [ProposalController::class, 'index'])->name('proposals.index')->middleware('auth');
+    Route::get('/data', [ProposalController::class, 'data'])->name('proposals.data');
+    Route::delete('/delete', [ProposalController::class, 'delete'])->name('proposals.delete');
+    Route::get('/edit/{id}', [ProposalController::class, 'edit'])->name('proposals.edit');
 });
 
 Route::middleware('auth')->group(function () {
