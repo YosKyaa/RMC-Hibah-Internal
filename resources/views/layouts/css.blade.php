@@ -28,6 +28,7 @@
     <script src="{{asset('assets/vendor/js/template-customizer.js')}}"></script>
     <script src="{{asset('assets/js/config.js')}}"></script>
 
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
     <script>
