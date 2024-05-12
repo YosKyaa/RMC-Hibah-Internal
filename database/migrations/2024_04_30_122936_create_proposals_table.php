@@ -19,10 +19,6 @@ return new class extends Migration
 
             $table->string('research_title');
 
-            
-            $table->unsignedBigInteger('field_focus_research_id');
-            $table->foreign('field_focus_research_id')->references('id')->on('field_focus_research');
-
             $table->unsignedBigInteger('tkt_types_id');
             $table->foreign('tkt_types_id')->references('id')->on('tkt_types');
 

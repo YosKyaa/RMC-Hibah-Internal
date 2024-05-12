@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/sweetalert2.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-icons-1.11.3/font/bootstrap-icons.css') }}">
 @endsection
 
 @section('style')
@@ -67,8 +68,8 @@
                             </div>
                             <div class="col-sm-5 text-center text-sm-left">
                                 <div class="card-body pb-0 px-0 px-md-4">
-                                    <img src="../assets/img/ANNOUNCEMENT.png" height="140"
-                                        alt="View Badge User" data-app-dark-img="assets/img/ANNOUNCEMENT.png"
+                                    <img src="../assets/img/ANNOUNCEMENT.png" height="140" alt="View Badge User"
+                                        data-app-dark-img="assets/img/ANNOUNCEMENT.png"
                                         data-app-light-img="assets/img/ANNOUNCEMENT.png">
                                 </div>
                             </div>
@@ -85,13 +86,6 @@
                                         <div class="col-12">
                                             <div class="row">
                                                 <div class="offset-md-0 col-md-0 text-md-end text-center pt-3 pt-md-0">
-                                                    <button class="btn btn-primary" type="button"
-                                                        data-bs-toggle="offcanvas" data-bs-target="#newrecord"
-                                                        aria-controls="offcanvasEnd" tabindex="0"
-                                                        aria-controls="DataTables_Table_0" type="button"><span><i
-                                                                class="bx bx-plus me-sm-2"></i>
-                                                            <span>Add</span></span>
-                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -110,7 +104,7 @@
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="col-sm-12 fv-plugins-icon-container">
-                                                <label class="form-label" for="basicDate">Title</label>
+                                                <label class="form-label" for="title">Title</label>
                                                 <div class="input-group input-group-merge has-validation">
                                                     <input type="text"
                                                         class="form-control @error('title') is-invalid @enderror"
@@ -138,8 +132,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-12">
-                                                <label class="form-label">Upload Images<i
-                                                        class="text-danger">*</i></label>
+                                                <label class="form-label">Upload Images<i class="text-danger">*</i></label>
                                                 <div class="input-group mb-3">
                                                     <input class="form-control @error('file_path') is-invalid @enderror"
                                                         name="file_path" type="file" accept=".jpg, .jpeg, .png"
@@ -154,10 +147,8 @@
                                             <div class="col-sm-12 fv-plugins-icon-container">
                                                 <label class="form-label" for="basicDate">Description</label>
                                                 <div class="input-group input-group-merge has-validation">
-                                                    <input type="text"
-                                                        class="form-control @error('description') is-invalid @enderror"
-                                                        name="description" placeholder="Input your description"
-                                                        value="{{ old('description') }}">
+                                                    <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description"
+                                                        placeholder="Input your description">{{ old('description') }}</textarea>
                                                     @error('description')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -199,6 +190,27 @@
             </div>
         </div>
     </div>
+    @foreach ($announcements as $anc)
+        <div class="modal fade" id="modalToggle" aria-labelledby="modalToggleLabel" tabindex="-1"
+            style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modalToggleLabel">{{ $anc->title }}</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="{{ asset($anc->file_path) }}" class="img-fluid" alt="" width="500px"
+                            height="500px">
+                        <h5 class="text-truncate"></h5>
+                        <p>{{ $anc->description }}</p>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
 @endsection
 @section('script')
     <script src="{{ asset('assets/vendor/libs/datatables/jquery.dataTables.js') }}"></script>
@@ -298,8 +310,8 @@
                     {
                         render: function(data, type, row, meta) {
                             var html =
-                                `<a class=" text-success" title="Edit" href="{{ url('setting/manage_studyprogram/studyprogram/edit/` +
-                                                                                                                 row.id + `') }}"><i class="bx bxs-edit"></i></a> 
+                                `<a href="#modalToggle" data-bs-toggle="modal" data-bs-target="#modalToggle" class="bi bi-eye-fill primary"></a>
+                                <a class=" text-success" title="Edit" href="{{ url('announcements/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a> 
                             <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row
                                 .id + `\',\'` + row.name + `\')" ><i class="bx bx-trash"></i></a>`;
                             return html;

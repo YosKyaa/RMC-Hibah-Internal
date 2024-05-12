@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
         $this->call([StatusSeeder::class]);
         // $this->call([ResearchTypesSeeder::class]);
         $this->call([CayegoryResearchSeeder::class]);
+        $this->call([FieldFocusReasearchSeeder::class]);
+
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',

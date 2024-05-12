@@ -2,208 +2,211 @@
 @section('title', 'Proposal')
 
 @section('css')
-    <link rel="stylesheet" href="assets/vendor/libs/bs-stepper/bs-stepper.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bs-stepper/bs-stepper.css') }}">
 @endsection
 
 @section('content')
-    @if (session('msg'))
-        <div class="alert alert-primary alert-dismissible" role="alert">
-            {{ session('msg') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div class="container">
+        <h1>bs-stepper</h1>
+        <div class="row">
+            <div class="col-md-12 mt-5">
+                <h2>Linear stepper</h2>
+                <div id="stepper1" class="bs-stepper">
+                    <div class="bs-stepper-header">
+                        <div class="step" data-target="#test-l-1">
+                            <button type="button" class="btn step-trigger">
+                                <span class="bs-stepper-circle">1</span>
+                                <span class="bs-stepper-label">First step</span>
+                            </button>
+                        </div>
+                        <div class="line"></div>
+                        <div class="step" data-target="#test-l-2">
+                            <button type="button" class="btn step-trigger">
+                                <span class="bs-stepper-circle">2</span>
+                                <span class="bs-stepper-label">Second step</span>
+                            </button>
+                        </div>
+                        <div class="line"></div>
+                        <div class="step" data-target="#test-l-3">
+                            <button type="button" class="btn step-trigger">
+                                <span class="bs-stepper-circle">3</span>
+                                <span class="bs-stepper-label">Third step</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bs-stepper-content">
+                        <div id="test-l-1" class="content">
+                            <p class="text-center">test 1</p>
+                            <button class="btn btn-primary" onclick="stepper1.next()">Next</button>
+                        </div>
+                        <div id="test-l-2" class="content">
+                            <p class="text-center">test 2</p>
+                            <button class="btn btn-primary" onclick="stepper1.next()">Next</button>
+                        </div>
+                        <div id="test-l-3" class="content">
+                            <p class="text-center">test 3</p>
+                            <button class="btn btn-primary" onclick="stepper1.next()">Next</button>
+                            <button class="btn btn-primary" onclick="stepper1.previous()">Previous</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mt-5">
+                <h2>Non linear stepper</h2>
+                <div id="stepper2" class="bs-stepper">
+                    <div class="bs-stepper-header">
+                        <div class="step" data-target="#test-nl-1">
+                            <button type="button" class="btn step-trigger">
+                                <span class="bs-stepper-circle">1</span>
+                                <span class="bs-stepper-label">First step</span>
+                            </button>
+                        </div>
+                        <div class="line"></div>
+                        <div class="step" data-target="#test-nl-2">
+                            <div class="btn step-trigger">
+                                <span class="bs-stepper-circle">2</span>
+                                <span class="bs-stepper-label">Second step</span>
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="step" data-target="#test-nl-3">
+                            <button type="button" class="btn step-trigger">
+                                <span class="bs-stepper-circle">3</span>
+                                <span class="bs-stepper-label">Third step</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bs-stepper-content">
+                        <div id="test-nl-1" class="content">
+                            <p class="text-center">test 3</p>
+                            <button class="btn btn-primary" onclick="stepper2.next()">Next</button>
+                        </div>
+                        <div id="test-nl-2" class="content">
+                            <p class="text-center">test 4</p>
+                            <button class="btn btn-primary" onclick="stepper2.next()">Next</button>
+                        </div>
+                        <div id="test-nl-3" class="content">
+                            <p class="text-center">test 5</p>
+                            <button class="btn btn-primary" onclick="stepper2.next()">Next</button>
+                            <button class="btn btn-primary" onclick="stepper2.previous()">Previous</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mt-5">
+                <h2>Vertical stepper</h2>
+                <div id="stepper3" class="bs-stepper vertical">
+                    <div class="bs-stepper-header">
+                        <div class="step" data-target="#test-lv-1">
+                            <button type="button" class="btn step-trigger">
+                                <span class="bs-stepper-circle">1</span>
+                                <span class="bs-stepper-label">First step</span>
+                            </button>
+                        </div>
+                        <div class="line"></div>
+                        <div class="step" data-target="#test-lv-2">
+                            <button type="button" class="btn step-trigger">
+                                <span class="bs-stepper-circle">2</span>
+                                <span class="bs-stepper-label">Second step</span>
+                            </button>
+                        </div>
+                        <div class="line"></div>
+                        <div class="step" data-target="#test-lv-3">
+                            <button type="button" class="btn step-trigger">
+                                <span class="bs-stepper-circle">3</span>
+                                <span class="bs-stepper-label">Third step</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bs-stepper-content">
+                        <div id="test-lv-1" class="content">
+                            <p class="text-center">test 3</p>
+                            <button class="btn btn-primary" onclick="stepper3.next()">Next</button>
+                            <button class="btn btn-primary" onclick="stepper3.previous()">Previous</button>
+                        </div>
+                        <div id="test-lv-2" class="content">
+                            <p class="text-center">test 4</p>
+                            <button class="btn btn-primary" onclick="stepper3.next()">Next</button>
+                            <button class="btn btn-primary" onclick="stepper3.previous()">Previous</button>
+                        </div>
+                        <div id="test-lv-3" class="content">
+                            <p class="text-center">test 5</p>
+                            <button class="btn btn-primary" onclick="stepper3.next()">Next</button>
+                            <button class="btn btn-primary" onclick="stepper3.previous()">Previous</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mt-5">
+                <h2>Linear vertical stepper without fade</h2>
+                <div id="stepper4" class="bs-stepper vertical">
+                    <div class="bs-stepper-header">
+                        <div class="step" data-target="#test-vlnf-1">
+                            <button type="button" class="btn step-trigger">
+                                <span class="bs-stepper-circle">1</span>
+                                <span class="bs-stepper-label">First step</span>
+                            </button>
+                        </div>
+                        <div class="line"></div>
+                        <div class="step" data-target="#test-vlnf-2">
+                            <button type="button" class="btn step-trigger">
+                                <span class="bs-stepper-circle">2</span>
+                                <span class="bs-stepper-label">Second step</span>
+                            </button>
+                        </div>
+                        <div class="line"></div>
+                        <div class="step" data-target="#test-vlnf-3">
+                            <button type="button" class="btn step-trigger">
+                                <span class="bs-stepper-circle">3</span>
+                                <span class="bs-stepper-label">Third step</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bs-stepper-content">
+                        <div id="test-vlnf-1" class="content">
+                            <p class="text-center">test 1</p>
+                            <button class="btn btn-primary" onclick="stepper4.next()">Next</button>
+                        </div>
+                        <div id="test-vlnf-2" class="content">
+                            <p class="text-center">test 2</p>
+                            <button class="btn btn-primary" onclick="stepper4.next()">Next</button>
+                            <button class="btn btn-primary" onclick="stepper4.previous()">Previous</button>
+                        </div>
+                        <div id="test-vlnf-3" class="content">
+                            <p class="text-center">test 3</p>
+                            <button class="btn btn-primary" onclick="stepper4.next()">Next</button>
+                            <button class="btn btn-primary" onclick="stepper4.previous()">Previous</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    @endif
-
-    <div class="bs-stepper wizard-numbered mt-2">
-<div class="bs-stepper-header">
-  <div class="step" data-target="#account-details">
-    <button type="button" class="step-trigger">
-      <span class="bs-stepper-circle">1</span>
-      <span class="bs-stepper-label mt-1">
-        <span class="bs-stepper-title">Account Details</span>
-        <span class="bs-stepper-subtitle">Setup Account Details</span>
-      </span>
-    </button>
-  </div>
-  <div class="line">
-    <i class="bx bx-chevron-right"></i>
-  </div>
-  <div class="step" data-target="#personal-info">
-    <button type="button" class="step-trigger">
-      <span class="bs-stepper-circle">2</span>
-      <span class="bs-stepper-label mt-1">
-        <span class="bs-stepper-title">Personal Info</span>
-        <span class="bs-stepper-subtitle">Add personal info</span>
-      </span>
-    </button>
-  </div>
-  <div class="line">
-    <i class="bx bx-chevron-right"></i>
-  </div>
-  <div class="step" data-target="#social-links">
-    <button type="button" class="step-trigger">
-      <span class="bs-stepper-circle">3</span>
-      <span class="bs-stepper-label mt-1">
-        <span class="bs-stepper-title">Social Links</span>
-        <span class="bs-stepper-subtitle">Add social links</span>
-      </span>
-    </button>
-  </div>
-</div>
-<div class="bs-stepper-content">
-  <form onSubmit="return false">
-    <!-- Account Details -->
-    <div id="account-details" class="content">
-      <div class="content-header mb-3">
-        <h6 class="mb-0">Account Details</h6>
-        <small>Enter Your Account Details.</small>
-      </div>
-      <div class="row g-3">
-        <div class="col-md-6">
-          <label class="form-label" for="username">Username</label>
-          <input type="text" id="username" class="form-control" placeholder="johndoe" />
-        </div>
-        <div class="col-md-6">
-          <label class="form-label" for="email">Email</label>
-          <input type="email" id="email" class="form-control" placeholder="john.doe@email.com" aria-label="john.doe" />
-        </div>
-        <div class="col-md-6 form-password-toggle">
-          <label class="form-label" for="password">Password</label>
-          <div class="input-group input-group-merge">
-            <input type="password" id="password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password2" />
-            <span class="input-group-text cursor-pointer" id="password2"><i class="bx bx-hide"></i></span>
-          </div>
-        </div>
-        <div class="col-md-6 form-password-toggle">
-          <label class="form-label" for="confirm-password">Confirm Password</label>
-          <div class="input-group input-group-merge">
-            <input type="password" id="confirm-password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="confirm-password2" />
-            <span class="input-group-text cursor-pointer" id="confirm-password2"><i class="bx bx-hide"></i></span>
-          </div>
-        </div>
-        <div class="col-12 d-flex justify-content-between">
-          <button class="btn btn-label-secondary btn-prev" disabled>
-            <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
-            <span class="align-middle d-sm-inline-block d-none">Previous</span>
-          </button>
-          <button class="btn btn-primary btn-next">
-            <span class="align-middle d-sm-inline-block d-none me-sm-1 me-0">Next</span>
-            <i class="bx bx-chevron-right bx-sm me-sm-n2"></i>
-          </button>
-        </div>
-      </div>
     </div>
-    <!-- Personal Info -->
-    <div id="personal-info" class="content">
-      <div class="content-header mb-3">
-        <h6 class="mb-0">Personal Info</h6>
-        <small>Enter Your Personal Info.</small>
-      </div>
-      <div class="row g-3">
-        <div class="col-md-6">
-          <label class="form-label" for="first-name">First Name</label>
-          <input type="text" id="first-name" class="form-control" placeholder="John" />
-        </div>
-        <div class="col-md-6">
-          <label class="form-label" for="last-name">Last Name</label>
-          <input type="text" id="last-name" class="form-control" placeholder="Doe" />
-        </div>
-        <div class="col-md-6">
-          <label class="form-label" for="country">Country</label>
-          <select class="select2" id="country">
-            <option label=" "></option>
-            <option>UK</option>
-            <option>USA</option>
-            <option>Spain</option>
-            <option>France</option>
-            <option>Italy</option>
-            <option>Australia</option>
-          </select>
-        </div>
-        <div class="col-md-6">
-          <label class="form-label" for="language">Language</label>
-          <select class="selectpicker w-auto" id="language" data-style="btn-transparent" data-icon-base="bx" data-tick-icon="bx-check text-white" multiple>
-            <option>English</option>
-            <option>French</option>
-            <option>Spanish</option>
-          </select>
-        </div>
-        <div class="col-12 d-flex justify-content-between">
-          <button class="btn btn-primary btn-prev"> <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
-            <span class="align-middle d-sm-inline-block d-none">Previous</span>
-          </button>
-          <button class="btn btn-primary btn-next"> <span class="align-middle d-sm-inline-block d-none me-sm-1 me-0">Next</span> <i class="bx bx-chevron-right bx-sm me-sm-n2"></i></button>
-        </div>
-      </div>
-    </div>
-    <!-- Social Links -->
-    <div id="social-links" class="content">
-      <div class="content-header mb-3">
-        <h6 class="mb-0">Social Links</h6>
-        <small>Enter Your Social Links.</small>
-      </div>
-      <div class="row g-3">
-        <div class="col-md-6">
-          <label class="form-label" for="twitter">Twitter</label>
-          <input type="text" id="twitter" class="form-control" placeholder="https://twitter.com/abc" />
-        </div>
-        <div class="col-md-6">
-          <label class="form-label" for="facebook">Facebook</label>
-          <input type="text" id="facebook" class="form-control" placeholder="https://facebook.com/abc" />
-        </div>
-        <div class="col-md-6">
-          <label class="form-label" for="google">Google+</label>
-          <input type="text" id="google" class="form-control" placeholder="https://plus.google.com/abc" />
-        </div>
-        <div class="col-md-6">
-          <label class="form-label" for="linkedin">LinkedIn</label>
-          <input type="text" id="linkedin" class="form-control" placeholder="https://linkedin.com/abc" />
-        </div>
-        <div class="col-12 d-flex justify-content-between">
-          <button class="btn btn-primary btn-prev"> <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
-            <span class="align-middle d-sm-inline-block d-none">Previous</span>
-          </button>
-          <button class="btn btn-success btn-submit">Submit</button>
-        </div>
-      </div>
-    </div>
-  </form>
-</div>
-</div>
-    @endsection
 
-    @section('script')
-    <script src="assets/vendor/libs/bs-stepper/bs-stepper.js"> </script>
-    <script type="text/javascript">
-        
-const wizardNumbered = document.querySelector(".wizard-numbered");
+@endsection
 
-if (typeof wizardNumbered !== undefined && wizardNumbered !== null) {
-  const wizardNumberedBtnNextList = [].slice.call(wizardNumbered.querySelectorAll('.btn-next')),
-    wizardNumberedBtnPrevList = [].slice.call(wizardNumbered.querySelectorAll('.btn-prev')),
-    wizardNumberedBtnSubmit = wizardNumbered.querySelector('.btn-submit');
+@section('script')
+    <script src="https://cdn.jsdelivr.net/npm/bs-stepper/dist/js/bs-stepper.min.js"></script>
+    <script src="{{ asset('assets/vendor/libs/bs-stepper/bs-stepper.js') }}"></script>
+    <script>
+        var stepper1Node = document.querySelector('#stepper1')
+        var stepper1 = new Stepper(document.querySelector('#stepper1'))
 
-  const numberedStepper = new Stepper(wizardNumbered, {
-    linear: false
-  });
-  if (wizardNumberedBtnNextList) {
-    wizardNumberedBtnNextList.forEach(wizardNumberedBtnNext => {
-      wizardNumberedBtnNext.addEventListener('click', event => {
-        numberedStepper.next();
-      });
-    });
-  }
-  if (wizardNumberedBtnPrevList) {
-    wizardNumberedBtnPrevList.forEach(wizardNumberedBtnPrev => {
-      wizardNumberedBtnPrev.addEventListener('click', event => {
-        numberedStepper.previous();
-      });
-    });
-  }
-  if (wizardNumberedBtnSubmit) {
-    wizardNumberedBtnSubmit.addEventListener('click', event => {
-      alert('Submitted..!!');
-    });
-  }
-}
+        stepper1Node.addEventListener('show.bs-stepper', function(event) {
+            console.warn('show.bs-stepper', event)
+        })
+        stepper1Node.addEventListener('shown.bs-stepper', function(event) {
+            console.warn('shown.bs-stepper', event)
+        })
+
+        var stepper2 = new Stepper(document.querySelector('#stepper2'), {
+            linear: false,
+            animation: true
+        })
+        var stepper3 = new Stepper(document.querySelector('#stepper3'), {
+            animation: true
+        })
+        var stepper4 = new Stepper(document.querySelector('#stepper4'))
     </script>
 @endsection

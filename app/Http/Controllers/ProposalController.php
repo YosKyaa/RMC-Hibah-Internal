@@ -13,7 +13,7 @@ class ProposalController extends Controller
     public function index()
     {
         $proposals = Proposal::all();
-        return view('proposals.index', compact('proposals'));
+        return view('data.proposals.index', compact('proposals'));
     }
 
     /**

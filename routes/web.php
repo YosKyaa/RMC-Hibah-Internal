@@ -10,6 +10,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\StudyProgramController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserProposalController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -39,6 +40,14 @@ Route::group(['prefix' => 'announcements'], function () {
     Route::get('/data', [AnnouncementController::class, 'data'])->name('announcements.data');
     Route::delete('/delete', [AnnouncementController::class, 'delete'])->name('announcements.delete');
     Route::get('/edit/{id}', [AnnouncementController::class, 'edit'])->name('announcements.edit');
+    Route::put('/update/{id}', [AnnouncementController::class, 'update'])->name('announcements.update');
+});
+
+Route::group(['prefix' => 'user-proposals'], function () { 
+    Route::any('/', [UserProposalController::class, 'index'])->name('user-proposals.index')->middleware('auth');
+    Route::get('/data', [UserProposalController::class, 'data'])->name('user-proposals.data');
+    Route::delete('/delete', [UserProposalController::class, 'delete'])->name('user-proposals.delete');
+    Route::get('/edit/{id}', [UserProposalController::class, 'edit'])->name('user-proposals.edit');
 });
 
 Route::group(['prefix' => 'proposals'], function () { 

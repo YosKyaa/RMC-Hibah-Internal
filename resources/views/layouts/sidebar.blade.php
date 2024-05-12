@@ -1,4 +1,7 @@
 <!-- Menu -->
+@section('css')
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-icons-1.11.3/font/bootstrap-icons.css') }}">
+@endsection
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme no-print">
     <div class="app-brand demo ">
         <a href="{{ route('dashboard') }}" class="app-brand-link">
@@ -29,8 +32,8 @@
             </a>
         </li>
         <li class="menu-item {{ request()->segment(1) == 'proposal' ? 'active' : '' }}">
-            <a href="{{ route('proposals.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-upload"></i>
+            <a href="{{ route('user-proposals.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bi bi-file-text"></i>
                 <div data-i18n="Dashboards">Submit Proposal</div>
             </a>
         </li>
@@ -82,6 +85,11 @@
                                 <div>Manage Lookup</div>
                             </a>
                             <ul class="menu-sub">
+                                <li class="menu-item {{ request()->segment(3) == 'proposals' ? 'active' : '' }}">
+                                    <a href="{{ route('proposals.index') }}" class="menu-link">
+                                        <div>Manage Proposals</div>
+                                    </a>
+                                </li>
                                 @can('setting/manage_data/study_program.read')
                                     <li class="menu-item {{ request()->segment(3) == 'manage_studyprogram' ? 'active' : '' }}">
                                         <a href="{{ route('program.index') }}" class="menu-link">

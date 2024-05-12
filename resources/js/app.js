@@ -1,4 +1,5 @@
 import './bootstrap';
+import Stepper from 'bs-stepper'
 
 import Alpine from 'alpinejs';
 

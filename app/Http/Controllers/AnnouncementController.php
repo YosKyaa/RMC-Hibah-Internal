@@ -61,7 +61,8 @@ class AnnouncementController extends Controller
             }
         }else{
             $data = "";
-            return view('announcements.index', compact('data'));
+            $announcements = Announcement::all('*');
+            return view('announcements.index', compact('data','announcements'));
         }
             
     }
@@ -102,14 +103,34 @@ class AnnouncementController extends Controller
         $request->validate([
             'title' => 'required',
             'date' => 'required',
-            'file_path' => 'file|mimes:pdf,jpg,png|max:5120', // max 5MB
+            'file_path' => ['required','mimes:jpg,jpeg,png','max:5120'], // max 5MB
             'description' => 'required',
         ]);
         $announcements = Announcement::findOrFail($id);
+        $fileName = "";
+        if(isset($request->file_path)){
+            $ext = $request->file_path->extension();
+            $name = str_replace(' ', '_', $request->file_path->getClientOriginalName());
+            $fileName = Auth::user()->id.'_'.$name; 
+            $folderName =  "storage/FILE/announcements/".Carbon::now()->format('Y/m');
+            $path = public_path()."/".$folderName;
+            if (!File::exists($path)) {
+                File::makeDirectory($path, 0755, true); //create folder
+            }
+            $upload = $request->file_path->move($path, $fileName); //upload image to folder
+            if($upload){
+                $fileName=$folderName."/".$fileName;
+            } else {
+                $fileName = "";
+            }
+            if(File::exists()){
+
+            }
+        }
         $announcements->update([
             'title' => $request->title,
             'date' => $request->date,
-            'file_path' => $request->file_path,
+            'file_path' => $fileName,
             'description' => $request->description,
         ]);
 

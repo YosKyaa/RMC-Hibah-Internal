@@ -76,87 +76,81 @@
     <ul class="list-group">
         <div class="card-container">
             <li class="list-group-item">
-            @foreach ($announcements as $anc)
-                <br>
-                <div class="card">
-                    <div class="card h-100">
-                        <div class="card-header flex-grow-0">
-                            <div class="d-flex">
-                                <div class="avatar flex-shrink-0 me-3">
-                                    <img src="../../assets/img/avatars/user.png" alt="User" class="w-100 rounded-circle">
-                                </div>
-                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-1">
-                                    <div class="me-2">
-                                        <h5 class="mb-0">{{ ucfirst(Auth::user()->username) }} Shared Post</h5>
-                                        <small class="text-muted">{{ $anc->created_at->format('d M Y \a\t h:i A') }}</small>
+                @foreach ($announcements as $anc)
+                    <br>
+                    <div class="card">
+                        <div class="card h-100">
+                            <div class="card-header flex-grow-0">
+                                <div class="d-flex">
+                                    <div class="avatar flex-shrink-0 me-3">
+                                        <img src="../../assets/img/avatars/user.png" alt="User"
+                                            class="w-100 rounded-circle">
                                     </div>
-                                    <div class="dropdown d-none d-sm-block">
-                                        <button class="btn p-0" type="button" id="eventList" data-bs-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">
-                                            <i class="bx bx-chevron-down"></i>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="eventList" style="">
-                                            <a class="dropdown-item" href="javascript:void(0);">Last 28 Days</a>
-                                            <a class="dropdown-item" href="javascript:void(0);">Last Month</a>
-                                            <a class="dropdown-item" href="javascript:void(0);">Last Year</a>
+                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-1">
+                                        <div class="me-2">
+                                            <h5 class="mb-0">{{ ucfirst(Auth::user()->username) }} Shared Post</h5>
+                                            <small
+                                                class="text-muted">{{ $anc->created_at->format('d M Y \a\t h:i A') }}</small>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <img src="{{ asset($anc->file_path) }}" class="img-fluid" alt="" width="500px" height="500px">
-                        <div class="featured-date mt-n4 ms-4 bg-white rounded w-px-50 shadow text-center p-1">
-                            <h5 class="mb-0 text-dark">{{ date('d', strtotime($anc->date)) }}</h5>
-                            <span class="text-primary">{{ date('F', strtotime($anc->date)) }}</span>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="text-truncate">{{ $anc->title }}</h5>
-                            <div class="d-flex gap-2">
+                            <img src="{{ asset($anc->file_path) }}" class="img-fluid" alt="" width="500px"
+                                height="500px">
+                            <div class="featured-date mt-n4 ms-4 bg-white rounded w-px-50 shadow text-center p-1">
+                                <h5 class="mb-0 text-dark">{{ date('d', strtotime($anc->date)) }}</h5>
+                                <span class="text-primary">{{ date('F', strtotime($anc->date)) }}</span>
                             </div>
-                            <div class="d-flex my-3">
-                                <button type="button" class="btn btn-primary ms-auto" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal{{ $anc->id }}">
-                                    Show Description
-                                </button>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="card-actions">
-                                    <a href="javascript:;" class="text-muted me-3"><i class="bx bx-heart me-1"></i> 236</a>
-                                    <a href="javascript:;" class="text-muted"><i class="bx bx-message me-1"></i> 12</a>
+                            <div class="card-body">
+                                <h5 class="text-truncate">{{ $anc->title }}</h5>
+                                <div class="d-flex gap-2">
                                 </div>
-                                <div class="dropup d-none d-sm-block">
-                                    <button class="btn p-0" type="button" id="sharedList" data-bs-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                        <i class="bx bx-dots-vertical"></i>
+                                <div class="d-flex my-3">
+                                    <button type="button" class="btn btn-primary ms-auto" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal{{ $anc->id }}">
+                                        Show Description
                                     </button>
                                 </div>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="card-actions">
+                                        <a href="javascript:;" class="text-muted me-3"><i class="bx bx-heart me-1"></i>
+                                            236</a>
+                                        <a href="javascript:;" class="text-muted"><i class="bx bx-message me-1"></i> 12</a>
+                                    </div>
+                                    <div class="dropup d-none d-sm-block">
+                                        <button class="btn p-0" type="button" id="sharedList" data-bs-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            <i class="bx bx-dots-vertical"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Button trigger modal -->
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal{{ $anc->id }}" tabindex="-1"
-                    aria-labelledby="exampleModalLabel{{ $anc->id }}" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel{{ $anc->id }}">
-                                    <p>{{ $anc->title }}</p>
-                                </h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p>{{ $anc->description }}</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                    <!-- Button trigger modal -->
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal{{ $anc->id }}" tabindex="-1"
+                        aria-labelledby="exampleModalLabel{{ $anc->id }}" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel{{ $anc->id }}">
+                                        <p>{{ $anc->title }}</p>
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>{{ $anc->description }}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
             </li>
         </div>
     </ul>
