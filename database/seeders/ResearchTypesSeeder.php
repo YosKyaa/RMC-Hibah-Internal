@@ -14,10 +14,14 @@ class ResearchTypesSeeder extends Seeder
     public function run(): void
     {
         $titles = [
-            'Research on the impact of technology on society',
-            'Another research title',
-            'Yet another research title',
+            'Penelitian Dasar'
             // Tambahkan judul-judul lain di sini sesuai kebutuhan
         ];
+
+        foreach ($titles as $title) {
+            ResearchTypes::create([
+                'title' => $title
+            ]);
+        }
     }
 }

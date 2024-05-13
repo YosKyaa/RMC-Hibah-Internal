@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call([TktTypesSeeder::class]);
         $this->call([MainResearchTargetSeeder::class]);
         $this->call([StatusSeeder::class]);
-        // $this->call([ResearchTypesSeeder::class]);
+        $this->call([ResearchTypesSeeder::class]);
         $this->call([CayegoryResearchSeeder::class]);
         $this->call([FieldFocusReasearchSeeder::class]);
 

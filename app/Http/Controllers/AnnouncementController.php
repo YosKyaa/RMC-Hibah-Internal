@@ -102,7 +102,7 @@ class AnnouncementController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'date' => 'required',
+            'date' => 'date','required',
             'file_path' => ['required','mimes:jpg,jpeg,png','max:5120'], // max 5MB
             'description' => 'required',
         ]);
@@ -123,8 +123,8 @@ class AnnouncementController extends Controller
             } else {
                 $fileName = "";
             }
-            if(File::exists()){
-
+            if(File::exists($announcements->file_path)){
+                File::delete($announcements->file_path);
             }
         }
         $announcements->update([

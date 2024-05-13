@@ -22,7 +22,9 @@ return new class extends Migration
             $table->unsignedBigInteger('tkt_types_id');
             $table->foreign('tkt_types_id')->references('id')->on('tkt_types');
 
-            $table->string('link');    
+            $table->unsignedBigInteger('reviewer_id');
+            $table->foreign('reviewer_id')->references('id')->on('users');
+
 
             $table->string('document')->nullable();
 

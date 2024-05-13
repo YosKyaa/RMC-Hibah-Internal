@@ -12,9 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('field_focus_research', function (Blueprint $table) {
-            $table->bigInteger('id')->unsigned()->unique();
-            $table->unsignedBigInteger('category_research_id');
-            $table->foreign('category_research_id')->references('id')->on('category_research');
+            $table->id();
             $table->string('research_theme');
             $table->string('research_topic');
             $table->timestamps();

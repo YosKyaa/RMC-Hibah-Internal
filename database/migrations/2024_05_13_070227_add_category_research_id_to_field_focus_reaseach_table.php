@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('proposals', function (Blueprint $table) {
-            $table->bigInteger('field_focus_research_id')->unsigned()->after('research_team_id');
-            $table->foreign('field_focus_research_id')->references('id')->on('field_focus_research');
+        Schema::table('field_focus_research', function (Blueprint $table) {
+            $table->unsignedBigInteger('category_research_id')->after('research_topic');
+            $table->foreign('category_research_id')->references('id')->on('category_research')->onDelete('cascade');
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('proposals', function (Blueprint $table) {
+        Schema::table('field_focus_research', function (Blueprint $table) {
             //
         });
     }
