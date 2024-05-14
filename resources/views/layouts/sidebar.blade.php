@@ -33,7 +33,7 @@
         </li>
         <li class="menu-item {{ request()->segment(1) == 'proposal' ? 'active' : '' }}">
             <a href="{{ route('user-proposals.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bi bi-file-text"></i>
+                <i class="menu-icon tf-icons bx bx-file"></i>
                 <div data-i18n="Dashboards">Submit Proposal</div>
             </a>
         </li>

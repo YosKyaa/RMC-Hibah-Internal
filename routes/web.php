@@ -100,6 +100,7 @@ Route::group(['prefix' => 'setting','middleware' => ['auth']],function () {
             Route::get('/data', [DepartmentController::class, 'data'])->name('dept.data');
             Route::delete('/delete', [DepartmentController::class, 'delete'])->name('dept.delete');
             Route::get('/edit/{id}', [DepartmentController::class, 'edit'])->name('dept.edit');
+            Route::put('/update/{id}', [DepartmentController::class, 'update'])->name('dept.update');
         });
     });
 });

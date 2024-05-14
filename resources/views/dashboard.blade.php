@@ -30,11 +30,6 @@
             margin: 0 1.5%;
             /* Atur jarak antar kartu di sini */
         }
-
-        .img-fluid {
-            width: 500px;
-            height: 500px;
-        }
     </style>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 @endsection
@@ -66,17 +61,17 @@
         </div>
     </div>
 
-    <table class="table" id="datatable">
-        <thead>
-            <tr>
-                <th>Announcements</th>
-            </tr>
-        </thead>
-    </table>
-    <ul class="list-group">
-        <div class="card-container">
-            <li class="list-group-item">
-                @foreach ($announcements as $anc)
+    @foreach ($announcements as $anc)
+        <table class="table" id="datatable">
+            <thead>
+                <tr>
+                    <th>Announcements</th>
+                </tr>
+            </thead>
+        </table>
+        <ul class="list-group">
+            <div class="card-container">
+                <li class="list-group-item">
                     <br>
                     <div class="card">
                         <div class="card h-100">
@@ -145,14 +140,13 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                @endforeach
-            </li>
-        </div>
+    @endforeach
+    </li>
+    </div>
     </ul>
 @endsection
 

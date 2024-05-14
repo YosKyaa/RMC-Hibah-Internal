@@ -14,26 +14,58 @@
                             @csrf
                             @method('PUT')
 
-                            <div class="form-group">
-                                <label for="title">Title</label>
-                                <input type="text" name="title" id="title" class="form-control"
-                                    value="{{ $announcements->title }}">
+                            <div class="col-sm-12 fv-plugins-icon-container">
+                                <label class="form-label" for="title">Title</label>
+                                <div class="input-group input-group-merge has-validation">
+                                    <input type="text" class="form-control @error('title') is-invalid @enderror"
+                                        name="title" placeholder="Input your title"
+                                        value="{{ old('title') != null ? old('title') : $announcements->title }}">>
+                                    @error('title')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="date">Date</label>
-                                <input type="date" name="date" id="date" class="form-control"
-                                    value="{{ $announcements->date }}">
+                            <div class="col-sm-12 fv-plugins-icon-container">
+                                <label class="form-label" for="basicDate">Date</label>
+                                <div class="input-group input-group-merge has-validation">
+                                    <input type="date" class="form-control @error('date') is-invalid @enderror"
+                                        name="date" placeholder="yyyy-mm-dd"
+                                        value="{{ old('date') != null ? old('date') : $announcements->date }}">
+                                    @error('date')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="image">Image</label>
-                                <input type="file" name="image" id="image" class="form-control">
+                            <div class="col-sm-12">
+                                <label class="form-label">Upload Images<i class="text-danger">*</i></label>
+                                <div class="input-group mb-3">
+                                    <input class="form-control @error('file_path') is-invalid @enderror" name="file_path"
+                                        type="file" accept=".jpg, .jpeg, .png" title="JPG/PNG">
+                                    @error('file_path')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="description">Description</label>
-                                <textarea name="description" id="description" class="form-control" rows="5">{{ $announcements->description }}</textarea>
+                            <div class="col-sm-12 fv-plugins-icon-container">
+                                <label class="form-label" for="basicDate">Description</label>
+                                <div class="input-group input-group-merge has-validation">
+                                    <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description"
+                                        placeholder="Input your description">{{ old('description') != null ? old('description') : $announcements->description }}</textarea>
+                                    @error('description')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Update</button>

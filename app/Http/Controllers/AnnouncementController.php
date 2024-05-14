@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\File;
 
 class AnnouncementController extends Controller
@@ -98,18 +99,19 @@ class AnnouncementController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update($id, Request $request)
     {
+        
         $request->validate([
             'title' => 'required',
-            'date' => 'date','required',
+            'date' => ['date','required'],
             'file_path' => ['required','mimes:jpg,jpeg,png','max:5120'], // max 5MB
             'description' => 'required',
         ]);
+        // dd($request);
         $announcements = Announcement::findOrFail($id);
-        $fileName = "";
+        $fileName = $announcements->file_path;
         if(isset($request->file_path)){
-            $ext = $request->file_path->extension();
             $name = str_replace(' ', '_', $request->file_path->getClientOriginalName());
             $fileName = Auth::user()->id.'_'.$name; 
             $folderName =  "storage/FILE/announcements/".Carbon::now()->format('Y/m');
@@ -120,21 +122,26 @@ class AnnouncementController extends Controller
             $upload = $request->file_path->move($path, $fileName); //upload image to folder
             if($upload){
                 $fileName=$folderName."/".$fileName;
+                if($announcements->file_path != null){
+                    File::delete(public_path()."/".$announcements->file_path);
+                }
             } else {
-                $fileName = "";
-            }
-            if(File::exists($announcements->file_path)){
-                File::delete($announcements->file_path);
+                $fileName = $announcements->file_path;
             }
         }
-        $announcements->update([
+        $d = $announcements->update([
             'title' => $request->title,
             'date' => $request->date,
             'file_path' => $fileName,
             'description' => $request->description,
         ]);
-
-        return redirect()->route('announcements.index')->with('msg,', 'Announcement berhasil diperbarui.');
+        if($d){
+            return redirect()->route('announcements.edit',['id' => ($announcements->id)])
+            ->with('msg','Announcements berhasil diubah!');
+        }else{
+            return redirect()->route('announcements.edit',['id' => ($announcements->id)])
+            ->with('msg','Announcements gagal diubah!');
+        }
     }
 
 

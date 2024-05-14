@@ -38,6 +38,12 @@
             flex-direction: column;
             justify-content: space-between;
         }
+
+        .teks {
+            width: 500px;
+            /* Lebar maksimum */
+            word-wrap: break-word;
+        }
     </style>
 @endsection
 
@@ -172,15 +178,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <table class="table table-hover table-sm" id="datatable" width="75%">
+                            <table class="table table-hover table-sm" id="datatable" width="100%">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
-                                        <th>Title</th>
-                                        <th>Date</th>
-                                        <th>Image</th>
-                                        <th>Description</th>
-                                        <th>Action</th>
+                                        <th width="10px">No</th>
+                                        <th width="60px">Title</th>
+                                        <th width="60px">Date</th>
+                                        <th width="60px">Image</th>
+                                        <th width="40px">Action</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -203,7 +208,7 @@
                         <img src="{{ asset($anc->file_path) }}" class="img-fluid" alt="" width="500px"
                             height="500px">
                         <h5 class="text-truncate"></h5>
-                        <p>{{ $anc->description }}</p>
+                        <p class="teks">{{ $anc->description }}</p>
                     </div>
                     <div class="modal-footer">
                     </div>
@@ -303,14 +308,8 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.description;
-                            return html;
-                        }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
                             var html =
-                                `<a href="#modalToggle" data-bs-toggle="modal" data-bs-target="#modalToggle" class="bi bi-eye-fill primary"></a>
+                                `<a href="#modalToggle" data-bs-toggle="modal" data-bs-target="#modalToggle" class="bx bx-show-alt badge-dark"></a>
                                 <a class=" text-success" title="Edit" href="{{ url('announcements/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a> 
                             <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row
                                 .id + `\',\'` + row.name + `\')" ><i class="bx bx-trash"></i></a>`;

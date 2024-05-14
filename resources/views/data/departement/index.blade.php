@@ -72,7 +72,7 @@
                             id="form-add-new-record" method="POST" action="">
                             @csrf
                             <div class="col-sm-12 fv-plugins-icon-container">
-                                <label class="form-label" for="basicDate">Name Departement</label>
+                                <label class="form-label" for="basicDate">Name Department</label>
                                 <div class="input-group input-group-merge has-validation">
                                     <input type="text" class="form-control @error('name_dept') is-invalid @enderror"
                                         name="name_dept" placeholder="Name Departement" value="{{ old('name_dept') }}">
@@ -191,8 +191,8 @@
                     {
                         render: function(data, type, row, meta) {
                             var html =
-                                `<a class=" text-success" title="Edit" href="{{ url('setting/manage_studyprogram/studyprogram/edit/` +
-                                                                                                                                                                                                                                                                row.id + `') }}"><i class="bx bxs-edit"></i></a> 
+                                `<a class=" text-success" title="Edit" href="{{ url('setting/manage_data/department/edit/` +
+                                                                                             row.id + `') }}"><i class="bx bxs-edit"></i></a> 
                             <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row
                                 .id + `\',\'` + row.name + `\')" ><i class="bx bx-trash"></i></a>`;
                             return html;
