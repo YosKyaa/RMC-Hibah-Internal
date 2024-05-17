@@ -1,8 +1,3 @@
-@section('css')
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
-@endsection
-
 <ul class="timeline pt-3">
     <li class="timeline-item pb-4 timeline-item-primary border-left-dashed">
       <span class="timeline-indicator-advanced timeline-indicator-primary">
