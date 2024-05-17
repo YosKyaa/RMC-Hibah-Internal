@@ -21,7 +21,7 @@ class UserProposalController extends Controller
      */
     public function create()
     {
-        return view('proposals.create');
+        //
     }
 
     /**

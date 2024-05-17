@@ -128,7 +128,7 @@
                     // url: "{{ asset('assets/vendor/libs/datatables/id.json') }}"
                 },
                 ajax: {
-                    url: "{{ route('proposal.data') }}",
+                    url: "{{ route('dept.data') }}",
                     data: function(d) {
                         d.search = $('#datatable_filter input[type="search"]').val()
                     },
@@ -146,24 +146,6 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.user_id;
-                            return html;
-                        }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
-                            var html = row.name_dept;
-                            return html;
-                        }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
-                            var html = row.name_dept;
-                            return html;
-                        }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
                             var html = row.name_dept;
                             return html;
                         }
@@ -172,7 +154,7 @@
                         render: function(data, type, row, meta) {
                             var html =
                                 `<a class=" text-success" title="Edit" href="{{ url('setting/manage_studyprogram/studyprogram/edit/` +
-                                                                                                                                                                                                                                                                                                                                                                                                                                row.id + `') }}"><i class="bx bxs-edit"></i></a> 
+                                                                                                                                                                                                                                                                                                                                                                row.id + `') }}"><i class="bx bxs-edit"></i></a> 
                             <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row
                                 .id + `\',\'` + row.name + `\')" ><i class="bx bx-trash"></i></a>`;
                             return html;
@@ -196,7 +178,7 @@
                 .then((willDelete) => {
                     if (willDelete) {
                         $.ajax({
-                            url: "{{ route('proposal.delete') }}",
+                            url: "{{ route('dept.delete') }}",
                             type: "DELETE",
                             data: {
                                 "id": id,
