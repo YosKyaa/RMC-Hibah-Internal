@@ -47,6 +47,7 @@ Route::group(['prefix' => 'user-proposals'], function () {
     Route::any('/', [UserProposalController::class, 'index'])->name('user-proposals.index')->middleware('auth');
     Route::get('/data', [UserProposalController::class, 'data'])->name('user-proposals.data');
     Route::delete('/delete', [UserProposalController::class, 'delete'])->name('user-proposals.delete');
+    Route::any('/create', [UserProposalController::class, 'create'])->name('user-proposals.create');
     Route::get('/edit/{id}', [UserProposalController::class, 'edit'])->name('user-proposals.edit');
 });
 
