@@ -1808,3 +1808,7 @@ html:not(.layout-menu-collapsed) .bg-menu-theme .menu-inner .menu-item .menu-lin
 .layout-footer-fixed .content-footer {
     box-shadow: 0 0 .375rem .25rem rgba(161, 172, 184, .15)
 }
+
+.timeline .timeline-item .timeline-indicator, .timeline .timeline-item .timeline-indicator-advanced {
+    background-color: #FFFFFF;
+}

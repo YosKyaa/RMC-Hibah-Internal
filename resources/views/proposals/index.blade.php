@@ -6,6 +6,66 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bs-stepper/bs-stepper.css') }}">
 @endsection
 
+@section('style')
+    <style> 
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+.timeline .timeline-item .timeline-indicator i, .timeline .timeline-item .timeline-indicator-advanced i {
+    color: #696cff;
+}
+.timeline .timeline-indicator-primary i {
+    color: #696cff !important;
+}
+.bx {
+    vertical-align: middle;
+    font-size: 1.15rem;
+    line-height: 1;
+}
+.bx {
+    font-family: "boxicons" !important;
+    font-weight: normal;
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-rendering: auto;
+    display: inline-block;
+    text-transform: none;
+    speak: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+user agent stylesheet
+i {
+    font-style: italic;
+}
+.timeline .timeline-item .timeline-indicator, .timeline .timeline-item .timeline-indicator-advanced {
+    position: absolute;
+    left: -0.75rem;
+    top: 0;
+    z-index: 2;
+    height: 1.5rem;
+    width: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 50%;
+}
+user agent stylesheet
+li {
+    text-align: -webkit-match-parent;
+}
+.timeline {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    list-style: none;
+}
+    </style>
+@endsection
+
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
 
