@@ -61,17 +61,18 @@
         </div>
     </div>
 
+
+    <table class="table" id="datatable">
+        <thead>
+            <tr>
+                <th>Announcements</th>
+            </tr>
+        </thead>
+    </table>
     @foreach ($announcements as $anc)
-        <table class="table" id="datatable">
-            <thead>
-                <tr>
-                    <th>Announcements</th>
-                </tr>
-            </thead>
-        </table>
         <ul class="list-group">
             <div class="card-container">
-                <li class="list-group-item">
+                <li class="list-group-item" data-aos="fade-down">
                     <br>
                     <div class="card">
                         <div class="card h-100">
@@ -149,7 +150,6 @@
     </div>
     </ul>
 @endsection
-
 @section('script')
     <script>
         // Misalkan $anc->date adalah string tanggal dalam format YYYY-MM-DD

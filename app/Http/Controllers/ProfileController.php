@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Department;
+use App\Models\StudyProgram;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -14,11 +18,29 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request): View
+    function edit(Request $request)
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
+        $studiprogram = StudyProgram::all();
+        $dept = Department::all();
+        if ($request->isMethod('post')) {
+            $this->validate($request, [ 
+                'email'=> ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore(Auth::user()->id, 'id')],
+                'username'=> ['nullable', 'string', 'max:255', Rule::unique('users')->ignore(Auth::user()->id, 'id')],
+                'name' => ['required', 'string'],
+            ]);
+            User::where('id', Auth::user()->id)->update([
+                'name'=> $request->name,
+                'username' => $request->username,
+                'front_title' => $request->front_title,
+                'back_title' => $request->back_title,
+                'study_programs_id' => $request->study_programs_id,
+                'departments_id' => $request->departments_id,
+                'email'=> $request->email,
+                'nidn' => $request->nidn,
+            ]);
+            return redirect()->route('profile.edit')->with('msg','Profil telah diperbarui!');
+        }
+        return view('profile.edit', compact('studiprogram','dept'));
     }
 
     /**
