@@ -1,224 +1,168 @@
-@extends('layouts.master')
-@section('title', 'Proposal')
-
 @section('css')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css">
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bs-stepper/bs-stepper.css') }}">
-    <link rel="stylesheet" href="assets/vendor/libs/select2/select2.css " />
-    <link rel="stylesheet" href="assets/vendor/libs/bootstrap-select/bootstrap-select.css" />
-    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 @endsection
 
-@section('content')
-<div class="card mb-4">
-    <div class="card-body">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 mt-5">
-                <div id="stepper1" class="bs-stepper">
-                    <div class="bs-stepper-header">
-                        <div class="step" data-target="#test-l-1">
-                            <button type="button" class="btn step-trigger">
-                                <span class="bs-stepper-circle">1</span>
-                                <span class="bs-stepper-label">Submit Proposal</span>
-                            </button>
-                        </div>
-                        <div class="line"></div>
-                        <div class="step active" data-target="#test-l-2">
-                            <button type="button" class="btn step-trigger">
-                                <span class="bs-stepper-circle">2</span>
-                                <span class="bs-stepper-label">Revisi</span>
-                            </button>
-                        </div>
-                        <div class="line"></div>
-                        <div class="step" data-target="#test-l-3">
-                            <button type="button" class="btn step-trigger">
-                                <span class="bs-stepper-circle">3</span>
-                                <span class="bs-stepper-label">Third step</span>
-                            </button>
-                        </div>
-                        <div class="line"></div>
-                        <div class="step" data-target="#test-l-4">
-                            <button type="button" class="btn step-trigger">
-                                <span class="bs-stepper-circle">4</span>
-                                <span class="bs-stepper-label">Third step</span>
-                            </button>
-                        </div>
-                        <div class="line"></div>
-                        <div class="step" data-target="#test-l-5">
-                            <button type="button" class="btn step-trigger">
-                                <span class="bs-stepper-circle">5</span>
-                                <span class="bs-stepper-label">Third step</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="bs-stepper-content">
-                        <!-- SLIDE 1 -->
-                    <div id="test-l-1" class="content">
-                    <div class="mb-3">
-                        <label for="selectpickerBasic" class="form-label">Jenis Penelitian</label>
-                        <select id="selectpickerBasic" class="selectpicker w-100" data-style="btn-default">
-                            <option>Rocky</option>
-                            <option>Pulp Fiction</option>
-                            <option>The Godfather</option>
-                        </select>
-                        </div>
-                        <div class="mb-3">
-                        <label for="selectpickerLiveSearch" class="form-label">Bidang Penelitian</label>
-                        <br>
-                        <li>kategori Penelitian</li>
-                        <select id="selectpickerBasic" class="selectpicker w-100" data-style="btn-default">
-                            <option>Rocky</option>
-                            <option>Pulp Fiction</option>
-                            <option>The Godfather</option>
-                        </select>
-                        <br>
-                        <li>Tema Penelitian</li>
-                        <select id="selectpickerLiveSearch" class="selectpicker w-100" data-style="btn-default" data-live-search="true">
-                            <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
-                            <option data-tokens="mustard">Burger, Shake and a Smile</option>
-                            <option data-tokens="frosting">Sugar, Spice and all things nice</option>
-                        </select>
-                        <br>
-                        <li>Topik Penelitian</li>
-                        <select id="selectpickerLiveSearch" class="selectpicker w-100" data-style="btn-default" data-live-search="true">
-                            <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
-                            <option data-tokens="mustard">Burger, Shake and a Smile</option>
-                            <option data-tokens="frosting">Sugar, Spice and all things nice</option>
-                        </select>
-                        </div>
-                        <div class="mb-3">
-                        <label for="formFileMultiple" class="form-label">Judul Penelitian</label>
-                        
-                        <div class="form-floating">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="John Doe" aria-describedby="floatingInputHelp" />
-                                <label for="floatingInput">Judul</label>
-                        </div>
-                        <br>
-                        <div class="mb-3">
-                        <label for="selectpickerBasic" class="form-label">Jenis TKT</label>
-                        <select id="selectpickerBasic" class="selectpicker w-100" data-style="btn-default">
-                            <option>Rocky</option>
-                            <option>Pulp Fiction</option>
-                            <option>The Godfather</option>
-                        </select>
-                        </div>
-                        <div class="mb-3">
-                        <label for="selectpickerBasic" class="form-label">Target Utama Riset</label>
-                        <select id="selectpickerBasic" class="selectpicker w-100" data-style="btn-default">
-                            <option>Rocky</option>
-                            <option>Pulp Fiction</option>
-                            <option>The Godfather</option>
-                        </select>
-                        </div>
-                        <div class="col-sm-12 fv-plugins-icon-container">
-                                                <label class="form-label" for="basicDate">Catatan</label>
-                                                <div class="input-group input-group-merge has-validation">
-                                                    <textarea class="form-control @error('catatan') is-invalid @enderror" name="catatan" id="catatan"
-                                                        placeholder="Catatan">{{ old('catatan') }}</textarea>
-                                                    @error('catatan')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <br>
-                        <form action="/upload" class="dropzone needsclick" id="dropzone-basic">
-                            <div class="dz-message needsclick">
-                            Drop files here or click to upload
-                            <span class="note needsclick">(This is just a demo dropzone. Selected files are <span class="fw-medium">not</span> actually uploaded.)</span>
-                        </div>
-                        <div class="fallback">
-                            <input name="file" type="file" />
-                        </div>
-                        </form>
-                            <br>
-                            <button class="btn btn-primary" onclick="stepper1.next()">Submit</button>
-                        </div>
-                    </div>
-                    <!-- SLIDE 2 -->
-                        <div id="test-l-2" class="content">
-                        <div class="row">
-        <div class="col-md-12">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <div class="p-6 text-center text-gray-900 dark:text-gray-100">
-                        <h1>Hi, <b>{{ Auth::user()->name }}</b>!</h1>
-                        {{ __("Proposal sudah dikirim ke Reviewer") }}
-                        <br>
-                            <p class="mb-2">Status Proposal : </p>
-                    </div>
-                </div>
-            </div>
+<ul class="timeline pt-3">
+    <li class="timeline-item pb-4 timeline-item-primary border-left-dashed">
+      <span class="timeline-indicator-advanced timeline-indicator-primary">
+        <i class="bx bx-paper-plane"></i>
+      </span>
+      <div class="timeline-event">
+        <div class="timeline-header border-bottom mb-3">
+          <h6 class="mb-0">Get on the flight</h6>
+          <span class="text-muted">3rd October</span>
         </div>
-    </div>
-
-                            <button class="btn btn-primary" onclick="stepper1.next()">Next</button>
-                            <button class="btn btn-primary" onclick="stepper1.previous()">Previous</button>
-                        </div>
-                        <!-- SLIDE 3 -->
-                        <div id="test-l-3" class="content">
-                            <p class="text-center">test 3</p>
-                            <br>
-                            <button class="btn btn-primary" onclick="stepper1.next()">Next</button>
-                            <button class="btn btn-primary" onclick="stepper1.previous()">Previous</button>
-                        </div>
-                        <div id="test-l-4" class="content">
-                            <p class="text-center">test 4</p>
-                            <br>
-                            <button class="btn btn-primary" onclick="stepper1.next()">Next</button>
-                            <button class="btn btn-primary" onclick="stepper1.previous()">Previous</button>
-                        </div>
-                        <div id="test-l-5" class="content">
-                            <p class="text-center">test 5</p>
-                            <br>
-                            <button class="btn btn-primary" onclick="stepper1.next()">Next</button>
-                            <button class="btn btn-primary" onclick="stepper1.previous()">Previous</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="d-flex justify-content-between flex-wrap mb-2">
+          <div>
+            <span>Charles de Gaulle Airport, Paris</span>
+            <i class="bx bx-right-arrow-alt scaleX-n1-rtl mx-3"></i>
+            <span>Heathrow Airport, London</span>
+          </div>
+          <div>
+            <span>6:30 AM</span>
+          </div>
         </div>
-    </div>
-    </div>
-</div>
-
-@endsection
-
-@section('script')
-    <script src="https://cdn.jsdelivr.net/npm/bs-stepper/dist/js/bs-stepper.min.js"></script>
-    <script src="{{ asset('assets/vendor/libs/bs-stepper/bs-stepper.js') }}"></script>
-    <script src="assets/vendor/libs/select2/select2.js"></script>
-    <script src="assets/vendor/libs/bootstrap-select/bootstrap-select.js"></script> 
-    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
-    <script>
-        var stepper1Node = document.querySelector('#stepper1')
-        // var stepper1 = new Stepper(document.querySelector('#stepper1'))
-
-        // stepper1Node.addEventListener('show.bs-stepper', function(event) {
-        //     console.warn('show.bs-stepper', event)
-        // })
-        // stepper1Node.addEventListener('shown.bs-stepper', function(event) {
-        //     console.warn('shown.bs-stepper', event)
-        // })
-
-        // var stepper2 = new Stepper(document.querySelector('#stepper2'), {
-        //     linear: false,
-        //     animation: true
-        // })
-        // var stepper3 = new Stepper(document.querySelector('#stepper3'), {
-        //     animation: true
-        // })
-        // var stepper4 = new Stepper(document.querySelector('#stepper4'))
-    $(".selectpicker").selectpicker();
-    
-    const myDropzone = new Dropzone('#dropzone-basic', {
-    previewTemplate: previewTemplate,
-    parallelUploads: 1,
-    maxFilesize: 5,
-    addRemoveLinks: true,
-    maxFiles: 1
-    });
-    </script>
-@endsection
+        <a href="javascript:void(0)">
+          <i class="bx bx-link"></i>
+          bookingCard.pdf
+        </a>
+      </div>
+    </li>
+    <li class="timeline-item pb-4 timeline-item-success border-left-dashed">
+      <span class="timeline-indicator-advanced timeline-indicator-success">
+        <i class="bx bx-paint"></i>
+      </span>
+      <div class="timeline-event">
+        <div class="timeline-header mb-sm-0 mb-3">
+          <h6 class="mb-0">Design Review</h6>
+          <span class="text-muted">4th October</span>
+        </div>
+        <p>
+          Weekly review of freshly prepared design for our new
+          application.
+        </p>
+        <div class="d-flex justify-content-between">
+          <h6>New Application</h6>
+          <div class="d-flex">
+            <div class="avatar avatar-xs me-2">
+              <img src="../../assets/img/avatars/4.png" alt="Avatar" class="rounded-circle" />
+            </div>
+            <div class="avatar avatar-xs">
+              <img src="../../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="timeline-item pb-4 timeline-item-danger border-left-dashed">
+      <span class="timeline-indicator-advanced timeline-indicator-danger">
+        <i class="bx bx-shopping-bag"></i>
+      </span>
+      <div class="timeline-event">
+        <div class="d-flex flex-sm-row flex-column">
+          <img src="../../assets/img/elements/16.jpg" class="rounded me-3" alt="Shoe img" height="62" width="62" />
+          <div>
+            <div class="timeline-header flex-wrap mb-2 mt-3 mt-sm-0">
+              <h6 class="mb-0">Sold Puma POPX Blue Color</h6>
+              <span class="text-muted">5th October</span>
+            </div>
+            <p>
+              PUMA presents the latest shoes from its collection. Light &
+              comfortable made with highly durable material.
+            </p>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between flex-wrap flex-sm-row flex-column text-center">
+          <div class="mb-sm-0 mb-2">
+            <p class="mb-0">Customer</p>
+            <span class="text-muted">Micheal Scott</span>
+          </div>
+          <div class="mb-sm-0 mb-2">
+            <p class="mb-0">Price</p>
+            <span class="text-muted">$375.00</span>
+          </div>
+          <div>
+            <p class="mb-0">Quantity</p>
+            <span class="text-muted">1</span>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="timeline-item pb-4 timeline-item-info border-left-dashed">
+      <span class="timeline-indicator-advanced timeline-indicator-info">
+        <i class="bx bx-user-circle"></i>
+      </span>
+      <div class="timeline-event">
+        <div class="timeline-header">
+          <h6 class="mb-0">Interview Schedule</h6>
+          <span class="text-muted">6th October</span>
+        </div>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+          Possimus quos, voluptates voluptas rem veniam expedita.
+        </p>
+        <hr />
+        <div class="d-flex justify-content-between flex-wrap gap-2">
+          <div class="d-flex flex-wrap">
+            <div class="avatar me-3">
+              <img src="../../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
+            </div>
+            <div>
+              <p class="mb-0">Rebecca Godman</p>
+              <span class="text-muted">Javascript Developer</span>
+            </div>
+          </div>
+          <div class="d-flex flex-wrap align-items-center cursor-pointer">
+            <i class="bx bx-message-rounded-dots me-2"></i>
+            <i class="bx bx-phone-call"></i>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="timeline-item pb-4 timeline-item-dark border-left-dashed">
+      <span class="timeline-indicator-advanced timeline-indicator-dark">
+        <i class="bx bx-bell"></i>
+      </span>
+      <div class="timeline-event">
+        <div class="timeline-header">
+          <h6 class="mb-0">2 Notifications</h6>
+          <span class="text-muted">7th October</span>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap border-top-0 p-0">
+            <div class="d-flex flex-wrap align-items-center">
+              <ul class="list-unstyled users-list d-flex align-items-center avatar-group m-0 my-3 me-2">
+                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="Vinnie Mostowy" class="avatar avatar-xs pull-up">
+                  <img class="rounded-circle" src="../../assets/img/avatars/5.png" alt="Avatar" />
+                </li>
+                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="Allen Rieske" class="avatar avatar-xs pull-up">
+                  <img class="rounded-circle" src="../../assets/img/avatars/12.png" alt="Avatar" />
+                </li>
+                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="Julee Rossignol" class="avatar avatar-xs pull-up">
+                  <img class="rounded-circle" src="../../assets/img/avatars/6.png" alt="Avatar" />
+                </li>
+              </ul>
+              <span>Commented on your post.</span>
+            </div>
+            <button class="btn btn-outline-primary btn-sm my-sm-0 my-3">
+              View
+            </button>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap pb-0 px-0">
+            <div class="d-flex flex-sm-row flex-column align-items-center">
+              <img src="../../assets/img/avatars/4.png" class="rounded-circle me-3" alt="avatar" height="24" width="24" />
+              <div class="user-info">
+                <p class="my-0">Dwight repaid you</p>
+                <span class="text-muted">30 minutes ago</span>
+              </div>
+            </div>
+            <h5 class="mb-0">$20</h5>
+          </li>
+        </ul>
+      </div>
+    </li>
+    <li class="timeline-end-indicator">
+      <i class="bx bx-check-circle"></i>
+    </li>
+  </ul> 
