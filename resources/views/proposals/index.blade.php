@@ -85,16 +85,26 @@ li {
                                 <div class="timeline-event">
                                     <div class="timeline-header border-bottom mb-3">
                                         <h6 class="mb-0">Upload Proposal</h6>
-                                        <span class="text-muted">3rd October</span>
+                                        <span>3rd October</span>
                                     </div>
-                                <div class="col-xl-6">
                                     <div class="d-flex justify-content-between flex-wrap mb-2">
                                         <div>
                                             <!-- Data proposal -->
                                             <span>Judul Penelitian</span> 
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="timeline-header mb-3">
+                                    <button type="button" class="btn btn-primary">Upload</button>
+                                    <span> 
+                                    <a href="javascript:void(0)">
+                                        <i class="bx bx-link"></i>
+                                    Download.pdf
+                                    </a> 
+                                    <a href="#modalToggle" data-bs-toggle="modal" data-bs-target="#modalToggle" class="bx bx-show-alt badge-dark"></a>
+                                <a class=" text-success" title="Edit" href="{{ url('announcements/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a> 
+                                <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row.id + `\',\'` + row.name + `\')" ><i class="bx bx-trash"></i></a></span>
+                                    </div>
+                                
                                 </div>
                             </li>
                             <li class="timeline-item pb-4 timeline-item-success border-left-dashed">
