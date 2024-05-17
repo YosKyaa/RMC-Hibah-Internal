@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('breadcrumb-items')
-    <span class="text-muted fw-light">Manage Annoucements</span>
+    <span class="text-muted fw-light">Manage/</span>
 @endsection
 @section('title', 'Annoucements')
 
@@ -63,7 +63,7 @@
                             <div class="col-sm-7">
                                 <div class="card-body">
                                     <h5 class="card-title text-primary">Create Announcements!</h5>
-                                    <p class="mb-4"><span class="fw-medium">Nottify all Users of your news</span></p>
+                                    <p class="mb-4"><span class="fw-medium">Notify all Users of your news</span></p>
                                     <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
                                         data-bs-target="#newrecord" aria-controls="offcanvasEnd" tabindex="0"
                                         aria-controls="DataTables_Table_0" type="button"><span><i
@@ -73,11 +73,8 @@
                                 </div>
                             </div>
                             <div class="col-sm-5 text-center text-sm-left">
-                                <div class="card-body pb-0 px-0 px-md-4">
-                                    <img src="../assets/img/ANNOUNCEMENT.png" height="140" alt="View Badge User"
-                                        data-app-dark-img="assets/img/ANNOUNCEMENT.png"
-                                        data-app-light-img="assets/img/ANNOUNCEMENT.png">
-                                </div>
+                                <img src="../assets/img/ANNOUNCEMENT.png" data-app-dark-img="assets/img/ANNOUNCEMENT.png"
+                                    data-app-light-img="assets/img/ANNOUNCEMENT.png">
                             </div>
                         </div>
                     </div>
