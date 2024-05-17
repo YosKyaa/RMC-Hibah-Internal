@@ -72,9 +72,9 @@
     @foreach ($announcements as $anc)
         <ul class="list-group">
             <div class="card-container">
-                <li class="list-group-item" data-aos="fade-down">
+                <li class="list-group-item">
                     <br>
-                    <div class="card">
+                    <div class="card" data-aos="fade-down">
                         <div class="card h-100">
                             <div class="card-header flex-grow-0">
                                 <div class="d-flex">
