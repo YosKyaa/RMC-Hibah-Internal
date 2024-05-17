@@ -4,229 +4,184 @@
 @section('css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css">
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bs-stepper/bs-stepper.css') }}">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        @font-face {
-            font-family: pop;
-            src: url(./Fonts/Poppins-Medium.ttf);
-        }
-
-        .main {
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: pop;
-            flex-direction: column;
-        }
-
-        .head {
-            text-align: center;
-        }
-
-        .head_1 {
-            font-size: 30px;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .head_1 span {
-            color: #ff4732;
-        }
-
-        .head_2 {
-            font-size: 16px;
-            font-weight: 600;
-            color: #333;
-            margin-top: 3px;
-        }
-
-        ul {
-            display: flex;
-            margin-top: 80px;
-        }
-
-        ul li {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        ul li .icon {
-            font-size: 35px;
-            color: #ff4732;
-            margin: 0 60px;
-        }
-
-        ul li .text {
-            font-size: 14px;
-            font-weight: 600;
-            color: #ff4732;
-        }
-
-        /* Progress Div Css  */
-
-        ul li .progress {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background-color: rgba(68, 68, 68, 0.781);
-            margin: 14px 0;
-            display: grid;
-            place-items: center;
-            color: #fff;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .progress::after {
-            content: " ";
-            position: absolute;
-            width: 125px;
-            height: 5px;
-            background-color: rgba(68, 68, 68, 0.781);
-            right: 30px;
-        }
-
-        .one::after {
-            width: 0;
-            height: 0;
-        }
-
-        ul li .progress .uil {
-            display: none;
-        }
-
-        ul li .progress p {
-            font-size: 13px;
-        }
-
-        /* Active Css  */
-
-        ul li .active {
-            background-color: #ff4732;
-            display: grid;
-            place-items: center;
-        }
-
-        li .active::after {
-            background-color: #ff4732;
-        }
-
-        ul li .active p {
-            display: none;
-        }
-
-        ul li .active .uil {
-            font-size: 20px;
-            display: flex;
-        }
-
-        /* Responsive Css  */
-
-        @media (max-width: 980px) {
-            ul {
-                flex-direction: column;
-            }
-
-            ul li {
-                flex-direction: row;
-            }
-
-            ul li .progress {
-                margin: 0 30px;
-            }
-
-            .progress::after {
-                width: 5px;
-                height: 55px;
-                bottom: 30px;
-                left: 50%;
-                transform: translateX(-50%);
-                z-index: -1;
-            }
-
-            .one::after {
-                height: 0;
-            }
-
-            ul li .icon {
-                margin: 15px 0;
-            }
-        }
-
-        @media (max-width:600px) {
-            .head .head_1 {
-                font-size: 24px;
-            }
-
-            .head .head_2 {
-                font-size: 16px;
-            }
-        }
-    </style>
 @endsection
 
 @section('content')
-    <div class="main">
-
-        <div class="head">
-            <p class="head_1">Animated Step <span>Progress Bar</span></p>
-            <p class="head_2">Using Html, Css & JavaScript</p>
+    <div class="container">
+        <h1>bs-stepper</h1>
+        <div class="row">
+            <div class="col-md-12 mt-5">
+                <h2>Linear stepper</h2>
+                <div id="stepper1" class="bs-stepper">
+                    <div class="bs-stepper-header">
+                        <div class="step" data-target="#test-l-1">
+                            <button type="button" class="btn step-trigger">
+                                <span class="bs-stepper-circle">1</span>
+                                <span class="bs-stepper-label">First step</span>
+                            </button>
+                        </div>
+                        <div class="line"></div>
+                        <div class="step" data-target="#test-l-2">
+                            <button type="button" class="btn step-trigger">
+                                <span class="bs-stepper-circle">2</span>
+                                <span class="bs-stepper-label">Second step</span>
+                            </button>
+                        </div>
+                        <div class="line"></div>
+                        <div class="step" data-target="#test-l-3">
+                            <button type="button" class="btn step-trigger">
+                                <span class="bs-stepper-circle">3</span>
+                                <span class="bs-stepper-label">Third step</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bs-stepper-content">
+                        <div id="test-l-1" class="content">
+                            <p class="text-center">test 1</p>
+                            <button class="btn btn-primary" onclick="stepper1.next()">Next</button>
+                        </div>
+                        <div id="test-l-2" class="content">
+                            <p class="text-center">test 2</p>
+                            <button class="btn btn-primary" onclick="stepper1.next()">Next</button>
+                        </div>
+                        <div id="test-l-3" class="content">
+                            <p class="text-center">test 3</p>
+                            <button class="btn btn-primary" onclick="stepper1.next()">Next</button>
+                            <button class="btn btn-primary" onclick="stepper1.previous()">Previous</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mt-5">
+                <h2>Non linear stepper</h2>
+                <div id="stepper2" class="bs-stepper">
+                    <div class="bs-stepper-header">
+                        <div class="step" data-target="#test-nl-1">
+                            <button type="button" class="btn step-trigger">
+                                <span class="bs-stepper-circle">1</span>
+                                <span class="bs-stepper-label">First step</span>
+                            </button>
+                        </div>
+                        <div class="line"></div>
+                        <div class="step" data-target="#test-nl-2">
+                            <div class="btn step-trigger">
+                                <span class="bs-stepper-circle">2</span>
+                                <span class="bs-stepper-label">Second step</span>
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="step" data-target="#test-nl-3">
+                            <button type="button" class="btn step-trigger">
+                                <span class="bs-stepper-circle">3</span>
+                                <span class="bs-stepper-label">Third step</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bs-stepper-content">
+                        <div id="test-nl-1" class="content">
+                            <p class="text-center">test 3</p>
+                            <button class="btn btn-primary" onclick="stepper2.next()">Next</button>
+                        </div>
+                        <div id="test-nl-2" class="content">
+                            <p class="text-center">test 4</p>
+                            <button class="btn btn-primary" onclick="stepper2.next()">Next</button>
+                        </div>
+                        <div id="test-nl-3" class="content">
+                            <p class="text-center">test 5</p>
+                            <button class="btn btn-primary" onclick="stepper2.next()">Next</button>
+                            <button class="btn btn-primary" onclick="stepper2.previous()">Previous</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mt-5">
+                <h2>Vertical stepper</h2>
+                <div id="stepper3" class="bs-stepper vertical">
+                    <div class="bs-stepper-header">
+                        <div class="step" data-target="#test-lv-1">
+                            <button type="button" class="btn step-trigger">
+                                <span class="bs-stepper-circle">1</span>
+                                <span class="bs-stepper-label">First step</span>
+                            </button>
+                        </div>
+                        <div class="line"></div>
+                        <div class="step" data-target="#test-lv-2">
+                            <button type="button" class="btn step-trigger">
+                                <span class="bs-stepper-circle">2</span>
+                                <span class="bs-stepper-label">Second step</span>
+                            </button>
+                        </div>
+                        <div class="line"></div>
+                        <div class="step" data-target="#test-lv-3">
+                            <button type="button" class="btn step-trigger">
+                                <span class="bs-stepper-circle">3</span>
+                                <span class="bs-stepper-label">Third step</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bs-stepper-content">
+                        <div id="test-lv-1" class="content">
+                            <p class="text-center">test 3</p>
+                            <button class="btn btn-primary" onclick="stepper3.next()">Next</button>
+                            <button class="btn btn-primary" onclick="stepper3.previous()">Previous</button>
+                        </div>
+                        <div id="test-lv-2" class="content">
+                            <p class="text-center">test 4</p>
+                            <button class="btn btn-primary" onclick="stepper3.next()">Next</button>
+                            <button class="btn btn-primary" onclick="stepper3.previous()">Previous</button>
+                        </div>
+                        <div id="test-lv-3" class="content">
+                            <p class="text-center">test 5</p>
+                            <button class="btn btn-primary" onclick="stepper3.next()">Next</button>
+                            <button class="btn btn-primary" onclick="stepper3.previous()">Previous</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mt-5">
+                <h2>Linear vertical stepper without fade</h2>
+                <div id="stepper4" class="bs-stepper vertical">
+                    <div class="bs-stepper-header">
+                        <div class="step" data-target="#test-vlnf-1">
+                            <button type="button" class="btn step-trigger">
+                                <span class="bs-stepper-circle">1</span>
+                                <span class="bs-stepper-label">First step</span>
+                            </button>
+                        </div>
+                        <div class="line"></div>
+                        <div class="step" data-target="#test-vlnf-2">
+                            <button type="button" class="btn step-trigger">
+                                <span class="bs-stepper-circle">2</span>
+                                <span class="bs-stepper-label">Second step</span>
+                            </button>
+                        </div>
+                        <div class="line"></div>
+                        <div class="step" data-target="#test-vlnf-3">
+                            <button type="button" class="btn step-trigger">
+                                <span class="bs-stepper-circle">3</span>
+                                <span class="bs-stepper-label">Third step</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bs-stepper-content">
+                        <div id="test-vlnf-1" class="content">
+                            <p class="text-center">test 1</p>
+                            <button class="btn btn-primary" onclick="stepper4.next()">Next</button>
+                        </div>
+                        <div id="test-vlnf-2" class="content">
+                            <p class="text-center">test 2</p>
+                            <button class="btn btn-primary" onclick="stepper4.next()">Next</button>
+                            <button class="btn btn-primary" onclick="stepper4.previous()">Previous</button>
+                        </div>
+                        <div id="test-vlnf-3" class="content">
+                            <p class="text-center">test 3</p>
+                            <button class="btn btn-primary" onclick="stepper4.next()">Next</button>
+                            <button class="btn btn-primary" onclick="stepper4.previous()">Previous</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <ul>
-            <li>
-                <i class="icon uil uil-capture"></i>
-                <div class="progress one">
-                    <p>1</p>
-                    <i class="uil uil-check"></i>
-                </div>
-                <p class="text">Add To Cart</p>
-            </li>
-            <li>
-                <i class="icon uil uil-clipboard-notes"></i>
-                <div class="progress two">
-                    <p>2</p>
-                    <i class="uil uil-check"></i>
-                </div>
-                <p class="text">Fill Details</p>
-            </li>
-            <li>
-                <i class="icon uil uil-credit-card"></i>
-                <div class="progress three">
-                    <p>3</p>
-                    <i class="uil uil-check"></i>
-                </div>
-                <p class="text">Make Payment</p>
-            </li>
-            <li>
-                <i class="icon uil uil-exchange"></i>
-                <div class="progress four">
-                    <p>4</p>
-                    <i class="uil uil-check"></i>
-                </div>
-                <p class="text">Order in Progress</p>
-            </li>
-            <li>
-                <i class="icon uil uil-map-marker"></i>
-                <div class="progress five">
-                    <p>5</p>
-                    <i class="uil uil-check"></i>
-                </div>
-                <p class="text">Order Arrived</p>
-            </li>
-        </ul>
-
     </div>
 
 
@@ -235,48 +190,27 @@
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/bs-stepper/dist/js/bs-stepper.min.js"></script>
     <script src="{{ asset('assets/vendor/libs/bs-stepper/bs-stepper.js') }}"></script>
+    <script src="assets/vendor/libs/select2/select2.js"></script>
+    <script src="assets/vendor/libs/bootstrap-select/bootstrap-select.js"></script> 
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <script>
-        const one = document.querySelector(".one");
-        const two = document.querySelector(".two");
-        const three = document.querySelector(".three");
-        const four = document.querySelector(".four");
-        const five = document.querySelector(".five");
+        var stepper1Node = document.querySelector('#stepper1')
+        var stepper1 = new Stepper(document.querySelector('#stepper1'))
 
-        one.onclick = function() {
-            one.classList.add("active");
-            two.classList.remove("active");
-            three.classList.remove("active");
-            four.classList.remove("active");
-            five.classList.remove("active");
-        }
+        stepper1Node.addEventListener('show.bs-stepper', function(event) {
+            console.warn('show.bs-stepper', event)
+        })
+        stepper1Node.addEventListener('shown.bs-stepper', function(event) {
+            console.warn('shown.bs-stepper', event)
+        })
 
-        two.onclick = function() {
-            one.classList.add("active");
-            two.classList.add("active");
-            three.classList.remove("active");
-            four.classList.remove("active");
-            five.classList.remove("active");
-        }
-        three.onclick = function() {
-            one.classList.add("active");
-            two.classList.add("active");
-            three.classList.add("active");
-            four.classList.remove("active");
-            five.classList.remove("active");
-        }
-        four.onclick = function() {
-            one.classList.add("active");
-            two.classList.add("active");
-            three.classList.add("active");
-            four.classList.add("active");
-            five.classList.remove("active");
-        }
-        five.onclick = function() {
-            one.classList.add("active");
-            two.classList.add("active");
-            three.classList.add("active");
-            four.classList.add("active");
-            five.classList.add("active");
-        }
+        var stepper2 = new Stepper(document.querySelector('#stepper2'), {
+            linear: false,
+            animation: true
+        })
+        var stepper3 = new Stepper(document.querySelector('#stepper3'), {
+            animation: true
+        })
+        var stepper4 = new Stepper(document.querySelector('#stepper4'))
     </script>
 @endsection
