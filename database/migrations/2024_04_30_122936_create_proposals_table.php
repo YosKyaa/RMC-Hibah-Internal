@@ -33,7 +33,7 @@ return new class extends Migration
             $table->uuid('status_id');
             $table->foreign('status_id')->references('id')->on('status')->onDelete('cascade');
             
-            $table->unsignedBigInteger('research_types_id');
+            $table->unsignedBigInteger('research_types_id')->after('user_id');
             $table->foreign('research_types_id')->references('id')->on('research_types');
             $table->timestamps();
         });

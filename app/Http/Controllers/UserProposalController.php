@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FieldFocusResearch;
 use App\Models\Proposal;
+use App\Models\ResearchTypes;
 use Illuminate\Http\Request;
 
 class UserProposalController extends Controller
@@ -22,6 +24,10 @@ class UserProposalController extends Controller
     public function create()
     {
         //
+        $researchtypes = ResearchTypes::all();
+        $fieldfocusresearch = FieldFocusResearch::all();
+        $proposals = Proposal::all();
+        return view('proposals.create', compact('researchtypes', 'fieldfocusresearch', 'proposals'));    
     }
 
     /**
