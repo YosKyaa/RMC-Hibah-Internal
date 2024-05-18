@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoryResearch;
 use App\Models\FieldFocusResearch;
 use App\Models\Proposal;
 use App\Models\ResearchTypes;
@@ -27,7 +28,8 @@ class UserProposalController extends Controller
         $researchtypes = ResearchTypes::all();
         $fieldfocusresearch = FieldFocusResearch::all();
         $proposals = Proposal::all();
-        return view('proposals.create', compact('researchtypes', 'fieldfocusresearch', 'proposals'));    
+        $categoryresearch = CategoryResearch::all();
+        return view('proposals.create', compact('researchtypes', 'fieldfocusresearch', 'proposals', 'categoryresearch'));    
     }
 
     /**
