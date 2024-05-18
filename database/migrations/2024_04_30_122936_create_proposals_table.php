@@ -17,6 +17,9 @@ return new class extends Migration
             $table->unsignedBigInteger('users_id');
             $table->foreign('users_id')->references('id')->on('users');
 
+            $table->unsignedBigInteger('research_types_id');
+            $table->foreign('research_types_id')->references('id')->on('research_types');
+
             $table->string('research_title');
 
             $table->unsignedBigInteger('tkt_types_id');
@@ -33,8 +36,6 @@ return new class extends Migration
             $table->uuid('status_id');
             $table->foreign('status_id')->references('id')->on('status')->onDelete('cascade');
             
-            $table->unsignedBigInteger('research_types_id')->after('user_id');
-            $table->foreign('research_types_id')->references('id')->on('research_types');
             $table->timestamps();
         });
     }
