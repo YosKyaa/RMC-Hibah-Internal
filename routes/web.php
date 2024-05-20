@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProposalController;
+use App\Http\Controllers\ReviewerController;
 use App\Http\Controllers\StudyProgramController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProposalController;
@@ -49,13 +50,28 @@ Route::group(['prefix' => 'user-proposals'], function () {
     Route::any('/create', [UserProposalController::class,'create'])->name('user-proposals.create');
     Route::delete('/delete', [UserProposalController::class, 'delete'])->name('user-proposals.delete');
     Route::get('/edit/{id}', [UserProposalController::class, 'edit'])->name('user-proposals.edit');
+    Route::get('/category/by_id', [UserProposalController::class, 'category_by_id'])->name('DOC.get_category_by_id');
 });
 
-Route::group(['prefix' => 'proposals'], function () { 
+Route::any('/field_focus_research', [UserProposalController::class, 'category'])->name('DOC.category');
+Route::get('/field_focus_research/data', [UserProposalController::class, 'field_focus_research_data'])->name('DOC.field_focus_research_data');
+Route::get('/field_focus_research/by_id', [UserProposalController::class, 'field_focus_research_by_id'])->name('DOC.get_field_focus_research_by_id');
+Route::delete('/field_focus_research/delete', [UserProposalController::class, 'field_focus_research_delete'])->name('DOC.field_focus_research_delete');
+Route::post('/field_focus_research/edit', [UserProposalController::class, 'field_focus_research_edit'])->name('DOC.field_focus_research_edit');
+Route::post('/field_focus_research/id', [UserProposalController::class, 'field_focus_research_id'])->name('DOC.field_focus_research_id');
+
+Route::group(['prefix' => 'proposals'], function () { //manage admin proposal 
     Route::any('/', [ProposalController::class, 'index'])->name('proposals.index')->middleware('auth');
     Route::get('/data', [ProposalController::class, 'data'])->name('proposals.data');
     Route::delete('/delete', [ProposalController::class, 'delete'])->name('proposals.delete');
     Route::get('/edit/{id}', [ProposalController::class, 'edit'])->name('proposals.edit');
+});
+
+Route::group(['prefix' => 'reviewer'], function () { 
+    Route::any('/', [ReviewerController::class, 'index'])->name('reviewers.index')->middleware('auth');
+    Route::get('/data', [ReviewerController::class, 'data'])->name('reviewers.data');
+    Route::delete('/delete', [ReviewerController::class, 'delete'])->name('reviewers.delete');
+    Route::get('/edit/{id}', [ReviewerController::class, 'edit'])->name('reviewers.edit');
 });
 
 Route::middleware('auth')->group(function () {

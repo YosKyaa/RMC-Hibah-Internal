@@ -14,4 +14,9 @@ class FieldFocusResearch extends Model
         'research_topic',
         'category_research_id'
     ];
+    public function category_research()
+    {
+        return $this->belongsTo(CategoryResearch::class);
+    }
+
 }

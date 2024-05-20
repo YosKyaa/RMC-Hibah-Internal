@@ -37,6 +37,12 @@
                 <div data-i18n="Dashboards">Submit Proposal</div>
             </a>
         </li>
+        <li class="menu-item {{ request()->segment(1) == 'reviewers' ? 'active' : '' }}">
+            <a href="{{ route('reviewers.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-book-reader"></i>
+                <div data-i18n="Dashboards">Reviewer</div>
+            </a>
+        </li>
         @can('control panel.read')
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Control Panel</span>

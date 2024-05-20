@@ -181,7 +181,7 @@
                                         <th width="10px">No</th>
                                         <th width="60px">Title</th>
                                         <th width="60px">Date</th>
-                                        <th width="60px">Image</th>
+                                        <th width="60px">Image Source</th>
                                         <th width="40px">Action</th>
                                     </tr>
                                 </thead>

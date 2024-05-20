@@ -5,15 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CategoryResearch extends Model
+class ResearchTeam extends Model
 {
     use HasFactory;
     public $fillable = [
         'id',
-        'category_name',
+        'proposal_id',
+        'user_id',
     ];
-    public function field_fucus_research()
-    {
-        return $this->hasMany(FieldFocusResearch::class);
-    } 
+
 }

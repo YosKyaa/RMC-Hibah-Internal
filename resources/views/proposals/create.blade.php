@@ -18,23 +18,44 @@
             <div class="card-body">
                 <div class="mb-3">
                     <label for="research_types_id" class="form-label">Jenis Penelitian</label>
-                    <select id="research_types_id" name="research_types_id" class="select2 form-select"
-                        data-placeholder="Jenis Penelitian">
-                        <option value="">Jenis Penelitian</option>
-                        @foreach ($researchtypes as $d)
-                            <option value="{{ $d->title }}">{{ $d->title }}</option>
-                        @endforeach
-                    </select>
+                    <div class="input-group input-group-merge has-validation">
+                        <select class="form-select @error('research_type_id') is-invalid @enderror select2-modal"
+                            name="research_type_id" id="research_type_id" data-placeholder="-- Pilih Jenis Penelitian--">
+                            <option value="">-- Pilih Jenis Penelitian --</option>
+                            @foreach ($researchtypes as $d)
+                                <option value="{{ $d->id }}"
+                                    {{ $d->id == old('research_type_id') ? 'selected' : '' }}>
+                                    {{ $d->title }}</option>
+                            @endforeach
+                        </select>
+                        @error('research_type_id')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlReadOnlyInput1" class="form-label">Bidang Penelitian</label>
-                    <select id="field_focus_research_id" name="field_focus_research_id" class="select2 form-select"
-                        data-placeholder="Kategori Penelitian">
-                        <option value="">Kategori Penelitian</option>
-                        @foreach ($categoryresearch as $d)
-                            <option value="{{ $d->category_id }}">{{ $d->category_name }}</option>
-                        @endforeach
-                    </select>
+                    <label for="exampleFormControlReadOnlyInput1" class="form-label">Kategori Penelitian</label>
+                    <div class="input-group input-group-merge has-validation">
+                        <select class="form-select @error('field_focus_research_id') is-invalid @enderror select2-modal"
+                            name="field_focus_research_id" id="field_focus_research_id"
+                            data-placeholder="-- Pilih Jenis Penelitian--">
+                            <option value="">-- Pilih Jenis Penelitian --</option>
+                            @foreach ($researchtypes as $d)
+                                <option value="{{ $d->id }}"
+                                    {{ $d->id == old('field_focus_research_id') ? 'selected' : '' }}>
+                                    {{ $d->title }}</option>
+                            @endforeach
+                        </select>
+                        @error('field_focus_research_id')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="mb-3">
                     <select id="field_focus_research_id" name="field_focus_research_id" class="select2 form-select"
                         data-placeholder="Tema Penelitian">
                         <option value="">Tema Penelitian</option>
@@ -42,58 +63,58 @@
                             <option value="{{ $d->research_theme }}">{{ $d->research_theme }}</option>
                         @endforeach
                     </select>
-                    <select id="research_types_id" name="research_types_id" class="select2 form-select"
-                        data-placeholder="Jenis Penelitian">
-                        <option value="">Topik Penelitian</option>
-                        @foreach ($fieldfocusresearch as $d)
-                            <option value="{{ $d->research_topic }}">{{ $d->research_topic }}</option>
-                        @endforeach
-                    </select>
                 </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlReadOnlyInputPlain1" class="form-label">Read plain</label>
-                    <input type="text" readonly class="form-control-plaintext" id="exampleFormControlReadOnlyInputPlain1"
-                        value="email@example.com" />
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlSelect1" class="form-label">Example select</label>
-                    <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleDataList" class="form-label">Datalist example</label>
-                    <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
-                    <datalist id="datalistOptions">
-                        <option value="San Francisco">
-                        <option value="New York">
-                        <option value="Seattle">
-                        <option value="Los Angeles">
-                        <option value="Chicago">
-                    </datalist>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlSelect2" class="form-label">Example multiple select</label>
-                    <select multiple class="form-select" id="exampleFormControlSelect2"
-                        aria-label="Multiple select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
+                <select id="research_types_id" name="research_types_id" class="select2 form-select"
+                    data-placeholder="Jenis Penelitian">
+                    <option value="">Topik Penelitian</option>
+                    @foreach ($fieldfocusresearch as $d)
+                        <option value="{{ $d->research_topic }}">{{ $d->research_topic }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlReadOnlyInputPlain1" class="form-label">Read plain</label>
+                <input type="text" readonly class="form-control-plaintext" id="exampleFormControlReadOnlyInputPlain1"
+                    value="email@example.com" />
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlSelect1" class="form-label">Example select</label>
+                <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="exampleDataList" class="form-label">Datalist example</label>
+                <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
+                <datalist id="datalistOptions">
+                    <option value="San Francisco">
+                    <option value="New York">
+                    <option value="Seattle">
+                    <option value="Los Angeles">
+                    <option value="Chicago">
+                </datalist>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlSelect2" class="form-label">Example multiple select</label>
+                <select multiple class="form-select" id="exampleFormControlSelect2" aria-label="Multiple select example">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div>
+                <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
         </div>
+    </div>
 
 
-        {{-- <form>
+    {{-- <form>
             <div class="mb-3 row">
                 <label for="selectpickerBasic" class="col-md-2 col-form-label">Jenis Penelitian</label>
                 <div class="col-md-10">
@@ -207,32 +228,9 @@
                 </div>
             </div>
         </form> --}}
-    @endsection
+@endsection
 
-    @section('script')
-        $('#aktivitas').change(function () {
-        var id = this.value;
-        $("#kategori").html('');
-        $.ajax({
-        url: "{{ route('DOC.get_category_by_id') }}",
-        type: "GET",
-        data: {
-        id: id,
-        _token: '{{ csrf_token() }}'
-        },
-        dataType: 'json',
-        success: function (result) {
-        if (result.length != 0) {
-        $('#kategori').html(
-        '<option value="">Kategori</option>'
-        );
-        $.each(result, function (key, value) {
-        $("#kategori").append('<option value="' + value
-                            .id + '">' + value.name + '</option>');
-        });
-        }
-        }
-        });
-        });
+@section('script')
 
-    @endsection
+
+@endsection

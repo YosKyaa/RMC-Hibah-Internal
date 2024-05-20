@@ -25,13 +25,16 @@ return new class extends Migration
             $table->unsignedBigInteger('tkt_types_id');
             $table->foreign('tkt_types_id')->references('id')->on('tkt_types');
 
+            $table->unsignedBigInteger('main_research_targets_id');
+            $table->foreign('main_research_targets_id')->references('id')->on('main_research_targets');
+
             $table->unsignedBigInteger('reviewer_id');
             $table->foreign('reviewer_id')->references('id')->on('users');
 
 
             $table->string('document')->nullable();
 
-            $note = $table->text('note')->nullable();
+            $table->text('note')->nullable();
 
             $table->uuid('status_id');
             $table->foreign('status_id')->references('id')->on('status')->onDelete('cascade');
