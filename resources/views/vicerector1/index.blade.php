@@ -38,14 +38,14 @@
                         <div class="d-flex align-items-end row">
                             <div class="col-sm-5 text-center text-sm-left">
                                 <div class="card-body pb-0">
-                                    <img src="../../assets/img/sitting-girl-with-laptop-light.png" height="140"
-                                        alt="Target User" data-app-dark-img="/sitting-girl-with-laptop-light.png"
-                                        data-app-light-img="/sitting-girl-with-laptop-light.png">
+                                <img src="../../assets/img//man-with-laptop-light.png" height="140" alt="View Badge User" 
+                                    data-app-light-img="man-with-laptop-light.png" 
+                                        data-app-dark-img="man-with-laptop-dark.png">
                                 </div>
                             </div>
                             <div class="col-sm-7">
                                 <div class="card-body">
-                                    <h5 class="card-title">Hi Reviewers!</h5>
+                                    <h5 class="card-title">Hi Vice Rector 1!</h5>
                                     <p class="mb-4">You have 12 task to finish today, Your already completed 189 task good
                                         job.</p>
 

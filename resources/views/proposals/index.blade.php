@@ -103,32 +103,46 @@
                                 <h6 class="mb-0">Ajukan Proposal</h6>
                                 <span>3rd October</span>
                             </div>
-                            <div class="d-flex justify-content-between flex-wrap mb-2">
-                                <div>
-                                    <!-- Data proposal -->
-                                    <div class="card" style="width: 47rem;">
-                                        <img src="..." class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Judul Penelitian</h5>
-                                            <p class="card-text">Catatan.</p>
-                                        </div>
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">Jenis Penelitian</li>
-                                            <li class="list-group-item">Kategori Penelitian</li>
-                                            <li class="list-group-item">Tema Penelitian</li>
-                                            <li class="list-group-item">Topik Penelitian</li>
-                                            <li class="list-group-item">Tim Penelitian</li>
-                                            <li class="list-group-item">Jenis TKT</li>
-                                            <li class="list-group-item">Status</li>
-                                        </ul>
-                                        <div class="card-body">
-                                            <a href="#" class="card-link">Download</a>
-                                            <a href="#" class="card-link">Delete</a>
-                                            <a href="#" class="card-link">Edit</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <!--  -->
+                            <div class="card border-0 shadow-sm rounded">
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th scope="col">JENIS PENELITIAN</th>
+                                <th scope="col">KATEGORI PENELITIAN</th>
+                                <th scope="col">TEMA PENELITIAN</th>
+                                <th scope="col">TOPIK PENELITIAN</th>
+                                <th scope="col">JUDUL PENELITIAN</th>
+                                <th scope="col">JENIS TKT</th>
+                                <th scope="col">TARGET UTAMA RISET</th>
+                                <!-- <th scope="col">FILE</th> -->
+                                <th scope="col">AKSI</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">
+                                        <img src="" class="rounded" style="width: 150px">
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <!-- <td></td> -->
+                                    <td class="text-center">
+                                    <a href="#modalToggle" data-bs-toggle="modal" data-bs-target="#modalToggle" class="bx bx-show-alt badge-dark"></a>
+                                        <a class=" text-success" title="Edit" href=""><i class="bx bxs-edit"></i></a> 
+                                            <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="" ><i class="bx bx-trash"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                          </table>  
+                    </div>
+                </div>
+                <br>
                             <div class="timeline-header mb-3">
                                 <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
                                     data-bs-target="#newrecord" aria-controls="offcanvasEnd" tabindex="0"

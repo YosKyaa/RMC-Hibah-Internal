@@ -73,8 +73,9 @@
                                 </div>
                             </div>
                             <div class="col-sm-5 text-center text-sm-left">
-                                <img src="../assets/img/ANNOUNCEMENT.png" data-app-dark-img="assets/img/ANNOUNCEMENT.png"
-                                    data-app-light-img="assets/img/ANNOUNCEMENT.png">
+                            <img src="../../assets/img//ANNOUNCEMENT.png" height="140" alt="View Badge User" 
+                                data-app-light-img="ANNOUNCEMENT.png" 
+                                    data-app-dark-img="ANNOUNCEMENT.png">
                             </div>
                         </div>
                     </div>
