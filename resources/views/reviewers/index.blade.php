@@ -57,7 +57,8 @@
                 </div>
             </div>
             <div class="card full-width">
-                <table class="table table-hover table-sm" id="datatable" width="75%">
+            <div class="container">
+                <table class="table table-hover table-sm" id="datatable" width="50%">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -75,6 +76,7 @@
                         </tr>
                     </thead>
                 </table>
+            </div>
             </div>
         </div>
         <!-- / Content -->

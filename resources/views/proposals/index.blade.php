@@ -106,7 +106,7 @@
                             <div class="d-flex justify-content-between flex-wrap mb-2">
                                 <div>
                                     <!-- Data proposal -->
-                                    <div class="card" style="width: 25rem;">
+                                    <div class="card" style="width: 47rem;">
                                         <img src="..." class="card-img-top" alt="...">
                                         <div class="card-body">
                                             <h5 class="card-title">Judul Penelitian</h5>
