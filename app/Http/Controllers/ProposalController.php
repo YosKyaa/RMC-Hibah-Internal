@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Proposal;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class ProposalController extends Controller
 {
@@ -19,6 +20,25 @@ class ProposalController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
+     public function data(Request $request){
+        // $this->authorize('setting/manage_data/department.read');
+        $data = Proposal::select('*')->orderBy("id");
+            return DataTables::of($data)
+                    ->filter(function ($instance) use ($request) {
+                        if (!empty($request->get('search'))) {
+                            $search = $request->get('search');
+                            $instance->where('name_dept', 'LIKE', "%$search%");
+                        }
+                    })->make(true);
+    }
+
+    public function datatables()
+    {
+        $departement = Proposal::select('*');
+        return DataTables::of($departement)->make(true);
+    }
+   
     public function create()
     {
         //
