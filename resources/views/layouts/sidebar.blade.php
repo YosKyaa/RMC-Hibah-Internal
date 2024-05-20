@@ -43,6 +43,18 @@
                 <div data-i18n="Dashboards">Reviewer</div>
             </a>
         </li>
+        <li class="menu-item {{ request()->segment(1) == 'vicerector1' ? 'active' : '' }}">
+            <a href="{{ route('vicerector1.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-book-reader"></i>
+                <div data-i18n="Dashboards">Vice Rector I</div>
+            </a>
+        </li>
+        <li class="menu-item {{ request()->segment(1) == 'vicerector2' ? 'active' : '' }}">
+            <a href="{{ route('vicerector2.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-book-reader"></i>
+                <div data-i18n="Dashboards">Vice Rector II</div>
+            </a>
+        </li>
         @can('control panel.read')
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Control Panel</span>

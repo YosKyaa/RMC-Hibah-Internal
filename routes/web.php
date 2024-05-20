@@ -12,6 +12,8 @@ use App\Http\Controllers\ReviewerController;
 use App\Http\Controllers\StudyProgramController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProposalController;
+use App\Http\Controllers\ViceRector1Controller;
+use App\Http\Controllers\ViceRector2Controller;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -67,11 +69,25 @@ Route::group(['prefix' => 'proposals'], function () { //manage admin proposal
     Route::get('/edit/{id}', [ProposalController::class, 'edit'])->name('proposals.edit');
 });
 
-Route::group(['prefix' => 'reviewer'], function () { 
+Route::group(['prefix' => 'reviewer'], function () { //reviewers
     Route::any('/', [ReviewerController::class, 'index'])->name('reviewers.index')->middleware('auth');
     Route::get('/data', [ReviewerController::class, 'data'])->name('reviewers.data');
     Route::delete('/delete', [ReviewerController::class, 'delete'])->name('reviewers.delete');
     Route::get('/edit/{id}', [ReviewerController::class, 'edit'])->name('reviewers.edit');
+});
+
+Route::group(['prefix' => 'vicerector1'], function () { //vicerector1
+    Route::any('/', [ViceRector1Controller::class, 'index'])->name('vicerector1.index')->middleware('auth');
+    Route::get('/data', [ViceRector1Controller::class, 'data'])->name('vicerector1.data');
+    Route::delete('/delete', [ViceRector1Controller::class, 'delete'])->name('vicerector1.delete');
+    Route::get('/edit/{id}', [ViceRector1Controller::class, 'edit'])->name('vicerector1.edit');
+});
+
+Route::group(['prefix' => 'vicerector2'], function () { //vicerector2
+    Route::any('/', [ViceRector2Controller::class, 'index'])->name('vicerector2.index')->middleware('auth');
+    Route::get('/data', [ViceRector2Controller::class, 'data'])->name('vicerector2.data');
+    Route::delete('/delete', [ViceRector2Controller::class, 'delete'])->name('vicerector2.delete');
+    Route::get('/edit/{id}', [ViceRector2Controller::class, 'edit'])->name('vicerector2.edit');
 });
 
 Route::middleware('auth')->group(function () {
