@@ -255,6 +255,26 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-12 fv-plugins-icon-container">
+                                            <label class="form-label" for="basicDate">Tim Peneliti</label>
+                                            <div class="input-group input-group-merge has-validation">
+                                                <select
+                                                    class="form-select @error('research_teams_id') is-invalid @enderror select2-modal"
+                                                    multiple="multiple" name="research_teams[]" id="select2Dark"
+                                                    data-placeholder=" -- Select --">
+                                                    @foreach ($researchteam as $role)
+                                                        <option value="{{ $role->id }}"
+                                                            {{ in_array($role->id, old('research_teams') ?? []) ? 'selected' : '' }}>
+                                                            {{ $role->researcher_id }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('roles')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 fv-plugins-icon-container">
                                             <label for="exampleFormControlReadOnlyInput1" class="form-label">Jenis
                                                 TKT</label>
                                             <div class="input-group input-group-merge has-validation">
@@ -510,7 +530,6 @@
     <script src="assets/vendor/libs/bootstrap-select/bootstrap-select.js"></script>
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <script>
-        
         $('#category_research_id').change(function() {
             var id = this.value;
             $("#research_theme").html('');

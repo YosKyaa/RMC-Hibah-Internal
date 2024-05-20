@@ -79,9 +79,11 @@ class UserProposalController extends Controller
             $researchteam = ResearchTeam::all();
             $tkttype = TktTypes::all();
             $mainresearch = MainResearchTarget::all();
-        return view('proposals.index', compact('proposals', 'researchtypes', 'fieldfocusresearch', 'proposals', 'categoryresearch', 'researchteam', 'tkttype', 'mainresearch'));
+            $researchteam = ResearchTeam::all();
+        return view('proposals.index', compact('proposals', 'researchtypes', 'fieldfocusresearch', 'proposals', 'categoryresearch', 'researchteam', 'tkttype', 'mainresearch', 'researchteam'));
+        }
     }
-}
+
 
     public function field_focus_research_by_id(Request $request)
     {
