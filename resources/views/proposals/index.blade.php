@@ -168,20 +168,20 @@
                                         enctype="multipart/form-data">
                                         @csrf
                                         <div class="col-sm-12 fv-plugins-icon-container">
-                                            <label for="research_types_id" class="form-label">Jenis Penelitian</label>
+                                            <label class="form-label">Jenis Penelitian</label>
                                             <div class="input-group input-group-merge has-validation">
                                                 <select
-                                                    class="form-select @error('research_type_id') is-invalid @enderror select2-modal"
-                                                    name="research_type_id" id="research_type_id"
+                                                    class="form-select @error('research_type') is-invalid @enderror select2-modal"
+                                                    name="research_type" id="research_type"
                                                     data-placeholder="-- Pilih Jenis Penelitian--">
                                                     <option value="">-- Pilih Jenis Penelitian --</option>
                                                     @foreach ($researchtypes as $d)
                                                         <option value="{{ $d->id }}"
-                                                            {{ $d->id == old('research_type_id') ? 'selected' : '' }}>
+                                                            {{ $d->id == old('research_type') ? 'selected' : '' }}>
                                                             {{ $d->title }}</option>
                                                     @endforeach
                                                 </select>
-                                                @error('research_type_id')
+                                                @error('research_type')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -189,21 +189,21 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-12 fv-plugins-icon-container">
-                                            <label for="exampleFormControlReadOnlyInput1" class="form-label">Kategori
+                                            <label class="form-label">Kategori
                                                 Penelitian</label>
                                             <div class="input-group input-group-merge has-validation">
                                                 <select
-                                                    class="form-select @error('field_focus_research_id') is-invalid @enderror select2-modal"
-                                                    name="field_focus_research_id" id="field_focus_research_id"
+                                                    class="form-select @error('category_research') is-invalid @enderror select2-modal"
+                                                    name="category_research" id="category_research"
                                                     data-placeholder="-- Pilih Kategori Penelitian--">
                                                     <option value="">-- Pilih Kategori Penelitian --</option>
                                                     @foreach ($categoryresearch as $d)
                                                         <option value="{{ $d->id }}"
-                                                            {{ $d->id == old('field_focus_research_id') ? 'selected' : '' }}>
+                                                            {{ $d->id == old('category_research') ? 'selected' : '' }}>
                                                             {{ $d->category_name }}</option>
                                                     @endforeach
                                                 </select>
-                                                @error('field_focus_research_id')
+                                                @error('category_research')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -211,21 +211,21 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-12 fv-plugins-icon-container">
-                                            <label for="exampleFormControlReadOnlyInput1" class="form-label">Tema
+                                            <label class="form-label">Tema
                                                 Penelitian</label>
                                             <div class="input-group input-group-merge has-validation">
                                                 <select
-                                                    class="form-select @error('field_focus_research_id') is-invalid @enderror select2-modal"
-                                                    name="field_focus_research_id" id="category_research_id"
+                                                    class="form-select @error('research_theme') is-invalid @enderror select2-modal"
+                                                    name="research_theme" id="research_theme"
                                                     data-placeholder="-- Pilih Tema Penelitian--">
                                                     <option value="">-- Pilih Tema Penelitian --</option>
                                                     @foreach ($fieldfocusresearch as $d)
                                                         <option value="{{ $d->id }}"
-                                                            {{ $d->id == old('field_focus_research_id') ? 'selected' : '' }}>
+                                                            {{ $d->id == old('research_theme') ? 'selected' : '' }}>
                                                             {{ $d->research_theme }}</option>
                                                     @endforeach
                                                 </select>
-                                                @error('field_focus_research_id')
+                                                @error('research_theme')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -233,21 +233,21 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-12 fv-plugins-icon-container">
-                                            <label for="exampleFormControlReadOnlyInput1" class="form-label">Topik
+                                            <label for="" class="form-label">Topik
                                                 Penelitian</label>
                                             <div class="input-group input-group-merge has-validation">
                                                 <select
-                                                    class="form-select @error('field_focus_research_id') is-invalid @enderror select2-modal"
-                                                    name="field_focus_research_id" id="field_focus_research"
+                                                    class="form-select @error('research_topic') is-invalid @enderror select2-modal"
+                                                    name="research_topic" id="research_topic"
                                                     data-placeholder="-- Pilih Topik Penelitian--">
                                                     <option value="">-- Pilih Topik Penelitian --</option>
                                                     @foreach ($fieldfocusresearch as $d)
                                                         <option value="{{ $d->id }}"
-                                                            {{ $d->id == old('field_focus_research_id') ? 'selected' : '' }}>
+                                                            {{ $d->id == old('research_topic') ? 'selected' : '' }}>
                                                             {{ $d->research_topic }}</option>
                                                     @endforeach
                                                 </select>
-                                                @error('field_focus_research_id')
+                                                @error('research_topic')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -272,16 +272,16 @@
                                             <label class="form-label" for="basicDate">Tim Peneliti</label>
                                             <div class="input-group input-group-merge has-validation">
                                                 <select
-                                                    class="form-select @error('research_teams_id') is-invalid @enderror select2-modal"
-                                                    multiple="multiple" name="research_teams[]" id="select2Dark"
+                                                    class="form-select @error('research_team') is-invalid @enderror select2-modal"
+                                                    multiple="multiple" name="research_team[]" id="select2Dark"
                                                     data-placeholder=" -- Select --">
-                                                    @foreach ($researchteam as $role)
-                                                        <option value="{{ $role->id }}"
-                                                            {{ in_array($role->id, old('research_teams') ?? []) ? 'selected' : '' }}>
-                                                            {{ $role->researcher_id }}</option>
+                                                    @foreach ($researchteam as $v)
+                                                        <option value="{{ $v->id }}"
+                                                            {{ in_array($v->id, old('research_team') ?? []) ? 'selected' : '' }}>
+                                                            {{ $v->researcher_id }}</option>
                                                     @endforeach
                                                 </select>
-                                                @error('roles')
+                                                @error('research_team')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -289,21 +289,21 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-12 fv-plugins-icon-container">
-                                            <label for="exampleFormControlReadOnlyInput1" class="form-label">Jenis
+                                            <label for="" class="form-label">Jenis
                                                 TKT</label>
                                             <div class="input-group input-group-merge has-validation">
                                                 <select
-                                                    class="form-select @error('tkt_types_id') is-invalid @enderror select2-modal"
-                                                    name="tkt_types_id" id="tkt_types_id"
+                                                    class="form-select @error('tkt_type') is-invalid @enderror select2-modal"
+                                                    name="tkt_type" id="tkt_type"
                                                     data-placeholder="-- Pilih Jenis TKT--">
                                                     <option value="">-- Pilih Jenis TKT --</option>
                                                     @foreach ($tkttype as $d)
                                                         <option value="{{ $d->id }}"
-                                                            {{ $d->id == old('tkt_types_id') ? 'selected' : '' }}>
+                                                            {{ $d->id == old('tkt_type') ? 'selected' : '' }}>
                                                             {{ $d->title }}</option>
                                                     @endforeach
                                                 </select>
-                                                @error('tkt_types_id')
+                                                @error('tkt_type')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -311,21 +311,21 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-12 fv-plugins-icon-container">
-                                            <label for="exampleFormControlReadOnlyInput1" class="form-label">Target Utama
+                                            <label for="" class="form-label">Target Utama
                                                 Riset</label>
                                             <div class="input-group input-group-merge has-validation">
                                                 <select
-                                                    class="form-select @error('main_research_targets_id') is-invalid @enderror select2-modal"
-                                                    name="main_research_targets_id" id="main_research_targets_id"
+                                                    class="form-select @error('main_research_target') is-invalid @enderror select2-modal"
+                                                    name="main_research_target" id="main_research_target"
                                                     data-placeholder="-- Pilih Target Utama Riset--">
                                                     <option value="">-- Target Utama Riset --</option>
                                                     @foreach ($mainresearch as $d)
                                                         <option value="{{ $d->id }}"
-                                                            {{ $d->id == old('main_research_targets_id') ? 'selected' : '' }}>
+                                                            {{ $d->id == old('main_research_target') ? 'selected' : '' }}>
                                                             {{ $d->title }}</option>
                                                     @endforeach
                                                 </select>
-                                                @error('main_research_targets_id')
+                                                @error('main_research_target')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -544,12 +544,14 @@
     <script src="assets/vendor/libs/bootstrap-select/bootstrap-select.js"></script>
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <script>
-        $('#category_research_id').change(function() {
+        $( document ).ready(function() {
+        $('#category_research').change(function() {
             var id = this.value;
             $("#research_theme").html('');
             $("#research_topic").html('');
+            alert(id);
             $.ajax({
-                url: "{{ route('DOC.get_field_focus_research_by_id') }}",
+                url: "{{ route('DOC.get_research_theme_by_id') }}",
                 type: "GET",
                 data: {
                     id: id,
@@ -576,5 +578,6 @@
                 }
             });
         });
+    });
     </script>
 @endsection

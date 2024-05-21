@@ -24,15 +24,15 @@ class UserProposalController extends Controller
         // $this->authorize('setting/manage_data/study_program.read');
         if ($request->isMethod('POST')) { 
             $this->validate($request, [ 
-                'users_id' => 'required|exists:users,id',
-                'research_type_id' => 'required|exists:research_types,id',
-                'category_research_id' => 'required',
+                //'users' => 'required|exists:users,id',
+                'research_type' => 'required',
+                'category_research' => 'required',
                 'research_theme' => 'required',
                 'research_topic' => 'required',
                 'research_title' => ['string', 'max:255'],
-                'research_team_id' => 'required|exists:research_teams,id',
-                'tkt_type_id' => 'required|exists:tkt_types,id',
-                'main_research_target_id' => 'required|exists:main_research_targets,id',
+                'research_team' => 'required',
+                'tkt_type' => 'required',
+                'main_research_target' => 'required',
                 'document' => ['required','mimes:pdf','max:10000'], // max 10MB
                 'note' => 'required', 
                 
@@ -56,12 +56,12 @@ class UserProposalController extends Controller
             }
             $data = Proposal::create([
                 'users_id' => Auth::user()->id, // 'users_id' => $request->users_id
-                'research_type_id' => $request->research_type_id,
-                'field_focus_research_id' => $request->field_focus_research_id,
+                'research_type_id' => $request->research_type,
+                'field_focus_research_id' => $request->research_topic,
                 'research_title' => $request->research_title,
-                'research_team_id' => $request->research_team_id,
-                'tkt_type_id' => $request->tkt_type_id,
-                'main_research_target_id' => $request->main_research_target_id,
+                'research_team_id' => $request->research_team,
+                'tkt_type_id' => $request->tkt_type,
+                'main_research_target_id' => $request->main_research_target,
                 'document' => $fileName,
                 'note' => $request->note,
             ]);
@@ -85,7 +85,7 @@ class UserProposalController extends Controller
     }
 
 
-    public function field_focus_research_by_id(Request $request)
+    public function get_research_theme_by_id(Request $request)
     {
         $data = FieldFocusResearch::where("",$request->id)
             ->orderBy("id")->get(["id", "research_theme", "research_topic"]);

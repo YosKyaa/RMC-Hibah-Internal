@@ -57,7 +57,7 @@ Route::group(['prefix' => 'user-proposals'], function () {
 
 Route::any('/field_focus_research', [UserProposalController::class, 'category'])->name('DOC.category');
 Route::get('/field_focus_research/data', [UserProposalController::class, 'field_focus_research_data'])->name('DOC.field_focus_research_data');
-Route::get('/field_focus_research/by_id', [UserProposalController::class, 'field_focus_research_by_id'])->name('DOC.get_field_focus_research_by_id');
+Route::get('/get_research_theme_by_id', [UserProposalController::class, 'get_research_theme_by_id'])->name('DOC.get_research_theme_by_id');
 Route::delete('/field_focus_research/delete', [UserProposalController::class, 'field_focus_research_delete'])->name('DOC.field_focus_research_delete');
 Route::post('/field_focus_research/edit', [UserProposalController::class, 'field_focus_research_edit'])->name('DOC.field_focus_research_edit');
 Route::post('/field_focus_research/id', [UserProposalController::class, 'field_focus_research_id'])->name('DOC.field_focus_research_id');

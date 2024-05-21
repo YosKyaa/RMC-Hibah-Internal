@@ -38,7 +38,7 @@
                         <div class="d-flex align-items-end row">
                             <div class="col-sm-5 text-center text-sm-left">
                                 <div class="card-body pb-0">
-                                <img src="../../assets/img//man-with-laptop-light.png" height="140" alt="View Badge User" 
+                                <img src="../../assets/img/man-with-laptop-light.png" height="140" alt="View Badge User" 
                                     data-app-light-img="man-with-laptop-light.png" 
                                         data-app-dark-img="man-with-laptop-dark.png">
                                 </div>

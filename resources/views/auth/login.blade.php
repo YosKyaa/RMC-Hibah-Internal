@@ -23,15 +23,17 @@
                         <br><span class="text-danger text-center">{!! $message !!}</span>
                         @enderror
                     </div>
+                    <br>
                     <div class="col-6 mb-1">
                         <div class="btn-showcase">
-                            <button class="btn btn-outline-dark btn-block w-100" onclick="Klas2Login()"
-                                title="Single Sign-On JGU">
-                                <img style="max-height: 20px;" src="{{asset('assets/img/favicon.png')}}">
+                        <a class="btn btn-outline-dark btn-block w-100" onclick="Klas2Login()" title="Single Sign-On JGU">
+                            <img style="max-height: 20px;" 
+                                src="https://s.jgu.ac.id/assets/img/favicon.png">
                                 <span>SSO JGU</span>
-                            </button>
+                        </a>
                         </div>
                     </div>
+                    <br>
                     <div class="col-6 mb-1">
                         <div class="btn-showcase">
                             <a class="btn btn-outline-dark btn-block w-100" href="{{ url('login/google') }}"
@@ -40,7 +42,7 @@
                                     src="https://avatars.githubusercontent.com/u/19180220?s=200&v=4">
                                 <span>Google</span>
                             </a>
-                        </div>//
+                        </div>
                     </div>
                 </div>
                 <br><br>
@@ -510,6 +512,7 @@
 
         span {
             font-size: 12px;
+            color: black;
         }
 
         a {
