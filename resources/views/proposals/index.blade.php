@@ -365,6 +365,7 @@
         </div>
     </div>
     <!-- /Timeline Advanced-->
+    </div>
 
     <!-- </div> -->
 
