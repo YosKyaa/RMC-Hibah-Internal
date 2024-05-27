@@ -104,13 +104,7 @@ class UserProposalController extends Controller
      */
     public function create()
     {
-        //
-        $researchtypes = ResearchTypes::all();
-        $fieldfocusresearch = FieldFocusResearch::all();
-        $proposals = Proposal::all();
-        $categoryresearch = CategoryResearch::all();
-        $researchteam = ResearchTeam::all();
-        return view('proposals.create', compact('researchtypes', 'fieldfocusresearch', 'proposals', 'categoryresearch'));
+        return view('proposals.create');
     }
 
     /**
