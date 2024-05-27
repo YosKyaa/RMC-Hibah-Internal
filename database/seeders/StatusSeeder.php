@@ -17,8 +17,11 @@ class StatusSeeder extends Seeder
         $data = [
             ['id' => 'S01', 'status' => 'Pengajuan'],
             ['id' => 'S02', 'status' => 'Menunggu review'],
-            ['id' => 'S03', 'status' => 'Pengajuan diterima'],
+            ['id' => 'S03', 'status' => 'Revisi'],
             ['id' => 'S04', 'status' => 'Pengajuan ditolak'],
+            ['id' => 'S05', 'status' => 'Persentasi'],
+            ['id' => 'S06', 'status' => 'Proses Pencairan Dana'],
+            ['id' => 'S07', 'status' => 'Dana Sudah diterima'],
         ];
 
         foreach ($data as $item) {

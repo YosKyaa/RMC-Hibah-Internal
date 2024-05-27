@@ -53,9 +53,13 @@ return new class extends Migration
 
             $table->boolean('approval_reviewer')->default(false);
 
+            $table->text('approval_reviewer_notes')->nullable();
+
             $table->boolean('approval_vice_rector_1')->default(false);
 
             $table->boolean('approval_vice_rector_2')->default(false);
+
+            $table->string('updated_by')->nullable();
 
 
 

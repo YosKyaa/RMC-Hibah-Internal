@@ -55,6 +55,12 @@
                 <div data-i18n="Dashboards">Vice Rector II</div>
             </a>
         </li>
+        <li class="menu-item {{ request()->segment(1) == 'proposals' ? 'active' : '' }}">
+            <a href="{{ route('proposals.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-book-reader"></i>
+                <div data-i18n="Dashboards">Manage Proposal</div>
+            </a>
+        </li>
         @can('control panel.read')
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Control Panel</span>
