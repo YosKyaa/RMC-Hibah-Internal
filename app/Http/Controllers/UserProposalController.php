@@ -6,7 +6,10 @@ use App\Models\CategoryResearch;
 use App\Models\FieldFocusResearch;
 use App\Models\MainResearchTarget;
 use App\Models\Proposal;
+use App\Models\ResearchCategories;
 use App\Models\ResearchTeam;
+use App\Models\ResearchThemes;
+use App\Models\ResearchTopics;
 use App\Models\ResearchTypes;
 use App\Models\TktTypes;
 use Carbon\Carbon;
@@ -22,8 +25,8 @@ class UserProposalController extends Controller
     public function index(Request $request)
     {
         // $this->authorize('setting/manage_data/study_program.read');
-        if ($request->isMethod('POST')) { 
-            $this->validate($request, [ 
+        if ($request->isMethod('POST')) {
+            $this->validate($request, [
                 //'users' => 'required|exists:users,id',
                 'research_type' => 'required',
                 'category_research' => 'required',
@@ -34,14 +37,14 @@ class UserProposalController extends Controller
                 'tkt_type' => 'required',
                 'main_research_target' => 'required',
                 'document' => ['required','mimes:pdf','max:10000'], // max 10MB
-                'note' => 'required', 
-                
+                'note' => 'required',
+
             ]);
             $fileName = "";
             if(isset($request->document)){
                 $ext = $request->document->extension();
                 $name = str_replace(' ', '_', $request->document->getClientOriginalName());
-                $fileName = Auth::user()->id.'_'.$name; 
+                $fileName = Auth::user()->id.'_'.$name;
                 $folderName =  "storage/FILE/proposals/".Carbon::now()->format('Y/m');
                 $path = public_path()."/".$folderName;
                 if (!File::exists($path)) {
@@ -73,26 +76,28 @@ class UserProposalController extends Controller
         }else{
             $proposals = Proposal::all();
             $researchtypes = ResearchTypes::all();
-            $fieldfocusresearch = FieldFocusResearch::all();
             $proposals = Proposal::all();
-            $categoryresearch = CategoryResearch::all();
-            $researchteam = ResearchTeam::all();
+            $researchcategories = ResearchCategories::all();
+            $researchthemes = ResearchThemes::all();
+            $researchtopics = ResearchTopics::all();
+            // $researchteam = ResearchTeam::all();
             $tkttype = TktTypes::all();
             $mainresearch = MainResearchTarget::all();
-            $researchteam = ResearchTeam::all();
-        return view('proposals.index', compact('proposals', 'researchtypes', 'fieldfocusresearch', 'proposals', 'categoryresearch', 'researchteam', 'tkttype', 'mainresearch', 'researchteam'));
+        return view('proposals.index', compact('proposals', 'researchtypes', 'researchthemes', 'proposals', 'researchcategories',  'tkttype', 'mainresearch', 'researchtopics'));
         }
     }
 
 
-    public function get_research_theme_by_id(Request $request)
+    public function getResearchThemeById(Request $request)
     {
-        $data = FieldFocusResearch::where("",$request->id)
-            ->orderBy("id")->get(["id", "research_theme", "research_topic"]);
-        if($request->id == null || $request->id == ""){
-            $data = FieldFocusResearch::orderBy("id")->get(["id", "researfch_theme", "research_topic"]);
-        }
-        return response()->json($data);
+        $themes = ResearchThemes::where('research_category_id', $request->id)->get();
+        return response()->json($themes);
+    }
+
+    public function getResearchTopicById(Request $request)
+    {
+        $topics = ResearchTopics::where('research_theme_id', $request->id)->get();
+        return response()->json($topics);
     }
     /**
      * Show the form for creating a new resource.
@@ -105,7 +110,7 @@ class UserProposalController extends Controller
         $proposals = Proposal::all();
         $categoryresearch = CategoryResearch::all();
         $researchteam = ResearchTeam::all();
-        return view('proposals.create', compact('researchtypes', 'fieldfocusresearch', 'proposals', 'categoryresearch'));    
+        return view('proposals.create', compact('researchtypes', 'fieldfocusresearch', 'proposals', 'categoryresearch'));
     }
 
     /**

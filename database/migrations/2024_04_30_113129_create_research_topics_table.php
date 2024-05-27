@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('category_research', function (Blueprint $table) {
+        Schema::create('research_topics', function (Blueprint $table) {
             $table->id();
-            $table->string('category_name');
+            $table->string('name');
+            $table->unsignedBigInteger('research_theme_id');
+            $table->foreign('research_theme_id')->references('id')->on('research_themes')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('category_research');
+        Schema::dropIfExists('research_topics');
     }
 };

@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('proposals', function (Blueprint $table) {
-            $table->unsignedBigInteger('research_teams_id')->nullable()->after('research_title');
-            $table->foreign('research_teams_id')->references('id')->on('research_teams')->onDelete('cascade');
+        Schema::create('research_categories', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
         });
     }
 
@@ -22,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('proposals', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('research_categories');
     }
 };

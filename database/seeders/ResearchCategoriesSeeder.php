@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\CategoryResearch;
+use App\Models\ResearchCategories;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CayegoryResearchSeeder extends Seeder
+class ResearchCategoriesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -26,8 +26,8 @@ class CayegoryResearchSeeder extends Seeder
             'Sosial humaniora, seni budaya, pendidikan',
         ];
         foreach ($category_name as $name) {
-            CategoryResearch::create([
-                'category_name' => $name,
+            ResearchCategories::create([
+                'name' => $name,
             ]);
         }
     }

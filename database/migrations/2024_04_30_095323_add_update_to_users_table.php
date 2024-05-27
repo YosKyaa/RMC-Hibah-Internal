@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('front_title')->nullable();
             $table->string('back_title')->nullable();
             $table->string('nidn')->unique()->nullable();
+            $table->string('image')->unique()->nullable();
             $table->string('username')->after('name')->nullable();
 
         });
@@ -29,6 +30,8 @@ return new class extends Migration
             $table->dropColumn('font_title');
             $table->dropColumn('back_title');
             $table->dropColumn('study_program');
+            $table->dropColumn('nidn');
+            $table->dropColumn('image');
             $table->dropColumn('username');
         });
     }

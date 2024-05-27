@@ -21,8 +21,11 @@ class DatabaseSeeder extends Seeder
         $this->call([MainResearchTargetSeeder::class]);
         $this->call([StatusSeeder::class]);
         $this->call([ResearchTypesSeeder::class]);
-        $this->call([CayegoryResearchSeeder::class]);
-        $this->call([FieldFocusReasearchSeeder::class]);
+        $this->call([ResearchCategoriesSeeder::class]);
+        
+        $this->call([ResearchThemesSeeder::class]);
+        $this->call([ResearchTopicsSeeder::class]);
+
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

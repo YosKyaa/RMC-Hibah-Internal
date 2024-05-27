@@ -105,44 +105,47 @@
                             </div>
                             <!--  -->
                             <div class="card border-0 shadow-sm rounded">
-                    <div class="card-body">
-                        <table class="table table-bordered">
-                            <thead>
-                              <tr>
-                                <th scope="col">JENIS PENELITIAN</th>
-                                <th scope="col">KATEGORI PENELITIAN</th>
-                                <th scope="col">TEMA PENELITIAN</th>
-                                <th scope="col">TOPIK PENELITIAN</th>
-                                <th scope="col">JUDUL PENELITIAN</th>
-                                <th scope="col">JENIS TKT</th>
-                                <th scope="col">TARGET UTAMA RISET</th>
-                                <!-- <th scope="col">FILE</th> -->
-                                <th scope="col">AKSI</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="text-center">
-                                        <img src="" class="rounded" style="width: 150px">
-                                    </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <!-- <td></td> -->
-                                    <td class="text-center">
-                                    <a href="#modalToggle" data-bs-toggle="modal" data-bs-target="#modalToggle" class="bx bx-show-alt badge-dark"></a>
-                                        <a class=" text-success" title="Edit" href=""><i class="bx bxs-edit"></i></a> 
-                                            <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="" ><i class="bx bx-trash"></i></a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                          </table>  
-                    </div>
-                </div>
-                <br>
+                                <div class="card-body">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">JENIS PENELITIAN</th>
+                                                <th scope="col">KATEGORI PENELITIAN</th>
+                                                <th scope="col">TEMA PENELITIAN</th>
+                                                <th scope="col">TOPIK PENELITIAN</th>
+                                                <th scope="col">JUDUL PENELITIAN</th>
+                                                <th scope="col">JENIS TKT</th>
+                                                <th scope="col">TARGET UTAMA RISET</th>
+                                                <!-- <th scope="col">FILE</th> -->
+                                                <th scope="col">AKSI</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-center">
+                                                    <img src="" class="rounded" style="width: 150px">
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <!-- <td></td> -->
+                                                <td class="text-center">
+                                                    <a href="#modalToggle" data-bs-toggle="modal"
+                                                        data-bs-target="#modalToggle" class="bx bx-show-alt badge-dark"></a>
+                                                    <a class=" text-success" title="Edit" href=""><i
+                                                            class="bx bxs-edit"></i></a>
+                                                    <a class=" text-danger" title="Hapus" style="cursor:pointer"
+                                                        onclick=""><i class="bx bx-trash"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <br>
                             <div class="timeline-header mb-3">
                                 <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
                                     data-bs-target="#newrecord" aria-controls="offcanvasEnd" tabindex="0"
@@ -193,17 +196,17 @@
                                                 Penelitian</label>
                                             <div class="input-group input-group-merge has-validation">
                                                 <select
-                                                    class="form-select @error('category_research') is-invalid @enderror select2-modal"
-                                                    name="category_research" id="category_research"
+                                                    class="form-select @error('research_categories') is-invalid @enderror select2-modal"
+                                                    name="research_categories" id="research_categories"
                                                     data-placeholder="-- Pilih Kategori Penelitian--">
                                                     <option value="">-- Pilih Kategori Penelitian --</option>
-                                                    @foreach ($categoryresearch as $d)
+                                                    @foreach ($researchcategories as $d)
                                                         <option value="{{ $d->id }}"
-                                                            {{ $d->id == old('category_research') ? 'selected' : '' }}>
-                                                            {{ $d->category_name }}</option>
+                                                            {{ $d->id == old('research_categories') ? 'selected' : '' }}>
+                                                            {{ $d->name }}</option>
                                                     @endforeach
                                                 </select>
-                                                @error('category_research')
+                                                @error('research_categories')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -215,17 +218,17 @@
                                                 Penelitian</label>
                                             <div class="input-group input-group-merge has-validation">
                                                 <select
-                                                    class="form-select @error('research_theme') is-invalid @enderror select2-modal"
-                                                    name="research_theme" id="research_theme"
+                                                    class="form-select @error('research_themes') is-invalid @enderror select2-modal"
+                                                    name="research_themes" id="research_themes"
                                                     data-placeholder="-- Pilih Tema Penelitian--">
                                                     <option value="">-- Pilih Tema Penelitian --</option>
-                                                    @foreach ($fieldfocusresearch as $d)
+                                                    @foreach ($researchthemes as $d)
                                                         <option value="{{ $d->id }}"
-                                                            {{ $d->id == old('research_theme') ? 'selected' : '' }}>
-                                                            {{ $d->research_theme }}</option>
+                                                            {{ $d->id == old('research_themes') ? 'selected' : '' }}>
+                                                            {{ $d->name }}</option>
                                                     @endforeach
                                                 </select>
-                                                @error('research_theme')
+                                                @error('research_themes')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -237,17 +240,17 @@
                                                 Penelitian</label>
                                             <div class="input-group input-group-merge has-validation">
                                                 <select
-                                                    class="form-select @error('research_topic') is-invalid @enderror select2-modal"
-                                                    name="research_topic" id="research_topic"
+                                                    class="form-select @error('research_topics') is-invalid @enderror select2-modal"
+                                                    name="research_topics" id="research_topics"
                                                     data-placeholder="-- Pilih Topik Penelitian--">
                                                     <option value="">-- Pilih Topik Penelitian --</option>
-                                                    @foreach ($fieldfocusresearch as $d)
+                                                    @foreach ($researchtopics as $d)
                                                         <option value="{{ $d->id }}"
-                                                            {{ $d->id == old('research_topic') ? 'selected' : '' }}>
-                                                            {{ $d->research_topic }}</option>
+                                                            {{ $d->id == old('research_topics') ? 'selected' : '' }}>
+                                                            {{ $d->name }}</option>
                                                     @endforeach
                                                 </select>
-                                                @error('research_topic')
+                                                @error('research_topics')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -268,26 +271,7 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="col-sm-12 fv-plugins-icon-container">
-                                            <label class="form-label" for="basicDate">Tim Peneliti</label>
-                                            <div class="input-group input-group-merge has-validation">
-                                                <select
-                                                    class="form-select @error('research_team') is-invalid @enderror select2-modal"
-                                                    multiple="multiple" name="research_team[]" id="select2Dark"
-                                                    data-placeholder=" -- Select --">
-                                                    @foreach ($researchteam as $v)
-                                                        <option value="{{ $v->id }}"
-                                                            {{ in_array($v->id, old('research_team') ?? []) ? 'selected' : '' }}>
-                                                            {{ $v->researcher_id }}</option>
-                                                    @endforeach
-                                                </select>
-                                                @error('research_team')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                        </div>
+
                                         <div class="col-sm-12 fv-plugins-icon-container">
                                             <label for="" class="form-label">Jenis
                                                 TKT</label>
@@ -544,40 +528,50 @@
     <script src="assets/vendor/libs/bootstrap-select/bootstrap-select.js"></script>
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <script>
-        $( document ).ready(function() {
-        $('#category_research').change(function() {
-            var id = this.value;
-            $("#research_theme").html('');
-            $("#research_topic").html('');
-            alert(id);
-            $.ajax({
-                url: "{{ route('DOC.get_research_theme_by_id') }}",
-                type: "GET",
-                data: {
-                    id: id,
-                    _token: '{{ csrf_token() }}'
-                },
-                dataType: 'json',
-                success: function(result) {
-                    if (result.length != 0) {
-                        $('#research_theme').html(
-                            '<option value="">Kategori</option>'
-                        );
+        $(document).ready(function() {
+            // ketika category dirubah, theme di isi
+            $('#research_categories').change(function() {
+                var categoryId = this.value;
+                $("#research_themes").html('');
+                $("#research_topics").html('');
+                $.ajax({
+                    url: "{{ route('DOC.get_research_themes_by_id') }}",
+                    type: "GET",
+                    data: {
+                        id: categoryId,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    dataType: 'json',
+                    success: function(result) {
+                        $('#research_themes').html('<option value="">Select Theme</option>');
                         $.each(result, function(key, value) {
-                            $("#research_theme").append('<option value="' + value
-                                .id + '">' + value.name + '</option>');
-                        });
-                        $('#research_topic').html(
-                            '<option value="">Kategori</option>'
-                        );
-                        $.each(result, function(key, value) {
-                            $("#research_topic").append('<option value="' + value
-                                .id + '">' + value.name + '</option>');
+                            $("#research_themes").append('<option value="' + value.id +
+                                '">' + value.name + '</option>');
                         });
                     }
-                }
+                });
+            });
+            // ketika tema dirubah, topic di isi
+            $('#research_themes').change(function() {
+                var themeId = this.value;
+                $("#research_topics").html('');
+                $.ajax({
+                    url: "{{ route('DOC.get_research_topics_by_id') }}",
+                    type: "GET",
+                    data: {
+                        id: themeId,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    dataType: 'json',
+                    success: function(result) {
+                        $('#research_topics').html('<option value="">Select Topic</option>');
+                        $.each(result, function(key, value) {
+                            $("#research_topics").append('<option value="' + value.id +
+                                '">' + value.name + '</option>');
+                        });
+                    }
+                });
             });
         });
-    });
     </script>
 @endsection

@@ -55,16 +55,12 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Dosen</th>
-                        <th>Jenis Penelitian</th>
-                        <th>Bidang Penelitian</th>
-                        <th>Judul Penelitian</th>
-                        <th>Tim Peneliti</th>
-                        <th>Jenis TKT</th>
-                        <th>Target Utama Riset</th>
-                        <th>Lampiran Dokumen</th>
+                        <th>Nama Peneliti</th>
+                        <th>Tim Penelitian</th>
+                        <th>Judul Proposal</th>
+                        <th>Tanggal Review</th>
                         <th>Status</th>
-                        <th>Note</th>
+                        <th>Nama Reviewer</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -182,32 +178,8 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.;
-                            return html;
-                        }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
-                            var html = row.;
-                            return html;
-                        }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
-                            var html = row.;
-                            return html;
-                        }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
-                            var html = row.;
-                            return html;
-                        }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
                             var html =
-                                `<a class=" text-success" title="Edit" href="{{ url('setting/manage_studyprogram/studyprogram/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a> 
+                                `<a class=" text-success" title="Edit" href="{{ url('setting/manage_studyprogram/studyprogram/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>
                             <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row
                                 .id + `\',\'` + row.name + `\')" ><i class="bx bx-trash"></i></a>`;
                             return html;

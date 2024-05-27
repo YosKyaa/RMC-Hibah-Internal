@@ -15,25 +15,25 @@ class DepartementSeeder extends Seeder
     public function run(): void
     {
         Department::create([
-            'name_dept' => 'Academic and Educational Support Service (BAAK)',
+            'name' => 'Academic and Educational Support Service (BAAK)',
         ]);
         Department::create([
-            'name_dept' => 'Engagement and Enrollment',
+            'name' => 'Engagement and Enrollment',
         ]);
         Department::create([
-            'name_dept' => 'Examination',
+            'name' => 'Examination',
         ]);
         Department::create([
-            'name_dept' => 'Finance',
+            'name' => 'Finance',
         ]);
         Department::create([
-            'name_dept' => 'Laboratory',
+            'name' => 'Laboratory',
         ]);
         Department::create([
-            'name_dept' => 'Library & Recource Center',
+            'name' => 'Library & Recource Center',
         ]);
         Department::create([
-            'name_dept' => 'Student Center Alumni & Community service',
+            'name' => 'Student Center Alumni & Community service',
         ]);
     }
 }

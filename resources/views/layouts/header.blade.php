@@ -18,29 +18,29 @@
         <!-- /Search -->
         <ul class="navbar-nav flex-row align-items-center ms-auto">
             <!-- Style Switcher -->
-          <li class="nav-item dropdown-style-switcher dropdown me-2 me-xl-0">
-            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-              <i class='bx bx-sm'></i>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end dropdown-styles">
-              <li>
-                <a class="dropdown-item" href="javascript:void(0);" data-theme="light">
-                  <span class="align-middle"><i class='bx bx-sun me-2'></i>Light</span>
+            <li class="nav-item dropdown-style-switcher dropdown me-2 me-xl-0">
+                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                    <i class='bx bx-sm'></i>
                 </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="javascript:void(0);" data-theme="dark">
-                  <span class="align-middle"><i class="bx bx-moon me-2"></i>Dark</span>
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="javascript:void(0);" data-theme="system">
-                  <span class="align-middle"><i class="bx bx-desktop me-2"></i>System</span>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <!-- / Style Switcher-->
+                <ul class="dropdown-menu dropdown-menu-end dropdown-styles">
+                    <li>
+                        <a class="dropdown-item" href="javascript:void(0);" data-theme="light">
+                            <span class="align-middle"><i class='bx bx-sun me-2'></i>Light</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="javascript:void(0);" data-theme="dark">
+                            <span class="align-middle"><i class="bx bx-moon me-2"></i>Dark</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="javascript:void(0);" data-theme="system">
+                            <span class="align-middle"><i class="bx bx-desktop me-2"></i>System</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- / Style Switcher-->
             <!-- User -->
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                 <a class="nav-link dropdown-toggle hide-arrow" href="" data-bs-toggle="dropdown">
@@ -67,10 +67,17 @@
                         </a>
                     </li>
                     <li class="">
-                        <a class="dropdown-item {{ Route::currentRouteName()=='profile.edit' ? 'active' : '' }}"
-                            href="{{ route('profile.edit') }}">
+                        <a class="dropdown-item {{ Route::currentRouteName() == 'profile.index' ? 'active' : '' }}"
+                            href="{{ route('profile.index') }}">
                             <i class="bx bx-user me-2"></i>
                             <span class="align-middle">My Profile</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a class="dropdown-item {{ Route::currentRouteName() == 'profile.edit' ? 'active' : '' }}"
+                            href="{{ route('profile.edit') }}">
+                            <i class="bx bx-cog  me-2"></i>
+                            <span class="align-middle">Settings</span>
                         </a>
                     </li>
                     <li>
@@ -83,7 +90,8 @@
                         <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
                                        document.getElementById('logout-form').submit();">
                             <i class="bx bx-power-off me-2"></i>
                             <span class="align-middle">Logout</span>

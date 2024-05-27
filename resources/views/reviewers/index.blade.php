@@ -57,26 +57,22 @@
                 </div>
             </div>
             <div class="card full-width">
-            <div class="container">
-                <table class="table table-hover table-sm" id="datatable" width="50%">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Dosen</th>
-                            <th>Jenis Penelitian</th>
-                            <th>Bidang Penelitian</th>
-                            <th>Judul Penelitian</th>
-                            <th>Tim Peneliti</th>
-                            <th>Jenis TKT</th>
-                            <th>Target Utama Riset</th>
-                            <th>Lampiran Dokumen</th>
-                            <th>Status</th>
-                            <th>Note</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
+                <div class="container">
+                    <table class="table table-hover table-sm" id="datatable" width="50%">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Peneliti</th>
+                                <th>Tim Peneliti</th>
+                                <th>Judul Penelitian</th>
+                                <th>Lampiran Dokumen</th>
+                                <th>Status</th>
+                                <th>Note</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
         </div>
         <!-- / Content -->
@@ -167,7 +163,7 @@
                         render: function(data, type, row, meta) {
                             var html =
                                 `<a class=" text-success" title="Edit" href="{{ url('setting/manage_studyprogram/studyprogram/edit/` +
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                row.id + `') }}"><i class="bx bxs-edit"></i></a> 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                row.id + `') }}"><i class="bx bxs-edit"></i></a>
                             <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row
                                 .id + `\',\'` + row.name + `\')" ><i class="bx bx-trash"></i></a>`;
                             return html;

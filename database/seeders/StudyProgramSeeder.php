@@ -15,19 +15,19 @@ class StudyProgramSeeder extends Seeder
     {
         //
         StudyProgram::create([
-            'name_program' => 'Bachelor of Information Technology',
+            'name' => 'Bachelor of Information Technology',
         ]);
         StudyProgram::create([
-            'name_program' => 'Bachelor of civil engineering',
+            'name' => 'Bachelor of civil engineering',
         ]);
         StudyProgram::create([
-            'name_program' => 'Bachelor of electrical engineering',
+            'name' => 'Bachelor of electrical engineering',
         ]);
         StudyProgram::create([
-            'name_program' => 'Bachelor of mechanical engineering',
+            'name' => 'Bachelor of mechanical engineering',
         ]);
         StudyProgram::create([
-            'name_program' => 'Bachelor of management',
+            'name' => 'Bachelor of management',
         ]);
     }
 }

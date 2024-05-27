@@ -11,9 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('monev', function (Blueprint $table) {
+        Schema::create('proposal_teams', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->unsignedBigInteger('proposals_id');
+            $table->foreign('proposals_id')->references('id')->on('proposals');
+
+            $table->unsignedBigInteger('researcher_id');
+            $table->foreign('researcher_id')->references('id')->on('users')->nullable();
+
             $table->timestamps();
         });
     }
@@ -23,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('monev');
+        Schema::dropIfExists('proposal_teams');
     }
 };

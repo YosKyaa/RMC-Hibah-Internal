@@ -18,6 +18,10 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
+    public function index(): View
+    {
+        return view('profile.show');
+    }
     function edit(Request $request)
     {
         $studiprogram = StudyProgram::all();

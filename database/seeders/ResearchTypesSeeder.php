@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\ResearchTypes;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ResearchTypesSeeder extends Seeder
 {
@@ -13,15 +14,16 @@ class ResearchTypesSeeder extends Seeder
      */
     public function run(): void
     {
-        $titles = [
-            'Penelitian Dasar'
-            // Tambahkan judul-judul lain di sini sesuai kebutuhan
-        ];
+        $data = [
+            [
+                'title' => 'Penelitian Dasar',
+                'total_funds' => 'Rp 5.000.000',
 
-        foreach ($titles as $title) {
-            ResearchTypes::create([
-                'title' => $title
-            ]);
-        }
+            ],
+
+
+    ];
+
+        DB::table('research_types')->insert($data);
     }
 }

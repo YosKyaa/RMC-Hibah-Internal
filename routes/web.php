@@ -38,7 +38,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
-Route::group(['prefix' => 'announcements'], function () { 
+Route::group(['prefix' => 'announcements'], function () {
     Route::any('/', [AnnouncementController::class, 'index'])->name('announcements.index')->middleware('auth');
     Route::get('/data', [AnnouncementController::class, 'data'])->name('announcements.data');
     Route::delete('/delete', [AnnouncementController::class, 'delete'])->name('announcements.delete');
@@ -46,7 +46,7 @@ Route::group(['prefix' => 'announcements'], function () {
     Route::put('/update/{id}', [AnnouncementController::class, 'update'])->name('announcements.update');
 });
 
-Route::group(['prefix' => 'user-proposals'], function () { 
+Route::group(['prefix' => 'user-proposals'], function () {
     Route::any('/', [UserProposalController::class, 'index'])->name('user-proposals.index')->middleware('auth');
     Route::get('/data', [UserProposalController::class, 'data'])->name('user-proposals.data');
     Route::any('/create', [UserProposalController::class,'create'])->name('user-proposals.create');
@@ -55,14 +55,11 @@ Route::group(['prefix' => 'user-proposals'], function () {
     Route::get('/category/by_id', [UserProposalController::class, 'category_by_id'])->name('DOC.get_category_by_id');
 });
 
-Route::any('/field_focus_research', [UserProposalController::class, 'category'])->name('DOC.category');
-Route::get('/field_focus_research/data', [UserProposalController::class, 'field_focus_research_data'])->name('DOC.field_focus_research_data');
-Route::get('/get_research_theme_by_id', [UserProposalController::class, 'get_research_theme_by_id'])->name('DOC.get_research_theme_by_id');
-Route::delete('/field_focus_research/delete', [UserProposalController::class, 'field_focus_research_delete'])->name('DOC.field_focus_research_delete');
-Route::post('/field_focus_research/edit', [UserProposalController::class, 'field_focus_research_edit'])->name('DOC.field_focus_research_edit');
-Route::post('/field_focus_research/id', [UserProposalController::class, 'field_focus_research_id'])->name('DOC.field_focus_research_id');
 
-Route::group(['prefix' => 'proposals'], function () { //manage admin proposal 
+Route::get('/get_research_themes_by_id', [UserProposalController::class, 'getResearchThemeById'])->name('DOC.get_research_themes_by_id');
+Route::get('/get_research_topics_by_id', [UserProposalController::class, 'getResearchTopicById'])->name('DOC.get_research_topics_by_id');
+
+Route::group(['prefix' => 'proposals'], function () { //manage admin proposal
     Route::any('/', [ProposalController::class, 'index'])->name('proposals.index')->middleware('auth');
     Route::get('/data', [ProposalController::class, 'data'])->name('proposals.data');
     Route::delete('/delete', [ProposalController::class, 'delete'])->name('proposals.delete');
@@ -91,7 +88,8 @@ Route::group(['prefix' => 'vicerector2'], function () { //vicerector2
 });
 
 Route::middleware('auth')->group(function () {
-    Route::any('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::any('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::any('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
@@ -99,7 +97,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::group(['prefix' => 'setting','middleware' => ['auth']],function () {
-    // Route::resource('roles', RoleController::class); 
+    // Route::resource('roles', RoleController::class);
 
     Route::group(['prefix' => 'manage_account'], function () {
         Route::group(['prefix' => 'users'], function () { //route to manage users
