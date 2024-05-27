@@ -107,8 +107,8 @@
                 </div>
                 <div class="col-md-12">
                     <ul class="nav nav-pills flex-column flex-sm-row mb-4">
-                        <li class="nav-item"><a class="nav-link" href="../user-proposals"><i class="bx bx-user me-1"></i>Upload</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="../user-proposals/create"><i class="bx bx-group me-1"></i>Progres</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../user-proposals"><i class="bx bx-add-to-queue me-1"></i> Upload</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="../user-proposals/create"><i class="bx bx-line-chart me-1"></i> Progres</a></li>
                     </ul>
                 </div>
             <!-- Content -->
