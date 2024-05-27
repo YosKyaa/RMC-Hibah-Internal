@@ -16,10 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('proposals_id');
             $table->foreign('proposals_id')->references('id')->on('proposals');
             $table->string('proposal_doc');
-            $table->string('admin_loa')->nullable();
-            $table->string('account_bank_receipt')->nullable();
-            $table->string('monev')->nullable();
-            $table->string('final_report')->nullable();
+            $table->uuid('doc_type_id');
+            $table->foreign('doc_type_id')->references('id')->on('doc_types');
+            $table->string('created_by');
             $table->timestamps();
         });
     }

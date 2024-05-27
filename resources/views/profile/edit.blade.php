@@ -129,7 +129,7 @@
                                         Select</option>
                                     @foreach ($studiprogram as $g)
                                         <option {{ Auth::user()->study_programs_id == $g['id'] ? 'selected' : '' }}>
-                                            {{ $g['name_program'] }}</option>
+                                            {{ $g['name'] }}</option>
                                     @endforeach
                                 </select>
                                 @error('study_programs_id')
@@ -148,7 +148,7 @@
                                         Select</option>
                                     @foreach ($dept as $g)
                                         <option {{ Auth::user()->departments_id == $g['id'] ? 'selected' : '' }}>
-                                            {{ $g['name_dept'] }}</option>
+                                            {{ $g['name'] }}</option>
                                     @endforeach
                                 </select>
                                 @error('departements_id')

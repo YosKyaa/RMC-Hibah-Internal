@@ -27,10 +27,15 @@ class ProfileController extends Controller
         $studiprogram = StudyProgram::all();
         $dept = Department::all();
         if ($request->isMethod('post')) {
-            $this->validate($request, [ 
+            $this->validate($request, [
                 'email'=> ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore(Auth::user()->id, 'id')],
                 'username'=> ['nullable', 'string', 'max:255', Rule::unique('users')->ignore(Auth::user()->id, 'id')],
                 'name' => ['required', 'string'],
+                'nidn' => ['required', 'string'],
+                'front_title' => ['required', 'string'],
+                'back_title' => ['required', 'string'],
+                'study_programs_id' => ['required', 'exists:study_programs,id'],
+                'departments_id' => ['required', 'exists:departments,id'],
             ]);
             User::where('id', Auth::user()->id)->update([
                 'name'=> $request->name,
