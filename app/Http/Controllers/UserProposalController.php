@@ -37,7 +37,7 @@ class UserProposalController extends Controller
                 'tkt_type' => 'required',
                 'main_research_target' => 'required',
                 'document' => ['required','mimes:pdf','max:10000'], // max 10MB
-                'note' => 'required',
+                'notes' => 'required',
 
             ]);
             $fileName = "";
@@ -59,15 +59,16 @@ class UserProposalController extends Controller
             }
             $data = Proposal::create([
                 'users_id' => Auth::user()->id, // 'users_id' => $request->users_id
-                'research_type_id' => $request->research_type,
-                'field_focus_research_id' => $request->research_topic,
+                'research_type' => $request->research_type_id,
+                'research_topics' => $request->research_topic_id,
                 'research_title' => $request->research_title,
-                'research_team_id' => $request->research_team,
-                'tkt_type_id' => $request->tkt_type,
-                'main_research_target_id' => $request->main_research_target,
+                // 'research_team_id' => $request->research_team,
+                'tkt_type' => $request->tkt_type_id,
+                'main_research_targets' => $request->main_research_target_id,
                 'document' => $fileName,
-                'note' => $request->note,
+                'notes' => $request->notes,
             ]);
+
             if($data){
                 return redirect()->route('proposals.index')->with('msg','Data atas ('.$request->title.') BERHASIL ditambahkan!');
             }else{
