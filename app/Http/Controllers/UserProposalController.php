@@ -24,67 +24,67 @@ class UserProposalController extends Controller
      */
     public function index(Request $request)
     {
-        // $this->authorize('setting/manage_data/study_program.read');
         if ($request->isMethod('POST')) {
+            // dd($request->all());
             $this->validate($request, [
-                //'users' => 'required|exists:users,id',
-                'research_type' => 'required',
-                'category_research' => 'required',
-                'research_theme' => 'required',
-                'research_topic' => 'required',
-                'research_title' => ['string', 'max:255'],
-                'research_team' => 'required',
-                'tkt_type' => 'required',
-                'main_research_target' => 'required',
-                'document' => ['required','mimes:pdf','max:10000'], // max 10MB
-                'notes' => 'required',
-
+                'research_type' => 'required|exists:research_types,id',
+                'research_categories' => 'required|exists:research_categories,id',
+                'research_themes' => 'required|exists:research_themes,id',
+                'research_topics' => 'required|exists:research_topics,id',
+                'research_title' => 'required|string|max:255',
+                'tkt_type' => 'required|exists:tkt_types,id',
+                'main_research_target' => 'required|exists:main_research_targets,id',
+                'document' => 'required|mimes:pdf|max:10000', // max 10MB
+                'notes' => 'required|string',
             ]);
             $fileName = "";
-            if(isset($request->document)){
+            if ($request->hasFile('document')) {
                 $ext = $request->document->extension();
                 $name = str_replace(' ', '_', $request->document->getClientOriginalName());
-                $fileName = Auth::user()->id.'_'.$name;
-                $folderName =  "storage/FILE/proposals/".Carbon::now()->format('Y/m');
-                $path = public_path()."/".$folderName;
+                $fileName = Auth::user()->id . '_' . $name;
+                $folderName = "storage/FILE/proposals/" . Carbon::now()->format('Y/m');
+                $path = public_path() . "/" . $folderName;
                 if (!File::exists($path)) {
                     File::makeDirectory($path, 0755, true); //create folder
                 }
-                $upload = $request->document->move($path, $fileName); //upload image to folder
-                if($upload){
-                    $fileName=$folderName."/".$fileName;
+                $upload = $request->document->move($path, $fileName); //upload file to folder
+                if ($upload) {
+                    $fileName = $folderName . "/" . $fileName;
                 } else {
                     $fileName = "";
                 }
             }
+            // dd(Auth::user()->id);
             $data = Proposal::create([
-                'users_id' => Auth::user()->id, // 'users_id' => $request->users_id
-                'research_type' => $request->research_type_id,
-                'research_topics' => $request->research_topic_id,
+                'users_id' => Auth::user()->id, // 'user_id' => $request->users_id
+                'research_types_id' => $request->research_type,
+                'research_topics_id' => $request->research_topics,
                 'research_title' => $request->research_title,
-                // 'research_team_id' => $request->research_team,
-                'tkt_type' => $request->tkt_type_id,
-                'main_research_targets' => $request->main_research_target_id,
+                'tkt_types_id' => $request->tkt_type,
+                'main_research_targets_id' => $request->main_research_target,
                 'document' => $fileName,
                 'notes' => $request->notes,
+
             ]);
 
-            if($data){
-                return redirect()->route('proposals.index')->with('msg','Data atas ('.$request->title.') BERHASIL ditambahkan!');
-            }else{
-                return redirect()->route('proposals.index')->with('msg',' Pengmuman GAGAL dibuat!');
+            if ($data) {
+                return redirect()->route('proposals.index')->with('msg', 'Data atas (' . $request->research_title . ') BERHASIL ditambahkan!');
+            } else {
+                return redirect()->route('proposals.index')->with('msg', 'Proposal GAGAL dibuat!');
             }
-        }else{
-            $proposals = Proposal::all();
+        } else {
+            $userproposal = Auth::user()->id;
+            $proposals = Proposal::where('users_id', $userproposal)->get();
             $researchtypes = ResearchTypes::all();
-            $proposals = Proposal::all();
             $researchcategories = ResearchCategories::all();
             $researchthemes = ResearchThemes::all();
             $researchtopics = ResearchTopics::all();
             // $researchteam = ResearchTeam::all();
             $tkttype = TktTypes::all();
             $mainresearch = MainResearchTarget::all();
-        return view('proposals.index', compact('proposals', 'researchtypes', 'researchthemes', 'proposals', 'researchcategories',  'tkttype', 'mainresearch', 'researchtopics'));
+
+
+            return view('proposals.index', compact('proposals', 'researchtypes', 'researchthemes', 'researchcategories', 'tkttype', 'mainresearch', 'researchtopics','userproposal'));
         }
     }
 
