@@ -10,25 +10,29 @@ class Proposal extends Model
     use HasFactory;
     public $fillable = [
         'id',
-        'user_id',
-        'research_type_id',
-        'research_topic_id',
+        'users_id',
+        'research_types_id',
+        'research_topics_id',
         'research_title',
-        'tktk_type_id',
-        'main_research_target_id',
+        'tkt_types_id',
+        'main_research_targets_id',
         'document',
-        'reviewer_id',
-        'notes',
-        'status_id',
-        'review_notes',
-        'account_bank_detail',
-        'review_date_start',
-        'review_date_end',
-        'presentation_date',
-        'approval_reviewer',
-        'approval_reviewer_notes',
-        'approval_vice_rector_1',
-        'approval_vice_rector_2',
-        'updated_by'
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'users_id');
+    }
+    public function researchType()
+    {
+        return $this->belongsTo(ResearchTypes::class, 'research_types_id');
+    }
+    public function researchTopic()
+    {
+        return $this->belongsTo(ResearchTopics::class, 'research_topics_id');
+    }
+    public function tktType()
+    {
+        return $this->belongsTo(TktTypes::class, 'tkt_types_id');
+    }
+
 }

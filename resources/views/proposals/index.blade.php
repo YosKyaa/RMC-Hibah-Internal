@@ -124,39 +124,49 @@
                 <div class="table-responsive">
                     <!--  -->
                     <div class="card border-0 shadow-sm rounded full-width">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">JENIS PENELITIAN</th>
-                                    <th scope="col">TOPIK PENELITIAN</th>
-                                    <th scope="col">JUDUL PENELITIAN</th>
-                                    <th scope="col">TIM PENELITIAN</th>
-                                    <th scope="col">STATUS</th>
-                                    <th scope="col">AKSI</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td class="text-center">
-                                        <a href="#modalToggle" data-bs-toggle="modal" data-bs-target="#modalToggle"
-                                            class="bx bx-show-alt badge-dark"></a>
-                                        <a class=" text-success" title="Edit" href=""><i
-                                                class="bx bxs-edit"></i></a>
-                                        <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick=""><i
-                                                class="bx bx-trash"></i></a>
-                                        <a class=" text-danger" title="Reviewers" style="cursor:pointer" onclick=""><i
-                                                class="bx bx-user-plus"></i></a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        @foreach ($proposals as $p)
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">JENIS PENELITIAN</th>
+                                        <th scope="col">TOPIK PENELITIAN</th>
+                                        <th scope="col">JUDUL PENELITIAN</th>
+                                        <th scope="col">TIM PENELITIAN</th>
+                                        <th scope="col">STATUS</th>
+                                        <th scope="col">AKSI</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{ $p->researchType->title }}</td>
+                                        <td>{{ $p->researchTopic->name }}</td>
+                                        <td>{{ $p->research_title }}</td>
+                                        @if ($p->researchTeam)
+                                            <td>
+                                                @foreach ($p->researchTeam as $team)
+                                                    {{ $team->user->username }}
+                                                @endforeach
+                                            </td>
+                                        @else
+                                            <td>Gada</td>
+                                        @endif
+                                        <td></td>
+                                        <td class="text-center">
+                                            <a href="#modalToggle" data-bs-toggle="modal" data-bs-target="#modalToggle"
+                                                class="bx bx-show-alt badge-dark"></a>
+                                            <a class=" text-success" title="Edit" href=""><i
+                                                    class="bx bxs-edit"></i></a>
+                                            <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick=""><i
+                                                    class="bx bx-trash"></i></a>
+                                            <a class=" text-danger" title="Reviewers" style="cursor:pointer"
+                                                onclick=""><i class="bx bx-user-plus"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                     </div>
                 </div>
+                @endforeach
                 <br>
                 <div class="timeline-header mb-3">
                     <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#newrecord"
@@ -165,8 +175,8 @@
                             <span>Ajukan Hibah</span></span>
                     </button>
                     <span>
-
                 </div>
+
                 <div class="offcanvas offcanvas-end @if ($errors->all()) show @endif" tabindex="-1"
                     id="newrecord" aria-labelledby="offcanvasEndLabel">
                     <div class="offcanvas-header">
@@ -322,7 +332,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-12">
-                                <label class="form-label">Upload Images<i class="text-danger">*</i></label>
+                                <label class="form-label">Upload File<i class="text-danger">*</i></label>
                                 <div class="input-group mb-3">
                                     <input class="form-control @error('document') is-invalid @enderror" name="document"
                                         type="file" accept=".pdf" title="PDF">

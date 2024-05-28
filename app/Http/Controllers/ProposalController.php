@@ -40,7 +40,7 @@ class ProposalController extends Controller
 
      public function data(Request $request){
         // $this->authorize('setting/manage_data/department.read');
-        $data = Proposal::select('*')->orderBy("id");
+        $data = Proposal::with('users')->select('*')->orderBy("id");
             return DataTables::of($data)
                     ->filter(function ($instance) use ($request) {
                         if (!empty($request->get('search'))) {
@@ -55,7 +55,7 @@ class ProposalController extends Controller
         $departement = Proposal::select('*');
         return DataTables::of($departement)->make(true);
     }
-   
+
     public function create()
     {
         //

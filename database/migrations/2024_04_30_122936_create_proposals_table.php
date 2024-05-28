@@ -33,13 +33,13 @@ return new class extends Migration
 
             $table->string('document');
 
-            $table->unsignedBigInteger('reviewer_id');
+            $table->unsignedBigInteger('reviewer_id')->nullable();
             $table->foreign('reviewer_id')->references('id')->on('users');
 
             $table->text('notes')->nullable();
 
-            $table->uuid('status_id');
-            $table->foreign('status_id')->references('id')->on('status')->onDelete('cascade');
+            $table->uuid('status_id')->nullable();
+            $table->foreign('status_id')->references('id')->on('status')->nullable()->onDelete('cascade');
 
             $table->text('review_notes')->nullable();
 
@@ -51,13 +51,13 @@ return new class extends Migration
 
             $table->date('presentation_date')->nullable();
 
-            $table->boolean('approval_reviewer')->default(false);
+            $table->boolean('approval_reviewer')->default(false)->nullable();
 
             $table->text('approval_reviewer_notes')->nullable();
 
-            $table->boolean('approval_vice_rector_1')->default(false);
+            $table->boolean('approval_vice_rector_1')->default(false)->nullable();
 
-            $table->boolean('approval_vice_rector_2')->default(false);
+            $table->boolean('approval_vice_rector_2')->default(false)->nullable();
 
             $table->string('updated_by')->nullable();
 
