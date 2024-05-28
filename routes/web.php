@@ -61,6 +61,9 @@ Route::get('/get_research_topics_by_id', [UserProposalController::class, 'getRes
 
 Route::group(['prefix' => 'proposals'], function () { //manage admin proposal
     Route::any('/', [ProposalController::class, 'index'])->name('proposals.index')->middleware('auth');
+    Route::any('/dana', [ProposalController::class, 'dana'])->name('proposals.dana');
+    Route::any('/loa', [ProposalController::class, 'loa'])->name('proposals.loa');
+    Route::any('/monev', [ProposalController::class, 'monev'])->name('proposals.monev');
     Route::get('/data', [ProposalController::class, 'data'])->name('proposals.data');
     Route::delete('/delete', [ProposalController::class, 'delete'])->name('proposals.delete');
     Route::get('/edit/{id}', [ProposalController::class, 'edit'])->name('proposals.edit');

@@ -17,6 +17,23 @@ class ProposalController extends Controller
         return view('data.proposals.index', compact('proposals'));
     }
 
+    public function dana()
+    {
+        $proposals = Proposal::all();
+        return view('data.proposals.dana', compact('proposals'));
+    }
+
+    public function loa()
+    {
+        $proposals = Proposal::all();
+        return view('data.proposals.loa', compact('proposals'));
+    }
+
+    public function monev()
+    {
+        $proposals = Proposal::all();
+        return view('data.proposals.monev', compact('proposals'));
+    }
     /**
      * Show the form for creating a new resource.
      */

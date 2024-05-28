@@ -39,8 +39,8 @@
     @endif
     <div class="col-md-12">
         <ul class="nav nav-pills flex-column flex-sm-row mb-4">
-            <li class="nav-item"><a class="nav-link active" href="../proposals"><i class="bx bx-add-to-queue me-1"></i> Tambah Reviewer</a></li>
-            <li class="nav-item"><a class="nav-link" href="../proposals/dana"><i class="bx bx-bar-chart-alt-2 me-1"></i> Finalisasi Dana</a></li>
+            <li class="nav-item"><a class="nav-link" href="../proposals"><i class="bx bx-add-to-queue me-1"></i> Tambah Reviewer</a></li>
+            <li class="nav-item"><a class="nav-link active" href="../proposals/dana"><i class="bx bx-bar-chart-alt-2 me-1"></i> Finalisasi Dana</a></li>
             <li class="nav-item"><a class="nav-link" href="../proposals/loa"><i class="bx bx-task me-1"></i> Penerbitan LOA</a></li>
             <li class="nav-item"><a class="nav-link" href="../proposals/monev"><i class="bx bx-select-multiple me-1"></i> Verifikasi Hasil Monev</a></li>
 
