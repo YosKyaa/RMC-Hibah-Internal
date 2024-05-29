@@ -70,9 +70,9 @@ class UserProposalController extends Controller
             ]);
 
             if ($data) {
-                return redirect()->route('proposals.index')->with('msg', 'Data atas (' . $request->research_title . ') BERHASIL ditambahkan!');
+                return redirect()->route('user-proposals.index')->with('msg', 'Data atas (' . $request->research_title . ') BERHASIL ditambahkan!');
             } else {
-                return redirect()->route('proposals.index')->with('msg', 'Proposal GAGAL dibuat!');
+                return redirect()->route('user-proposals.index')->with('msg', 'Proposal GAGAL dibuat!');
             }
         } else {
             $userproposal = Auth::user()->id;
@@ -145,8 +145,19 @@ class UserProposalController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
+    public function delete(Request $request){
+        $data = Proposal::find($request->id);
+        if($data){
+            $data->delete();
+            return response()->json([
+                'success' => true,
+                'message' => 'Berhasil dihapus!'
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal dihapus!'
+            ]);
+        }
     }
 }
