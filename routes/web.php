@@ -5,6 +5,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartementController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\FinalisasiDanaController;
+use App\Http\Controllers\LoaController;
+use App\Http\Controllers\MonevController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
@@ -75,6 +77,20 @@ Route::group(['prefix' => 'finalisasidana'], function () { //FinalisasiDanas
     Route::get('/data', [FinalisasiDanaController::class, 'data'])->name('finalisasidana.data');
     Route::delete('/delete', [FinalisasiDanaController::class, 'delete'])->name('finalisasidana.delete');
     Route::get('/edit/{id}', [FinalisasiDanaController::class, 'edit'])->name('finalisasidana.edit');
+});
+
+Route::group(['prefix' => 'loa'], function () { //Loa
+    Route::any('/', [LoaController::class, 'index'])->name('loa.index')->middleware('auth');
+    Route::get('/data', [LoaController::class, 'data'])->name('loa.data');
+    Route::delete('/delete', [LoaController::class, 'delete'])->name('loa.delete');
+    Route::get('/edit/{id}', [LoaController::class, 'edit'])->name('loa.edit');
+});
+
+Route::group(['prefix' => 'monev'], function () { //Monev
+    Route::any('/', [MonevController::class, 'index'])->name('monev.index')->middleware('auth');
+    Route::get('/data', [MonevController::class, 'data'])->name('monev.data');
+    Route::delete('/delete', [MonevController::class, 'delete'])->name('monev.delete');
+    Route::get('/edit/{id}', [MonevController::class, 'edit'])->name('monev.edit');
 });
 
 Route::group(['prefix' => 'reviewer'], function () { //reviewers
