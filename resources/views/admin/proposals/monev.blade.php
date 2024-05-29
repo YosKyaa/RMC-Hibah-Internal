@@ -39,11 +39,12 @@
     @endif
     <div class="col-md-12">
         <ul class="nav nav-pills flex-column flex-sm-row mb-4">
-            <li class="nav-item"><a class="nav-link active" href="../proposals"><i class="bx bx-add-to-queue me-1"></i> Tambah Reviewer</a></li>
-            <li class="nav-item"><a class="nav-link" href="../proposals/dana"><i class="bx bx-bar-chart-alt-2 me-1"></i> Finalisasi Dana</a></li>
+            <li class="nav-item"><a class="nav-link" href="../proposals"><i class="bx bx-add-to-queue me-1"></i> Tambah Reviewer</a></li>
+            <li class="nav-item"><a class="nav-link " href="../proposals/dana"><i class="bx bx-bar-chart-alt-2 me-1"></i> Finalisasi Dana</a></li>
             <li class="nav-item"><a class="nav-link" href="../proposals/loa"><i class="bx bx-task me-1"></i> Penerbitan LOA</a></li>
-            <li class="nav-item"><a class="nav-link" href="../proposals/monev"><i class="bx bx-select-multiple me-1"></i> Verifikasi Hasil Monev</a></li>
+            <li class="nav-item"><a class="nav-link active" href="../proposals/monev"><i class="bx bx-select-multiple me-1"></i> Verifikasi Hasil Monev</a></li>
 
+        
         </ul>
     </div>
     <div class="card">
@@ -151,37 +152,37 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.username;
+                            var html = row.;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.research_title;
+                            var html = row.;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.research_title;
+                            var html = row.;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.review_date_start;
+                            var html = row.;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.status_id;
+                            var html = row.;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.reviewer_id;
+                            var html = row.;
                             return html;
                         }
                     },
