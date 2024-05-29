@@ -71,7 +71,8 @@
                         <th>Nama Peneliti</th>
                         <th>Tim Penelitian</th>
                         <th>Judul Proposal</th>
-                        <th>Tanggal Review</th>
+                        <th>Mulai Review</th>
+                        <th>Selesai Review</th>
                         <th>Status</th>
                         <th>Nama Reviewer</th>
                         <th>Action</th>
@@ -174,6 +175,12 @@
                     {
                         render: function(data, type, row, meta) {
                             var html = row.review_date_start;
+                            return html;
+                        }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            var html = row.review_date_end;
                             return html;
                         }
                     },
