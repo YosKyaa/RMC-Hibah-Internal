@@ -156,7 +156,8 @@
                                                 class="bx bx-show-alt badge-dark"></a>
                                             <a class=" text-success" title="Edit" href=""><i
                                                     class="bx bxs-edit"></i></a>
-                                            <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick=""><i
+                                            <a class=" text-danger" title="Hapus" style="cursor:pointer"
+                                                onclick="DeleteId(\'` + row.id + `\',\'` + row.name + `\')"><i
                                                     class="bx bx-trash"></i></a>
                                             <a class=" text-danger" title="Reviewers" style="cursor:pointer"
                                                 onclick=""><i class="bx bx-user-plus"></i></a>
@@ -380,6 +381,8 @@
     <script src="assets/vendor/libs/select2/select2.js"></script>
     <script src="assets/vendor/libs/bootstrap-select/bootstrap-select.js"></script>
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
     <script>
         $(document).ready(function() {
             // ketika category dirubah, theme di isi
@@ -426,5 +429,41 @@
                 });
             });
         });
+
+
+        function DeleteId(id) {
+            swal({
+                    title: "Are you sure?",
+                    text: "Once deleted, data can't be recovered!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            url: "{{ route('user-proposals.delete') }}",
+                            type: "DELETE",
+                            data: {
+                                "id": id,
+                                "_token": $("meta[name='csrf-token']").attr("content"),
+                            },
+                            success: function(data) {
+                                if (data['success']) {
+                                    swal(data['message'], {
+                                        icon: "success",
+                                    });
+                                    $('#datatable').DataTable().ajax.reload();
+                                } else {
+                                    swal(data['message'], {
+                                        icon: "error",
+                                    });
+                                }
+                            }
+                        })
+                    }
+                })
+        }
     </script>
+
 @endsection
