@@ -4,6 +4,7 @@ use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartementController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\FinalisasiDanaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
@@ -67,6 +68,13 @@ Route::group(['prefix' => 'proposals'], function () { //manage admin proposal
     Route::get('/data', [ProposalController::class, 'data'])->name('proposals.data');
     Route::delete('/delete', [ProposalController::class, 'delete'])->name('proposals.delete');
     Route::get('/edit/{id}', [ProposalController::class, 'edit'])->name('proposals.edit');
+});
+
+Route::group(['prefix' => 'finalisasidana'], function () { //FinalisasiDanas
+    Route::any('/', [FinalisasiDanaController::class, 'index'])->name('finalisasidana.index')->middleware('auth');
+    Route::get('/data', [FinalisasiDanaController::class, 'data'])->name('finalisasidana.data');
+    Route::delete('/delete', [FinalisasiDanaController::class, 'delete'])->name('finalisasidana.delete');
+    Route::get('/edit/{id}', [FinalisasiDanaController::class, 'edit'])->name('finalisasidana.edit');
 });
 
 Route::group(['prefix' => 'reviewer'], function () { //reviewers
