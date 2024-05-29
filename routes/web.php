@@ -10,6 +10,7 @@ use App\Http\Controllers\MonevController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\PresentasiController;
 use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\ReviewerController;
 use App\Http\Controllers\StudyProgramController;
@@ -64,12 +65,16 @@ Route::get('/get_research_topics_by_id', [UserProposalController::class, 'getRes
 
 Route::group(['prefix' => 'proposals'], function () { //manage admin proposal
     Route::any('/', [ProposalController::class, 'index'])->name('proposals.index')->middleware('auth');
-    Route::any('/dana', [ProposalController::class, 'dana'])->name('proposals.dana');
-    Route::any('/loa', [ProposalController::class, 'loa'])->name('proposals.loa');
-    Route::any('/monev', [ProposalController::class, 'monev'])->name('proposals.monev');
     Route::get('/data', [ProposalController::class, 'data'])->name('proposals.data');
     Route::delete('/delete', [ProposalController::class, 'delete'])->name('proposals.delete');
     Route::get('/edit/{id}', [ProposalController::class, 'edit'])->name('proposals.edit');
+});
+
+Route::group(['prefix' => 'presentasi'], function () { //Presentasi
+    Route::any('/', [PresentasiController::class, 'index'])->name('presentasi.index')->middleware('auth');
+    Route::get('/data', [PresentasiController::class, 'data'])->name('presentasi.data');
+    Route::delete('/delete', [PresentasiController::class, 'delete'])->name('presentasi.delete');
+    Route::get('/edit/{id}', [PresentasiController::class, 'edit'])->name('presentasi.edit');
 });
 
 Route::group(['prefix' => 'finalisasidana'], function () { //FinalisasiDanas
