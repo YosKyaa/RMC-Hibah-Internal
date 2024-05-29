@@ -39,7 +39,7 @@ return new class extends Migration
             $table->text('notes')->nullable();
 
             $table->uuid('status_id')->nullable();
-            $table->foreign('status_id')->references('id')->on('status')->nullable()->onDelete('cascade');
+            $table->foreign('status_id')->references('id')->on('statuses')->nullable()->onDelete('cascade');
 
             $table->text('review_notes')->nullable();
 

@@ -155,13 +155,13 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.users.username;
+                            var html = row.username;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.proposal_teams.researchcer_id;
+                            var html = row.research_title;
                             return html;
                         }
                     },
@@ -179,13 +179,13 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.status.title;
+                            var html = row.status_id;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.reviewers.id;
+                            var html = row.reviewer_id;
                             return html;
                         }
                     },
