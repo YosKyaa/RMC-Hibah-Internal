@@ -22,6 +22,11 @@ class Proposal extends Model
     {
         return $this->belongsTo(User::class, 'users_id');
     }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class, 'status_id');
+    }
     public function researchType()
     {
         return $this->belongsTo(ResearchTypes::class, 'research_types_id');

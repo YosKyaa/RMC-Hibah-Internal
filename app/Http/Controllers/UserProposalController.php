@@ -11,6 +11,7 @@ use App\Models\ResearchTeam;
 use App\Models\ResearchThemes;
 use App\Models\ResearchTopics;
 use App\Models\ResearchTypes;
+use App\Models\Status;
 use App\Models\TktTypes;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -54,9 +55,10 @@ class UserProposalController extends Controller
                     $fileName = "";
                 }
             }
+
             // dd(Auth::user()->id);
             $data = Proposal::create([
-                'users_id' => Auth::user()->id, // 'user_id' => $request->users_id
+                'users_id' => Auth::user()->id,
                 'research_types_id' => $request->research_type,
                 'research_topics_id' => $request->research_topics,
                 'research_title' => $request->research_title,
@@ -64,7 +66,7 @@ class UserProposalController extends Controller
                 'main_research_targets_id' => $request->main_research_target,
                 'document' => $fileName,
                 'notes' => $request->notes,
-
+                'status_id' => Status::where('status', 'Pengajuan')->first()->id,
             ]);
 
             if ($data) {

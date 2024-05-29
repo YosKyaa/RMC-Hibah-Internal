@@ -25,7 +25,7 @@ class StatusSeeder extends Seeder
         ];
 
         foreach ($data as $item) {
-            DB::table('status')->insert([
+            DB::table('statuses')->insert([
                 'id' => $item['id'],
                 'status' => $item['status'],
             ]);
