@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Proposal;
 use Illuminate\Http\Request;
 
 class MonevController extends Controller
@@ -11,7 +12,8 @@ class MonevController extends Controller
      */
     public function index()
     {
-        //
+        $proposals = Proposal::all();
+        return view('admin.proposals.monev', compact('proposals'));
     }
 
     /**
