@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('breadcrumb-items')
-    <span class="text-muted fw-light">Manage/</span>
+    <span class="text-muted fw-light">Manage /</span>
 @endsection
 @section('title', 'Annoucements')
 
