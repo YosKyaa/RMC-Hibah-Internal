@@ -39,12 +39,16 @@
     @endif
     <div class="col-md-12">
         <ul class="nav nav-pills flex-column flex-sm-row mb-4">
-            <li class="nav-item"><a class="nav-link" href="../proposals"><i class="bx bx-add-to-queue me-1"></i> Tambah Reviewer</a></li>
-            <li class="nav-item"><a class="nav-link active" href="../proposals/dana"><i class="bx bx-bar-chart-alt-2 me-1"></i> Finalisasi Dana</a></li>
-            <li class="nav-item"><a class="nav-link" href="../proposals/loa"><i class="bx bx-task me-1"></i> Penerbitan LOA</a></li>
-            <li class="nav-item"><a class="nav-link" href="../proposals/monev"><i class="bx bx-select-multiple me-1"></i> Verifikasi Hasil Monev</a></li>
+            <li class="nav-item"><a class="nav-link" href="../proposals"><i class="bx bx-add-to-queue me-1"></i> Tambah
+                    Reviewer</a></li>
+            <li class="nav-item"><a class="nav-link active" href="../proposals/dana"><i
+                        class="bx bx-bar-chart-alt-2 me-1"></i> Finalisasi Dana</a></li>
+            <li class="nav-item"><a class="nav-link" href="../proposals/loa"><i class="bx bx-task me-1"></i> Penerbitan
+                    LOA</a></li>
+            <li class="nav-item"><a class="nav-link" href="../proposals/monev"><i class="bx bx-select-multiple me-1"></i>
+                    Verifikasi Hasil Monev</a></li>
 
-        
+
         </ul>
     </div>
     <div class="card">
@@ -66,11 +70,10 @@
                     <tr>
                         <th>No</th>
                         <th>Nama Peneliti</th>
-                        <th>Tim Penelitian</th>
-                        <th>Judul Proposal</th>
-                        <th>Tanggal Review</th>
+                        <th>Judul Penelitian</th>
+                        <th>Jenis Penelitian</th>
+                        <th>Total Dana</th>
                         <th>Status</th>
-                        <th>Nama Reviewer</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -152,37 +155,31 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.;
+                            var html = row.username;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.;
+                            var html = row.research_title;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.;
+                            var html = row.research_types;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.;
+                            var html = row.totaldana;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.;
-                            return html;
-                        }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
-                            var html = row.;
+                            var html = row.status_name;
                             return html;
                         }
                     },

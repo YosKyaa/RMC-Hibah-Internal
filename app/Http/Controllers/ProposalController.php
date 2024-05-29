@@ -17,48 +17,28 @@ class ProposalController extends Controller
         return view('admin.proposals.index', compact('proposals'));
     }
 
-    public function dana()
-    {
-        $proposals = Proposal::all();
-        return view('data.proposals.dana', compact('proposals'));
-    }
-
-    public function loa()
-    {
-        $proposals = Proposal::all();
-        return view('data.proposals.loa', compact('proposals'));
-    }
-
-    public function monev()
-    {
-        $proposals = Proposal::all();
-        return view('data.proposals.monev', compact('proposals'));
-    }
     /**
      * Show the form for creating a new resource.
      */
 
-     public function data(Request $request)
-     {
-         // Lakukan join dengan tabel users dan statuses untuk mendapatkan nama pengguna dan status
-         $data = Proposal::select('proposals.*', 'users.name as username', 'statuses.status as status_name')
-                         ->join('users', 'proposals.users_id', '=', 'users.id')
-                         ->join('statuses', 'proposals.status_id', '=', 'statuses.id')
-                         ->orderBy('proposals.id');
+     public function data(Request $request){
+        // $this->authorize('setting/manage_data/department.read');
+        $data = Proposal::with(['users' => function ($query) {
+            $query->select('id','username');
+        }])
+        ->with(['statuses' => function ($query) {
+            $query->select('id','status');
+        }])
+            ->select('*')->orderBy("id");
+            return DataTables::of($data)
+                    ->filter(function ($instance) use ($request) {
+                        if (!empty($request->get('search'))) {
+                            $search = $request->get('search');
+                            $instance->where('name_dept', 'LIKE', "%$search%");
+                        }
+                    })->make(true);
+    }
 
-         return DataTables::of($data)
-             ->filter(function ($instance) use ($request) {
-                 if (!empty($request->get('search'))) {
-                     $search = $request->get('search');
-                     $instance->where(function($query) use ($search) {
-                         $query->where('proposals.name', 'LIKE', "%$search%")
-                               ->orWhere('users.name', 'LIKE', "%$search%")
-                               ->orWhere('statuses.status', 'LIKE', "%$search%");
-                     });
-                 }
-             })
-             ->make(true);
-     }
     public function datatables()
     {
         $departement = Proposal::select('*');

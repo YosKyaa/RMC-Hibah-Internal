@@ -17,13 +17,14 @@ class Proposal extends Model
         'tkt_types_id',
         'main_research_targets_id',
         'document',
+        'status_id',
     ];
-    public function user()
+    public function users()
     {
         return $this->belongsTo(User::class, 'users_id');
     }
 
-    public function status()
+    public function statuses()
     {
         return $this->belongsTo(Status::class, 'status_id');
     }

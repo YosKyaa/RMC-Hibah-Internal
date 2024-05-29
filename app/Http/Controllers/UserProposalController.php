@@ -66,7 +66,7 @@ class UserProposalController extends Controller
                 'main_research_targets_id' => $request->main_research_target,
                 'document' => $fileName,
                 'notes' => $request->notes,
-                'status_id' => Status::where('status', 'Pengajuan')->first()->id,
+                'status_id' => "S01",
             ]);
 
             if ($data) {
