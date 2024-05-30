@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Proposal;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -14,7 +15,7 @@ class ProposalController extends Controller
     public function index()
     {
         $proposals = Proposal::all();
-        return view('admin.proposals.index', compact('proposals'));
+        return view('admin.addreviewer.index', compact('proposals'));
     }
 
     /**
@@ -29,6 +30,9 @@ class ProposalController extends Controller
         ->with(['statuses' => function ($query) {
             $query->select('id','status');
         }])
+        ->with(['reviewer' => function ($query) {
+            $query->select('id','username');
+        }])
             ->select('*')->orderBy("id");
             return DataTables::of($data)
                     ->filter(function ($instance) use ($request) {
@@ -41,8 +45,8 @@ class ProposalController extends Controller
 
     public function datatables()
     {
-        $departement = Proposal::select('*');
-        return DataTables::of($departement)->make(true);
+        $proposals = Proposal::select('*');
+        return DataTables::of($proposals)->make(true);
     }
 
     public function create()
@@ -69,24 +73,47 @@ class ProposalController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Proposal $proposal)
+    public function edit($id)
     {
-        //
+        $users = User::all();
+        $proposals = Proposal::findOrFail($id);
+        return view('admin.addreviewer.edit', compact('proposals','users'));
+    }
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'review_date_start' => ['date','required'],
+            'review_date_end' => ['date','required'],
+            'reviewer_id' => 'required|exists:users,id',
+        ]);
+
+        $proposals = Proposal::findOrFail($id);
+        $proposals->update([
+            'review_date_start' => $request->review_date_start,
+            'review_date_end' => $request->review_date_end,
+            'reviewer_id' => $request->reviewer_id,
+        ]);
+
+        return redirect()->route('proposals.index')->with('Data,', 'Data berhasil diperbarui.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Proposal $proposal)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Proposal $proposal)
-    {
-        //
+    public function delete(Request $request){
+        $data = Proposal::find($request->id);
+        if($data){
+            $data->delete();
+            return response()->json([
+                'success' => true,
+                'message' => 'Berhasil dihapus!'
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal dihapus!'
+            ]);
+        }
     }
 }

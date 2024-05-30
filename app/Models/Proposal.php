@@ -18,17 +18,31 @@ class Proposal extends Model
         'main_research_targets_id',
         'document',
         'status_id',
+        'notes',
+        'review_date_start',
+        'review_date_end',
+        'reviewer_id',
+        'presentation_date',
     ];
     public function users()
     {
         return $this->belongsTo(User::class, 'users_id');
     }
+    public function reviewer()
+    {
+        return $this->belongsTo(User::class, 'reviewer_id');
+    }   
 
     public function statuses()
     {
         return $this->belongsTo(Status::class, 'status_id');
     }
     public function researchType()
+    {
+        return $this->belongsTo(ResearchTypes::class, 'research_types_id');
+    }
+
+    public function research_types()
     {
         return $this->belongsTo(ResearchTypes::class, 'research_types_id');
     }
@@ -40,5 +54,7 @@ class Proposal extends Model
     {
         return $this->belongsTo(TktTypes::class, 'tkt_types_id');
     }
+
+
 
 }

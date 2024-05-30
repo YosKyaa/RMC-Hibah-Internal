@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/sweetalert2.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
+    <link rel="stylesheet" href="assets/vendor/libs/bootstrap-select/bootstrap-select.css" />
 @endsection
 
 @section('style')
@@ -78,6 +79,10 @@
             padding: 0;
             list-style: none;
         }
+
+        .mb-4 {
+            margin-bottom: 1.5rem !important;
+        }
     </style>
 @endsection
 
@@ -110,7 +115,7 @@
             <ul class="nav nav-pills flex-column flex-sm-row mb-4">
                 <li class="nav-item"><a class="nav-link active" href="../user-proposals"><i
                             class="bx bx-add-to-queue me-1"></i> Upload</a></li>
-                <li class="nav-item"><a class="nav-link" href="../user-proposals/create"><i
+                <li class="nav-item"><a class="nav-link" href="../user-proposals/timeline"><i
                             class="bx bx-line-chart me-1"></i> Progres </a></li>
             </ul>
         </div>
@@ -156,9 +161,13 @@
                                                 class="bx bx-show-alt badge-dark"></a>
                                             <a class=" text-success" title="Edit" href=""><i
                                                     class="bx bxs-edit"></i></a>
-                                            <a class=" text-danger" title="Hapus" style="cursor:pointer"
-                                                onclick="DeleteId(\'` + row.id + `\',\'` + row.name + `\')"><i
-                                                    class="bx bx-trash"></i></a>
+                                            <form action="{{ route('user-proposals.delete', $p->id) }}" method="POST"
+                                                style="display: inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="btn btn-sm btn-danger delete-btn ">Hapus</button>
+                                            </form>
                                             <a class=" text-danger" title="Reviewers" style="cursor:pointer"
                                                 onclick=""><i class="bx bx-user-plus"></i></a>
                                         </td>
@@ -383,6 +392,7 @@
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function() {
             // ketika category dirubah, theme di isi
@@ -431,39 +441,29 @@
         });
 
 
-        function DeleteId(id) {
-            swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, data can't be recovered!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        $.ajax({
-                            url: "{{ route('user-proposals.delete') }}",
-                            type: "DELETE",
-                            data: {
-                                "id": id,
-                                "_token": $("meta[name='csrf-token']").attr("content"),
-                            },
-                            success: function(data) {
-                                if (data['success']) {
-                                    swal(data['message'], {
-                                        icon: "success",
-                                    });
-                                    $('#datatable').DataTable().ajax.reload();
-                                } else {
-                                    swal(data['message'], {
-                                        icon: "error",
-                                    });
-                                }
-                            }
-                        })
-                    }
-                })
-        }
+        $('.delete-btn').click(function(proposal) {
+            proposal.preventDefault();
+            var form = $(this).closest('form');
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    );
+                }
+            });
+        });
     </script>
 
 @endsection

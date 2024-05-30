@@ -39,13 +39,19 @@
     @endif
     <div class="col-md-12">
         <ul class="nav nav-pills flex-column flex-sm-row mb-4">
-            <li class="nav-item"><a class="nav-link" href="../proposals"><i class="bx bx-add-to-queue me-1"></i> Tambah Reviewer</a></li>
-            <li class="nav-item"><a class="nav-link" href="../presentasi"><i class="bx bx-chart me-1"></i>Presentasi</a></li>
-            <li class="nav-item"><a class="nav-link " href="../finalisasidana"><i class="bx bx-bar-chart-alt-2 me-1"></i> Finalisasi Dana</a></li>
-            <li class="nav-item"><a class="nav-link" href="../loa"><i class="bx bx-task me-1"></i> Penerbitan LOA</a></li>
-            <li class="nav-item"><a class="nav-link active" href="../monev"><i class="bx bx-select-multiple me-1"></i> Verifikasi Hasil Monev</a></li>
+            <li class="nav-item"><a class="nav-link" href="../admin/proposals"><i class="bx bx-add-to-queue me-1"></i>
+                    Tambah
+                    Reviewer</a></li>
+            <li class="nav-item"><a class="nav-link" href="../admin/presentation"><i class="bx bx-chart me-1"></i>
+                    Presentasi</a></li>
+            <li class="nav-item"><a class="nav-link active" href="../admin/fundsfinalization"><i
+                        class="bx bx-bar-chart-alt-2 me-1"></i> Finalisasi Dana</a></li>
+            <li class="nav-item"><a class="nav-link" href="../admin/loa"><i class="bx bx-task me-1"></i> Penerbitan
+                    LOA</a></li>
+            <li class="nav-item"><a class="nav-link" href="../admin/monev"><i class="bx bx-select-multiple me-1"></i>
+                    Verifikasi Hasil Monev</a></li>
 
-        
+
         </ul>
     </div>
     <div class="card">
@@ -67,11 +73,10 @@
                     <tr>
                         <th>No</th>
                         <th>Nama Peneliti</th>
-                        <th>Tim Penelitian</th>
-                        <th>Judul Proposal</th>
-                        <th>Tanggal Review</th>
+                        <th>Judul Penelitian</th>
+                        <th>Jenis Penelitian</th>
+                        <th>Total Dana</th>
                         <th>Status</th>
-                        <th>Nama Reviewer</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -135,7 +140,7 @@
                     // url: "{{ asset('assets/vendor/libs/datatables/id.json') }}"
                 },
                 ajax: {
-                    url: "{{ route('proposals.data') }}",
+                    url: "{{ route('fundsfinalization.data') }}",
                     data: function(d) {
                         d.search = $('#datatable_filter input[type="search"]').val()
                     },
@@ -153,37 +158,31 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.;
+                            var html = row.users.username;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.;
+                            var html = row.research_title;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.;
+                            var html = row.research_types.title;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.;
+                            var html = row.research_types.total_funds;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.;
-                            return html;
-                        }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
-                            var html = row.;
+                            var html = row.statuses.status;
                             return html;
                         }
                     },

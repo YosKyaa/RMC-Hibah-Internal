@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Proposal;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class PresentasiController extends Controller
 {
@@ -13,54 +14,45 @@ class PresentasiController extends Controller
     public function index()
     {
         $proposals = Proposal::all();
-        return view('admin.proposals.presentasi', compact('proposals'));
+        return view('admin.presentation.index', compact('proposals'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function data(Request $request){
+        // $this->authorize('setting/manage_data/department.read');
+        $data = Proposal::with(['users' => function ($query) {
+            $query->select('id','username');
+        }])
+        ->with(['statuses' => function ($query) {
+            $query->select('id','status');
+        }])
+        ->with(['research_types' => function ($query) {
+            $query->select('id','title','total_funds');
+        }])
+            ->select('*')->orderBy("id");
+            return DataTables::of($data)
+                    ->filter(function ($instance) use ($request) {
+                        if (!empty($request->get('search'))) {
+                            $search = $request->get('search');
+                            $instance->where('name', 'LIKE', "%$search%");
+                        }
+                    })->make(true);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function edit($id)
     {
-        //
+        $proposals = Proposal::findOrFail($id);
+        return view('admin.presentation.edit', compact('proposals'));
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function update(Request $request, $id)
     {
-        //
-    }
+        $request->validate([
+            'presentation_date' => ['date','required'],
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+        $proposals = Proposal::findOrFail($id);
+        $proposals->update([
+            'presentation_date' => $request->presentation_date,
+        ]);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('presentation.index')->with('Data,', 'Data berhasil diperbarui.');
     }
 }

@@ -16,14 +16,14 @@ class DepartmentController extends Controller
         $this->authorize('setting/manage_data/department.read');
         if ($request->isMethod('POST')) { 
             $this->validate($request, [ 
-                'name_dept' => 'required',
+                'name' => 'required',
             ]);
             $this->authorize('setting/manage_data/department.create');
             $new = Department::create([
-                'name_dept' => $request->name_dept,
+                'name' => $request->name,
             ]);
             if($new){
-                return redirect()->route('dept.index')->with('msg','Data atas ('.$request->name_dept.') BERHASIL ditambahkan!');
+                return redirect()->route('dept.index')->with('msg','Data atas ('.$request->name.') BERHASIL ditambahkan!');
             }
         }
             $departement = Department::select("*")->get();
@@ -38,7 +38,7 @@ class DepartmentController extends Controller
                     ->filter(function ($instance) use ($request) {
                         if (!empty($request->get('search'))) {
                             $search = $request->get('search');
-                            $instance->where('name_dept', 'LIKE', "%$search%");
+                            $instance->where('name', 'LIKE', "%$search%");
                         }
                     })->make(true);
     }
@@ -58,12 +58,12 @@ class DepartmentController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name_dept' => 'required',
+            'name' => 'required',
         ]);
 
         $departement = Department::findOrFail($id);
         $departement->update([
-            'name_dept' => $request->name_dept,
+            'name' => $request->name,
         ]);
 
         return redirect()->route('dept.index')->with('Department,', 'Department berhasil diperbarui.');

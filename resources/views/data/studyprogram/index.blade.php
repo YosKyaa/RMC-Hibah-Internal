@@ -74,10 +74,9 @@
                             <div class="col-sm-12 fv-plugins-icon-container">
                                 <label class="form-label" for="basicDate">Name Study Program</label>
                                 <div class="input-group input-group-merge has-validation">
-                                    <input type="text" class="form-control @error('name_program') is-invalid @enderror"
-                                        name="name_program" placeholder="Name Study Program"
-                                        value="{{ old('name_program') }}">
-                                    @error('name_program')
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                        name="name" placeholder="Name Study Program" value="{{ old('name') }}">
+                                    @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -185,7 +184,7 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.name_program;
+                            var html = row.name;
                             return html;
                         }
                     },
@@ -193,7 +192,7 @@
                         render: function(data, type, row, meta) {
                             var html =
                                 `<a class=" text-success" title="Edit" href="{{ url('setting/manage_data/studyprogram/edit/` +
-                                                row.id + `') }}"><i class="bx bxs-edit"></i></a> 
+                                                                                row.id + `') }}"><i class="bx bxs-edit"></i></a> 
                             <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row
                                 .id + `\',\'` + row.name + `\')" ><i class="bx bx-trash"></i></a>`;
                             return html;

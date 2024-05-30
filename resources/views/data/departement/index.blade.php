@@ -74,9 +74,9 @@
                             <div class="col-sm-12 fv-plugins-icon-container">
                                 <label class="form-label" for="basicDate">Name Department</label>
                                 <div class="input-group input-group-merge has-validation">
-                                    <input type="text" class="form-control @error('name_dept') is-invalid @enderror"
-                                        name="name_dept" placeholder="Name Departement" value="{{ old('name_dept') }}">
-                                    @error('name_dept')
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                        name="name" placeholder="Name Departement" value="{{ old('name') }}">
+                                    @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -184,7 +184,7 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.name_dept;
+                            var html = row.name;
                             return html;
                         }
                     },

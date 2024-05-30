@@ -13,7 +13,7 @@ class MonevController extends Controller
     public function index()
     {
         $proposals = Proposal::all();
-        return view('admin.proposals.monev', compact('proposals'));
+        return view('admin.monev.index', compact('proposals'));
     }
 
     /**

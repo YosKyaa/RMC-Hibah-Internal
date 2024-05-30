@@ -19,14 +19,14 @@ class StudyProgramController extends Controller
         $this->authorize('setting/manage_data/study_program.read');
         if ($request->isMethod('POST')) { 
             $this->validate($request, [ 
-                'name_program' => 'required',
+                'name' => 'required',
             ]);
             $this->authorize('setting/manage_data/study_program.create');
             $new = StudyProgram::create([
-                'name_program' => $request->name_program,
+                'name' => $request->name,
             ]);
             if($new){
-                return redirect()->route('program.index')->with('msg','Data atas ('.$request->name_program.') BERHASIL ditambahkan!');
+                return redirect()->route('program.index')->with('msg','Data atas ('.$request->name.') BERHASIL ditambahkan!');
             }
         }
             $studyprogram = StudyProgram::select("*")->get();
@@ -61,12 +61,12 @@ class StudyProgramController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name_program' => 'required',
+            'name' => 'required',
         ]);
 
         $studyprogram = StudyProgram::findOrFail($id);
         $studyprogram->update([
-            'name_program' => $request->name_program,
+            'name' => $request->name,
         ]);
 
         return redirect()->route('program.index')->with('Study Program,', 'Study Program berhasil diperbarui.');

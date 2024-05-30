@@ -39,18 +39,18 @@
     @endif
     <div class="col-md-12">
         <ul class="nav nav-pills flex-column flex-sm-row mb-4">
-            <li class="nav-item"><a class="nav-link" href="../proposals"><i class="bx bx-add-to-queue me-1"></i> Tambah
-                    Reviewer</a></li>
-            <li class="nav-item"><a class="nav-link" href="../presentasi"><i class="bx bx-chart me-1"></i>
+            <li class="nav-item"><a class="nav-link active" href="../admin/proposals"><i
+                        class="bx bx-add-to-queue me-1"></i>
+                    Tambah Reviewer</a></li>
+            <li class="nav-item"><a class="nav-link" href="../admin/presentation"><i class="bx bx-chart me-1"></i>
                     Presentasi</a></li>
-            <li class="nav-item"><a class="nav-link active" href="../finalisasidana"><i
-                        class="bx bx-bar-chart-alt-2 me-1"></i> Finalisasi Dana</a></li>
-            <li class="nav-item"><a class="nav-link" href="../loa"><i class="bx bx-task me-1"></i> Penerbitan
+            <li class="nav-item"><a class="nav-link" href="../admin/fundsfinalization"><i
+                        class="bx bx-bar-chart-alt-2 me-1"></i>
+                    Finalisasi Dana</a></li>
+            <li class="nav-item"><a class="nav-link" href="../admin/loa"><i class="bx bx-task me-1"></i> Penerbitan
                     LOA</a></li>
-            <li class="nav-item"><a class="nav-link" href="../monev"><i class="bx bx-select-multiple me-1"></i>
+            <li class="nav-item"><a class="nav-link" href="../admin/monev"><i class="bx bx-select-multiple me-1"></i>
                     Verifikasi Hasil Monev</a></li>
-
-
         </ul>
     </div>
     <div class="card">
@@ -72,10 +72,12 @@
                     <tr>
                         <th>No</th>
                         <th>Nama Peneliti</th>
-                        <th>Judul Penelitian</th>
-                        <th>Jenis Penelitian</th>
-                        <th>Total Dana</th>
+                        <th>Tim Penelitian</th>
+                        <th>Judul Proposal</th>
+                        <th>Mulai Review</th>
+                        <th>Selesai Review</th>
                         <th>Status</th>
+                        <th>Nama Reviewer</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -111,7 +113,7 @@
                 "use strict";
                 $(".select2").select2({
                     allowClear: true,
-                    minimumResultsForSearch: 7
+                    minimumResultsForSearch:
                 });
             })(jQuery);
         }, 350);
@@ -157,7 +159,7 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.username;
+                            var html = row.users.username;
                             return html;
                         }
                     },
@@ -169,26 +171,38 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.research_types;
+                            var html = row.research_title;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.totaldana;
+                            var html = row.review_date_start;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.status_name;
+                            var html = row.review_date_end;
+                            return html;
+                        }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            var html = row.statuses.status;
+                            return html;
+                        }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            var html = row.reviewer.username;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
                             var html =
-                                `<a class=" text-success" title="Edit" href="{{ url('setting/manage_studyprogram/studyprogram/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>
+                                `<a class=" text-success" title="Edit" href="{{ url('admin/proposals/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>
                             <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row
                                 .id + `\',\'` + row.name + `\')" ><i class="bx bx-trash"></i></a>`;
                             return html;
@@ -212,7 +226,7 @@
                 .then((willDelete) => {
                     if (willDelete) {
                         $.ajax({
-                            url: "{{ route('dept.delete') }}",
+                            url: "{{ route('proposals.delete') }}",
                             type: "DELETE",
                             data: {
                                 "id": id,

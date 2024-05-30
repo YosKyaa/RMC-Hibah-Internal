@@ -39,13 +39,18 @@
     @endif
     <div class="col-md-12">
         <ul class="nav nav-pills flex-column flex-sm-row mb-4">
-            <li class="nav-item"><a class="nav-link" href="../proposals"><i class="bx bx-add-to-queue me-1"></i> Tambah Reviewer</a></li>
-            <li class="nav-item"><a class="nav-link" href="../presentasi"><i class="bx bx-chart me-1"></i>Presentasi</a></li>
-            <li class="nav-item"><a class="nav-link" href="../finalisasidana"><i class="bx bx-bar-chart-alt-2 me-1"></i> Finalisasi Dana</a></li>
-            <li class="nav-item"><a class="nav-link active" href="../loa"><i class="bx bx-task me-1"></i> Penerbitan LOA</a></li>
-            <li class="nav-item"><a class="nav-link" href="../monev"><i class="bx bx-select-multiple me-1"></i> Verifikasi Hasil Monev</a></li>
+            <li class="nav-item"><a class="nav-link" href="../admin/proposals"><i class="bx bx-add-to-queue me-1"></i>
+                    Tambah Reviewer</a></li>
+            <li class="nav-item"><a class="nav-link active" href="../admin/presentation"><i class="bx bx-chart me-1"></i>
+                    Presentasi</a></li>
+            <li class="nav-item"><a class="nav-link" href="../admin/fundsfinalization"><i
+                        class="bx bx-bar-chart-alt-2 me-1"></i>
+                    Finalisasi Dana</a></li>
+            <li class="nav-item"><a class="nav-link" href="../admin/loa"><i class="bx bx-task me-1"></i> Penerbitan
+                    LOA</a></li>
+            <li class="nav-item"><a class="nav-link" href="../admin/monev"><i class="bx bx-select-multiple me-1"></i>
+                    Verifikasi Hasil Monev</a></li>
 
-        
         </ul>
     </div>
     <div class="card">
@@ -69,9 +74,7 @@
                         <th>Nama Peneliti</th>
                         <th>Tim Penelitian</th>
                         <th>Judul Proposal</th>
-                        <th>Tanggal Review</th>
-                        <th>Status</th>
-                        <th>Nama Reviewer</th>
+                        <th>Tanggal Presentasi</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -107,7 +110,7 @@
                 "use strict";
                 $(".select2").select2({
                     allowClear: true,
-                    minimumResultsForSearch: 7
+                    minimumResultsForSearch:
                 });
             })(jQuery);
         }, 350);
@@ -135,7 +138,7 @@
                     // url: "{{ asset('assets/vendor/libs/datatables/id.json') }}"
                 },
                 ajax: {
-                    url: "{{ route('proposals.data') }}",
+                    url: "{{ route('presentation.data') }}",
                     data: function(d) {
                         d.search = $('#datatable_filter input[type="search"]').val()
                     },
@@ -153,46 +156,32 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.;
+                            var html = row.users.username;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.;
+                            var html = row.research_title;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.;
+                            var html = row.research_title;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.;
-                            return html;
-                        }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
-                            var html = row.;
-                            return html;
-                        }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
-                            var html = row.;
+                            var html = row.presentation_date;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
                             var html =
-                                `<a class=" text-success" title="Edit" href="{{ url('setting/manage_studyprogram/studyprogram/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>
-                            <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row
-                                .id + `\',\'` + row.name + `\')" ><i class="bx bx-trash"></i></a>`;
+                                `<a class=" text-success" title="Edit" href="{{ url('admin/presentation/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>`;
                             return html;
                         },
                         "orderable": false,

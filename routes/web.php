@@ -54,8 +54,10 @@ Route::group(['prefix' => 'user-proposals'], function () {
     Route::any('/', [UserProposalController::class, 'index'])->name('user-proposals.index')->middleware('auth');
     Route::get('/data', [UserProposalController::class, 'data'])->name('user-proposals.data');
     Route::any('/create', [UserProposalController::class,'create'])->name('user-proposals.create');
-    Route::delete('/delete', [UserProposalController::class, 'delete'])->name('user-proposals.delete');
+    Route::any('/timeline', [UserProposalController::class,'timeline'])->name('user-proposals.timeline');
+    Route::delete('/delete/{id}', [UserProposalController::class, 'delete'])->name('user-proposals.delete');
     Route::get('/edit/{id}', [UserProposalController::class, 'edit'])->name('user-proposals.edit');
+    Route::put('/update/{id}', [UserProposalController::class, 'update'])->name('user-proposals.update');
     Route::get('/category/by_id', [UserProposalController::class, 'category_by_id'])->name('DOC.get_category_by_id');
 });
 
@@ -63,39 +65,44 @@ Route::group(['prefix' => 'user-proposals'], function () {
 Route::get('/get_research_themes_by_id', [UserProposalController::class, 'getResearchThemeById'])->name('DOC.get_research_themes_by_id');
 Route::get('/get_research_topics_by_id', [UserProposalController::class, 'getResearchTopicById'])->name('DOC.get_research_topics_by_id');
 
-Route::group(['prefix' => 'proposals'], function () { //manage admin proposal
-    Route::any('/', [ProposalController::class, 'index'])->name('proposals.index')->middleware('auth');
-    Route::get('/data', [ProposalController::class, 'data'])->name('proposals.data');
-    Route::delete('/delete', [ProposalController::class, 'delete'])->name('proposals.delete');
-    Route::get('/edit/{id}', [ProposalController::class, 'edit'])->name('proposals.edit');
-});
+Route::group(['prefix' => 'admin'], function () {
+    Route::group(['prefix' => 'proposals'], function () { //manage admin proposal
+        Route::any('/', [ProposalController::class, 'index'])->name('proposals.index')->middleware('auth');
+        Route::get('/data', [ProposalController::class, 'data'])->name('proposals.data');
+        Route::delete('/delete', [ProposalController::class, 'delete'])->name('proposals.delete');
+        Route::get('/edit/{id}', [ProposalController::class, 'edit'])->name('proposals.edit');
+        Route::put('/update/{id}', [ProposalController::class, 'update'])->name('proposals.update');
+    });
 
-Route::group(['prefix' => 'presentasi'], function () { //Presentasi
-    Route::any('/', [PresentasiController::class, 'index'])->name('presentasi.index')->middleware('auth');
-    Route::get('/data', [PresentasiController::class, 'data'])->name('presentasi.data');
-    Route::delete('/delete', [PresentasiController::class, 'delete'])->name('presentasi.delete');
-    Route::get('/edit/{id}', [PresentasiController::class, 'edit'])->name('presentasi.edit');
-});
+    Route::group(['prefix' => 'presentation'], function () { //Presentasi
+        Route::any('/', [PresentasiController::class, 'index'])->name('presentation.index')->middleware('auth');
+        Route::get('/data', [PresentasiController::class, 'data'])->name('presentation.data');
+        Route::delete('/delete', [PresentasiController::class, 'delete'])->name('presentation.delete');
+        Route::get('/edit/{id}', [PresentasiController::class, 'edit'])->name('presentation.edit');
+        Route::put('/update/{id}', [PresentasiController::class, 'update'])->name('presentation.update');
+    });
 
-Route::group(['prefix' => 'finalisasidana'], function () { //FinalisasiDanas
-    Route::any('/', [FinalisasiDanaController::class, 'index'])->name('finalisasidana.index')->middleware('auth');
-    Route::get('/data', [FinalisasiDanaController::class, 'data'])->name('finalisasidana.data');
-    Route::delete('/delete', [FinalisasiDanaController::class, 'delete'])->name('finalisasidana.delete');
-    Route::get('/edit/{id}', [FinalisasiDanaController::class, 'edit'])->name('finalisasidana.edit');
-});
 
-Route::group(['prefix' => 'loa'], function () { //Loa
-    Route::any('/', [LoaController::class, 'index'])->name('loa.index')->middleware('auth');
-    Route::get('/data', [LoaController::class, 'data'])->name('loa.data');
-    Route::delete('/delete', [LoaController::class, 'delete'])->name('loa.delete');
-    Route::get('/edit/{id}', [LoaController::class, 'edit'])->name('loa.edit');
-});
+    Route::group(['prefix' => 'fundsfinalization'], function () { //FinalisasiDanas
+        Route::any('/', [FinalisasiDanaController::class, 'index'])->name('fundsfinalization.index')->middleware('auth');
+        Route::get('/data', [FinalisasiDanaController::class, 'data'])->name('fundsfinalization.data');
+        Route::delete('/delete', [FinalisasiDanaController::class, 'delete'])->name('fundsfinalization.delete');
+        Route::get('/edit/{id}', [FinalisasiDanaController::class, 'edit'])->name('fundsfinalization.edit');
+    });
 
-Route::group(['prefix' => 'monev'], function () { //Monev
-    Route::any('/', [MonevController::class, 'index'])->name('monev.index')->middleware('auth');
-    Route::get('/data', [MonevController::class, 'data'])->name('monev.data');
-    Route::delete('/delete', [MonevController::class, 'delete'])->name('monev.delete');
-    Route::get('/edit/{id}', [MonevController::class, 'edit'])->name('monev.edit');
+    Route::group(['prefix' => 'loa'], function () { //Loa
+        Route::any('/', [LoaController::class, 'index'])->name('loa.index')->middleware('auth');
+        Route::get('/data', [LoaController::class, 'data'])->name('loa.data');
+        Route::delete('/delete', [LoaController::class, 'delete'])->name('loa.delete');
+        Route::get('/edit/{id}', [LoaController::class, 'edit'])->name('loa.edit');
+    });
+
+    Route::group(['prefix' => 'monev'], function () { //Monev
+        Route::any('/', [MonevController::class, 'index'])->name('monev.index')->middleware('auth');
+        Route::get('/data', [MonevController::class, 'data'])->name('monev.data');
+        Route::delete('/delete', [MonevController::class, 'delete'])->name('monev.delete');
+        Route::get('/edit/{id}', [MonevController::class, 'edit'])->name('monev.edit');
+    });
 });
 
 Route::group(['prefix' => 'reviewer'], function () { //reviewers
