@@ -26,19 +26,19 @@ class UserRolePermissionSeeder extends Seeder
         // DB::beginTransaction();
         // try {
             $lecture = User::create(array_merge([
-                'email' => 'jhosuakristiawan123@gmail.com',
-                'name' => 'lecture 1',
-                'username' => 'lecture 1',
+                'email' => 'yosua@gmail.com',
+                'name' => 'yosuaimmanuel',
+                'username' => 'yosuaimmanuel',
             ], $default_user_value));
 
             $lecture1 = User::create(array_merge([
-                'email' => 'example@gmail.com',
-                'name' => 'lecture 2',
-                'username' => 'lecture 2',
+                'email' => 'adam@gmail.com',
+                'name' => 'adamrinaldi',
+                'username' => 'adamrinaldi',
             ], $default_user_value));
 
             $lecture2 = User::create(array_merge([
-                'email' => 'example2@gmail.com',
+                'email' => 'patrick@gmail.com',
                 'name' => 'lecture 3',
                 'username' => 'lecture 3',
             ], $default_user_value));
@@ -50,9 +50,9 @@ class UserRolePermissionSeeder extends Seeder
             ], $default_user_value));
 
             $reviewer = User::create(array_merge([
-                'email' => 'reviewer@gmail.com',
-                'name' => 'reviewer',
-                'username' => 'reviewer',
+                'email' => 'wisnu@gmail.com',
+                'name' => 'wisnu',
+                'username' => 'wisnu',
             ], $default_user_value));
 
             $warek1 = User::create(array_merge([
@@ -77,7 +77,7 @@ class UserRolePermissionSeeder extends Seeder
             $lecture1->assignRole('lecture');
             $lecture2->assignRole('lecture');
             $admin->assignRole('admin');
-            $reviewer->assignRole('reviewer');
+
             $warek1->assignRole('warek1');
             $warek2->assignRole('warek2');
 

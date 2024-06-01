@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('proposals_id');
-            $table->foreign('proposals_id')->references('id')->on('proposals');
+            $table->foreign('proposals_id')->references('id')->on('proposals')->onDelete('cascade');
             $table->string('proposal_doc');
             $table->uuid('doc_type_id');
             $table->foreign('doc_type_id')->references('id')->on('doc_types');
-            $table->string('created_by');
+            $table->unsignedBigInteger('created_by');
+            $table->foreign('created_by')->references('id')->on('users');
             $table->timestamps();
         });
     }

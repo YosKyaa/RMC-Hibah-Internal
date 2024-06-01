@@ -31,8 +31,6 @@ return new class extends Migration
             $table->unsignedBigInteger('main_research_targets_id');
             $table->foreign('main_research_targets_id')->references('id')->on('main_research_targets');
 
-            $table->string('document');
-
             $table->unsignedBigInteger('reviewer_id')->nullable();
             $table->foreign('reviewer_id')->references('id')->on('users');
 
@@ -59,7 +57,8 @@ return new class extends Migration
 
             $table->boolean('approval_vice_rector_2')->default(false)->nullable();
 
-            $table->string('updated_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->foreign('updated_by')->references('id')->on('users');
 
 
 

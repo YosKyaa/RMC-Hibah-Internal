@@ -22,9 +22,10 @@ class DatabaseSeeder extends Seeder
         $this->call([StatusSeeder::class]);
         $this->call([ResearchTypesSeeder::class]);
         $this->call([ResearchCategoriesSeeder::class]);
-        
+
         $this->call([ResearchThemesSeeder::class]);
         $this->call([ResearchTopicsSeeder::class]);
+        $this->call([DocumentsSeeder::class]);
 
 
         // \App\Models\User::factory()->create([

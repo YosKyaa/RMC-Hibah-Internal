@@ -108,10 +108,15 @@
                         <div class="card-body">
                             <h5 class="card-title">Hi {{ ucfirst(Auth::user()->username) }}!</h5>
                             <p class="mb-4">Silahkan Upload Proposal Anda!</p>
-
-                            <a href="../user-proposals/create" class="btn btn-primary"><span><i
-                                        class="bx bx-plus me-sm-2"></i>
-                                    <span>Ajukan Hibah</span></span></a>
+                            @if ($proposals->isEmpty())
+                                <a href="../user-proposals/create" class="btn btn-primary"><span><i
+                                            class="bx bx-plus me-sm-2"></i>
+                                        <span>Ajukan Hibah</span></span></a>
+                            @else
+                                @foreach ($proposals as $p)
+                                    <p>Terimakasih Sudah Mengupload!</p>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -129,74 +134,46 @@
                         Progres </a></li>
             </ul>
         </div>
-
-
-        <!-- Timeline Advanced-->
-        <!-- <div class="col-xl-6"> -->
-        <div class="card">
-            {{-- <h5 class="card-header">Progres</h5> --}}
-            <div class="card-body">
-                <div class="table-responsive">
-                    <!--  -->
-                    <div class="card border-0 shadow-sm rounded full-width">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">JENIS PENELITIAN</th>
-                                    <th scope="col">TOPIK PENELITIAN</th>
-                                    <th scope="col">JUDUL PENELITIAN</th>
-                                    <th scope="col">TIM PENELITIAN</th>
-                                    <th scope="col">STATUS</th>
-                                    <th scope="col">AKSI</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{{ $p->researchType->title }}</td>
-                                    <td>{{ $p->researchTopic->name }}</td>
-                                    <td>{{ $p->research_title }}</td>
-                                    @if ($p->researchTeam)
-                                        <td>
-                                            @foreach ($p->researchTeam as $team)
-                                                {{ $team->user->username }}
-                                            @endforeach
-                                        </td>
-                                    @else
-                                        <td>Gada</td>
-                                    @endif
-                                    <td></td>
-                                    <td class="text-center">
-                                        <a href="#modalToggle" data-bs-toggle="modal" data-bs-target="#modalToggle"
-                                            class="bx bx-show-alt badge-dark"></a>
-                                        <a class=" text-success" title="Edit" href=""><i
-                                                class="bx bxs-edit"></i></a>
-                                        <form action="{{ route('user-proposals.delete', $p->id) }}" method="POST"
-                                            style="display: inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger delete-btn ">Hapus</button>
-                                        </form>
-                                        <a class=" text-danger" title="Reviewers" style="cursor:pointer" onclick=""><i
-                                                class="bx bx-user-plus"></i></a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+    @endforeach
+    <div class="card">
+        <div class="card-datatable table-responsive">
+            <div class="card-header flex-column flex-md-row pb-0">
+                <div class="row">
+                    <div class="col-12 pt-3 pt-md-0">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="offset-md-0 col-md-0 text-md-end text-center pt-3 pt-md-0">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-    @endforeach
-
+            </div>
+            <table class="table table-hover table-sm" id="datatable" width="75%">
+                <thead>
+                    <tr>
+                        <th>Jenis Penelitian</th>
+                        <th>TopiK Penelitian</th>
+                        <th>Judul Proposal</th>
+                        <th>Tim Peneliti</th>
+                        <th>Status</th>
+                        <th>Reviewer</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
     </div>
-    <!-- /Timeline Advanced-->
 
 
 @endsection
 
 @section('script')
-    <script src="https://cdn.jsdelivr.net/npm/bs-stepper/dist/js/bs-stepper.min.js"></script>
+    <script src="{{ asset('assets/vendor/libs/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/datatables/datatables-bootstrap5.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/datatables/datatables.responsive.js') }}"></script>
     <script src="assets/vendor/libs/select2/select2.js"></script>
     <script src="assets/vendor/libs/bootstrap-select/bootstrap-select.js"></script>
-    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
@@ -210,77 +187,124 @@
             });
         </script>
     @endif
-    <script>
+    <script type="text/javascript">
         $(document).ready(function() {
-            // ketika category dirubah, theme di isi
-            $('#research_categories').change(function() {
-                var categoryId = this.value;
-                $("#research_themes").html('');
-                $("#research_topics").html('');
-                $.ajax({
-                    url: "{{ route('DOC.get_research_themes_by_id') }}",
-                    type: "GET",
-                    data: {
-                        id: categoryId,
-                        _token: '{{ csrf_token() }}'
+            var table = $('#datatable').DataTable({
+                responsive: true,
+                processing: true,
+                serverSide: true,
+                ordering: false,
+                searching: true,
+                language: {
+                    searchPlaceholder: 'Search..',
+                    // url: "{{ asset('assets/vendor/libs/datatables/id.json') }}"
+                },
+                ajax: {
+                    url: "{{ route('user-proposals.data') }}",
+                    data: function(d) {
+                        d.search = $('#datatable_filter input[type="search"]').val()
                     },
-                    dataType: 'json',
-                    success: function(result) {
-                        $('#research_themes').html('<option value="">Select Theme</option>');
-                        $.each(result, function(key, value) {
-                            $("#research_themes").append('<option value="' + value.id +
-                                '">' + value.name + '</option>');
-                        });
-                    }
-                });
-            });
-            // ketika tema dirubah, topic di isi
-            $('#research_themes').change(function() {
-                var themeId = this.value;
-                $("#research_topics").html('');
-                $.ajax({
-                    url: "{{ route('DOC.get_research_topics_by_id') }}",
-                    type: "GET",
-                    data: {
-                        id: themeId,
-                        _token: '{{ csrf_token() }}'
+                },
+                columnDefs: [{
+                    "defaultContent": "-",
+                    "targets": "_all"
+                }],
+                columns: [{
+                        render: function(data, type, row, meta) {
+                            var html = row.research_type.title;
+                            return html;
+                        }
                     },
-                    dataType: 'json',
-                    success: function(result) {
-                        $('#research_topics').html('<option value="">Select Topic</option>');
-                        $.each(result, function(key, value) {
-                            $("#research_topics").append('<option value="' + value.id +
-                                '">' + value.name + '</option>');
-                        });
+                    {
+                        render: function(data, type, row, meta) {
+                            var html = row.research_topic.name;
+                            return html;
+                        }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            var html = row.research_title;
+                            return html;
+                        }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            var html = '';
+                            if (row.proposal_teams && row.proposal_teams.length > 0) {
+                                row.proposal_teams.forEach(function(team) {
+                                    if (team.researcher) {
+                                        html += '<span class="badge bg-label-primary">' +
+                                            team.researcher.username + '</span><br>';
+                                    }
+                                });
+                            }
+                            return html;
+                        }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            var html =
+                                `<span class="badge bg-${row.statuses.color}">${row.statuses.status}</span>`;
+                            return html;
+                        }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            var html = "Belum ada reviewer";
+                            if (row.reviewer != null) {
+                                html = row.reviewer.username;
+                            }
+                            return html;
+                        }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            var html =
+                                `<a class=" text-success" title="Edit" href="{{ url('admin/proposals/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>
+                            <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row
+                                .id + `\',\'` + row.name + `\')" ><i class="bx bx-trash"></i></a>`;
+                            return html;
+                        },
+                        "orderable": false,
+                        className: "text-md-center"
                     }
-                });
+                ]
             });
+
         });
 
-
-        $('.delete-btn').click(function(proposal) {
-            proposal.preventDefault();
-            var form = $(this).closest('form');
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'Cancel'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    form.submit();
-                    Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                    );
-                }
-            });
-        });
+        function DeleteId(id) {
+            swal({
+                    title: "Are you sure?",
+                    text: "Once deleted, data can't be recovered!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            url: "{{ route('user-proposals.delete') }}",
+                            type: "DELETE",
+                            data: {
+                                "id": id,
+                                "_token": $("meta[name='csrf-token']").attr("content"),
+                            },
+                            success: function(data) {
+                                if (data['success']) {
+                                    swal(data['message'], {
+                                        icon: "success",
+                                    });
+                                    $('#datatable').DataTable().ajax.reload();
+                                } else {
+                                    swal(data['message'], {
+                                        icon: "error",
+                                    });
+                                }
+                            }
+                        })
+                    }
+                })
+        }
     </script>
-
 @endsection

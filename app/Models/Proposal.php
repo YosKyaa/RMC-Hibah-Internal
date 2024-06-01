@@ -42,6 +42,11 @@ class Proposal extends Model
         return $this->hasMany(ProposalTeams::class,'proposals_id');
     }
 
+    public function documents()
+    {
+        return $this->hasMany(Documents::class, 'proposals_id');
+    }
+
     public function researcher()
     {
         return $this->belongsTo(User::class, 'researcher_id');
@@ -51,10 +56,7 @@ class Proposal extends Model
         return $this->belongsTo(ResearchTypes::class, 'research_types_id');
     }
 
-    public function research_types()
-    {
-        return $this->belongsTo(ResearchTypes::class, 'research_types_id');
-    }
+  
     public function researchTopic()
     {
         return $this->belongsTo(ResearchTopics::class, 'research_topics_id');

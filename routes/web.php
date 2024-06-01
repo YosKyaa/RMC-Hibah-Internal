@@ -55,7 +55,7 @@ Route::group(['prefix' => 'user-proposals'], function () {
     Route::get('/data', [UserProposalController::class, 'data'])->name('user-proposals.data');
     Route::any('/create', [UserProposalController::class,'create'])->name('user-proposals.create');
     Route::any('/timeline', [UserProposalController::class,'timeline'])->name('user-proposals.timeline');
-    Route::delete('/delete/{id}', [UserProposalController::class, 'delete'])->name('user-proposals.delete');
+    Route::delete('/delete', [UserProposalController::class, 'delete'])->name('user-proposals.delete');
     Route::get('/edit/{id}', [UserProposalController::class, 'edit'])->name('user-proposals.edit');
     Route::put('/update/{id}', [UserProposalController::class, 'update'])->name('user-proposals.update');
     Route::get('/category/by_id', [UserProposalController::class, 'category_by_id'])->name('DOC.get_category_by_id');

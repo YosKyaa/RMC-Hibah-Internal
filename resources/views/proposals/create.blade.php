@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/sweetalert2.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}">
 
 @endsection
 
@@ -125,6 +126,26 @@
                             </div>
                         </div>
                         <div class="mb-3">
+                            <div class="input-group input-group-merge has-validation">
+                                <label for="select2Multiple" class="form-label">Silahkan pilih tim peneliti</label>
+                                <select id="select2Multiple"
+                                    class="select2 form-select @error('researcher_id') is-invalid @enderror"
+                                    name="researcher_id[]" id="researcher_id" multiple>
+                                    <option value="" disabled selected>-- Pilih Jenis Penelitian --</option>
+                                    @foreach ($users as $user)
+                                        <option value="{{ $user->id }}"
+                                            {{ in_array($user->id, old('researcher_id', [])) ? 'selected' : '' }}>
+                                            {{ $user->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('researcher_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="mb-3">
                             <label for="" class="form-label">Jenis
                                 TKT</label>
                             <div class="input-group input-group-merge has-validation">
@@ -169,9 +190,9 @@
                         <div class="mb-3">
                             <label class="form-label">Upload File<i class="text-danger">*</i></label>
                             <div class="input-group mb-3">
-                                <input class="form-control @error('document') is-invalid @enderror" name="document"
-                                    type="file" accept=".pdf" title="PDF">
-                                @error('document')
+                                <input class="form-control @error('proposal_doc') is-invalid @enderror"
+                                    name="proposal_doc" type="file" accept=".pdf" title="PDF">
+                                @error('proposal_doc')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -207,6 +228,10 @@
     <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
+    <script>
+        $(".select2").select2();
+    </script>
     <script>
         $(".selectpicker").selectpicker();
     </script>

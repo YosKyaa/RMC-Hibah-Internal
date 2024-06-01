@@ -61,30 +61,6 @@ class ProposalController extends Controller
         return DataTables::of($proposals)->make(true);
     }
 
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Proposal $proposal)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
         $users = User::all();
@@ -106,6 +82,10 @@ class ProposalController extends Controller
             'reviewer_id' => $request->reviewer_id,
             'status_id' => 'S02'
         ]);
+
+        // Assign reviewer role
+        $reviewer = User::findOrFail($request->reviewer_id);
+        $reviewer->assignRole('reviewer');
 
         return redirect()->route('proposals.index')->with('Data,', 'Data berhasil diperbarui.');
     }

@@ -25,8 +25,6 @@
 
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
-            <h4 class="py-3 mb-4"><span class="text-muted fw-light">UI Elements /</span> Cards Gamifications
-            </h4>
 
             <div class="row">
                 <div class="col-md-6 col-lg-4 mb-4 order-lg-1 order-2">
@@ -137,7 +135,7 @@
                     // url: "{{ asset('assets/vendor/libs/datatables/id.json') }}"
                 },
                 ajax: {
-                    url: "{{ route('dept.data') }}",
+                    url: "{{ route('reviewers.data') }}",
                     data: function(d) {
                         d.search = $('#datatable_filter input[type="search"]').val()
                     },
@@ -155,19 +153,51 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.;
+                            var html = row.users.username;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.;
+                            var html = '';
+                            if (row.proposal_teams && row.proposal_teams.length > 0) {
+                                row.proposal_teams.forEach(function(team) {
+                                    if (team.researcher) {
+                                        html += '<span class="badge bg-label-primary">' +
+                                            team.researcher.username + '</span><br>';
+                                    }
+                                });
+                            }
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.;
+                            var html = '';
+                            if (row.documents && row.documents.length > 0) {
+                                row.documents.forEach(function(document) {
+                                    html += '<a href="' + document.path + '">' + document.name + '</a><br>';
+                                });
+                            }
+                            return html;
+                        }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            var html = row.research_title;
+                            return html;
+                        }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            var html =
+                                `<span class="badge bg-${row.statuses.color}">${row.statuses.status}</span>`;
+                            return html;
+                        }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            var html = row.notes;
                             return html;
                         }
                     },
@@ -198,7 +228,7 @@
                 .then((willDelete) => {
                     if (willDelete) {
                         $.ajax({
-                            url: "{{ route('dept.delete') }}",
+                            url: "{{ route('reviewers.delete') }}",
                             type: "DELETE",
                             data: {
                                 "id": id,

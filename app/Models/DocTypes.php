@@ -5,14 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ResearchTeam extends Model
+class DocTypes extends Model
 {
     use HasFactory;
-    public $fillable = [
+    protected $fillable = [
         'id',
-        'proposals_id',
-        'user_id',
-
+        'name',
     ];
-
 }
