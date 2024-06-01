@@ -203,31 +203,33 @@ class UserProposalController extends Controller
     {
         $proposals = Proposal::findOrFail($id);
         $proposalteam = ProposalTeams::where('proposals_id', $id)->first();
-        $users = User::all();
+        $users = User::whereHas('roles', function ($query) {
+            $query->whereIn('name', ['lecture', 'reviewer']);
+        })->get();
         return view('proposals.edit', compact('proposals', 'proposalteam', 'users'));
     }
     public function update(Request $request, $id)
     {
-
         // Aturan validasi
         $request->validate([
-            'researcher_id' => 'required|exists:users,id'
+            'researcher_id' => 'required|array',
+            'researcher_id.*' => 'exists:users,id'
         ]);
 
-        $proposalteam = ProposalTeams::where('proposals_id', $id)->first();
-        if ($proposalteam) {
-            $proposalteam->update([
-                'researcher_id' => $request->researcher_id,
-            ]);
-        } else {
+        // Hapus tim peneliti yang lama
+        ProposalTeams::where('proposals_id', $id)->delete();
+
+        // Tambahkan tim peneliti yang baru
+        foreach ($request->researcher_id as $researcher_id) {
             ProposalTeams::create([
                 'proposals_id' => $id,
-                'researcher_id' => $request->researcher_id,
+                'researcher_id' => $researcher_id,
             ]);
         }
 
-        return redirect()->route('user-proposals.index')->with('Propoasal,', 'Berhasil di Ajukan.');
+        return redirect()->route('user-proposals.index')->with('proposals', 'Data BERHASIL diajukan!');
     }
+
 
     /**
      * Remove the specified resource from storage.

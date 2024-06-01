@@ -31,11 +31,20 @@ class Proposal extends Model
     public function reviewer()
     {
         return $this->belongsTo(User::class, 'reviewer_id');
-    }   
+    }
 
     public function statuses()
     {
         return $this->belongsTo(Status::class, 'status_id');
+    }
+
+    public function proposalTeams() {
+        return $this->hasMany(ProposalTeams::class,'proposals_id');
+    }
+
+    public function researcher()
+    {
+        return $this->belongsTo(User::class, 'researcher_id');
     }
     public function researchType()
     {

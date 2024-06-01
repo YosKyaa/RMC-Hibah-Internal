@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/sweetalert2.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
+
 @endsection
 
 @section('style')
@@ -72,7 +73,7 @@
                     <tr>
                         <th>No</th>
                         <th>Nama Peneliti</th>
-                        <th>Tim Penelitian</th>
+                        <th>Tim Peneliti</th>
                         <th>Judul Proposal</th>
                         <th>Mulai Review</th>
                         <th>Selesai Review</th>
@@ -106,28 +107,6 @@
             });
         </script>
     @endif
-    <script>
-        "use strict";
-        setTimeout(function() {
-            (function($) {
-                "use strict";
-                $(".select2").select2({
-                    allowClear: true,
-                    minimumResultsForSearch:
-                });
-            })(jQuery);
-        }, 350);
-        setTimeout(function() {
-            (function($) {
-                "use strict";
-                $(".select2-modal").select2({
-                    dropdownParent: $('#newrecord'),
-                    allowClear: true,
-                    minimumResultsForSearch: 5
-                });
-            })(jQuery);
-        }, 350);
-    </script>
     <script type="text/javascript">
         $(document).ready(function() {
             var table = $('#datatable').DataTable({
@@ -165,7 +144,15 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.research_title;
+                            var html = '';
+                            if (row.proposal_teams && row.proposal_teams.length > 0) {
+                                row.proposal_teams.forEach(function(team) {
+                                    if (team.researcher) {
+                                        html += '<span class="badge bg-label-primary">' +
+                                            team.researcher.username + '</span><br>';
+                                    }
+                                });
+                            }
                             return html;
                         }
                     },
@@ -189,13 +176,17 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.statuses.status;
+                            var html =
+                                `<span class="badge bg-${row.statuses.color}">${row.statuses.status}</span>`;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.reviewer.username;
+                            var html = "Belum ada reviewer";
+                            if (row.reviewer != null) {
+                                html = row.reviewer.username;
+                            }
                             return html;
                         }
                     },

@@ -10,8 +10,9 @@ class ResearchTeam extends Model
     use HasFactory;
     public $fillable = [
         'id',
-        'proposal_id',
+        'proposals_id',
         'user_id',
+
     ];
 
 }

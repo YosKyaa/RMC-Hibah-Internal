@@ -10,17 +10,19 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/sweetalert2.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
-    <link rel="stylesheet" href="assets/vendor/libs/bootstrap-select/bootstrap-select.css" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
+
 @endsection
 
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Vertical Layouts</h4>
+        {{-- <h4 class="py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Vertical Layouts</h4> --}}
         <!-- Basic Layout -->
         <div class="row">
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Basic Layout</h5> <small class="text-muted float-end">Default label</small>
+                    <h5 class="mb-0">Lengkapi Data dibawah ini!</h5> <small class="text-muted float-end">Upload
+                        Proposal</small>
                 </div>
                 <div class="card-body">
                     <form id="form-add-new-record" method="POST" action="{{ route('user-proposals.create') }}"
@@ -29,8 +31,9 @@
                         <div class="mb-3">
                             <label class="form-label">Jenis Penelitian</label>
                             <div class="input-group input-group-merge has-validation">
-                                <select class="form-select @error('research_type') is-invalid @enderror select2-modal"
-                                    name="research_type" id="research_type" data-placeholder="-- Pilih Jenis Penelitian--">
+                                <select id="selectpickerBasic" @error('research_type') is-invalid @enderror
+                                    class="selectpicker w-100" name="research_type" id="research_type"
+                                    data-style="btn-default">
                                     <option value="">-- Pilih Jenis Penelitian --</option>
                                     @foreach ($researchtypes as $d)
                                         <option value="{{ $d->id }}"
@@ -199,13 +202,14 @@
 
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/bs-stepper/dist/js/bs-stepper.min.js"></script>
-    <script src="{{ asset('assets/vendor/libs/bs-stepper/bs-stepper.js') }}"></script>
-    <script src="assets/vendor/libs/select2/select2.js"></script>
-    <script src="assets/vendor/libs/bootstrap-select/bootstrap-select.js"></script>
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
+    <script>
+        $(".selectpicker").selectpicker();
+    </script>
     <script>
         $(document).ready(function() {
             // ketika category dirubah, theme di isi

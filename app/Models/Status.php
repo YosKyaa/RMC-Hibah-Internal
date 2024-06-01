@@ -15,6 +15,7 @@ class Status extends Model
     public $fillable = [
         'id',
         'status',
+        'color',
     ];
     public function proposals()
     {

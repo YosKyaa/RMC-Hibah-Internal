@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('statuses', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('status');
-            // $table->string('color');
+            $table->string('color');
             $table->timestamps();
         });
     }

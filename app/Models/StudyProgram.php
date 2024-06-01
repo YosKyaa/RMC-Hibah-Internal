@@ -10,6 +10,6 @@ class StudyProgram extends Model
     use HasFactory;
     public $fillable = [
         'id',
-        'name_program',
+        'name',
     ];
 }

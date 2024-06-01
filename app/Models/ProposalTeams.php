@@ -10,11 +10,14 @@ class ProposalTeams extends Model
     use HasFactory;
     public $fillable = [
         'id',
-        'proposal_id',
-        'research_team_id',
+        'proposals_id',
+        'researcher_id',
     ];
-    public function proposal()
+    public function Proposal()
     {
-        return $this->belongsTo(Proposal::class, 'proposal_id');
+        return $this->belongsTo(Proposal::class, 'proposals_id');
+    }
+    public function researcher() {
+        return $this->belongsTo(User::class, 'researcher_id');
     }
 }

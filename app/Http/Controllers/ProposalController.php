@@ -22,27 +22,39 @@ class ProposalController extends Controller
      * Show the form for creating a new resource.
      */
 
-     public function data(Request $request){
+     public function data(Request $request) {
         // $this->authorize('setting/manage_data/department.read');
-        $data = Proposal::with(['users' => function ($query) {
-            $query->select('id','username');
-        }])
-        ->with(['statuses' => function ($query) {
-            $query->select('id','status');
-        }])
-        ->with(['reviewer' => function ($query) {
-            $query->select('id','username');
-        }])
-            ->select('*')->orderBy("id");
-            return DataTables::of($data)
-                    ->filter(function ($instance) use ($request) {
-                        if (!empty($request->get('search'))) {
-                            $search = $request->get('search');
-                            $instance->where('name_dept', 'LIKE', "%$search%");
-                        }
-                    })->make(true);
-    }
+        $data = Proposal::with([
+            'users' => function ($query) {
+                $query->select('id', 'username');
+            },
+            'statuses' => function ($query) {
+                $query->select('id', 'status', 'color');
+            },
+            'reviewer' => function ($query) {
+                $query->select('id', 'username');
+            },
+            'proposalTeams.researcher' => function ($query) {
+                $query->select('id', 'username');
+            }
+        ])
+        ->select('*')
+        ->orderBy('id');
 
+        return DataTables::of($data)
+            ->filter(function ($instance) use ($request) {
+            if (!empty($request->get('search'))) {
+                $search = $request->get('search');
+                $instance->where(function ($query) use ($search) {
+                $query->where('research_title', 'LIKE', "%$search%")
+                    ->orWhereHas('users', function ($query) use ($search) {
+                    $query->where('username', 'LIKE', "%$search%");
+                    });
+                });
+            }
+            })
+            ->make(true);
+    }
     public function datatables()
     {
         $proposals = Proposal::select('*');
@@ -92,6 +104,7 @@ class ProposalController extends Controller
             'review_date_start' => $request->review_date_start,
             'review_date_end' => $request->review_date_end,
             'reviewer_id' => $request->reviewer_id,
+            'status_id' => 'S02'
         ]);
 
         return redirect()->route('proposals.index')->with('Data,', 'Data berhasil diperbarui.');

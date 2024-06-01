@@ -10,6 +10,6 @@ class Department extends Model
     use HasFactory;
     public $fillable = [
         'id',
-        'name_dept',
+        'name',
     ];
 }
