@@ -63,6 +63,8 @@
                                 <th>Nama Peneliti</th>
                                 <th>Tim Peneliti</th>
                                 <th>Judul Penelitian</th>
+                                <th>Tanggal Mulai Review</th>
+                                <th>Tanggal Selesai Review</th>
                                 <th>Lampiran Dokumen</th>
                                 <th>Status</th>
                                 <th>Note</th>
@@ -173,18 +175,31 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = '';
-                            if (row.documents && row.documents.length > 0) {
-                                row.documents.forEach(function(document) {
-                                    html += '<a href="' + document.path + '">' + document.name + '</a><br>';
-                                });
-                            }
+                            var html = row.research_title;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.research_title;
+                            var html = row.review_date_start;
+                            return html;
+                        }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            var html = row.review_date_end;
+                            return html;
+                        }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            var html = '';
+                            if (row.documents && row.documents.length > 0) {
+                                row.documents.forEach(function(document) {
+                                    html += '<a href="' + document.path + '">' + document
+                                        .name + '</a><br>';
+                                });
+                            }
                             return html;
                         }
                     },
