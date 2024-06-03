@@ -59,7 +59,7 @@
                     <table class="table table-hover table-sm" id="datatable" width="50%">
                         <thead>
                             <tr>
-                                <th>No</th>
+                                <th data-priority="1">No</th>
                                 <th>Nama Peneliti</th>
                                 <th>Tim Peneliti</th>
                                 <th>Judul Penelitian</th>
@@ -68,7 +68,7 @@
                                 <th>Lampiran Dokumen</th>
                                 <th>Status</th>
                                 <th>Note</th>
-                                <th>Action</th>
+                                <th data-priority="2">Action</th>
                             </tr>
                         </thead>
                     </table>
@@ -218,12 +218,26 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html =
-                                `<a class=" text-success" title="Edit" style="cursor:pointer" onclick="DeleteId(\'` +
-                                row
-                                .id + `\',\'` + row.name + `\')" }}"><i class="bx bxs-edit"></i></a>
-                            <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row
-                                .id + `\',\'` + row.name + `\')" ><i class="bx bx-trash"></i></a>`;
+                            var html = '';
+                            if (row.statuses.id === 'S06') {
+                                html +=
+                                    `<a class="text-success" title="Approve" style="cursor:pointer" onclick="approveId(\'` +
+                                    row.id +
+                                    `\')"><i class="bx bx-check"></i></a>
+                                         <a class="text-danger" title="Disapprove" style="cursor:pointer" onclick="disapproveId(\'` +
+                                    row.id + `\')"><i class="bx bx-x"></i></a>`;
+                            } else {
+                                html +=
+                                    `<a class="text-success" title="Edit" style="cursor:pointer" onclick="editId(\'` +
+                                    row.id +
+                                    `\')"><i class="bx bxs-edit"></i></a>
+                                         <a class="text-danger" title="Hapus" style="cursor:pointer" onclick="deleteId(\'` +
+                                    row
+                                    .id +
+                                    `\')"><i class="bx bx-trash"></i></a>
+                                         <a class="text-primary" title="Diterima" style="cursor:pointer" onclick="markAsReviewed(\'` +
+                                    row.id + `\')"><i class="bx bx-check"></i></a>`;
+                            }
                             return html;
                         },
                         "orderable": false,
@@ -234,7 +248,7 @@
 
         });
 
-        function DeleteId(id) {
+        function deleteId(id) {
             swal({
                     title: "Apakah Pengajuan Ini ditolak?",
                     text: "Jika pengajuan ditolak data tidak dapat dikembalikan!",
@@ -266,6 +280,45 @@
                         })
                     }
                 })
+        }
+
+        function markAsReviewed(id) {
+            swal({
+                    title: "Apakah ingin melanjutkan presentasi?",
+                    icon: "warning",
+                    buttons: ["Batal", "Ya"],
+                    dangerMode: true,
+                })
+                .then((confirmed) => {
+                    if (confirmed) {
+                        $.ajax({
+                            url: "{{ route('reviewers.presentation') }}",
+                            type: 'POST',
+                            data: {
+                                id: id,
+                                _token: '{{ csrf_token() }}'
+                            },
+                            success: function(response) {
+                                if (response.success) {
+                                    swal('Status berhasil diubah!', {
+                                        icon: "success",
+                                    });
+                                    // Reload the DataTable to reflect the changes
+                                    $('#datatable').DataTable().ajax.reload();
+                                } else {
+                                    swal('Gagal mengubah status!', {
+                                        icon: "error",
+                                    });
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                swal('Terjadi kesalahan saat mengubah status!', {
+                                    icon: "error",
+                                });
+                            }
+                        });
+                    }
+                });
         }
     </script>
 @endsection

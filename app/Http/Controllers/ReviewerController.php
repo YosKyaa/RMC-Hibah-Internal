@@ -72,10 +72,11 @@ class ReviewerController extends Controller
             ]);
         }
     }
+
     public function presentation(Request $request)
     {
         $data = Proposal::find($request->id);
-        if($data){
+        if($data) {
             $data->status_id = 'S05'; // Set the status to 'S05'
             $data->save(); // Save the changes to the database
             return response()->json([
@@ -89,7 +90,5 @@ class ReviewerController extends Controller
             ]);
         }
     }
-
-
 
 }
