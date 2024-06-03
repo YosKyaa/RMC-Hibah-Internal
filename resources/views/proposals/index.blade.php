@@ -134,37 +134,36 @@
                         Progres </a></li>
             </ul>
         </div>
-    @endforeach
-    <div class="card">
-        <div class="card-datatable table-responsive">
-            <div class="card-header flex-column flex-md-row pb-0">
-                <div class="row">
-                    <div class="col-12 pt-3 pt-md-0">
-                        <div class="col-12">
-                            <div class="row">
-                                <div class="offset-md-0 col-md-0 text-md-end text-center pt-3 pt-md-0">
+        <div class="card">
+            <div class="card-datatable table-responsive">
+                <div class="card-header flex-column flex-md-row pb-0">
+                    <div class="row">
+                        <div class="col-12 pt-3 pt-md-0">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="offset-md-0 col-md-0 text-md-end text-center pt-3 pt-md-0">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <table class="table table-hover table-sm" id="datatable" width="75%">
+                    <thead>
+                        <tr>
+                            <th>Jenis Penelitian</th>
+                            <th>TopiK Penelitian</th>
+                            <th>Judul Proposal</th>
+                            <th>Tim Peneliti</th>
+                            <th>Status</th>
+                            <th>Reviewer</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
-            <table class="table table-hover table-sm" id="datatable" width="75%">
-                <thead>
-                    <tr>
-                        <th>Jenis Penelitian</th>
-                        <th>TopiK Penelitian</th>
-                        <th>Judul Proposal</th>
-                        <th>Tim Peneliti</th>
-                        <th>Status</th>
-                        <th>Reviewer</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-            </table>
         </div>
-    </div>
-
+    @endforeach
 
 @endsection
 

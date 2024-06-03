@@ -19,9 +19,10 @@ class StatusSeeder extends Seeder
             ['id' => 'S02', 'status' => 'Menunggu review','color' => 'warning'],
             ['id' => 'S03', 'status' => 'Revisi','color'=>'secondary'],
             ['id' => 'S04', 'status' => 'Pengajuan ditolak' ,'color' => 'denger'],
-            ['id' => 'S05', 'status' => 'Persentasi','color' => 'dark'],
-            ['id' => 'S06', 'status' => 'Proses Pencairan Dana','color' => 'info'],
-            ['id' => 'S07', 'status' => 'Dana Sudah diterima','color' => 'success'],
+            ['id' => 'S05', 'status' => 'Menunggu Jadwal Presentasi','color' => 'dark'],
+            ['id' => 'S06', 'status' => 'Persentasi','color' => 'dark'],
+            ['id' => 'S07', 'status' => 'Proses Pencairan Dana','color' => 'info'],
+            ['id' => 'S08', 'status' => 'Dana Sudah diterima','color' => 'success'],
         ];
 
         foreach ($data as $item) {

@@ -234,8 +234,8 @@
 
         function DeleteId(id) {
             swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, data can't be recovered!",
+                    title: "Apakah Pengajuan Ini ditolak?",
+                    text: "Jika pengajuan ditolak data tidak dapat dikembalikan!",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
