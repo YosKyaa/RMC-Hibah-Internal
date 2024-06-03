@@ -44,8 +44,8 @@
                             <div class="col-sm-7">
                                 <div class="card-body">
                                     <h5 class="card-title">Hi Reviewers!</h5>
-                                    <p class="mb-4">You have 12 task to finish today, Your already completed 189 task good
-                                        job.</p>
+                                    <p class="mb-4">You have {{ $dataCount }} tasks to finish today, you have already
+                                        completed {{ $dataCount2 }} tasks. Good job.</p>
 
                                     <span class="badge bg-label-primary">78% of target</span>
                                 </div>
@@ -219,7 +219,9 @@
                     {
                         render: function(data, type, row, meta) {
                             var html =
-                                `<a class=" text-success" title="Edit" href="{{ url('setting/manage_studyprogram/studyprogram/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>
+                                `<a class=" text-success" title="Edit" style="cursor:pointer" onclick="DeleteId(\'` +
+                                row
+                                .id + `\',\'` + row.name + `\')" }}"><i class="bx bxs-edit"></i></a>
                             <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row
                                 .id + `\',\'` + row.name + `\')" ><i class="bx bx-trash"></i></a>`;
                             return html;

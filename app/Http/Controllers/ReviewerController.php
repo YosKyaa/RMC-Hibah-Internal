@@ -13,7 +13,11 @@ class ReviewerController extends Controller
      */
     public function index()
     {
-        return view('reviewers.index');
+        $status1 = 'S02';
+        $status2 = 'S05';
+        $dataCount = Proposal::where('status_id', $status1)->count();
+        $dataCount2 = Proposal::where('status_id', $status2)->count();
+        return view('reviewers.index', compact('dataCount', 'dataCount2'));
     }
 
     public function data(Request $request)
@@ -69,7 +73,23 @@ class ReviewerController extends Controller
         }
     }
     public function presentation(Request $request)
-    {}
+    {
+        $data = Proposal::find($request->id);
+        if($data){
+            $data->status_id = 'S05'; // Set the status to 'S05'
+            $data->save(); // Save the changes to the database
+            return response()->json([
+                'success' => true,
+                'message' => 'Status berhasil diubah!'
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal mengubah status!'
+            ]);
+        }
+    }
+
 
 
 }
