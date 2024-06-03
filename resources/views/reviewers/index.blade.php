@@ -65,7 +65,6 @@
                                 <th>Judul Penelitian</th>
                                 <th>Tanggal Mulai Review</th>
                                 <th>Tanggal Selesai Review</th>
-                                <th>Lampiran Dokumen</th>
                                 <th>Status</th>
                                 <th>Note</th>
                                 <th data-priority="2">Action</th>
@@ -193,18 +192,6 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = '';
-                            if (row.documents && row.documents.length > 0) {
-                                row.documents.forEach(function(document) {
-                                    html +=
-                                        `<a href="${document.proposal_doc}" class="btn btn-primary" download>Download</a><br>`;
-                                });
-                            }
-                            return html;
-                        }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
                             var html =
                                 `<span class="badge bg-${row.statuses.color}">${row.statuses.status}</span>`;
                             return html;
@@ -227,6 +214,12 @@
                                          <a class="text-danger" title="Disapprove" style="cursor:pointer" onclick="disapproveId(\'` +
                                     row.id + `\')"><i class="bx bx-x"></i></a>`;
                             } else {
+                                if (row.documents && row.documents.length > 0) {
+                                row.documents.forEach(function(document) {
+                                    html +=
+                                        `<a href="${document.proposal_doc}" class="bx bx-import" title="Download"></a><br>`;
+                                });
+                            }
                                 html +=
                                     `<a class="text-success" title="Edit" style="cursor:pointer" onclick="editId(\'` +
                                     row.id +
