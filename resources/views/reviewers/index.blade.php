@@ -196,8 +196,8 @@
                             var html = '';
                             if (row.documents && row.documents.length > 0) {
                                 row.documents.forEach(function(document) {
-                                    html += '<a href="' + document.path + '">' + document
-                                        .name + '</a><br>';
+                                    html +=
+                                        `<a href="${document.proposal_doc}" class="btn btn-primary" download>Download</a><br>`;
                                 });
                             }
                             return html;

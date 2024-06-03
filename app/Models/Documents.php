@@ -19,4 +19,15 @@ class Documents extends Model
     {
         return $this->belongsTo(Proposal::class, 'proposals_id');
     }
+    public function DocType()
+    {
+        return $this->belongsTo(DocTypes::class, 'doc_type_id');
+    }
+
+    public function User()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+
 }

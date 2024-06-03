@@ -12,4 +12,8 @@ class DocTypes extends Model
         'id',
         'name',
     ];
+    public function documents()
+    {
+        return $this->hasMany(Documents::class, 'doc_type_id');
+    }
 }

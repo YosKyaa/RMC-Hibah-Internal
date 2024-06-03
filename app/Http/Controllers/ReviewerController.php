@@ -16,10 +16,6 @@ class ReviewerController extends Controller
         return view('reviewers.index');
     }
 
-
-    /**
-     * Get the data for DataTables.
-     */
     public function data(Request $request)
     {
         $reviewerId = $request->user()->id;
@@ -36,7 +32,10 @@ class ReviewerController extends Controller
                 },
                 'proposalTeams.researcher' => function ($query) {
                     $query->select('id', 'username');
-                }
+                },
+                'documents' => function ($query) {
+                    $query->select('id', 'proposals_id','proposal_doc', 'doc_type_id', 'created_by');
+                },
             ])
             ->orderBy('id')
             ->get();
@@ -54,51 +53,6 @@ class ReviewerController extends Controller
             ->make(true);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+    public function presentation(Request $request)
+    {}
 }

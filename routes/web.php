@@ -109,6 +109,7 @@ Route::group(['prefix' => 'reviewer'], function () { //reviewers
     Route::any('/', [ReviewerController::class, 'index'])->name('reviewers.index')->middleware('auth');
     Route::get('/data', [ReviewerController::class, 'data'])->name('reviewers.data');
     Route::delete('/delete', [ReviewerController::class, 'delete'])->name('reviewers.delete');
+    Route::any('/presentation', [ReviewerController::class, 'presentation'])->name('reviewers.presentation');
     Route::get('/edit/{id}', [ReviewerController::class, 'edit'])->name('reviewers.edit');
 });
 
