@@ -91,4 +91,41 @@ class ReviewerController extends Controller
         }
     }
 
+    public function approve(Request $request)
+    {
+        $data = Proposal::find($request->id);
+        if($data) {
+            $data->approval_reviewer = true;
+            $data->status_id = 'S07';
+            $data->save();
+            return response()->json([
+                'success' => true,
+                'message' => 'Status berhasil diubah!'
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal mengubah status!'
+            ]);
+        }
+    }
+
+    public function reject(Request $request)
+    {
+        $data = Proposal::find($request->id);
+        if($data) {
+            $data->approval_reviewer = false;
+            $data->save();
+            return response()->json([
+                'success' => true,
+                'message' => 'Status berhasil diubah!'
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal mengubah status!'
+            ]);
+        }
+    }
+
 }

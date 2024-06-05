@@ -215,11 +215,11 @@
                                     row.id + `\')"><i class="bx bx-x"></i></a>`;
                             } else {
                                 if (row.documents && row.documents.length > 0) {
-                                row.documents.forEach(function(document) {
-                                    html +=
-                                        `<a href="${document.proposal_doc}" class="bx bx-import" title="Download"></a><br>`;
-                                });
-                            }
+                                    row.documents.forEach(function(document) {
+                                        html +=
+                                            `<a href="${document.proposal_doc}" class="bx bx-import" title="Download"></a><br>`;
+                                    });
+                                }
                                 html +=
                                     `<a class="text-success" title="Edit" style="cursor:pointer" onclick="editId(\'` +
                                     row.id +
@@ -313,5 +313,79 @@
                     }
                 });
         }
+
+        function approveId(id) {
+            swal({
+                    title: "Apakah data sudah sesuai dan akan di approve?",
+                    icon: "warning",
+                    buttons: ["Batal", "Ya"],
+                    dangerMode: true,
+                })
+                .then((confirmed) => {
+                    if (confirmed) {
+                        $.ajax({
+                            url: "{{ route('reviewers.approve') }}",
+                            type: 'POST',
+                            data: {
+                                id: id,
+                                _token: '{{ csrf_token() }}'
+                            },
+                            success: function(response) {
+                                if (response.success) {
+                                    swal('Pengajuan berhasil disetujui!', {
+                                        icon: "success",
+                                    });
+                                    // Reload the DataTable to reflect the changes
+                                    $('#datatable').DataTable().ajax.reload();
+                                } else {
+                                    swal('Gagal menyetujui pengajuan!', {
+                                        icon: "error",
+                                    });
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                swal('Terjadi kesalahan saat menyetujui pengajuan!', {
+                                    icon: "error",
+                                });
+                            }
+                        });
+                    }
+                });
+        }
+
+        function disapproveId(id) {
+            swal({
+                    title: "Apakah Pengajuan Ini ditolak?",
+                    text: "Jika pengajuan ditolak data tidak dapat dikembalikan!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willReject) => {
+                    if (willReject) {
+                        $.ajax({
+                            url: "{{ route('reviewers.reject') }}",
+                            type: "POST",
+                            data: {
+                                "id": id,
+                                "_token": $("meta[name='csrf-token']").attr("content"),
+                            },
+                            success: function(data) {
+                                if (data['success']) {
+                                    swal(data['message'], {
+                                        icon: "success",
+                                    });
+                                    $('#datatable').DataTable().ajax.reload();
+                                } else {
+                                    swal(data['message'], {
+                                        icon: "error",
+                                    });
+                                }
+                            }
+                        })
+                    }
+                })
+        }
     </script>
+
 @endsection

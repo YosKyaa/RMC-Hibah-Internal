@@ -54,37 +54,42 @@
                     Verifikasi Hasil Monev</a></li>
         </ul>
     </div>
-    <div class="card">
-        <div class="card-datatable table-responsive">
-            <div class="card-header flex-column flex-md-row pb-0">
-                <div class="row">
-                    <div class="col-12 pt-3 pt-md-0">
-                        <div class="col-12">
-                            <div class="row">
-                                <div class="offset-md-0 col-md-0 text-md-end text-center pt-3 pt-md-0">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+    <div class="card border-0">
+        <div class="card-body p-4">
+            <div class="table-responsive">
+                <div class="card-datatable table-responsive">
+                    <table class="table table-hover table-sm" id="datatable" width="100%">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Nama Peneliti</th>
+                                <th>Tim Peneliti</th>
+                                <th>Judul Proposal</th>
+                                <th>Mulai Review</th>
+                                <th>Selesai Review</th>
+                                <th>Status</th>
+                                <th>Nama Reviewer</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="align-middle"></tr>
+                            <tr class="align-middle"></tr>
+                            <tr class="align-middle"></tr>
+                            <tr class="align-middle"></tr>
+                            <tr class="align-middle"></tr>
+                            <tr class="align-middle"></tr>
+                            <tr class="align-middle"></tr>
+                            <tr class="align-middle"></tr>
+                            <tr class="align-middle"></tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <table class="table table-hover table-sm" id="datatable" width="75%">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama Peneliti</th>
-                        <th>Tim Peneliti</th>
-                        <th>Judul Proposal</th>
-                        <th>Mulai Review</th>
-                        <th>Selesai Review</th>
-                        <th>Status</th>
-                        <th>Nama Reviewer</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-            </table>
         </div>
     </div>
+
 @endsection
 
 @section('script')
@@ -117,7 +122,7 @@
                 searching: true,
                 language: {
                     searchPlaceholder: 'Search..',
-                    // url: "{{ asset('assets/vendor/libs/datatables/id.json') }}"
+                    url: "{{ asset('assets/vendor/libs/datatables/id.json') }}"
                 },
                 ajax: {
                     url: "{{ route('proposals.data') }}",

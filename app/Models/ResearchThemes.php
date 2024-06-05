@@ -13,4 +13,14 @@ class ResearchThemes extends Model
         'name',
         'research_category_id',
     ];
+    public function researchCategory()
+    {
+        return $this->belongsTo(ResearchCategories::class, 'research_category_id');
+    }
+
+    public function researchTopics()
+    {
+        return $this->hasMany(ResearchTopics::class, 'research_theme_id');
+    }
+
 }

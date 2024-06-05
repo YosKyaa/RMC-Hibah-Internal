@@ -13,4 +13,8 @@ class ResearchTypes extends Model
         'title',
         'total_founds'
     ];
+    public function proposals()
+    {
+        return $this->hasMany(Proposal::class, 'research_types_id', 'id');
+    }
 }

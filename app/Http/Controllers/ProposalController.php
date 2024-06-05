@@ -15,7 +15,8 @@ class ProposalController extends Controller
     public function index()
     {
         $proposals = Proposal::all();
-        return view('admin.addreviewer.index', compact('proposals'));
+        $users = User::all();
+        return view('admin.addreviewer.index', compact('proposals','users'));
     }
 
     /**

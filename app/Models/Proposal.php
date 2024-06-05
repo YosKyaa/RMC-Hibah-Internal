@@ -66,6 +66,12 @@ class Proposal extends Model
         return $this->belongsTo(TktTypes::class, 'tkt_types_id');
     }
 
+    public function mainResearchTarget()
+    {
+        return $this->belongsTo(MainResearchTarget::class, 'main_research_targets_id');
+    }
+
+
 
 
 }

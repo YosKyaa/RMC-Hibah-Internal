@@ -40,19 +40,19 @@
         <li class="menu-item {{ request()->segment(1) == 'reviewers' ? 'active' : '' }}">
             <a href="{{ route('reviewers.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-book-reader"></i>
-                <div data-i18n="Dashboards">Reviewer</div>
+                <div data-i18n="Dashboards">Review Proposals</div>
             </a>
         </li>
         <li class="menu-item {{ request()->segment(1) == 'vicerector1' ? 'active' : '' }}">
             <a href="{{ route('vicerector1.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-book-reader"></i>
-                <div data-i18n="Dashboards">Vice Rector I</div>
+                <div data-i18n="Dashboards">VR1 Approval</div>
             </a>
         </li>
         <li class="menu-item {{ request()->segment(1) == 'vicerector2' ? 'active' : '' }}">
             <a href="{{ route('vicerector2.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-book-reader"></i>
-                <div data-i18n="Dashboards">Vice Rector II</div>
+                <div data-i18n="Dashboards">VR2 Approval</div>
             </a>
         </li>
         <li class="menu-item {{ request()->segment(1) == 'proposals' ? 'active' : '' }}">

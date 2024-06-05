@@ -49,13 +49,13 @@ return new class extends Migration
 
             $table->date('presentation_date')->nullable();
 
-            $table->boolean('approval_reviewer')->default(false)->nullable();
+            $table->boolean('approval_reviewer')->default(false);
 
             $table->text('approval_reviewer_notes')->nullable();
 
-            $table->boolean('approval_vice_rector_1')->default(false)->nullable();
+            $table->boolean('approval_vice_rector_1')->default(false);
 
-            $table->boolean('approval_vice_rector_2')->default(false)->nullable();
+            $table->boolean('approval_vice_rector_2')->default(false);
 
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->foreign('updated_by')->references('id')->on('users');

@@ -13,30 +13,34 @@ class FinalisasiDanaController extends Controller
      */
     public function index()
     {
-        $proposals = Proposal::all();
+        $proposals = Proposal::where('approval_reviewer', true)->get();
         return view('admin.fundsfinalization.index', compact('proposals'));
     }
 
 
-    public function data(Request $request){
-        // $this->authorize('setting/manage_data/department.read');
+    public function data(Request $request)
+    {
         $data = Proposal::with(['users' => function ($query) {
-            $query->select('id','username');
+            $query->select('id', 'username');
         }])
-        ->with(['statuses' => function ($query) {
-            $query->select('id','status');
-        }])
-        ->with(['research_types' => function ($query) {
-            $query->select('id','title','total_funds');
-        }])
-            ->select('*')->orderBy("id");
-            return DataTables::of($data)
-                    ->filter(function ($instance) use ($request) {
-                        if (!empty($request->get('search'))) {
-                            $search = $request->get('search');
-                            $instance->where('name', 'LIKE', "%$search%");
-                        }
-                    })->make(true);
+            ->with(['statuses' => function ($query) {
+                $query->select('id', 'status', 'color');
+            }])
+            ->with(['researchType' => function ($query) {
+                $query->select('id', 'title', 'total_funds');
+            }])
+            ->where('approval_reviewer', true)
+            ->select('*')
+            ->orderBy("id");
+
+        return DataTables::of($data)
+            ->filter(function ($instance) use ($request) {
+                if (!empty($request->get('search'))) {
+                    $search = $request->get('search');
+                    $instance->where('name', 'LIKE', "%$search%");
+                }
+            })
+            ->make(true);
     }
 
    public function datatables()
@@ -44,51 +48,40 @@ class FinalisasiDanaController extends Controller
        $proposals = Proposal::select('*');
        return DataTables::of($proposals)->make(true);
    }
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+
+    public function approve(Request $request)
     {
-        //
+        $data = Proposal::find($request->id);
+        if ($data) {
+            $data->approval_admin_fundfinalization = true;
+            $data->save();
+            return response()->json([
+                'success' => true,
+                'message' => 'Status berhasil diubah!'
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal mengubah status!'
+            ]);
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function disapprove(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $data = Proposal::find($request->id);
+        if ($data) {
+            $data->approval_admin_fundfinalization = false;
+            $data->save();
+            return response()->json([
+                'success' => true,
+                'message' => 'Status berhasil diubah!'
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal mengubah status!'
+            ]);
+        }
     }
 }

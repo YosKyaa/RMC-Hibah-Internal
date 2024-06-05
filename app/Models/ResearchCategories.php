@@ -12,4 +12,8 @@ class ResearchCategories extends Model
         'id',
         'name',
     ];
+    public function researchThemes()
+    {
+        return $this->hasMany(ResearchThemes::class, 'research_category_id');
+    }
 }
