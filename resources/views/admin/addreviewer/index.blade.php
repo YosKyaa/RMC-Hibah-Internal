@@ -63,14 +63,13 @@
                         <thead>
                             <tr>
                                 <th>No.</th>
-                                <th>Nama Peneliti</th>
-                                <th>Tim Peneliti</th>
+                                <th data-priority="1">Nama Peneliti</th>
                                 <th>Judul Proposal</th>
                                 <th>Mulai Review</th>
                                 <th>Selesai Review</th>
                                 <th>Status</th>
                                 <th>Nama Reviewer</th>
-                                <th></th>
+                                <th data-priority="2"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -102,6 +101,9 @@
     <script src="{{ asset('assets/vendor/libs/datatables/buttons.bootstrap5.js') }}"></script>
     <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/select2/id.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     @if (session('msg'))
         <script type="text/javascript">
             //swall message notification
@@ -134,7 +136,8 @@
                     "defaultContent": "-",
                     "targets": "_all"
                 }],
-                columns: [{
+                columns: [
+                    {
                         render: function(data, type, row, meta) {
                             var no = (meta.row + meta.settings._iDisplayStart + 1);
                             return no;
@@ -144,20 +147,6 @@
                     {
                         render: function(data, type, row, meta) {
                             var html = row.users.username;
-                            return html;
-                        }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
-                            var html = '';
-                            if (row.proposal_teams && row.proposal_teams.length > 0) {
-                                row.proposal_teams.forEach(function(team) {
-                                    if (team.researcher) {
-                                        html += '<span class="badge bg-label-primary">' +
-                                            team.researcher.username + '</span><br>';
-                                    }
-                                });
-                            }
                             return html;
                         }
                     },
@@ -197,52 +186,72 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html =
-                                `<a class=" text-success" title="Edit" href="{{ url('admin/proposals/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>
-                            <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row
-                                .id + `\',\'` + row.name + `\')" ><i class="bx bx-trash"></i></a>`;
+                            var html = "";
+                            if (row.statuses.status === "S02") {
+                                html = `<a class=" text-success" title="Show" href="{{ url('admin/proposals/show/` + row.id + `') }}"><i class="bx bx-show"></i></a>`;
+                            } else {
+                                html = `<a class=" text-success" title="Edit" href="{{ url('admin/proposals/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>
+                                <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row.id + `\',\'` + row.name + `\')" ><i class="bx bx-trash"></i></a>`;
+                            }
                             return html;
                         },
                         "orderable": false,
                         className: "text-md-center"
                     }
                 ]
+                
             });
 
         });
 
         function DeleteId(id) {
-            swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, data can't be recovered!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        $.ajax({
-                            url: "{{ route('proposals.delete') }}",
-                            type: "DELETE",
-                            data: {
-                                "id": id,
-                                "_token": $("meta[name='csrf-token']").attr("content"),
-                            },
-                            success: function(data) {
-                                if (data['success']) {
-                                    swal(data['message'], {
-                                        icon: "success",
-                                    });
-                                    $('#datatable').DataTable().ajax.reload();
-                                } else {
-                                    swal(data['message'], {
-                                        icon: "error",
-                                    });
-                                }
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Once deleted, data can't be recovered!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+                customClass: {
+                    confirmButton: 'btn btn-primary me-1',
+                    cancelButton: 'btn btn-label-secondary'
+                },
+                buttonsStyling: false
+            }).then(function(result) {
+                if (result.value) {
+                    $.ajax({
+                        url: "{{ route('user-proposals.delete') }}",
+                        type: "DELETE",
+                        data: {
+                            "id": id,
+                            "_token": $("meta[name='csrf-token']").attr("content"),
+                        },
+                        success: function(data) {
+                            if (data['success']) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Deleted!',
+                                    text: 'Your file has been deleted.',
+                                    customClass: {
+                                        confirmButton: 'btn btn-success'
+                                    }
+                                });
+                                $('#datatable').DataTable().ajax.reload();
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error!',
+                                    text: 'An error occurred while deleting the file.',
+                                    customClass: {
+                                        confirmButton: 'btn btn-success'
+                                    }
+                                });
                             }
-                        })
-                    }
-                })
+                        }
+                    })
+                }
+            })
         }
     </script>
 @endsection

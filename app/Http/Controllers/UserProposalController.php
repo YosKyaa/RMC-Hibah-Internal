@@ -128,7 +128,7 @@ class UserProposalController extends Controller
                 'tkt_types_id' => $request->tkt_type,
                 'main_research_targets_id' => $request->main_research_target,
                 'notes' => $request->notes,
-                'status_id' => "S01",
+                'status_id' => "S00",
             ]);
 
             // Add research team members
@@ -187,6 +187,23 @@ class UserProposalController extends Controller
         }
     }
 
+    public function approve(Request $request)
+    {
+        $data = Proposal::find($request->id);
+        if ($data) {
+            $data->status_id = "S01";
+            $data->save();
+            return response()->json([
+                'success' => true,
+                'message' => 'Status berhasil diubah!'
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal mengubah status!'
+            ]);
+        }
+    }
     public function timeline()
     {
         return view('proposals.timeline');

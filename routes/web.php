@@ -59,6 +59,7 @@ Route::group(['prefix' => 'user-proposals'], function () {
     Route::get('/edit/{id}', [UserProposalController::class, 'edit'])->name('user-proposals.edit');
     Route::put('/update/{id}', [UserProposalController::class, 'update'])->name('user-proposals.update');
     Route::get('/category/by_id', [UserProposalController::class, 'category_by_id'])->name('DOC.get_category_by_id');
+    Route::post('/approve', [UserProposalController::class, 'approve'])->name('user-proposals.approve');
 });
 
 
