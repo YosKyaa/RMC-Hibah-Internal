@@ -259,7 +259,7 @@
                     {
                         render: function(data, type, row, meta) {
                             var html = '';
-                            if (row.statuses.status === 'S01') {
+                            if (row.statuses.id === 'S01') {
                                 html =
                                     `<a class="text-warning" title="Show" href="{{ url('admin/proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>`;
                             } else {
