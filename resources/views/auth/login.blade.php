@@ -15,7 +15,7 @@
                         </span>
                     </div>
                 <!-- /Logo -->
-                <h4>Sing up</h4>
+                <h4>Sign up</h4>
                 <div class="row">
                     <div class="my-2">
                         <div class="mb-2">Create your account with</div>
@@ -68,7 +68,7 @@
                             <img src="{{ asset('assets/img/CIS.png') }}" width="250">
                         </span>
                     </div>
-                <h4>Sing in</h4>
+                <h4>Sign in</h4>
                      @csrf
                      <!-- email -->
                     <div class="mb-3">
