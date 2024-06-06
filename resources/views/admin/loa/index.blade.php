@@ -53,32 +53,35 @@
 
         </ul>
     </div>
-    <div class="card">
-        <div class="card-datatable table-responsive">
-            <div class="card-header flex-column flex-md-row pb-0">
-                <div class="row">
-                    <div class="col-12 pt-3 pt-md-0">
-                        <div class="col-12">
-                            <div class="row">
-                                <div class="offset-md-0 col-md-0 text-md-end text-center pt-3 pt-md-0">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <div class="card border-0">
+        <div class="card-body p-4">
+            <div class="table-responsive">
+                <div class="card-datatable table-responsive">
+                    <table class="table table-hover table-sm" id="datatable" width="100%">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Peneliti</th>
+                                <th>Judul Proposal</th>
+                                <th>LOA</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="align-middle"></tr>
+                            <tr class="align-middle"></tr>
+                            <tr class="align-middle"></tr>
+                            <tr class="align-middle"></tr>
+                            <tr class="align-middle"></tr>
+                            <tr class="align-middle"></tr>
+                            <tr class="align-middle"></tr>
+                            <tr class="align-middle"></tr>
+                            <tr class="align-middle"></tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <table class="table table-hover table-sm" id="datatable" width="75%">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama Peneliti</th>
-                        <th>Judul Proposal</th>
-                        <th>LOA</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-            </table>
         </div>
     </div>
 @endsection
