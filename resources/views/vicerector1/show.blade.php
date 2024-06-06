@@ -190,7 +190,40 @@
             </tr>
           </tbody>
         </table>
+      </div> <br>
+      <!--  -->
+      <div class="table-responsive">
+        <table class="table table-borderless border-top">
+          <thead class="border-bottom">
+            <tr>
+              <th>Instructors</th>
+              <th class="text-end">courses</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="d-flex justify-content-start align-items-center mt-lg-4">
+                  <div class="avatar me-3">
+                    <img src="../../assets/img/avatars/1.png" alt="Avatar" class="rounded-circle">
+                  </div>
+                  <div class="d-flex flex-column">
+                    <h6 class="mb-1 text-truncate">Nama peneliti/</h6>
+                    <small class="text-truncate text-muted">Business Intelligence</small>
+                  </div>
+                </div>
+              </td>
+              <td class="text-end">
+                <div class="user-progress mt-lg-4">
+                  <h6 class="mb-0">33</h6>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+    </div>
+    <!--  -->
     </div>
   </div>
 </div>
