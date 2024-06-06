@@ -261,6 +261,9 @@
                             var html = '';
                             if (row.statuses.status === 'S01') {
                                 html =
+                                    `<a class="text-warning" title="Show" href="{{ url('admin/proposals/show/` + row.id + `') }}"><i class="bx bx-show"></i></a>`;
+                            } else {
+                                html =
                                     `<a class=" text-success" title="Edit" href="{{ url('admin/proposals/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>
                                 <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` +
                                     row
@@ -269,10 +272,6 @@
                                     <a class="text-success" title="Approve" style="cursor:pointer" onclick="approveId(\'` +
                                     row.id +
                                     `\')"><i class="bx bx-check"></i></a>`;
-
-                            } else {
-                                html =
-                                    `<a class="text-warning" title="Show" href="{{ url('admin/proposals/show/` + row.id + `') }}"><i class="bx bx-show"></i></a>`;
                             }
                             return html;
                         },
