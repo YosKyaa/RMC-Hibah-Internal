@@ -122,6 +122,7 @@ Route::group(['prefix' => 'vicerector1'], function () { //vicerector1
     Route::get('/edit/{id}', [ViceRector1Controller::class, 'edit'])->name('vicerector1.edit');
     Route::post('/approve', [ViceRector1Controller::class, 'approve'])->name('vicerector1.approve');
     Route::post('/disapprove', [ViceRector1Controller::class, 'disapprove'])->name('vicerector1.disapprove');
+    Route::any('/show', [ViceRector1Controller::class, 'show'])->name('vicerector1.show');
 });
 
 Route::group(['prefix' => 'vicerector2'], function () { //vicerector2

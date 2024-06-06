@@ -108,7 +108,7 @@
                                             <span class="badge bg-label-primary">{{ $p->tktType->title }}</span>
                                             <span class="badge bg-label-primary">{{ $p->mainResearchTarget->title }}</span>
                                         </div>
-                                        <a href="app-academy-course-details.html" class="h5">
+                                        <a href="../vicerector1/show" class="h5">
                                             {{ ucfirst($p->users->username) }}</a>
                                         <p href="app-academy-course-details.html" class="mt-2">{{ $p->research_title }}
                                         </p>

@@ -17,6 +17,12 @@ class ViceRector1Controller extends Controller
         return view('vicerector1.index', compact('proposals'));
     }
 
+    public function show()
+    {
+        $proposals = Proposal::where('approval_admin_fundfinalization', true)->get();
+        return view('vicerector1.show', compact('proposals'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
