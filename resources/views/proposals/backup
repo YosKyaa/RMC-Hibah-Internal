@@ -1,0 +1,14 @@
+  {
+                        render: function(data, type, row, meta) {
+                            var html = '';
+                            if (row.proposal_teams && row.proposal_teams.length > 0) {
+                                row.proposal_teams.forEach(function(team) {
+                                    if (team.researcher) {
+                                        html += '<span class="badge bg-label-primary">' +
+                                            team.researcher.username + '</span><br>';
+                                    }
+                                });
+                            }
+                            return html;
+                        }
+                    },

@@ -134,6 +134,35 @@
                         Progres </a></li>
             </ul>
         </div>
+
+
+        <div class="card border-0">
+            <div class="card-body p-4">
+                <div class="table-responsive">
+                    <div class="card-datatable table-responsive">
+                        <table class="table table-hover table-sm" id="datatable" width="100%">
+                            <thead>
+                                <tr>
+                                    <th data-priority="1">Judul Proposal</th>
+                                    <th>Jenis Penelitian</th>
+                                    <th data-priority="3">TopiK Penelitian</th>
+                                    <th>Status</th>
+                                    <th data-priority="2"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="card">
             <div class="card-datatable table-responsive">
                 <div class="card-header flex-column flex-md-row pb-0">
@@ -148,16 +177,9 @@
                         </div>
                     </div>
                 </div>
-                <table class="table table-hover table-sm" id="datatable" width="75%">
+                <table class="table table-hover table-sm" id="datatable" width="100%">
                     <thead>
                         <tr>
-                            <th>Jenis Penelitian</th>
-                            <th>TopiK Penelitian</th>
-                            <th>Judul Proposal</th>
-                            <th>Tim Peneliti</th>
-                            <th>Status</th>
-                            <th>Reviewer</th>
-                            <th>Aksi</th>
                         </tr>
                     </thead>
                 </table>
@@ -176,6 +198,7 @@
     <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if (session('proposals'))
         <script type="text/javascript">
             //swall message notification
@@ -193,7 +216,7 @@
                 processing: true,
                 serverSide: true,
                 ordering: false,
-                searching: true,
+                searching: false,
                 language: {
                     searchPlaceholder: 'Search..',
                     // url: "{{ asset('assets/vendor/libs/datatables/id.json') }}"
@@ -210,6 +233,12 @@
                 }],
                 columns: [{
                         render: function(data, type, row, meta) {
+                            var html = row.research_title;
+                            return html;
+                        }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
                             var html = row.research_type.title;
                             return html;
                         }
@@ -222,26 +251,6 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.research_title;
-                            return html;
-                        }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
-                            var html = '';
-                            if (row.proposal_teams && row.proposal_teams.length > 0) {
-                                row.proposal_teams.forEach(function(team) {
-                                    if (team.researcher) {
-                                        html += '<span class="badge bg-label-primary">' +
-                                            team.researcher.username + '</span><br>';
-                                    }
-                                });
-                            }
-                            return html;
-                        }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
                             var html =
                                 `<span class="badge bg-${row.statuses.color}">${row.statuses.status}</span>`;
                             return html;
@@ -249,19 +258,22 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = "Belum ada reviewer";
-                            if (row.reviewer != null) {
-                                html = row.reviewer.username;
+                            var html = '';
+                            if (row.statuses.status === 'S01') {
+                                html =
+                                    `<a class=" text-success" title="Edit" href="{{ url('admin/proposals/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>
+                                <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` +
+                                    row
+                                    .id + `\',\'` + row.name +
+                                    `\')" ><i class="bx bx-trash"></i></a>
+                                    <a class="text-success" title="Approve" style="cursor:pointer" onclick="approveId(\'` +
+                                    row.id +
+                                    `\')"><i class="bx bx-check"></i></a>`;
+
+                            } else {
+                                html =
+                                    `<a class="text-warning" title="Show" href="{{ url('admin/proposals/show/` + row.id + `') }}"><i class="bx bx-show"></i></a>`;
                             }
-                            return html;
-                        }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
-                            var html =
-                                `<a class=" text-success" title="Edit" href="{{ url('admin/proposals/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>
-                            <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row
-                                .id + `\',\'` + row.name + `\')" ><i class="bx bx-trash"></i></a>`;
                             return html;
                         },
                         "orderable": false,
@@ -272,38 +284,105 @@
 
         });
 
-        function DeleteId(id) {
-            swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, data can't be recovered!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        $.ajax({
-                            url: "{{ route('user-proposals.delete') }}",
-                            type: "DELETE",
-                            data: {
-                                "id": id,
-                                "_token": $("meta[name='csrf-token']").attr("content"),
-                            },
-                            success: function(data) {
-                                if (data['success']) {
-                                    swal(data['message'], {
-                                        icon: "success",
-                                    });
-                                    $('#datatable').DataTable().ajax.reload();
-                                } else {
-                                    swal(data['message'], {
-                                        icon: "error",
-                                    });
-                                }
+
+        function approveId(id) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You will Submit this proposal!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Submit it!',
+                customClass: {
+                    confirmButton: 'btn btn-primary me-1',
+                    cancelButton: 'btn btn-label-secondary'
+                },
+                buttonsStyling: false
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ route('user-proposals.approve') }}",
+                        type: "POST",
+                        data: {
+                            id: id,
+                            _token: "{{ csrf_token() }}" // Include CSRF token for security
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Sumbitted!',
+                                    text: 'The Proposals has been submitted.',
+                                    customClass: {
+                                        confirmButton: 'btn btn-success'
+                                    }
+                                });
+                                $('#datatable').DataTable().ajax.reload();
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error!',
+                                    text: data.error,
+                                    customClass: {
+                                        confirmButton: 'btn btn-danger'
+                                    }
+                                });
                             }
-                        })
-                    }
-                })
+                        }
+                    });
+                }
+            });
+        }
+
+        function DeleteId(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Once deleted, data can't be recovered!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+                customClass: {
+                    confirmButton: 'btn btn-primary me-1',
+                    cancelButton: 'btn btn-label-secondary'
+                },
+                buttonsStyling: false
+            }).then(function(result) {
+                if (result.value) {
+                    $.ajax({
+                        url: "{{ route('user-proposals.delete') }}",
+                        type: "DELETE",
+                        data: {
+                            "id": id,
+                            "_token": $("meta[name='csrf-token']").attr("content"),
+                        },
+                        success: function(data) {
+                            if (data['success']) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Deleted!',
+                                    text: 'Your file has been deleted.',
+                                    customClass: {
+                                        confirmButton: 'btn btn-success'
+                                    }
+                                });
+                                $('#datatable').DataTable().ajax.reload();
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error!',
+                                    text: 'An error occurred while deleting the file.',
+                                    customClass: {
+                                        confirmButton: 'btn btn-success'
+                                    }
+                                });
+                            }
+                        }
+                    })
+                }
+            })
         }
     </script>
 @endsection
