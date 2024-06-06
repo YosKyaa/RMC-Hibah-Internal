@@ -54,33 +54,34 @@
 
         </ul>
         <div class="card border-0">
-        <div class="card-body p-4">
-            <div class="table-responsive">
-                <div class="card-datatable table-responsive">
-                    <table class="table table-hover table-sm" id="datatable" width="100%">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama Peneliti</th>
-                                <th>Judul Penelitian</th>
-                                <th>Jenis Penelitian</th>
-                                <th>Total Dana</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                        </tbody>
-                    </table>
+            <div class="card-body p-4">
+                <div class="table-responsive">
+                    <div class="card-datatable table-responsive">
+                        <table class="table table-hover table-sm" id="datatable" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Peneliti</th>
+                                    <th>Judul Penelitian</th>
+                                    <th>Jenis Penelitian</th>
+                                    <th>Total Dana</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
