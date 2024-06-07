@@ -18,6 +18,7 @@
             width: 100%;
         }
     </style>
+
 @endsection
 
 @section('content')
@@ -91,6 +92,7 @@
     <script src="{{ asset('assets/vendor/libs/datatables/buttons.bootstrap5.js') }}"></script>
     <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if (session('msg'))
         <script type="text/javascript">
             //swall message notification
@@ -174,7 +176,8 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.research_title;
+                            var html =
+                                `<a href="${row.documents[0].proposal_doc}" style="color: black;">${row.research_title}</a>`;
                             return html;
                         }
                     },
@@ -211,24 +214,20 @@
                                     `<a class="text-success" title="Approve" style="cursor:pointer" onclick="approveId(\'` +
                                     row.id +
                                     `\')"><i class="bx bx-check"></i></a>
-                                         <a class="text-danger" title="Disapprove" style="cursor:pointer" onclick="disapproveId(\'` +
+                                     <a class="text-danger" title="Disapprove" style="cursor:pointer" onclick="disapproveId(\'` +
                                     row.id + `\')"><i class="bx bx-x"></i></a>`;
+                            } else if (row.statuses.id === 'S05' || row.statuses.id === 'S07') {
+                                html +=
+                                    `<a class="text-warning" title="Show" href="{{ url('reviewers/show/${row.id}') }}"><i class="bx bx-show"></i></a>`;
                             } else {
-                                if (row.documents && row.documents.length > 0) {
-                                    row.documents.forEach(function(document) {
-                                        html +=
-                                            `<a href="${document.proposal_doc}" class="bx bx-import" title="Download"></a><br>`;
-                                    });
-                                }
                                 html +=
                                     `<a class="text-success" title="Edit" style="cursor:pointer" onclick="editId(\'` +
                                     row.id +
                                     `\')"><i class="bx bxs-edit"></i></a>
-                                         <a class="text-danger" title="Hapus" style="cursor:pointer" onclick="deleteId(\'` +
-                                    row
-                                    .id +
+                                     <a class="text-danger" title="Hapus" style="cursor:pointer" onclick="deleteId(\'` +
+                                    row.id +
                                     `\')"><i class="bx bx-trash"></i></a>
-                                         <a class="text-primary" title="Diterima" style="cursor:pointer" onclick="markAsReviewed(\'` +
+                                     <a class="text-success" title="Diterima" style="cursor:pointer" onclick="markAsReviewed(\'` +
                                     row.id + `\')"><i class="bx bx-check"></i></a>`;
                             }
                             return html;
@@ -276,115 +275,175 @@
         }
 
         function markAsReviewed(id) {
-            swal({
-                    title: "Apakah ingin melanjutkan presentasi?",
-                    icon: "warning",
-                    buttons: ["Batal", "Ya"],
-                    dangerMode: true,
-                })
-                .then((confirmed) => {
-                    if (confirmed) {
-                        $.ajax({
-                            url: "{{ route('reviewers.presentation') }}",
-                            type: 'POST',
-                            data: {
-                                id: id,
-                                _token: '{{ csrf_token() }}'
-                            },
-                            success: function(response) {
-                                if (response.success) {
-                                    swal('Status berhasil diubah!', {
-                                        icon: "success",
-                                    });
-                                    // Reload the DataTable to reflect the changes
-                                    $('#datatable').DataTable().ajax.reload();
-                                } else {
-                                    swal('Gagal mengubah status!', {
-                                        icon: "error",
-                                    });
-                                }
-                            },
-                            error: function(xhr, status, error) {
-                                swal('Terjadi kesalahan saat mengubah status!', {
-                                    icon: "error",
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You will Approve this proposal for presentation!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Approve it!',
+                customClass: {
+                    confirmButton: 'btn btn-primary me-1',
+                    cancelButton: 'btn btn-label-secondary'
+                },
+                buttonsStyling: false
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ route('reviewers.presentation') }}",
+                        type: "POST",
+                        data: {
+                            id: id,
+                            _token: "{{ csrf_token() }}" // Include CSRF token for security
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Approved!',
+                                    text: 'The proposal has been Approved.',
+                                    customClass: {
+                                        confirmButton: 'btn btn-success'
+                                    }
+                                });
+                                $('#datatable').DataTable().ajax.reload();
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error!',
+                                    text: data.error,
+                                    customClass: {
+                                        confirmButton: 'btn btn-danger'
+                                    }
                                 });
                             }
-                        });
-                    }
-                });
+                        }
+                    });
+                }
+            });
         }
 
         function approveId(id) {
-            swal({
-                    title: "Apakah data sudah sesuai dan akan di approve?",
-                    icon: "warning",
-                    buttons: ["Batal", "Ya"],
-                    dangerMode: true,
-                })
-                .then((confirmed) => {
-                    if (confirmed) {
-                        $.ajax({
-                            url: "{{ route('reviewers.approve') }}",
-                            type: 'POST',
-                            data: {
-                                id: id,
-                                _token: '{{ csrf_token() }}'
-                            },
-                            success: function(response) {
-                                if (response.success) {
-                                    swal('Pengajuan berhasil disetujui!', {
-                                        icon: "success",
-                                    });
-                                    // Reload the DataTable to reflect the changes
-                                    $('#datatable').DataTable().ajax.reload();
-                                } else {
-                                    swal('Gagal menyetujui pengajuan!', {
-                                        icon: "error",
-                                    });
-                                }
-                            },
-                            error: function(xhr, status, error) {
-                                swal('Terjadi kesalahan saat menyetujui pengajuan!', {
-                                    icon: "error",
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You want to approve this Proposals!",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, approve it!',
+                customClass: {
+                    confirmButton: 'btn btn-primary me-1',
+                    cancelButton: 'btn btn-label-secondary'
+                },
+                buttonsStyling: false
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ route('reviewers.approve') }}",
+                        type: "POST",
+                        data: {
+                            id: id,
+                            _token: "{{ csrf_token() }}" // Include CSRF token for security
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Approved!',
+                                    text: 'The Proposals has been approved.',
+                                    customClass: {
+                                        confirmButton: 'btn btn-success'
+                                    }
+                                }).then(function() {
+                                    location.reload(); // Reload the page after approval
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error!',
+                                    text: response.message,
+                                    customClass: {
+                                        confirmButton: 'btn btn-danger'
+                                    }
                                 });
                             }
-                        });
-                    }
-                });
+                        },
+                        error: function(xhr, status, error) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error!',
+                                text: 'An error occurred while approving the Proposals.',
+                                customClass: {
+                                    confirmButton: 'btn btn-danger'
+                                }
+                            });
+                        }
+                    });
+                }
+            });
         }
 
         function disapproveId(id) {
-            swal({
-                    title: "Apakah Pengajuan Ini ditolak?",
-                    text: "Jika pengajuan ditolak data tidak dapat dikembalikan!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willReject) => {
-                    if (willReject) {
-                        $.ajax({
-                            url: "{{ route('reviewers.reject') }}",
-                            type: "POST",
-                            data: {
-                                "id": id,
-                                "_token": $("meta[name='csrf-token']").attr("content"),
-                            },
-                            success: function(data) {
-                                if (data['success']) {
-                                    swal(data['message'], {
-                                        icon: "success",
-                                    });
-                                    $('#datatable').DataTable().ajax.reload();
-                                } else {
-                                    swal(data['message'], {
-                                        icon: "error",
-                                    });
-                                }
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You want to disapprove this Proposals!",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, disapprove it!',
+                customClass: {
+                    confirmButton: 'btn btn-danger me-1',
+                    cancelButton: 'btn btn-label-secondary'
+                },
+                buttonsStyling: false
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ route('vicerector1.disapprove') }}",
+                        type: "POST",
+                        data: {
+                            id: id,
+                            _token: "{{ csrf_token() }}" // Include CSRF token for security
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Disapproved!',
+                                    text: 'The Proposals has been disapproved.',
+                                    customClass: {
+                                        confirmButton: 'btn btn-success'
+                                    }
+                                }).then(function() {
+                                    location.reload(); // Reload the page after disapproval
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error!',
+                                    text: response.message,
+                                    customClass: {
+                                        confirmButton: 'btn btn-danger'
+                                    }
+                                });
                             }
-                        })
-                    }
-                })
+                        },
+                        error: function(xhr, status, error) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error!',
+                                text: 'An error occurred while disapproving the Proposals.',
+                                customClass: {
+                                    confirmButton: 'btn btn-danger'
+                                }
+                            });
+                        }
+                    });
+                }
+            });
         }
     </script>
 

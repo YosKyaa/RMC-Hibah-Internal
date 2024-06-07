@@ -162,29 +162,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="card">
-            <div class="card-datatable table-responsive">
-                <div class="card-header flex-column flex-md-row pb-0">
-                    <div class="row">
-                        <div class="col-12 pt-3 pt-md-0">
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class="offset-md-0 col-md-0 text-md-end text-center pt-3 pt-md-0">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <table class="table table-hover table-sm" id="datatable" width="100%">
-                    <thead>
-                        <tr>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-        </div>
     @endforeach
 
 @endsection
@@ -259,7 +236,10 @@
                     {
                         render: function(data, type, row, meta) {
                             var html = '';
-                            if (row.statuses.id === 'S01') {
+                            if (row.statuses.id === 'S01' || row.statuses.id === 'S02' || row
+                                .statuses.id === 'S04' || row.statuses.id === 'S05' || row.statuses
+                                .id === 'S06' || row.statuses.id === 'S07' || row.statuses.id ===
+                                'S08') {
                                 html =
                                     `<a class="text-warning" title="Show" href="{{ url('admin/proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>`;
                             } else {

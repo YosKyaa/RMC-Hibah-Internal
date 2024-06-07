@@ -61,12 +61,12 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Peneliti</th>
+                                <th data-priority="1">Nama Peneliti</th>
                                 <th>Tim Penelitian</th>
-                                <th>Judul Proposal</th>
-                                <th>Tanggal Presentasi</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th data-priority="4">Judul Proposal</th>
+                                <th data-priority="5">Tanggal Presentasi</th>
+                                <th >Status</th>
+                                <th data-priority="3"></th>
                             </tr>
                         </thead>
                         <tbody>

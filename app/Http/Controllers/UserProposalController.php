@@ -59,7 +59,10 @@ class UserProposalController extends Controller
                 },
                 'proposalTeams.researcher' => function ($query) {
                     $query->select('id', 'username');
-                }
+                },
+                'documents' => function ($query) {
+                    $query->select('id', 'proposals_id','proposal_doc', 'doc_type_id', 'created_by');
+                },
             ])
             ->select('*')
             ->orderBy('id');

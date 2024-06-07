@@ -193,12 +193,16 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html =
-                                `<a class="text-success" title="Approve" style="cursor:pointer" onclick="approveId(\'` +
-                                row.id +
-                                `\')"><i class="bx bx-check"></i></a>
-                                <a class="text-danger" title="Disapprove" style="cursor:pointer" onclick="disapproveId(\'` +
-                                row.id + `\')"><i class="bx bx-x"></i></a>`;
+                            var html = '';
+                            if (row.approval_admin_fundfinalization) {
+                                html = `<a class="text-success" title="Show" style="cursor:pointer"><i class="bx bx-show"></i></a>`;
+                            } else {
+                                html = `<a class="text-success" title="Approve" style="cursor:pointer" onclick="approveId(\'` +
+                                    row.id +
+                                    `\')"><i class="bx bx-check"></i></a>
+                                    <a class="text-danger" title="Disapprove" style="cursor:pointer" onclick="disapproveId(\'` +
+                                    row.id + `\')"><i class="bx bx-x"></i></a>`;
+                            }
                             return html;
                         },
                         "orderable": false,

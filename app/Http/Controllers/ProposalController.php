@@ -37,11 +37,17 @@ class ProposalController extends Controller
             },
             'proposalTeams.researcher' => function ($query) {
                 $query->select('id', 'username');
-            }
+            },
+            'documents' => function ($query) {
+                $query->select('id', 'proposals_id','proposal_doc', 'doc_type_id', 'created_by');
+            },
         ])
         ->select('*')
+        ->whereHas('statuses', function ($query) {
+            $query->where('id', 'S01',)
+            ->orWhere('id', 'S02');
+        })
         ->orderBy('id');
-
         return DataTables::of($data)
             ->filter(function ($instance) use ($request) {
             if (!empty($request->get('search'))) {
@@ -90,7 +96,33 @@ class ProposalController extends Controller
 
         return redirect()->route('proposals.index')->with('Data,', 'Data berhasil diperbarui.');
     }
+    public function edit_add($id)
+    {
+        $users = User::all();
+        $proposals = Proposal::findOrFail($id);
+        return view('admin.addreviewer.edit', compact('proposals','users'));
+    }
+    public function update_add(Request $request, $id)
+    {
+        $request->validate([
+            'review_date_start' => ['date','required'],
+            'review_date_end' => ['date','required'],
+            'reviewer_id' => 'required|exists:users,id',
+        ]);
 
+        $proposals = Proposal::findOrFail($id);
+        $proposals->update([
+            'review_date_start' => $request->review_date_start,
+            'review_date_end' => $request->review_date_end,
+            'reviewer_id' => $request->reviewer_id,
+        ]);
+
+        // Assign reviewer role
+        $reviewer = User::findOrFail($request->reviewer_id);
+        $reviewer->assignRole('reviewer');
+
+        return redirect()->route('proposals.index')->with('Data,', 'Data berhasil diperbarui.');
+    }
 
     /**
      * Remove the specified resource from storage.

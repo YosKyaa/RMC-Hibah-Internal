@@ -151,7 +151,8 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.research_title;
+                            var html =
+                                `<a href="${row.documents[0].proposal_doc}" style="color: black;">${row.research_title}</a>`;
                             return html;
                         }
                     },
@@ -188,7 +189,8 @@
                             var html = "";
                             if (row.statuses.id === "S02") {
                                 html =
-                                    `<a class=" text-success" title="Show" href="{{ url('admin/proposals/show/` + row.id + `') }}"><i class="bx bx-show"></i></a>`;
+                                    `<a class=" text-success" title="Show" href="{{ url('admin/proposals/show/` + row.id + `') }}"><i class="bx bx-show"></i></a>
+                                    <a class=" text-success" title="Edit" href="{{ url('admin/proposals/edit_add/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>`;
                             } else {
                                 html = `<a class=" text-success" title="Edit" href="{{ url('admin/proposals/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>
                                 <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` +

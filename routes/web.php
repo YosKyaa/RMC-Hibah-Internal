@@ -73,6 +73,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::delete('/delete', [ProposalController::class, 'delete'])->name('proposals.delete');
         Route::get('/edit/{id}', [ProposalController::class, 'edit'])->name('proposals.edit');
         Route::put('/update/{id}', [ProposalController::class, 'update'])->name('proposals.update');
+        Route::get('/edit_add/{id}', [ProposalController::class, 'edit_add'])->name('proposals.edit_add');
+        Route::put('/update_add/{id}', [ProposalController::class, 'update_add'])->name('proposals.update_add');
     });
 
     Route::group(['prefix' => 'presentation'], function () { //Presentasi
@@ -114,6 +116,7 @@ Route::group(['prefix' => 'reviewer'], function () { //reviewers
     Route::post('/approve', [ReviewerController::class, 'approve'])->name('reviewers.approve');
     Route::post('/reject', [ReviewerController::class, 'reject'])->name('reviewers.reject');
     Route::get('/edit/{id}', [ReviewerController::class, 'edit'])->name('reviewers.edit');
+
 });
 
 Route::group(['prefix' => 'vicerector1'], function () { //vicerector1
