@@ -250,7 +250,7 @@ public function show($id)
     {
         $proposals = Proposal::findOrFail($id);
         $documentPath = $proposals->documents->first()->proposal_doc;
-        $documentUrl = Storage::url($documentPath);
+        $documentUrl = url($documentPath);
         return view('proposals.show', compact('proposals', 'documentUrl'));
     }
     /**
