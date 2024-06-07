@@ -46,13 +46,13 @@
         <li class="menu-item {{ request()->segment(1) == 'vicerector1' ? 'active' : '' }}">
             <a href="{{ route('vicerector1.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-book-reader"></i>
-                <div data-i18n="Dashboards">VR1 Approval</div>
+                <div data-i18n="Dashboards">VR I Approval</div>
             </a>
         </li>
         <li class="menu-item {{ request()->segment(1) == 'vicerector2' ? 'active' : '' }}">
             <a href="{{ route('vicerector2.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-book-reader"></i>
-                <div data-i18n="Dashboards">VR2 Approval</div>
+                <div data-i18n="Dashboards">VR II Approval</div>
             </a>
         </li>
         <li class="menu-item {{ request()->segment(1) == 'proposals' ? 'active' : '' }}">

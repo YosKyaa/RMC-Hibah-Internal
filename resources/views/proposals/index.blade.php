@@ -241,7 +241,7 @@
                                 .id === 'S06' || row.statuses.id === 'S07' || row.statuses.id ===
                                 'S08') {
                                 html =
-                                    `<a class="text-warning" title="Show" href="{{ url('admin/proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>`;
+                                    `<a class="text-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>`;
                             } else {
                                 html =
                                     `<a class="text-success" title="Edit" href="{{ url('admin/proposals/edit/${row.id}') }}"><i class="bx bxs-edit"></i></a>

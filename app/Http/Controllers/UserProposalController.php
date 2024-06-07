@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
 use Auth;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
 class UserProposalController extends Controller
@@ -245,7 +246,13 @@ class UserProposalController extends Controller
         return redirect()->route('user-proposals.index')->with('proposals', 'Data BERHASIL diajukan!');
     }
 
-
+public function show($id)
+    {
+        $proposals = Proposal::findOrFail($id);
+        $documentPath = $proposals->documents->first()->proposal_doc;
+        $documentUrl = Storage::url($documentPath);
+        return view('proposals.show', compact('proposals', 'documentUrl'));
+    }
     /**
      * Remove the specified resource from storage.
      */

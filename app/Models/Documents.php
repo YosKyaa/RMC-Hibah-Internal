@@ -24,6 +24,7 @@ class Documents extends Model
         return $this->belongsTo(DocTypes::class, 'doc_type_id');
     }
 
+
     public function User()
     {
         return $this->belongsTo(User::class, 'created_by');
