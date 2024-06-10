@@ -121,7 +121,7 @@ Route::group(['prefix' => 'reviewer'], function () { //reviewers
 });
 
 Route::group(['prefix' => 'vicerector1'], function () { //vicerector1
-    Route::any('/', [ViceRector1Controller::class, 'index'])->name('vicerector1.index')->middleware('auth');
+    Route::get('/', [ViceRector1Controller::class, 'index'])->name('vicerector1.index')->middleware('auth');
     Route::get('/data', [ViceRector1Controller::class, 'data'])->name('vicerector1.data');
     Route::delete('/delete', [ViceRector1Controller::class, 'delete'])->name('vicerector1.delete');
     Route::get('/edit/{id}', [ViceRector1Controller::class, 'edit'])->name('vicerector1.edit');

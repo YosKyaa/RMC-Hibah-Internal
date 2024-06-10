@@ -13,7 +13,7 @@ class ViceRector1Controller extends Controller
      */
     public function index()
     {
-        $proposals = Proposal::where('approval_admin_fundfinalization', true)->get();
+        $proposals = Proposal::where('approval_admin_fundfinalization', true)->latest()->filter(request(['search']))->paginate(9);
         return view('vicerector1.index', compact('proposals'));
     }
 

@@ -12,4 +12,8 @@ class StudyProgram extends Model
         'id',
         'name',
     ];
+    public function user()
+    {
+        return $this->hasMany(User::class, 'study_programs_id');
+    }
 }

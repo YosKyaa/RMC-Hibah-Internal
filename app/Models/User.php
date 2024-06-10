@@ -26,10 +26,19 @@ class User extends Authenticatable
         'font_title',
         'back_title',
         'nidn',
-        'department',
-        'study_program',
+        'departments_id',
+        'study_programs_id',
+        'image',
     ];
 
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'departments_id');
+    }
+    public function studyProgram()
+    {
+        return $this->belongsTo(StudyProgram::class, 'study_programs_id');
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -51,7 +60,7 @@ class User extends Authenticatable
     ];
 
     function image()
-    { 
+    {
       $has_valid_avatar = false;
       if(env('APP_ENV') != 'local'){
         $hash = md5(strtolower(trim($this->email)));
@@ -76,7 +85,7 @@ class User extends Authenticatable
       }
     }
     public function getUserAvatarAttribute()
-    { 
+    {
       if($this->gender == 'F'){
         return asset('assets/img/avatars/user-f.png');
       } else {

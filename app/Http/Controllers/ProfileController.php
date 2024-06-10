@@ -8,10 +8,12 @@ use App\Models\StudyProgram;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\File;
 
 class ProfileController extends Controller
 {
@@ -24,9 +26,10 @@ class ProfileController extends Controller
     }
     function edit(Request $request)
     {
+        $user= Auth::user();
         $studiprogram = StudyProgram::all();
         $dept = Department::all();
-        if ($request->isMethod('post')) {
+        if ($request->isMethod('POST')) {
             $this->validate($request, [
                 'email'=> ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore(Auth::user()->id, 'id')],
                 'username'=> ['nullable', 'string', 'max:255', Rule::unique('users')->ignore(Auth::user()->id, 'id')],
@@ -36,7 +39,26 @@ class ProfileController extends Controller
                 'back_title' => ['required', 'string'],
                 'study_programs_id' => ['required', 'exists:study_programs,id'],
                 'departments_id' => ['required', 'exists:departments,id'],
+                'image' => ['mimes:jpg,jpeg,png','max:5120'], // max 5MB
             ]);
+            dd($request->all());
+            $fileName = "";
+            if ($request->hasFile('image')) {
+                $ext = $request->image->extension();
+                $name = str_replace(' ', '_', $request->image->getClientOriginalName());
+                $fileName = Auth::user()->id . '_' . $name;
+                $folderName = "storage/FILE/profile/" . Carbon::now()->format('Y/m');
+                $path = public_path() . "/" . $folderName;
+                if (!File::exists($path)) {
+                    File::makeDirectory($path, 0755, true); //create folder
+                }
+                $upload = $request->image->move($path, $fileName); //upload file to folder
+                if ($upload) {
+                    $fileName = $folderName . "/" . $fileName;
+                } else {
+                    $fileName = "";
+                }
+            }
             User::where('id', Auth::user()->id)->update([
                 'name'=> $request->name,
                 'username' => $request->username,
@@ -46,10 +68,11 @@ class ProfileController extends Controller
                 'departments_id' => $request->departments_id,
                 'email'=> $request->email,
                 'nidn' => $request->nidn,
+                'image' => $fileName
             ]);
             return redirect()->route('profile.edit')->with('msg','Profil telah diperbarui!');
         }
-        return view('profile.edit', compact('studiprogram','dept'));
+        return view('profile.edit', compact('studiprogram','dept','user'));
     }
 
     /**

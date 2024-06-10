@@ -24,6 +24,19 @@ class Proposal extends Model
         'reviewer_id',
         'presentation_date',
     ];
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when(isset($filters['search']), function ($query) use ($filters) {
+            $search = $filters['search'];
+            return $query->where('research_title', 'like', '%' . $search . '%')
+                ->orWhereHas('users', function ($query) use ($search) {
+                    $query->where('username', 'like', '%' . $search . '%');
+                });
+        });
+    }
+
+
     public function users()
     {
         return $this->belongsTo(User::class, 'users_id');

@@ -18,10 +18,6 @@
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
 
-
-
-        <h4 class="py-3 mb-4"><span class="text-muted fw-light">Academy/</span> My Proposals</h4>
-
         <div class="app-academy">
             <div class="card p-0 mb-4">
                 <div class="card-body d-flex flex-column flex-md-row justify-content-between p-0 pt-4">
@@ -41,10 +37,14 @@
                             information technology,
                             programming, and data science.
                         </p>
-                        <div class="d-flex align-items-center justify-content-between app-academy-md-80">
-                            <input type="search" placeholder="Find your course" class="form-control me-2">
-                            <button type="submit" class="btn btn-primary btn-icon"><i class="bx bx-search"></i></button>
-                        </div>
+                        <form action="/vicerector1" method="GET">
+                            <div class="d-flex align-items-center justify-content-between app-academy-md-80">
+                                <input type="search" placeholder="Find proposals" name="search" class="form-control me-2"
+                                    value="{{ request('search') }}">
+                                <button type="submit" class="btn btn-primary btn-icon"><i
+                                        class="bx bx-search"></i></button>
+                            </div>
+                        </form>
                     </div>
                     <div class="app-academy-md-25 d-flex align-items-end justify-content-end">
                         <img src="../../assets/img/illustrations/pencil-rocket.png" alt="pencil rocket" height="188"
@@ -64,12 +64,6 @@
                                 class="select2 form-select select2-hidden-accessible" data-placeholder="All Courses"
                                 data-select2-id="select2_course_select" tabindex="-1" aria-hidden="true">
                                 <option value="" data-select2-id="2">All Courses</option>
-                                <option value="all courses">All Courses</option>
-                                <option value="ui/ux">UI/UX</option>
-                                <option value="seo">SEO</option>
-                                <option value="web">Web</option>
-                                <option value="music">Music</option>
-                                <option value="painting">Painting</option>
                             </select><span class="select2 select2-container select2-container--default" dir="ltr"
                                 data-select2-id="1" style="width: 127.326px;"><span class="selection"><span
                                         class="select2-selection select2-selection--single" role="combobox"
@@ -106,7 +100,8 @@
                                             <span
                                                 class="badge bg-label-primary">{{ $p->researchTopic->researchTheme->researchCategory->name }}</span>
                                             <span class="badge bg-label-primary">{{ $p->tktType->title }}</span>
-                                            <span class="badge bg-label-primary">{{ $p->mainResearchTarget->title }}</span>
+                                            <span
+                                                class="badge bg-label-primary">{{ $p->mainResearchTarget->title }}</span>
                                         </div>
                                         <a href="../vicerector1/show" class="h5">
                                             {{ ucfirst($p->users->username) }}</a>
@@ -134,7 +129,8 @@
                                             <a class="w-100 btn btn-label-primary"><i class="bx bx-sync me-2"></i>Vice
                                                 Rector II Approval</a>
                                         @else
-                                            <div class="d-flex flex-column flex-md-row gap-2 text-nowrap pe-xl-3 pe-xxl-0">
+                                            <div
+                                                class="d-flex flex-column  flex-md-row gap-2 text-nowrap pe-xl-3 pe-xxl-0">
                                                 <a class="app-academy-md-50 btn btn-label-danger me-md-2 d-flex align-items-center"
                                                     onclick="disapproveId('{{ $p->id }}')">
                                                     <i class="bx bx-x align-middle me-2" style="cursor:pointer"></i>
@@ -155,31 +151,7 @@
                         @endforeach
 
                         <nav aria-label="Page navigation" class="d-flex align-items-center justify-content-center">
-                            <ul class="pagination">
-                                <li class="page-item prev">
-                                    <a class="page-link" href="javascript:void(0);"><i
-                                            class="tf-icon bx bx-chevron-left"></i></a>
-                                </li>
-                                <li class="page-item active">
-                                    <a class="page-link" href="javascript:void(0);">1</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="javascript:void(0);">2</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="javascript:void(0);">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="javascript:void(0);">4</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="javascript:void(0);">5</a>
-                                </li>
-                                <li class="page-item next">
-                                    <a class="page-link" href="javascript:void(0);"><i
-                                            class="tf-icon bx bx-chevron-right"></i></a>
-                                </li>
-                            </ul>
+                            {{ $proposals->links() }}
                         </nav>
                     </div>
                 </div>
