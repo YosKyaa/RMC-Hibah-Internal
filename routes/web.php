@@ -33,7 +33,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('welcome');
 })->name('index');
 
 // Route::get('/dashboard', function () {
