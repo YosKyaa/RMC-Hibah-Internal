@@ -236,11 +236,15 @@
                     {
                         render: function(data, type, row, meta) {
                             var html = '';
-                            if (row.statuses.id === 'S01' || row.statuses.id === 'S02' || row
-                                .statuses.id === 'S04' || row.statuses.id === 'S05' || row.statuses
-                                .id === 'S06' || row.statuses.id === 'S07' || row.statuses.id ===
-                                'S08') {
+                            if (row.approval_vice_rector_2) {
                                 html =
+                                    `<a class="text-warning" title="Show" href="{{ url('reviewers/show/${row.id}') }}"><i class="bx bx-upload"></i></a>
+                                <a class="text-success" title="Edit" href="{{ url('admin/proposals/edit/${row.id}') }}"><i class="bx bxs-edit"></i></a>`;
+
+                            } else if (row.statuses.id === 'S01' || row.statuses.id === 'S02' || row
+                                .statuses.id === 'S04' || row.statuses.id === 'S05' || row.statuses
+                                .id === 'S06' || row.statuses.id === 'S07') {
+                                html +=
                                     `<a class="text-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>`;
                             } else {
                                 html =

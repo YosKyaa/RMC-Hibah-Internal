@@ -6,59 +6,60 @@
         <div class="container" id="container">
             <div class="form-container sign-up-container">
                 <form action="#">
-                <!-- <div class="d-flex col-lg-5 align-items-center authentication-bg p-sm-5 p-4"> -->
-            <div class="w-px-270 mx-auto text-center justify-content-center">
-                <!-- Logo -->
-                <div class="app-brand justify-content-center mb-4">
-                        <span class="app-brand-logo demo">
-                            <img src="{{ asset('assets/img/CIS.png') }}" width="250">
-                        </span>
-                    </div>
-                <!-- /Logo -->
-                <h4>Sign up</h4>
-                <div class="row">
-                    <div class="my-2">
-                        <div class="mb-2">Create your account with</div>
-                        @error('msg')
-                        <br><span class="text-danger text-center">{!! $message !!}</span>
-                        @enderror
-                    </div>
-                    <br>
-                    <div class="col-6 mb-1">
-                        <div class="btn-showcase">
-                        <a class="btn btn-outline-dark btn-block w-100" onclick="Klas2Login()" title="Single Sign-On JGU">
-                            <img style="max-height: 20px;" 
-                                src="https://s.jgu.ac.id/assets/img/favicon.png">
-                                <span>SSO JGU</span>
-                        </a>
+                    <!-- <div class="d-flex col-lg-5 align-items-center authentication-bg p-sm-5 p-4"> -->
+                    <div class="w-px-270 mx-auto text-center justify-content-center">
+                        <!-- Logo -->
+                        <div class="app-brand justify-content-center mb-4">
+                            <span class="app-brand-logo demo">
+                                <img src="{{ asset('assets/img/CIS.png') }}" width="250">
+                            </span>
                         </div>
-                    </div>
-                    <br>
-                    <div class="col-6 mb-1">
-                        <div class="btn-showcase">
-                            <a class="btn btn-outline-dark btn-block w-100" href="{{ url('login/google') }}"
-                                title="Log in with Email">
-                                <img style="max-height: 20px;"
-                                    src="https://avatars.githubusercontent.com/u/19180220?s=200&v=4">
-                                <span>Google</span>
-                            </a>
+                        <!-- /Logo -->
+                        <h4>Sign up</h4>
+                        <div class="row">
+                            <div class="my-2">
+                                <div class="mb-2">Create your account with</div>
+                                @error('msg')
+                                    <br><span class="text-danger text-center">{!! $message !!}</span>
+                                @enderror
+                            </div>
+                            <br>
+                            <div class="col-6 mb-1">
+                                <div class="btn-showcase">
+                                    <a class="btn btn-outline-dark btn-block w-100" onclick="Klas2Login()"
+                                        title="Single Sign-On JGU">
+                                        <img style="max-height: 20px;" src="https://s.jgu.ac.id/assets/img/favicon.png">
+                                        <span>SSO JGU</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="col-6 mb-1">
+                                <div class="btn-showcase">
+                                    <a class="btn btn-outline-dark btn-block w-100" href="{{ url('login/google') }}"
+                                        title="Log in with Email">
+                                        <img style="max-height: 20px;"
+                                            src="https://avatars.githubusercontent.com/u/19180220?s=200&v=4">
+                                        <span>Google</span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
+                        <br><br>
+                        <div class="divider mt-3">
+                            <div class="divider-text">© {{ date('Y') == '2022' ? date('Y') : '2022-' . date('Y') }}</div>
+                        </div>
+                        <div class="footer">
+                            <span class="mr-2">Dikembangkan oleh </span>
+                            <a href="https://itic.jgu.ac.id/" target="_blank" class="footer-link fw-bolder ml-2">ITIC
+                                JGU</a>
+                        </div>
+                        <small class="ml-4 text-center text-sm text-light sm:text-right sm:ml-0">
+                            v{{ Illuminate\Foundation\Application::VERSION }} (v{{ PHP_VERSION }})
+                        </small>
                     </div>
-                </div>
-                <br><br>
-                <div class="divider mt-3">
-                    <div class="divider-text">© {{ (date('Y')=="2022"?date('Y'):"2022-".date('Y')) }}</div>
-                </div>
-                <div class="footer">
-                    <span class="mr-2">Dikembangkan oleh </span>
-                    <a href="https://itic.jgu.ac.id/" target="_blank" class="footer-link fw-bolder ml-2">ITIC JGU</a>
-                </div>
-                <small class="ml-4 text-center text-sm text-light sm:text-right sm:ml-0">
-                    v{{ Illuminate\Foundation\Application::VERSION }} (v{{ PHP_VERSION }})
-                </small>
-            </div>
-        <!-- </div> -->
-        <!-- /Login -->
+                    <!-- </div> -->
+                    <!-- /Login -->
                 </form>
             </div>
             <div class="form-container sign-in-container">
@@ -68,16 +69,16 @@
                             <img src="{{ asset('assets/img/CIS.png') }}" width="250">
                         </span>
                     </div>
-                <h4>Sign in</h4>
-                     @csrf
-                     <!-- email -->
+                    <h4>Sign in</h4>
+                    @csrf
+                    <!-- email -->
                     <div class="mb-3">
                         <div class="field-outlined">
-				<input type="text" class="input form-control @error('email') is-invalid @enderror"
+                            <input type="text" class="input form-control @error('email') is-invalid @enderror"
                                 name="email" value="{{ old('email') }}" required autocomplete="email" required>
-				<label for="" class="label">Email</label>
-				<span class="line"></span>
-                @error('email')
+                            <label for="" class="label">Email</label>
+                            <span class="line"></span>
+                            @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -109,25 +110,25 @@
             <div class="overlay-container">
                 <div class="overlay">
                     <div class="overlay-panel overlay-left">
-                    <div class="app-brand justify-content-center mb-4">
-                    <a href="https://jgu.ac.id/" target="_blank" class="app-brand-link gap-2">
-                        <span class="app-brand-logo demo">
-                            <img src="{{asset('assets/img/jgu.png')}}" width="150">
-                        </span>
-                    </a>
-                </div>
+                        <div class="app-brand justify-content-center mb-4">
+                            <a href="https://jgu.ac.id/" target="_blank" class="app-brand-link gap-2">
+                                <span class="app-brand-logo demo">
+                                    <img src="{{ asset('assets/img/jgu.png') }}" width="150">
+                                </span>
+                            </a>
+                        </div>
                         <h1>Welcome Back!</h1>
                         <p>To keep connected with us please login with your personal info</p>
                         <button class="btn btn-outline-light" id="signIn">Sign In</button>
                     </div>
                     <div class="overlay-panel overlay-right">
-                    <div class="app-brand justify-content-center mb-4">
-                    <a href="https://jgu.ac.id/" target="_blank" class="app-brand-link gap-2">
-                        <span class="app-brand-logo demo">
-                            <img src="{{asset('assets/img/jgu.png')}}" width="150">
-                        </span>
-                    </a>
-                </div>
+                        <div class="app-brand justify-content-center mb-4">
+                            <a href="https://jgu.ac.id/" target="_blank" class="app-brand-link gap-2">
+                                <span class="app-brand-logo demo">
+                                    <img src="{{ asset('assets/img/jgu.png') }}" width="150">
+                                </span>
+                            </a>
+                        </div>
                         <h1>RMC System JGU</h1>
                         <p>Enter your personal details and start journey with us</p>
                         <button class="btn btn-outline-light" id="signUp">Sign Up</button>
@@ -199,7 +200,7 @@
             position: relative;
         }
 
-        .field-outlined > .input {
+        .field-outlined>.input {
             width: 100%;
             height: 56px;
             font-size: 16px;
@@ -207,8 +208,8 @@
             color: rgba(0, 0, 0, 0.87);
             outline: none;
         }
-        
-        .field-outlined > .label{
+
+        .field-outlined>.label {
             font-size: 16px;
             font-weight: 500;
             color: rgba(0, 0, 0, 0.6);
@@ -218,7 +219,8 @@
             top: 16px;
         }
 
-        .field-outlined > .input:focus ~ .label, .field-outlined > .input:valid ~ .label {
+        .field-outlined>.input:focus~.label,
+        .field-outlined>.input:valid~.label {
             background: #ffffff;
             top: -8px;
             left: 10px;
@@ -226,37 +228,37 @@
             padding: 0 8px;
         }
 
-        .field-outlined > .input {
+        .field-outlined>.input {
             padding: 0 16px;
             border-radius: 4px;
             border: 1px solid rgba(0, 0, 0, 0.22);
         }
 
-        .field-outlined > .input:hover {
+        .field-outlined>.input:hover {
             border-color: rgba(0, 0, 0, 0.42);
         }
 
-        .field-outlined > .input:focus {
+        .field-outlined>.input:focus {
             border: 2px solid #e1a440;
         }
 
-        .field-outlined > .input:focus ~ .label {
+        .field-outlined>.input:focus~.label {
             color: #e1a440;
         }
 
-        .field-outlined > .label {
+        .field-outlined>.label {
             left: 16px;
         }
 
-        .valid .field-outlined > input:valid {
+        .valid .field-outlined>input:valid {
             border: 2px solid #e1a440;
         }
 
-        .valid input:valid ~ label {
+        .valid input:valid~label {
             color: #e1a440;
         }
 
-        .valid input:valid ~ .line {
+        .valid input:valid~.line {
             width: 100%;
             background: #e1a440;
         }

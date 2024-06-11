@@ -45,7 +45,7 @@
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                 <a class="nav-link dropdown-toggle hide-arrow" href="" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                        <img src="{{ Auth::user()->image() }}" alt class="w-40 h-40 rounded-circle"
+                        <img src="{{ asset(Auth::user()->image) }}" alt class="w-40 h-40 rounded-circle"
                             style="object-fit: cover;">
                     </div>
                 </a>
@@ -55,7 +55,7 @@
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
                                     <div class="avatar avatar-online">
-                                        <img src="{{ Auth::user()->image() }}" class="w-40 h-40 rounded-circle"
+                                        <img src="{{ asset(Auth::user()->image) }}" class="w-40 h-40 rounded-circle"
                                             style="object-fit: cover;">
                                     </div>
                                 </div>

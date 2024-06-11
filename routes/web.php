@@ -60,6 +60,7 @@ Route::group(['prefix' => 'user-proposals'], function () {
     Route::get('/edit/{id}', [UserProposalController::class, 'edit'])->name('user-proposals.edit');
     Route::put('/update/{id}', [UserProposalController::class, 'update'])->name('user-proposals.update');
     Route::get('/category/by_id', [UserProposalController::class, 'category_by_id'])->name('DOC.get_category_by_id');
+    Route::get('/research_type_funds/{researchtypesId}', [UserProposalController::class, 'getResearchTypeFunds'])->name('get_research_type_funds');
     Route::post('/approve', [UserProposalController::class, 'approve'])->name('user-proposals.approve');
 });
 
