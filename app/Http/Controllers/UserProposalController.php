@@ -89,6 +89,11 @@ class UserProposalController extends Controller
         return response()->json($themes);
     }
 
+    public function getResearchTypeFunds($researchtypesId)
+    {
+        $funds = ResearchTypes::findOrFail($researchtypesId);
+        return response()->json(['total_funds' => $funds->total_funds]);
+    }
 
 
     public function getResearchTopicById(Request $request)

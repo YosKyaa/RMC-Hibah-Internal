@@ -32,9 +32,8 @@
                         <div class="mb-3">
                             <label class="form-label">Jenis Penelitian</label>
                             <div class="input-group input-group-merge has-validation">
-                                <select id="selectpickerBasic" @error('research_type') is-invalid @enderror
-                                    class="selectpicker w-100" name="research_type" id="research_type"
-                                    data-style="btn-default">
+                                <select @error('research_type') is-invalid @enderror class="selectpicker w-100"
+                                    name="research_type" id="research_type" data-style="btn-default">
                                     <option value="">-- Pilih Jenis Penelitian --</option>
                                     @foreach ($researchtypes as $d)
                                         <option value="{{ $d->id }}"
@@ -50,7 +49,11 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                          
+                            <label class="form-label">Total Dana</label>
+                            <input type="text" class="form-control" id="researchtypesId"
+                                aria-describedby="defaultFormControlHelp" readonly disabled />
+                            <div id="defaultFormControlHelp" class="form-text">We'll never share your details with anyone
+                                else.</div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Kategori
@@ -285,4 +288,25 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $('#research_type').change(function() {
+                var researchtypesId = $(this).val();
+
+                // Kirim AJAX request untuk mendapatkan harga paket
+                $.ajax({
+                    url: '/user-proposals/research_type_funds/' +
+                        researchtypesId, // Ganti URL dengan endpoint yang sesuai
+                    type: 'GET',
+                    success: function(response) {
+                        $('#researchtypesId').val(response.total_funds);
+                    },
+                    error: function(xhr) {
+                        console.log(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+
 @endsection

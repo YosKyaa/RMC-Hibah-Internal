@@ -37,11 +37,11 @@ class ProfileController extends Controller
                 'nidn' => ['required', 'string'],
                 'front_title' => ['required', 'string'],
                 'back_title' => ['required', 'string'],
-                'study_programs_id' => ['required', 'exists:study_programs,id'],
-                'departments_id' => ['required', 'exists:departments,id'],
+                'study_programs' => ['required', 'exists:study_programs,id'],
+                'department' => ['required', 'exists:departments,id'],
                 'image' => ['mimes:jpg,jpeg,png','max:5120'], // max 5MB
             ]);
-            dd($request->all());
+            // dd($request->all());
             $fileName = "";
             if ($request->hasFile('image')) {
                 $ext = $request->image->extension();
@@ -64,8 +64,8 @@ class ProfileController extends Controller
                 'username' => $request->username,
                 'front_title' => $request->front_title,
                 'back_title' => $request->back_title,
-                'study_programs_id' => $request->study_programs_id,
-                'departments_id' => $request->departments_id,
+                'study_program_id' => $request->study_programs,
+                'departments_id' => $request->department,
                 'email'=> $request->email,
                 'nidn' => $request->nidn,
                 'image' => $fileName
