@@ -6,6 +6,7 @@ use App\Models\Proposal;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use DB;
 
 class ProposalController extends Controller
 {
@@ -14,9 +15,13 @@ class ProposalController extends Controller
      */
     public function index()
     {
-        $proposals = Proposal::all();
-        $users = User::all();
-        return view('admin.addreviewer.index', compact('proposals','users'));
+        $proposalApproved = Proposal::where('approval_reviewer', true)->count();
+        $proposalDisapprove = Proposal::where('status_id', '=', "S04")->count();
+        $proposalCount = Proposal::count();
+        $lecturers = User::role('lecture')->get();
+        $reviewers = User::role('reviewer')->get();
+        $totalUsers = $lecturers->concat($reviewers)->count();
+        return view('admin.index', compact( 'totalUsers', 'proposalCount', 'proposalApproved', 'proposalDisapprove'));
     }
 
     /**
@@ -43,10 +48,6 @@ class ProposalController extends Controller
             },
         ])
         ->select('*')
-        ->whereHas('statuses', function ($query) {
-            $query->where('id', 'S01',)
-            ->orWhere('id', 'S02');
-        })
         ->orderBy('id');
         return DataTables::of($data)
             ->filter(function ($instance) use ($request) {
@@ -66,80 +67,5 @@ class ProposalController extends Controller
     {
         $proposals = Proposal::select('*');
         return DataTables::of($proposals)->make(true);
-    }
-
-    public function edit($id)
-    {
-        $users = User::all();
-        $proposals = Proposal::findOrFail($id);
-        return view('admin.addreviewer.edit', compact('proposals','users'));
-    }
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'review_date_start' => ['date','required'],
-            'review_date_end' => ['date','required'],
-            'reviewer_id' => 'required|exists:users,id',
-        ]);
-
-        $proposals = Proposal::findOrFail($id);
-        $proposals->update([
-            'review_date_start' => $request->review_date_start,
-            'review_date_end' => $request->review_date_end,
-            'reviewer_id' => $request->reviewer_id,
-            'status_id' => 'S02'
-        ]);
-
-        // Assign reviewer role
-        $reviewer = User::findOrFail($request->reviewer_id);
-        $reviewer->assignRole('reviewer');
-
-        return redirect()->route('proposals.index')->with('Data,', 'Data berhasil diperbarui.');
-    }
-    public function edit_add($id)
-    {
-        $users = User::all();
-        $proposals = Proposal::findOrFail($id);
-        return view('admin.addreviewer.edit', compact('proposals','users'));
-    }
-    public function update_add(Request $request, $id)
-    {
-        $request->validate([
-            'review_date_start' => ['date','required'],
-            'review_date_end' => ['date','required'],
-            'reviewer_id' => 'required|exists:users,id',
-        ]);
-
-        $proposals = Proposal::findOrFail($id);
-        $proposals->update([
-            'review_date_start' => $request->review_date_start,
-            'review_date_end' => $request->review_date_end,
-            'reviewer_id' => $request->reviewer_id,
-        ]);
-
-        // Assign reviewer role
-        $reviewer = User::findOrFail($request->reviewer_id);
-        $reviewer->assignRole('reviewer');
-
-        return redirect()->route('proposals.index')->with('Data,', 'Data berhasil diperbarui.');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function delete(Request $request){
-        $data = Proposal::find($request->id);
-        if($data){
-            $data->delete();
-            return response()->json([
-                'success' => true,
-                'message' => 'Berhasil dihapus!'
-            ]);
-        } else {
-            return response()->json([
-                'success' => false,
-                'message' => 'Gagal dihapus!'
-            ]);
-        }
     }
 }

@@ -3,7 +3,6 @@
 
 @section('css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css">
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bs-stepper/bs-stepper.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}">
@@ -88,7 +87,7 @@
 
 @section('content')
     @if (session('proposals'))
-        <div class="alert alert-primary alert-dismissible" role="alert">
+        <div class="alert alert-info alert-dismissible" role="alert">
             {{ session('proposals') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -180,8 +179,14 @@
         <script type="text/javascript">
             //swall message notification
             $(document).ready(function() {
-                swal(`{!! session('proposals') !!}`, {
-                    icon: "info",
+                Swal.fire({
+                    title: 'Info!',
+                    text: '{!! session('proposals') !!}',
+                    type: 'info',
+                    customClass: {
+                        confirmButton: 'btn btn-primary'
+                    },
+                    buttonsStyling: false
                 });
             });
         </script>
@@ -238,8 +243,8 @@
                             var html = '';
                             if (row.approval_vice_rector_2) {
                                 html =
-                                    `<a class="text-warning" title="Show" href="{{ url('reviewers/show/${row.id}') }}"><i class="bx bx-upload"></i></a>
-                                <a class="text-success" title="Edit" href="{{ url('admin/proposals/edit/${row.id}') }}"><i class="bx bxs-edit"></i></a>`;
+                                    `<a class="text-warning" title="Show" href="{{ url('reviewers/show/${row.id}') }}"><i class="bx bx-show"></i></a>
+                                <a class="text-success" title="Upload Nomor Rekening" href="{{ url('admin/proposals/edit/${row.id}') }}"><i class="bx bx-upload"></i></a>`;
 
                             } else if (row.statuses.id === 'S01' || row.statuses.id === 'S02' || row
                                 .statuses.id === 'S04' || row.statuses.id === 'S05' || row.statuses

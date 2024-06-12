@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddReviewerController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartementController;
@@ -72,11 +73,18 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'proposals'], function () { //manage admin proposal
         Route::any('/', [ProposalController::class, 'index'])->name('proposals.index')->middleware('auth');
         Route::get('/data', [ProposalController::class, 'data'])->name('proposals.data');
-        Route::delete('/delete', [ProposalController::class, 'delete'])->name('proposals.delete');
-        Route::get('/edit/{id}', [ProposalController::class, 'edit'])->name('proposals.edit');
-        Route::put('/update/{id}', [ProposalController::class, 'update'])->name('proposals.update');
-        Route::get('/edit_add/{id}', [ProposalController::class, 'edit_add'])->name('proposals.edit_add');
-        Route::put('/update_add/{id}', [ProposalController::class, 'update_add'])->name('proposals.update_add');
+
+
+    });
+
+    Route::group(['prefix' => 'addreviewer'], function () { //Presentasi
+        Route::any('/', [AddReviewerController::class, 'index'])->name('addreviewer.index')->middleware('auth');
+        Route::get('/data', [AddReviewerController::class, 'data'])->name('addreviewer.data');
+        Route::delete('/delete', [AddReviewerController::class, 'delete'])->name('addreviewer.delete');
+        Route::get('/edit/{id}', [AddReviewerController::class, 'edit'])->name('addreviewer.edit');
+        Route::put('/update/{id}', [AddReviewerController::class, 'update'])->name('addreviewer.update');
+        Route::get('/edit_add/{id}', [ProposalController::class, 'edit_add'])->name('addreviewer.edit_add');
+        Route::put('/update_add/{id}', [ProposalController::class, 'update_add'])->name('addreviewer.update_add');
     });
 
     Route::group(['prefix' => 'presentation'], function () { //Presentasi

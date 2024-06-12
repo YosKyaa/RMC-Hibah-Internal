@@ -37,17 +37,85 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
+    <div class="card mb-4">
+        <div class="card-widget-separator-wrapper">
+            <div class="card-body card-widget-separator">
+                <div class="row gy-4 gy-sm-1">
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="d-flex justify-content-between align-items-start card-widget-1 border-end pb-3 pb-sm-0">
+                            <div>
+                                <h3 class="mb-1">{{ $totalUsers }}</h3>
+                                <p class="mb-0">User</p>
+                            </div>
+                            <div class="avatar me-sm-4">
+                                <span class="avatar-initial rounded bg-label-secondary">
+                                    <i class="bx bx-user bx-sm"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <hr class="d-none d-sm-block d-lg-none me-4">
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="d-flex justify-content-between align-items-start card-widget-2 border-end pb-3 pb-sm-0">
+                            <div>
+                                <h3 class="mb-1">{{ $proposalCount }}</h3>
+                                <p class="mb-0">Total Proposal</p>
+                            </div>
+                            <div class="avatar me-lg-4">
+                                <span class="avatar-initial rounded bg-label-secondary">
+                                    <i class="bx bx-file bx-sm"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <hr class="d-none d-sm-block d-lg-none">
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="d-flex justify-content-between align-items-start border-end pb-3 pb-sm-0 card-widget-3">
+                            <div>
+                                <h3 class="mb-1">{{ $proposalApproved }}</h3>
+                                <p class="mb-0">Total Proposal diterima</p>
+                            </div>
+                            <div class="avatar me-sm-4">
+                                <span class="avatar-initial rounded bg-label-secondary">
+                                    <i class="bx bx-check-double bx-sm"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h3 class="mb-1">{{ $proposalDisapprove }}</h3>
+                                <p class="mb-0">Total Proposal ditolak</p>
+                            </div>
+                            <div class="avatar">
+                                <span class="avatar-initial rounded bg-label-secondary">
+                                    <i class="bx bx-x-circle bx-sm"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="col-md-12">
         <ul class="nav nav-pills flex-column flex-sm-row mb-4">
-            <li class="nav-item"><a class="nav-link" href="../admin/proposals"><i class="bx bx-add-to-queue me-1"></i> Tambah
+            <li class="nav-item"><a class="nav-link" href="../admin/proposals"><i class="bx bx-add-to-queue me-1"></i>
+                    Data Proposal</a></li>
+            <li class="nav-item"><a class="nav-link" href="../admin/addreviewer"><i class="bx bx-add-to-queue me-1"></i>
+                    Tambah
                     Reviewer</a></li>
-            <li class="nav-item"><a class="nav-link" href="../admin/presentation"><i class="bx bx-chart me-1"></i>Presentasi</a>
+            <li class="nav-item"><a class="nav-link" href="../admin/presentation"><i
+                        class="bx bx-chart me-1"></i>Presentasi</a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="../admin/fundsfinalization"><i class="bx bx-bar-chart-alt-2 me-1"></i>
+            <li class="nav-item"><a class="nav-link" href="../admin/fundsfinalization"><i
+                        class="bx bx-bar-chart-alt-2 me-1"></i>
                     Finalisasi Dana</a></li>
             <li class="nav-item"><a class="nav-link active" href="../admin/loa"><i class="bx bx-task me-1"></i> Penerbitan
                     LOA</a></li>
-            <li class="nav-item"><a class="nav-link" href="../admin/monev"><i class="bx bx-select-multiple me-1"></i> Verifikasi
+            <li class="nav-item"><a class="nav-link" href="../admin/monev"><i class="bx bx-select-multiple me-1"></i>
+                    Verifikasi
                     Hasil Monev</a></li>
 
 

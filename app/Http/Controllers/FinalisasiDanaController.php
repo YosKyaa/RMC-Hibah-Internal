@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Proposal;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -13,9 +14,15 @@ class FinalisasiDanaController extends Controller
      */
     public function index()
     {
-        $proposals = Proposal::where('approval_reviewer', true)->get();
-        return view('admin.fundsfinalization.index', compact('proposals'));
+        $proposalApproved = Proposal::where('approval_reviewer', true)->count();
+        $proposalDisapprove = Proposal::where('status_id', '=', "S04")->count();
+        $proposalCount = Proposal::count();
+        $lecturers = User::role('lecture')->get();
+        $reviewers = User::role('reviewer')->get();
+        $totalUsers = $lecturers->concat($reviewers)->count();
+        return view('admin.fundsfinalization.index', compact( 'totalUsers', 'proposalCount', 'proposalApproved', 'proposalDisapprove'));
     }
+
 
 
     public function data(Request $request)

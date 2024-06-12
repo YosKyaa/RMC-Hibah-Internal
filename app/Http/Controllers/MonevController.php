@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Proposal;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class MonevController extends Controller
@@ -12,9 +13,15 @@ class MonevController extends Controller
      */
     public function index()
     {
-        $proposals = Proposal::all();
-        return view('admin.monev.index', compact('proposals'));
+        $proposalApproved = Proposal::where('approval_reviewer', true)->count();
+        $proposalDisapprove = Proposal::where('status_id', '=', "S04")->count();
+        $proposalCount = Proposal::count();
+        $lecturers = User::role('lecture')->get();
+        $reviewers = User::role('reviewer')->get();
+        $totalUsers = $lecturers->concat($reviewers)->count();
+        return view('admin.monev.index', compact( 'totalUsers', 'proposalCount', 'proposalApproved', 'proposalDisapprove'));
     }
+
 
     /**
      * Show the form for creating a new resource.

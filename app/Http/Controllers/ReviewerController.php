@@ -17,6 +17,7 @@ class ReviewerController extends Controller
         $status2 = 'S05';
         $dataCount = Proposal::where('status_id', $status1)->count();
         $dataCount2 = Proposal::where('status_id', $status2)->count();
+        
         return view('reviewers.index', compact('dataCount', 'dataCount2'));
     }
 

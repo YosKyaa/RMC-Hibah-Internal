@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/sweetalert2.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
+
 @endsection
 
 @section('style')
@@ -101,55 +102,57 @@
     </div>
     <div class="col-md-12">
         <ul class="nav nav-pills flex-column flex-sm-row mb-4">
-            <li class="nav-item"><a class="nav-link" href="../admin/proposals"><i class="bx bx-add-to-queue me-1"></i>
+            <li class="nav-item"><a class="nav-link active" href="../admin/proposals"><i
+                        class="bx bx-add-to-queue me-1"></i>
                     Data Proposal</a></li>
-            <li class="nav-item"><a class="nav-link" href="../admin/addreviewer"><i class="bx bx-add-to-queue me-1"></i>
-                    Tambah
-                    Reviewer</a></li>
+            <li class="nav-item"><a class="nav-link" href="../admin/addreviewer"><i class="bx bx-chart me-1"></i>
+                    Tambah Reviewer</a></li>
             <li class="nav-item"><a class="nav-link" href="../admin/presentation"><i class="bx bx-chart me-1"></i>
                     Presentasi</a></li>
-            <li class="nav-item"><a class="nav-link active" href="../admin/fundsfinalization"><i
-                        class="bx bx-bar-chart-alt-2 me-1"></i> Finalisasi Dana</a></li>
+            <li class="nav-item"><a class="nav-link" href="../admin/fundsfinalization"><i
+                        class="bx bx-bar-chart-alt-2 me-1"></i>
+                    Finalisasi Dana</a></li>
             <li class="nav-item"><a class="nav-link" href="../admin/loa"><i class="bx bx-task me-1"></i> Penerbitan
                     LOA</a></li>
             <li class="nav-item"><a class="nav-link" href="../admin/monev"><i class="bx bx-select-multiple me-1"></i>
                     Verifikasi Hasil Monev</a></li>
-
-
         </ul>
-        <div class="card border-0">
-            <div class="card-body p-4">
-                <div class="table-responsive">
-                    <div class="card-datatable table-responsive">
-                        <table class="table table-hover table-sm" id="datatable" width="100%">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Peneliti</th>
-                                    <th>Judul Penelitian</th>
-                                    <th>Jenis Penelitian</th>
-                                    <th>Total Dana</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="align-middle"></tr>
-                                <tr class="align-middle"></tr>
-                                <tr class="align-middle"></tr>
-                                <tr class="align-middle"></tr>
-                                <tr class="align-middle"></tr>
-                                <tr class="align-middle"></tr>
-                                <tr class="align-middle"></tr>
-                                <tr class="align-middle"></tr>
-                                <tr class="align-middle"></tr>
-                            </tbody>
-                        </table>
-                    </div>
+    </div>
+
+    <div class="card border-0">
+        <div class="card-body p-4">
+            <div class="table-responsive">
+                <div class="card-datatable table-responsive">
+                    <table class="table table-hover table-sm" id="datatable" width="100%">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th data-priority="1">Nama Peneliti</th>
+                                <th>Judul Proposal</th>
+                                <th>Mulai Review</th>
+                                <th>Selesai Review</th>
+                                <th>Status</th>
+                                <th>Nama Reviewer</th>
+                                <th data-priority="2"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="align-middle"></tr>
+                            <tr class="align-middle"></tr>
+                            <tr class="align-middle"></tr>
+                            <tr class="align-middle"></tr>
+                            <tr class="align-middle"></tr>
+                            <tr class="align-middle"></tr>
+                            <tr class="align-middle"></tr>
+                            <tr class="align-middle"></tr>
+                            <tr class="align-middle"></tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+
 @endsection
 
 @section('script')
@@ -162,7 +165,9 @@
     <script src="{{ asset('assets/vendor/libs/datatables/buttons.bootstrap5.js') }}"></script>
     <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/select2/id.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     @if (session('msg'))
         <script type="text/javascript">
             //swall message notification
@@ -173,28 +178,6 @@
             });
         </script>
     @endif
-    <script>
-        "use strict";
-        setTimeout(function() {
-            (function($) {
-                "use strict";
-                $(".select2").select2({
-                    allowClear: true,
-                    minimumResultsForSearch: 7
-                });
-            })(jQuery);
-        }, 350);
-        setTimeout(function() {
-            (function($) {
-                "use strict";
-                $(".select2-modal").select2({
-                    dropdownParent: $('#newrecord'),
-                    allowClear: true,
-                    minimumResultsForSearch: 5
-                });
-            })(jQuery);
-        }, 350);
-    </script>
     <script type="text/javascript">
         $(document).ready(function() {
             var table = $('#datatable').DataTable({
@@ -205,10 +188,10 @@
                 searching: true,
                 language: {
                     searchPlaceholder: 'Search..',
-                    // url: "{{ asset('assets/vendor/libs/datatables/id.json') }}"
+                    url: "{{ asset('assets/vendor/libs/datatables/id.json') }}"
                 },
                 ajax: {
-                    url: "{{ route('fundsfinalization.data') }}",
+                    url: "{{ route('proposals.data') }}",
                     data: function(d) {
                         d.search = $('#datatable_filter input[type="search"]').val()
                     },
@@ -232,19 +215,20 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.research_title;
+                            var html =
+                                `<a href="${row.documents[0].proposal_doc}" style="color: black;">${row.research_title}</a>`;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.research_type.title;
+                            var html = row.review_date_start;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.research_type.total_funds;
+                            var html = row.review_date_end;
                             return html;
                         }
                     },
@@ -257,17 +241,25 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = '';
-                            if (row.approval_admin_fundfinalization) {
+                            var html = "Belum ada reviewer";
+                            if (row.reviewer != null) {
+                                html = row.reviewer.username;
+                            }
+                            return html;
+                        }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            var html = "";
+                            if (row.statuses.id === "S02") {
                                 html =
-                                    `<a class="text-success" title="Show" style="cursor:pointer"><i class="bx bx-show"></i></a>`;
+                                    `<a class=" text-success" title="Show" href="{{ url('admin/proposals/show/` + row.id + `') }}"><i class="bx bx-show"></i></a>
+                                    <a class=" text-success" title="Edit" href="{{ url('admin/proposals/edit_add/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>`;
                             } else {
-                                html =
-                                    `<a class="text-success" title="Approve" style="cursor:pointer" onclick="approveId(\'` +
-                                    row.id +
-                                    `\')"><i class="bx bx-check"></i></a>
-                                    <a class="text-danger" title="Disapprove" style="cursor:pointer" onclick="disapproveId(\'` +
-                                    row.id + `\')"><i class="bx bx-x"></i></a>`;
+                                html = `<a class=" text-success" title="Edit" href="{{ url('admin/proposals/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>
+                                <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` +
+                                    row.id + `\',\'` + row.name +
+                                    `\')" ><i class="bx bx-trash"></i></a>`;
                             }
                             return html;
                         },
@@ -275,39 +267,40 @@
                         className: "text-md-center"
                     }
                 ]
+
             });
+
         });
 
-
-        function approveId(id) {
+        function DeleteId(id) {
             Swal.fire({
-                title: "Are you sure?",
-                text: "You will disapprove this proposal!",
-                icon: "warning",
+                title: 'Are you sure?',
+                text: "Once deleted, data can't be recovered!",
+                icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, disapprove it!',
+                confirmButtonText: 'Yes, delete it!',
                 customClass: {
                     confirmButton: 'btn btn-primary me-1',
                     cancelButton: 'btn btn-label-secondary'
                 },
                 buttonsStyling: false
             }).then(function(result) {
-                if (result.isConfirmed) {
+                if (result.value) {
                     $.ajax({
-                        url: "{{ route('fundsfinalization.approve') }}",
-                        type: "POST",
+                        url: "{{ route('user-proposals.delete') }}",
+                        type: "DELETE",
                         data: {
-                            id: id,
-                            _token: "{{ csrf_token() }}" // Include CSRF token for security
+                            "id": id,
+                            "_token": $("meta[name='csrf-token']").attr("content"),
                         },
-                        success: function(response) {
-                            if (response.success) {
+                        success: function(data) {
+                            if (data['success']) {
                                 Swal.fire({
                                     icon: 'success',
-                                    title: 'Disapproved!',
-                                    text: 'The Proposals has been disapproved.',
+                                    title: 'Deleted!',
+                                    text: 'Your file has been deleted.',
                                     customClass: {
                                         confirmButton: 'btn btn-success'
                                     }
@@ -317,67 +310,16 @@
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'Error!',
-                                    text: data.error,
-                                    customClass: {
-                                        confirmButton: 'btn btn-danger'
-                                    }
-                                });
-                            }
-                        }
-                    });
-                }
-            });
-        }
-    </script>
-    <script>
-        function disapproveId(id) {
-            Swal.fire({
-                title: "Are you sure?",
-                text: "You will disapprove this proposal!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, disapprove it!',
-                customClass: {
-                    confirmButton: 'btn btn-primary me-1',
-                    cancelButton: 'btn btn-label-secondary'
-                },
-                buttonsStyling: false
-            }).then(function(result) {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: "{{ route('fundsfinalization.disapprove') }}",
-                        type: "POST",
-                        data: {
-                            id: id,
-                            _token: "{{ csrf_token() }}" // Include CSRF token for security
-                        },
-                        success: function(response) {
-                            if (response.success) {
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Disapproved!',
-                                    text: 'The Proposals has been disapproved.',
+                                    text: 'An error occurred while deleting the file.',
                                     customClass: {
                                         confirmButton: 'btn btn-success'
                                     }
                                 });
-                                $('#datatable').DataTable().ajax.reload();
-                            } else {
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'Error!',
-                                    text: data.error,
-                                    customClass: {
-                                        confirmButton: 'btn btn-danger'
-                                    }
-                                });
                             }
                         }
-                    });
+                    })
                 }
-            });
+            })
         }
     </script>
 @endsection
