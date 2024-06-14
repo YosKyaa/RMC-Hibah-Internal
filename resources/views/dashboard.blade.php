@@ -61,7 +61,160 @@
         </div>
     </div>
 
+    <!--  -->
+    <head>
+  <!-- Pustaka Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    </head>
+<div class="container">
+<div class="row justify-content-center">
+  <div class="col-sm-6 col-lg-2 mb-4 me-4">
+    <div class="card card-border-shadow-primary h-100">
+      <div class="card-body">
+        <div class="d-flex align-items-center mb-2 pb-1">
+          <div class="avatar me-4">
+              <span class="avatar-initial rounded bg-label-info"><i class="fas fa-apple-alt"></i></span>
+          </div>
+          <h4 class="ms-1 mb-0">0</h4>
+        </div>
+        <p class="mb-1">Pangan</p>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-lg-2 mb-4 me-4">
+    <div class="card card-border-shadow-warning h-100">
+      <div class="card-body">
+        <div class="d-flex align-items-center mb-2 pb-1">
+          <div class="avatar me-4">
+            <span class="avatar-initial rounded bg-label-info"><i class="fas fa-solar-panel"></i></span>
+          </div>
+          <h4 class="ms-1 mb-0">0</h4>
+        </div>
+        <p class="mb-1">Energi</p>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-lg-2 mb-4 me-4">
+    <div class="card card-border-shadow-danger h-100">
+      <div class="card-body">
+        <div class="d-flex align-items-center mb-2 pb-1">
+          <div class="avatar me-4">
+            <span class="avatar-initial rounded bg-label-info"><i class="fas fa-heartbeat"></i></span>
+          </div>
+          <h4 class="ms-1 mb-0">0</h4>
+        </div>
+        <p class="mb-1">Kesehatan</p>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-lg-2 mb-4 me-4">
+    <div class="card card-border-shadow-danger h-100">
+      <div class="card-body">
+        <div class="d-flex align-items-center mb-2 pb-1">
+          <div class="avatar me-4">
+            <span class="avatar-initial rounded bg-label-info"><i class="fas fa-bus"></i></span>
+          </div>
+          <h4 class="ms-1 mb-0">0</h4>
+        </div>
+        <p class="mb-1">Transportasi</p>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-lg-2 mb-4 me-4">
+    <div class="card card-border-shadow-danger h-100">
+      <div class="card-body">
+        <div class="d-flex align-items-center mb-2 pb-1">
+          <div class="avatar me-4">
+            <span class="avatar-initial rounded bg-label-info"><i class="fas fa-laptop-code"></i></span>
+          </div>
+          <h4 class="ms-1 mb-0">0</h4>
+        </div>
+        <p class="mb-1">Teknologi informasi dan komunikasi</p>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-lg-2 mb-4 me-4">
+    <div class="card card-border-shadow-danger h-100">
+      <div class="card-body">
+        <div class="d-flex align-items-center mb-2 pb-1">
+          <div class="avatar me-4">
+            <span class="avatar-initial rounded bg-label-info"><i class="fas fa-shield-alt"></i></span>
+          </div>
+          <h4 class="ms-1 mb-0">0</h4>
+        </div>
+        <p class="mb-1">Pertahan dan keamanan</p>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-lg-2 mb-4 me-4">
+    <div class="card card-border-shadow-danger h-100">
+      <div class="card-body">
+        <div class="d-flex align-items-center mb-2 pb-1">
+          <div class="avatar me-4">
+            <span class="avatar-initial rounded bg-label-info"><i class="bx bx-git-repo-forked"></i></span>
+          </div>
+          <h4 class="ms-1 mb-0">0</h4>
+        </div>
+        <p class="mb-1">Material maju</p>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-lg-2 mb-4 me-4">
+    <div class="card card-border-shadow-danger h-100">
+      <div class="card-body">
+        <div class="d-flex align-items-center mb-2 pb-1">
+          <div class="avatar me-4">
+              <span class="avatar-initial rounded bg-label-info"><i class="fas fa-ship"></i></span>
+          </div>
+          <h4 class="ms-1 mb-0">0</h4>
+        </div>
+        <p class="mb-1">Kemaritiman</p>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-lg-2 mb-4 me-4">
+    <div class="card card-border-shadow-danger h-100">
+      <div class="card-body">
+        <div class="d-flex align-items-center mb-2 pb-1">
+          <div class="avatar me-4">
+            <span class="avatar-initial rounded bg-label-info"><i class="fas fa-exclamation-triangle"></i></span>
+          </div>
+          <h4 class="ms-1 mb-0">0</h4>
+        </div>
+        <p class="mb-1">Kebencanaan</p>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-lg-2 mb-4 me-4">
+    <div class="card card-border-shadow-info h-100">
+      <div class="card-body">
+        <div class="d-flex align-items-center mb-2 pb-1">
+          <div class="avatar me-4">
+            <span class="avatar-initial rounded bg-label-info"><i class="fas fa-users"></i></span>
+          </div>
+          <h4 class="ms-1 mb-0">0</h4>
+        </div>
+        <p class="mb-1">Sosial humaniora, seni budaya, pendidikan</p>
+        </p>
+      </div>
+    </div>
+  </div>
+    </div>
+</div>
 
+
+
+    
+    <!--  -->
     <table class="table" id="datatable">
         <thead>
             <tr>
@@ -83,7 +236,7 @@
                                             class="w-100 rounded-circle">
                                     </div>
                                     <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-1">
-                                        <div class="me-2">
+                                        <div class="me-4">
                                             <h5 class="mb-0">{{ ucfirst(Auth::user()->username) }} Shared Post</h5>
                                             <small
                                                 class="text-muted">{{ $anc->created_at->format('d M Y \a\t h:i A') }}</small>
