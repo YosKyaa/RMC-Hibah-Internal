@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
 use Auth;
+use PDF;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -216,6 +217,24 @@ class UserProposalController extends Controller
             ]);
         }
     }
+
+    public function submit(Request $request)
+    {
+        $data = Proposal::find($request->id);
+        if ($data) {
+            $data->status_id = "S02";
+            $data->save();
+            return response()->json([
+                'success' => true,
+                'message' => 'Status berhasil diubah!'
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal mengubah status!'
+            ]);
+        }
+    }
     public function timeline()
     {
         return view('proposals.timeline');
@@ -280,4 +299,10 @@ public function show($id)
         }
     }
 
+    public function print_pdf($id)
+    {
+        $proposals = Proposal::findOrFail($id);
+        $pdf = PDF::loadView('proposals.print', compact('proposals'));
+        return $pdf->stream('proposal.pdf');
+    }
 }

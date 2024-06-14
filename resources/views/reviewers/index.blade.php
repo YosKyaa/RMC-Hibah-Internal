@@ -57,7 +57,7 @@
             </div>
             <div class="card full-width">
                 <div class="container">
-                    <table class="table table-hover table-sm" id="datatable" width="50%">
+                    <table class="table table-hover table-sm" id="datatable" width="100%">
                         <thead>
                             <tr>
                                 <th data-priority="1">No</th>
@@ -131,7 +131,7 @@
                 responsive: true,
                 processing: true,
                 serverSide: true,
-                ordering: false,
+                ordering: true,
                 searching: true,
                 language: {
                     searchPlaceholder: 'Search..',
@@ -216,17 +216,16 @@
                                     `\')"><i class="bx bx-check"></i></a>
                                      <a class="text-danger" title="Disapprove" style="cursor:pointer" onclick="disapproveId(\'` +
                                     row.id + `\')"><i class="bx bx-x"></i></a>`;
-                            } else if (row.statuses.id === 'S05' || row.statuses.id === 'S07') {
+                            } else if (row.statuses.id === 'S05' || row.statuses.id === 'S07' || row
+                                .statuses.id === 'S03' || row.statuses.id === 'S04') {
                                 html +=
                                     `<a class="text-warning" title="Show" href="{{ url('reviewers/show/${row.id}') }}"><i class="bx bx-show"></i></a>`;
                             } else {
                                 html +=
-                                    `<a class="text-success" title="Edit" style="cursor:pointer" onclick="editId(\'` +
+                                    `<a class="text-warning" title="Edit" href="{{ url('reviewer/revision/${row.id}') }}"><i class="bx bx-revision"></i></a>
+                                     <a class="text-danger" title="Hapus" style="cursor:pointer" onclick="rejectId(\'` +
                                     row.id +
-                                    `\')"><i class="bx bxs-edit"></i></a>
-                                     <a class="text-danger" title="Hapus" style="cursor:pointer" onclick="deleteId(\'` +
-                                    row.id +
-                                    `\')"><i class="bx bx-trash"></i></a>
+                                    `\')"><i class="bx bx-x"></i></a>
                                      <a class="text-success" title="Diterima" style="cursor:pointer" onclick="markAsReviewed(\'` +
                                     row.id + `\')"><i class="bx bx-check"></i></a>`;
                             }
@@ -240,39 +239,6 @@
 
         });
 
-        function deleteId(id) {
-            swal({
-                    title: "Apakah Pengajuan Ini ditolak?",
-                    text: "Jika pengajuan ditolak data tidak dapat dikembalikan!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        $.ajax({
-                            url: "{{ route('reviewers.delete') }}",
-                            type: "DELETE",
-                            data: {
-                                "id": id,
-                                "_token": $("meta[name='csrf-token']").attr("content"),
-                            },
-                            success: function(data) {
-                                if (data['success']) {
-                                    swal(data['message'], {
-                                        icon: "success",
-                                    });
-                                    $('#datatable').DataTable().ajax.reload();
-                                } else {
-                                    swal(data['message'], {
-                                        icon: "error",
-                                    });
-                                }
-                            }
-                        })
-                    }
-                })
-        }
 
         function markAsReviewed(id) {
             Swal.fire({
@@ -385,6 +351,67 @@
             });
         }
 
+        function rejectId(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You want to reject this Proposal!",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, reject it!',
+                customClass: {
+                    confirmButton: 'btn btn-danger me-1',
+                    cancelButton: 'btn btn-label-secondary'
+                },
+                buttonsStyling: false
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ route('reviewers.reject') }}",
+                        type: "POST",
+                        data: {
+                            id: id,
+                            _token: "{{ csrf_token() }}" // Include CSRF token for security
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Rejected!',
+                                    text: 'The Proposal has been rejected.',
+                                    customClass: {
+                                        confirmButton: 'btn btn-success'
+                                    }
+                                }).then(function() {
+                                    location.reload(); // Reload the page after rejection
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error!',
+                                    text: response.message,
+                                    customClass: {
+                                        confirmButton: 'btn btn-danger'
+                                    }
+                                });
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error!',
+                                text: 'An error occurred while rejecting the Proposal.',
+                                customClass: {
+                                    confirmButton: 'btn btn-danger'
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        }
+
         function disapproveId(id) {
             Swal.fire({
                 title: 'Are you sure?',
@@ -402,7 +429,7 @@
             }).then(function(result) {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "{{ route('vicerector1.disapprove') }}",
+                        url: "{{ route('reviewers.disapprove') }}",
                         type: "POST",
                         data: {
                             id: id,

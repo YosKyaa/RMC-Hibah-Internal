@@ -244,13 +244,17 @@
                             if (row.approval_vice_rector_2) {
                                 html =
                                     `<a class="text-warning" title="Show" href="{{ url('reviewers/show/${row.id}') }}"><i class="bx bx-show"></i></a>
-                                <a class="text-success" title="Upload Nomor Rekening" href="{{ url('admin/proposals/edit/${row.id}') }}"><i class="bx bx-upload"></i></a>`;
+                                <a class="text-success" title="Upload Nomor Rekening" href="{{ url('user-proposals/print_pdf/${row.id}') }}"><i class="bx bx-upload"></i></a>`;
 
                             } else if (row.statuses.id === 'S01' || row.statuses.id === 'S02' || row
                                 .statuses.id === 'S04' || row.statuses.id === 'S05' || row.statuses
                                 .id === 'S06' || row.statuses.id === 'S07') {
                                 html +=
                                     `<a class="text-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>`;
+                            } else if (row.statuses.id === 'S03') {
+                                html +=
+                                    `<a class="text-success" title="Edit" href="{{ url('admin/proposals/edit/${row.id}') }}"><i class="bx bxs-edit"></i></a>
+                                <a class="text-success" title="Sumbit" style="cursor:pointer" onclick="SubmitId('${row.id}')"><i class="bx bx-check"></i></a>`;
                             } else {
                                 html =
                                     `<a class="text-success" title="Edit" href="{{ url('admin/proposals/edit/${row.id}') }}"><i class="bx bxs-edit"></i></a>
@@ -287,6 +291,56 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         url: "{{ route('user-proposals.approve') }}",
+                        type: "POST",
+                        data: {
+                            id: id,
+                            _token: "{{ csrf_token() }}" // Include CSRF token for security
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Sumbitted!',
+                                    text: 'The Proposals has been submitted.',
+                                    customClass: {
+                                        confirmButton: 'btn btn-success'
+                                    }
+                                });
+                                $('#datatable').DataTable().ajax.reload();
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error!',
+                                    text: data.error,
+                                    customClass: {
+                                        confirmButton: 'btn btn-danger'
+                                    }
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+        function SubmitId(id) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You will Submit this proposal!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Submit it!',
+                customClass: {
+                    confirmButton: 'btn btn-primary me-1',
+                    cancelButton: 'btn btn-label-secondary'
+                },
+                buttonsStyling: false
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ route('user-proposals.submit') }}",
                         type: "POST",
                         data: {
                             id: id,

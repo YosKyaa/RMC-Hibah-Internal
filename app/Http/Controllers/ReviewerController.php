@@ -17,7 +17,7 @@ class ReviewerController extends Controller
         $status2 = 'S05';
         $dataCount = Proposal::where('status_id', $status1)->count();
         $dataCount2 = Proposal::where('status_id', $status2)->count();
-        
+
         return view('reviewers.index', compact('dataCount', 'dataCount2'));
     }
 
@@ -58,22 +58,6 @@ class ReviewerController extends Controller
             ->make(true);
     }
 
-    public function delete(Request $request){
-        $data = Proposal::find($request->id);
-        if($data){
-            $data->delete();
-            return response()->json([
-                'success' => true,
-                'message' => 'Berhasil dihapus!'
-            ]);
-        } else {
-            return response()->json([
-                'success' => false,
-                'message' => 'Gagal dihapus!'
-            ]);
-        }
-    }
-
     public function presentation(Request $request)
     {
         $data = Proposal::find($request->id);
@@ -111,7 +95,7 @@ class ReviewerController extends Controller
         }
     }
 
-    public function reject(Request $request)
+    public function disapprove(Request $request)
     {
         $data = Proposal::find($request->id);
         if($data) {
@@ -129,4 +113,44 @@ class ReviewerController extends Controller
         }
     }
 
+    public function reject(Request $request)
+    {
+        $data = Proposal::find($request->id);
+        if($data) {
+            $data->status_id = 'S04';
+            $data->save();
+            return response()->json([
+                'success' => true,
+                'message' => 'Status berhasil diubah!'
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal mengubah status!'
+            ]);
+        }
+    }
+    public function revision($id)
+    {
+        $proposal = Proposal::findOrFail($id);
+        return view('reviewers.revision', compact('proposal'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'review_notes' => ['required', 'string'],
+        ]);
+
+        $proposal = Proposal::findOrFail($id);
+        $proposal->update([
+            'review_notes' => $request->review_notes,
+            'status_id' => 'S03',
+        ]);
+
+        return redirect()->route('reviewers.index')->with('success', 'Catatan revisi berhasil disimpan.');
+    }
 }
+
+
+

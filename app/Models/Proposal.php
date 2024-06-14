@@ -23,6 +23,7 @@ class Proposal extends Model
         'review_date_end',
         'reviewer_id',
         'presentation_date',
+        'review_notes',
     ];
 
     public function scopeFilter($query, array $filters)

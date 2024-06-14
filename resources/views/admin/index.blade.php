@@ -3,13 +3,14 @@
 
 
 @section('css')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bs-stepper/bs-stepper.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/sweetalert2.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
-
 @endsection
 
 @section('style')
@@ -19,7 +20,18 @@
         }
 
         table.dataTable td:nth-child(2) {
-            max-width: 150px;
+            max-width: 100px;
+        }
+
+        table.dataTable td:nth-child(3) {
+            max-width: 350px;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: break-word;
+        }
+
+        table.dataTable td:nth-child(4) {
+            max-width: 80px;
         }
 
         table.dataTable td {
@@ -112,8 +124,8 @@
             <li class="nav-item"><a class="nav-link" href="../admin/fundsfinalization"><i
                         class="bx bx-bar-chart-alt-2 me-1"></i>
                     Finalisasi Dana</a></li>
-            <li class="nav-item"><a class="nav-link" href="../admin/loa"><i class="bx bx-task me-1"></i> Penerbitan
-                    LOA</a></li>
+            <li class="nav-item"><a class="nav-link" href="../admin/loa"><i class="bx bx-task me-1"></i> LOA & Contract</a>
+            </li>
             <li class="nav-item"><a class="nav-link" href="../admin/monev"><i class="bx bx-select-multiple me-1"></i>
                     Verifikasi Hasil Monev</a></li>
         </ul>
@@ -126,27 +138,16 @@
                     <table class="table table-hover table-sm" id="datatable" width="100%">
                         <thead>
                             <tr>
-                                <th>No.</th>
+                                <th width="20px">No.</th>
                                 <th data-priority="1">Nama Peneliti</th>
-                                <th>Judul Proposal</th>
-                                <th>Mulai Review</th>
-                                <th>Selesai Review</th>
+                                <th data-priority="3" width="px" withd>Judul</th>
+                                <th>Kategori</th>
+                                <th>TKT</th>
+                                <th>Target Utama Riset</th>
                                 <th>Status</th>
-                                <th>Nama Reviewer</th>
                                 <th data-priority="2"></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                        </tbody>
                     </table>
                 </div>
             </div>
@@ -165,7 +166,6 @@
     <script src="{{ asset('assets/vendor/libs/datatables/buttons.bootstrap5.js') }}"></script>
     <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/select2/id.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @if (session('msg'))
@@ -184,11 +184,11 @@
                 responsive: true,
                 processing: true,
                 serverSide: true,
-                ordering: false,
+                ordering: true,
                 searching: true,
                 language: {
                     searchPlaceholder: 'Search..',
-                    url: "{{ asset('assets/vendor/libs/datatables/id.json') }}"
+                    // url: "{{ asset('assets/vendor/libs/datatables/id.json') }}"
                 },
                 ajax: {
                     url: "{{ route('proposals.data') }}",
@@ -222,13 +222,19 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.review_date_start;
+                            var html = row.research_topic.research_theme.research_category.name;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.review_date_end;
+                            var html = row.tkt_type.title;
+                            return html;
+                        }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            var html = row.main_research_target.title;
                             return html;
                         }
                     },
@@ -241,25 +247,21 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = "Belum ada reviewer";
-                            if (row.reviewer != null) {
-                                html = row.reviewer.username;
-                            }
-                            return html;
-                        }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
                             var html = "";
                             if (row.statuses.id === "S02") {
                                 html =
-                                    `<a class=" text-success" title="Show" href="{{ url('admin/proposals/show/` + row.id + `') }}"><i class="bx bx-show"></i></a>
-                                    <a class=" text-success" title="Edit" href="{{ url('admin/proposals/edit_add/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>`;
+                                    `<a class=" text-success" title="Show" href="{{ url('admin/proposals/show/` + row.id + `') }}"><i
+            class="bx bx-show"></i></a>
+    <a class=" text-success" title="Edit" href="{{ url('admin/proposals/edit_add/` + row.id + `') }}"><i
+            class="bx bxs-edit"></i></a>`;
                             } else {
-                                html = `<a class=" text-success" title="Edit" href="{{ url('admin/proposals/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>
-                                <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` +
+                                html = `<a class=" text-success" title="Edit" href="{{ url('admin/proposals/edit/` + row.id + `') }}"><i
+            class="bx bxs-edit"></i></a>
+    <a class=" text-danger" title="Hapus" style="cursor:pointer"
+        onclick="DeleteId(\'` +
                                     row.id + `\',\'` + row.name +
-                                    `\')" ><i class="bx bx-trash"></i></a>`;
+                                    `\')"><i
+            class="bx bx-trash"></i></a>`;
                             }
                             return html;
                         },
@@ -271,7 +273,8 @@
             });
 
         });
-
+    </script>
+    <script>
         function DeleteId(id) {
             Swal.fire({
                 title: 'Are you sure?',
@@ -322,4 +325,8 @@
             })
         }
     </script>
+
+
+
+
 @endsection

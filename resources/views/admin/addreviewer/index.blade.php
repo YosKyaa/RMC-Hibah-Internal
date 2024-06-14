@@ -111,8 +111,7 @@
             <li class="nav-item"><a class="nav-link" href="../admin/fundsfinalization"><i
                         class="bx bx-bar-chart-alt-2 me-1"></i>
                     Finalisasi Dana</a></li>
-            <li class="nav-item"><a class="nav-link" href="../admin/loa"><i class="bx bx-task me-1"></i> Penerbitan
-                    LOA</a></li>
+            <li class="nav-item"><a class="nav-link" href="../admin/loa"><i class="bx bx-task me-1"></i> LOA & Contract</a></li>
             <li class="nav-item"><a class="nav-link" href="../admin/monev"><i class="bx bx-select-multiple me-1"></i>
                     Verifikasi Hasil Monev</a></li>
         </ul>
@@ -183,7 +182,7 @@
                 responsive: true,
                 processing: true,
                 serverSide: true,
-                ordering: false,
+                ordering: true,
                 searching: true,
                 language: {
                     searchPlaceholder: 'Search..',
@@ -252,10 +251,10 @@
                             var html = "";
                             if (row.statuses.id === "S02") {
                                 html =
-                                    `<a class=" text-success" title="Show" href="{{ url('admin/proposals/show/` + row.id + `') }}"><i class="bx bx-show"></i></a>
-                                    <a class=" text-success" title="Edit" href="{{ url('admin/proposals/edit_add/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>`;
+                                    `<a class=" text-success" title="Show" href="{{ url('admin/addreviewer/show/` + row.id + `') }}"><i class="bx bx-show"></i></a>
+                                    <a class=" text-success" title="Edit" href="{{ url('admin/addreviewer/edit_add/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>`;
                             } else {
-                                html = `<a class=" text-success" title="Edit" href="{{ url('admin/proposals/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>
+                                html = `<a class=" text-success" title="Edit" href="{{ url('admin/addreviewer/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>
                                 <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` +
                                     row.id + `\',\'` + row.name +
                                     `\')" ><i class="bx bx-trash"></i></a>`;

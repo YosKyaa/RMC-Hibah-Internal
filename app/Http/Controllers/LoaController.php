@@ -23,26 +23,28 @@ class LoaController extends Controller
         return view('admin.loa.index', compact( 'totalUsers', 'proposalCount', 'proposalApproved', 'proposalDisapprove'));
     }
 
-
     public function data(Request $request){
         // $this->authorize('setting/manage_data/department.read');
         $data = Proposal::with(['users' => function ($query) {
             $query->select('id','username');
         }])
         ->with(['statuses' => function ($query) {
-            $query->select('id','status');
+            $query->select('id','status','color');
         }])
-        ->with(['research_types' => function ($query) {
+        ->with(['researchType' => function ($query) {
             $query->select('id','title','total_funds');
         }])
-            ->select('*')->orderBy("id");
-            return DataTables::of($data)
-                    ->filter(function ($instance) use ($request) {
-                        if (!empty($request->get('search'))) {
-                            $search = $request->get('search');
-                            $instance->where('name', 'LIKE', "%$search%");
-                        }
-                    })->make(true);
+        ->where('status_id', '!=', 'S04') // Exclude status S04
+        ->where('approval_admin_fundfinalization', true) // Filter by approval_admin_fundfinalization
+        ->select('*')->orderBy("id");
+
+        return DataTables::of($data)
+            ->filter(function ($instance) use ($request) {
+                if (!empty($request->get('search'))) {
+                    $search = $request->get('search');
+                    $instance->where('name', 'LIKE', "%$search%");
+                }
+            })->make(true);
     }
 
     public function create()

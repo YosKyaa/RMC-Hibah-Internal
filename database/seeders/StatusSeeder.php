@@ -19,7 +19,7 @@ class StatusSeeder extends Seeder
             ['id' => 'S01', 'status' => 'Pengajuan','color' => 'info'],
             ['id' => 'S02', 'status' => 'Menunggu review','color' => 'warning'],
             ['id' => 'S03', 'status' => 'Revisi','color'=>'secondary'],
-            ['id' => 'S04', 'status' => 'Pengajuan ditolak' ,'color' => 'denger'],
+            ['id' => 'S04', 'status' => 'Pengajuan ditolak' ,'color' => 'danger'],
             ['id' => 'S05', 'status' => 'Menunggu Jadwal Presentasi','color' => 'dark'],
             ['id' => 'S06', 'status' => 'Persentasi','color' => 'dark'],
             ['id' => 'S07', 'status' => 'Proses Pencairan Dana','color' => 'info'],

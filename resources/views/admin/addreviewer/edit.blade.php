@@ -15,7 +15,7 @@
                     <h5 class="mb-0">Silahkan Pilih Reviewer!</h5> <small class="text-muted float-end">Add Reviewer</small>
                 </div>
                 <div class="card-body">
-                    <form id="form-add-new-record" method="POST" action="{{ route('proposals.update', $proposals->id) }}">
+                    <form id="form-add-new-record" method="POST" action="{{ route('addreviewer.update', $proposals->id) }}">
                         @csrf
                         @method('PUT')
                         <div class="row g-3">

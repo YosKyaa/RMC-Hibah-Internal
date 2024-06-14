@@ -63,6 +63,8 @@ Route::group(['prefix' => 'user-proposals'], function () {
     Route::get('/category/by_id', [UserProposalController::class, 'category_by_id'])->name('DOC.get_category_by_id');
     Route::get('/research_type_funds/{researchtypesId}', [UserProposalController::class, 'getResearchTypeFunds'])->name('get_research_type_funds');
     Route::post('/approve', [UserProposalController::class, 'approve'])->name('user-proposals.approve');
+    Route::post('/submit', [UserProposalController::class, 'submit'])->name('user-proposals.submit');
+    Route::get('/print_pdf/{id}', [UserProposalController::class, 'print_pdf'])->name('print_pdf');
 });
 
 
@@ -73,8 +75,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'proposals'], function () { //manage admin proposal
         Route::any('/', [ProposalController::class, 'index'])->name('proposals.index')->middleware('auth');
         Route::get('/data', [ProposalController::class, 'data'])->name('proposals.data');
-
-
     });
 
     Route::group(['prefix' => 'addreviewer'], function () { //Presentasi
@@ -124,8 +124,10 @@ Route::group(['prefix' => 'reviewer'], function () { //reviewers
     Route::delete('/delete', [ReviewerController::class, 'delete'])->name('reviewers.delete');
     Route::post('/presentation', [ReviewerController::class, 'presentation'])->name('reviewers.presentation');
     Route::post('/approve', [ReviewerController::class, 'approve'])->name('reviewers.approve');
+    Route::post('/disapprove', [ReviewerController::class, 'disapprove'])->name('reviewers.disapprove');
+    Route::get('/revision/{id}', [ReviewerController::class, 'revision'])->name('reviewers.revision');
+    Route::put('/update/{id}', [ReviewerController::class, 'update'])->name('reviewers.update');
     Route::post('/reject', [ReviewerController::class, 'reject'])->name('reviewers.reject');
-    Route::get('/edit/{id}', [ReviewerController::class, 'edit'])->name('reviewers.edit');
 
 });
 

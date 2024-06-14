@@ -40,6 +40,15 @@ class ProposalController extends Controller
             'reviewer' => function ($query) {
                 $query->select('id', 'username');
             },
+            'researchTopic.researchTheme.researchCategory' => function ($query) {
+                $query->select('id', 'name');
+            },
+            'tktType' => function ($query) {
+                $query->select('id', 'title');
+            },
+            'mainResearchTarget' => function ($query) {
+                $query->select('id', 'title');
+            },
             'proposalTeams.researcher' => function ($query) {
                 $query->select('id', 'username');
             },

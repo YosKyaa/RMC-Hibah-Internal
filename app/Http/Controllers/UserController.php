@@ -28,7 +28,7 @@ class UserController extends Controller
         // $this->authorize('read user');
         if ($request->isMethod('post')) { //jika menerima method post dari form
             //validasi input form
-            $this->validate($request, [ 
+            $this->validate($request, [
                 'name'=> ['required', 'string', 'max:255'],
                 'username'=> ['required', 'string', 'max:255', Rule::unique('users')],
                 'form_title'=> ['required', 'string', 'max:255'],
@@ -55,7 +55,7 @@ class UserController extends Controller
                 'created_at' => Carbon::now()
             ]);
             //memeberikan roles ke user
-            $data->assignRole($request->roles); 
+            $data->assignRole($request->roles);
             //kembali ke halaman index
             return redirect()->route('users.index')->with('msg','User '.$request->name.' successfully added!');
         }
@@ -105,7 +105,7 @@ class UserController extends Controller
         $roles   = Role::get();
         //jika menerima method post dari form
         if ($request->isMethod('post')) {
-            $this->validate($request, [ 
+            $this->validate($request, [
                 'name' => ['required', 'string'],
                 'username'=> ['required', 'string', 'max:255', Rule::unique('users')->ignore($id, 'id')],
                 'email'=> ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($id, 'id')],

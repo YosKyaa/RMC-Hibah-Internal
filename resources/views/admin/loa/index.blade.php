@@ -12,22 +12,6 @@
 @endsection
 
 @section('style')
-    <style>
-        table.dataTable tbody td {
-            vertical-align: middle;
-        }
-
-        table.dataTable td:nth-child(2) {
-            max-width: 150px;
-        }
-
-        table.dataTable td {
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            word-wrap: break-word;
-        }
-    </style>
 @endsection
 
 @section('content')
@@ -112,8 +96,8 @@
             <li class="nav-item"><a class="nav-link" href="../admin/fundsfinalization"><i
                         class="bx bx-bar-chart-alt-2 me-1"></i>
                     Finalisasi Dana</a></li>
-            <li class="nav-item"><a class="nav-link active" href="../admin/loa"><i class="bx bx-task me-1"></i> Penerbitan
-                    LOA</a></li>
+            <li class="nav-item"><a class="nav-link active" href="../admin/loa"><i class="bx bx-task me-1"></i> LOA &
+                    Contract</a></li>
             <li class="nav-item"><a class="nav-link" href="../admin/monev"><i class="bx bx-select-multiple me-1"></i>
                     Verifikasi
                     Hasil Monev</a></li>
@@ -129,11 +113,9 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Peneliti</th>
-                                <th>Judul Proposal</th>
-                                <th>LOA</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th data-priority="2">Nama Peneliti</th>
+                                <th data-priority="1">Judul Proposal</th>
+                                <th>LOA & Contract</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -243,23 +225,7 @@
                             return html;
                         }
                     },
-                    {
-                        render: function(data, type, row, meta) {
-                            var html = row.statuses.status;
-                            return html;
-                        }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
-                            var html =
-                                `<a class=" text-success" title="Edit" href="{{ url('setting/manage_studyprogram/studyprogram/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>
-                            <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row
-                                .id + `\',\'` + row.name + `\')" ><i class="bx bx-trash"></i></a>`;
-                            return html;
-                        },
-                        "orderable": false,
-                        className: "text-md-center"
-                    }
+
                 ]
             });
 
