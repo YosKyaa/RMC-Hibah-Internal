@@ -27,7 +27,7 @@
         .card {
             flex: 1 0 30%;
             /* Atur lebar kartu di sini */
-            margin: 0 1.5%;
+            margin: 2.5%;
             /* Atur jarak antar kartu di sini */
         }
     </style>
@@ -68,12 +68,12 @@
     </head>
 <div class="container">
 <div class="row justify-content-center">
-  <div class="col-sm-6 col-lg-2 mb-4 me-4">
-    <div class="card card-border-shadow-primary h-100">
-      <div class="card-body">
-        <div class="d-flex align-items-center mb-2 pb-1">
-          <div class="avatar me-4">
-              <span class="avatar-initial rounded bg-label-info"><i class="fas fa-apple-alt"></i></span>
+<div class="col-sm-6 col-lg-2 mb-4 me-4.0">
+  <div class="card card-border-shadow-warning h-100">
+    <div class="card-body">
+      <div class="d-flex align-items-center mb-2">
+        <div class="avatar me-2">
+              <span class="avatar-initial rounded bg-warning"><i class="fas fa-apple-alt"></i></span>
           </div>
           <h4 class="ms-1 mb-0">0</h4>
         </div>
@@ -82,26 +82,26 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-6 col-lg-2 mb-4 me-4">
-    <div class="card card-border-shadow-warning h-100">
-      <div class="card-body">
-        <div class="d-flex align-items-center mb-2 pb-1">
-          <div class="avatar me-4">
-            <span class="avatar-initial rounded bg-label-info"><i class="fas fa-solar-panel"></i></span>
-          </div>
-          <h4 class="ms-1 mb-0">0</h4>
+  <div class="col-sm-6 col-lg-2 mb-4 me-4.0">
+  <div class="card card-border-shadow-warning h-100">
+    <div class="card-body">
+      <div class="d-flex align-items-center mb-2">
+        <div class="avatar me-2">
+          <span class="avatar-initial rounded bg-warning"><i class="fas fa-solar-panel"></i></span>
         </div>
-        <p class="mb-1">Energi</p>
-        </p>
+        <h4 class="mb-0">0</h4>
       </div>
+      <p class="mb-1">Energi</p>
     </div>
   </div>
-  <div class="col-sm-6 col-lg-2 mb-4 me-4">
-    <div class="card card-border-shadow-danger h-100">
-      <div class="card-body">
-        <div class="d-flex align-items-center mb-2 pb-1">
-          <div class="avatar me-4">
-            <span class="avatar-initial rounded bg-label-info"><i class="fas fa-heartbeat"></i></span>
+</div>
+
+<div class="col-sm-6 col-lg-2 mb-4 me-4.0">
+  <div class="card card-border-shadow-warning h-100">
+    <div class="card-body">
+      <div class="d-flex align-items-center mb-2">
+        <div class="avatar me-2">
+            <span class="avatar-initial rounded bg-warning"><i class="fas fa-heartbeat"></i></span>
           </div>
           <h4 class="ms-1 mb-0">0</h4>
         </div>
@@ -110,12 +110,12 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-6 col-lg-2 mb-4 me-4">
-    <div class="card card-border-shadow-danger h-100">
-      <div class="card-body">
-        <div class="d-flex align-items-center mb-2 pb-1">
-          <div class="avatar me-4">
-            <span class="avatar-initial rounded bg-label-info"><i class="fas fa-bus"></i></span>
+  <div class="col-sm-6 col-lg-2 mb-4 me-4.0">
+  <div class="card card-border-shadow-warning h-100">
+    <div class="card-body">
+      <div class="d-flex align-items-center mb-2">
+        <div class="avatar me-2">
+            <span class="avatar-initial rounded bg-warning"><i class="fas fa-bus"></i></span>
           </div>
           <h4 class="ms-1 mb-0">0</h4>
         </div>
@@ -124,12 +124,12 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-6 col-lg-2 mb-4 me-4">
-    <div class="card card-border-shadow-danger h-100">
-      <div class="card-body">
-        <div class="d-flex align-items-center mb-2 pb-1">
-          <div class="avatar me-4">
-            <span class="avatar-initial rounded bg-label-info"><i class="fas fa-laptop-code"></i></span>
+  <div class="col-sm-6 col-lg-2 mb-4 me-4.0">
+  <div class="card card-border-shadow-warning h-100">
+    <div class="card-body">
+      <div class="d-flex align-items-center mb-2">
+        <div class="avatar me-2">
+            <span class="avatar-initial rounded bg-warning"><i class="fas fa-laptop-code"></i></span>
           </div>
           <h4 class="ms-1 mb-0">0</h4>
         </div>
@@ -138,12 +138,12 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-6 col-lg-2 mb-4 me-4">
-    <div class="card card-border-shadow-danger h-100">
-      <div class="card-body">
-        <div class="d-flex align-items-center mb-2 pb-1">
-          <div class="avatar me-4">
-            <span class="avatar-initial rounded bg-label-info"><i class="fas fa-shield-alt"></i></span>
+  <div class="col-sm-6 col-lg-2 mb-4 me-4.0">
+  <div class="card card-border-shadow-warning h-100">
+    <div class="card-body">
+      <div class="d-flex align-items-center mb-2">
+        <div class="avatar me-2">
+            <span class="avatar-initial rounded bg-warning"><i class="fas fa-shield-alt"></i></span>
           </div>
           <h4 class="ms-1 mb-0">0</h4>
         </div>
@@ -152,12 +152,12 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-6 col-lg-2 mb-4 me-4">
-    <div class="card card-border-shadow-danger h-100">
-      <div class="card-body">
-        <div class="d-flex align-items-center mb-2 pb-1">
-          <div class="avatar me-4">
-            <span class="avatar-initial rounded bg-label-info"><i class="bx bx-git-repo-forked"></i></span>
+  <div class="col-sm-6 col-lg-2 mb-4 me-4.0">
+  <div class="card card-border-shadow-warning h-100">
+    <div class="card-body">
+      <div class="d-flex align-items-center mb-2">
+        <div class="avatar me-2">
+            <span class="avatar-initial rounded bg-warning"><i class="bx bx-git-repo-forked"></i></span>
           </div>
           <h4 class="ms-1 mb-0">0</h4>
         </div>
@@ -166,12 +166,12 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-6 col-lg-2 mb-4 me-4">
-    <div class="card card-border-shadow-danger h-100">
-      <div class="card-body">
-        <div class="d-flex align-items-center mb-2 pb-1">
-          <div class="avatar me-4">
-              <span class="avatar-initial rounded bg-label-info"><i class="fas fa-ship"></i></span>
+  <div class="col-sm-6 col-lg-2 mb-4 me-4.0">
+  <div class="card card-border-shadow-warning h-100">
+    <div class="card-body">
+      <div class="d-flex align-items-center mb-2">
+        <div class="avatar me-2">
+              <span class="avatar-initial rounded bg-warning"><i class="fas fa-ship"></i></span>
           </div>
           <h4 class="ms-1 mb-0">0</h4>
         </div>
@@ -180,12 +180,12 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-6 col-lg-2 mb-4 me-4">
-    <div class="card card-border-shadow-danger h-100">
-      <div class="card-body">
-        <div class="d-flex align-items-center mb-2 pb-1">
-          <div class="avatar me-4">
-            <span class="avatar-initial rounded bg-label-info"><i class="fas fa-exclamation-triangle"></i></span>
+  <div class="col-sm-6 col-lg-2 mb-4 me-4.0">
+  <div class="card card-border-shadow-warning h-100">
+    <div class="card-body">
+      <div class="d-flex align-items-center mb-2">
+        <div class="avatar me-2">
+            <span class="avatar-initial rounded bg-warning"><i class="fas fa-exclamation-triangle"></i></span>
           </div>
           <h4 class="ms-1 mb-0">0</h4>
         </div>
@@ -194,12 +194,12 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-6 col-lg-2 mb-4 me-4">
-    <div class="card card-border-shadow-info h-100">
-      <div class="card-body">
-        <div class="d-flex align-items-center mb-2 pb-1">
-          <div class="avatar me-4">
-            <span class="avatar-initial rounded bg-label-info"><i class="fas fa-users"></i></span>
+  <div class="col-sm-6 col-lg-2 mb-4 me-4.0">
+  <div class="card card-border-shadow-warning h-100">
+    <div class="card-body">
+      <div class="d-flex align-items-center mb-2">
+        <div class="avatar me-2">
+            <span class="avatar-initial rounded bg-warning"><i class="fas fa-users"></i></span>
           </div>
           <h4 class="ms-1 mb-0">0</h4>
         </div>
