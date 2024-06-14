@@ -47,12 +47,11 @@
                         </div>
                         <br><br>
                         <div class="divider mt-3">
-                            <div class="divider-text">© {{ date('Y') == '2022' ? date('Y') : '2022-' . date('Y') }}</div>
+                            <div class="divider-text">© {{ date('Y') == '2024' ? date('Y') : '2024-' . date('Y') }}</div>
                         </div>
                         <div class="footer">
-                            <span class="mr-2">Dikembangkan oleh </span>
-                            <a href="https://itic.jgu.ac.id/" target="_blank" class="footer-link fw-bolder ml-2">ITIC
-                                JGU</a>
+                            <span class="mr-2">Developed by </span>
+                            <a href="" target="_blank" class="footer-link fw-bolder ml-2">YAP's CODE</a>
                         </div>
                         <small class="ml-4 text-center text-sm text-light sm:text-right sm:ml-0">
                             v{{ Illuminate\Foundation\Application::VERSION }} (v{{ PHP_VERSION }})
