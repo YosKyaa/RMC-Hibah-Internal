@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('proposals', function (Blueprint $table) {
-            $table->boolean('approval_admin_fundfinalization')->default(false);
+            $table->boolean('approval_admin_fundfinalization')->nullable();
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('proposals', function (Blueprint $table) {
-            //
+            $table->dropColumn('approval_admin_fundfinalization');
         });
     }
 };

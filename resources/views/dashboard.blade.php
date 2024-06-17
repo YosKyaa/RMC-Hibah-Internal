@@ -35,185 +35,162 @@
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <div class="p-6 text-gray-900 dark:text-gray-100">
-                        <h1>Hi, <b>{{ Auth::user()->name }}</b>!</h1>
-                        {{ __("You're logged in!") }}
-                        <br>
-                        @if (Auth::user()->roles->count() == 0)
-                            <p class="p-0 mb-0 text-danger">Sorry, you don't have access rights, please contact
-                                administrator!
-                            </p>
-                        @else
-                            <p class="mb-2">You have access rights as
-                                @foreach (Auth::user()->roles as $x)
-                                    <i class="badge rounded-pill m-0"
-                                        style="background-color:{{ $x->color }}">{{ $x->name }}</i>
-                                @endforeach
-                            </p>
-                        @endif
+
+    <!--  -->
+
+    <head>
+        <!-- Pustaka Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    </head>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-6 col-lg-2 mb-4 me-4.0">
+                <div class="card card-border-shadow-warning h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="avatar me-2">
+                                <span class="avatar-initial rounded bg-warning"><i class="fas fa-apple-alt"></i></span>
+                            </div>
+                            <h4 class="ms-1 mb-0">0</h4>
+                        </div>
+                        <p class="mb-1">Pangan</p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-2 mb-4 me-4.0">
+                <div class="card card-border-shadow-warning h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="avatar me-2">
+                                <span class="avatar-initial rounded bg-warning"><i class="fas fa-solar-panel"></i></span>
+                            </div>
+                            <h4 class="mb-0">0</h4>
+                        </div>
+                        <p class="mb-1">Energi</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-2 mb-4 me-4.0">
+                <div class="card card-border-shadow-warning h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="avatar me-2">
+                                <span class="avatar-initial rounded bg-warning"><i class="fas fa-heartbeat"></i></span>
+                            </div>
+                            <h4 class="ms-1 mb-0">0</h4>
+                        </div>
+                        <p class="mb-1">Kesehatan</p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-2 mb-4 me-4.0">
+                <div class="card card-border-shadow-warning h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="avatar me-2">
+                                <span class="avatar-initial rounded bg-warning"><i class="fas fa-bus"></i></span>
+                            </div>
+                            <h4 class="ms-1 mb-0">0</h4>
+                        </div>
+                        <p class="mb-1">Transportasi</p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-2 mb-4 me-4.0">
+                <div class="card card-border-shadow-warning h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="avatar me-2">
+                                <span class="avatar-initial rounded bg-warning"><i class="fas fa-laptop-code"></i></span>
+                            </div>
+                            <h4 class="ms-1 mb-0">0</h4>
+                        </div>
+                        <p class="mb-1">Teknologi informasi dan komunikasi</p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-2 mb-4 me-4.0">
+                <div class="card card-border-shadow-warning h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="avatar me-2">
+                                <span class="avatar-initial rounded bg-warning"><i class="fas fa-shield-alt"></i></span>
+                            </div>
+                            <h4 class="ms-1 mb-0">0</h4>
+                        </div>
+                        <p class="mb-1">Pertahan dan keamanan</p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-2 mb-4 me-4.0">
+                <div class="card card-border-shadow-warning h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="avatar me-2">
+                                <span class="avatar-initial rounded bg-warning"><i class="bx bx-git-repo-forked"></i></span>
+                            </div>
+                            <h4 class="ms-1 mb-0">0</h4>
+                        </div>
+                        <p class="mb-1">Material maju</p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-2 mb-4 me-4.0">
+                <div class="card card-border-shadow-warning h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="avatar me-2">
+                                <span class="avatar-initial rounded bg-warning"><i class="fas fa-ship"></i></span>
+                            </div>
+                            <h4 class="ms-1 mb-0">0</h4>
+                        </div>
+                        <p class="mb-1">Kemaritiman</p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-2 mb-4 me-4.0">
+                <div class="card card-border-shadow-warning h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="avatar me-2">
+                                <span class="avatar-initial rounded bg-warning"><i
+                                        class="fas fa-exclamation-triangle"></i></span>
+                            </div>
+                            <h4 class="ms-1 mb-0">0</h4>
+                        </div>
+                        <p class="mb-1">Kebencanaan</p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-2 mb-4 me-4.0">
+                <div class="card card-border-shadow-warning h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="avatar me-2">
+                                <span class="avatar-initial rounded bg-warning"><i class="fas fa-users"></i></span>
+                            </div>
+                            <h4 class="ms-1 mb-0">0</h4>
+                        </div>
+                        <p class="mb-1">Sosial humaniora, seni budaya, pendidikan</p>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!--  -->
-    <head>
-  <!-- Pustaka Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    </head>
-<div class="container">
-<div class="row justify-content-center">
-<div class="col-sm-6 col-lg-2 mb-4 me-4.0">
-  <div class="card card-border-shadow-warning h-100">
-    <div class="card-body">
-      <div class="d-flex align-items-center mb-2">
-        <div class="avatar me-2">
-              <span class="avatar-initial rounded bg-warning"><i class="fas fa-apple-alt"></i></span>
-          </div>
-          <h4 class="ms-1 mb-0">0</h4>
-        </div>
-        <p class="mb-1">Pangan</p>
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-lg-2 mb-4 me-4.0">
-  <div class="card card-border-shadow-warning h-100">
-    <div class="card-body">
-      <div class="d-flex align-items-center mb-2">
-        <div class="avatar me-2">
-          <span class="avatar-initial rounded bg-warning"><i class="fas fa-solar-panel"></i></span>
-        </div>
-        <h4 class="mb-0">0</h4>
-      </div>
-      <p class="mb-1">Energi</p>
-    </div>
-  </div>
-</div>
-
-<div class="col-sm-6 col-lg-2 mb-4 me-4.0">
-  <div class="card card-border-shadow-warning h-100">
-    <div class="card-body">
-      <div class="d-flex align-items-center mb-2">
-        <div class="avatar me-2">
-            <span class="avatar-initial rounded bg-warning"><i class="fas fa-heartbeat"></i></span>
-          </div>
-          <h4 class="ms-1 mb-0">0</h4>
-        </div>
-        <p class="mb-1">Kesehatan</p>
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-lg-2 mb-4 me-4.0">
-  <div class="card card-border-shadow-warning h-100">
-    <div class="card-body">
-      <div class="d-flex align-items-center mb-2">
-        <div class="avatar me-2">
-            <span class="avatar-initial rounded bg-warning"><i class="fas fa-bus"></i></span>
-          </div>
-          <h4 class="ms-1 mb-0">0</h4>
-        </div>
-        <p class="mb-1">Transportasi</p>
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-lg-2 mb-4 me-4.0">
-  <div class="card card-border-shadow-warning h-100">
-    <div class="card-body">
-      <div class="d-flex align-items-center mb-2">
-        <div class="avatar me-2">
-            <span class="avatar-initial rounded bg-warning"><i class="fas fa-laptop-code"></i></span>
-          </div>
-          <h4 class="ms-1 mb-0">0</h4>
-        </div>
-        <p class="mb-1">Teknologi informasi dan komunikasi</p>
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-lg-2 mb-4 me-4.0">
-  <div class="card card-border-shadow-warning h-100">
-    <div class="card-body">
-      <div class="d-flex align-items-center mb-2">
-        <div class="avatar me-2">
-            <span class="avatar-initial rounded bg-warning"><i class="fas fa-shield-alt"></i></span>
-          </div>
-          <h4 class="ms-1 mb-0">0</h4>
-        </div>
-        <p class="mb-1">Pertahan dan keamanan</p>
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-lg-2 mb-4 me-4.0">
-  <div class="card card-border-shadow-warning h-100">
-    <div class="card-body">
-      <div class="d-flex align-items-center mb-2">
-        <div class="avatar me-2">
-            <span class="avatar-initial rounded bg-warning"><i class="bx bx-git-repo-forked"></i></span>
-          </div>
-          <h4 class="ms-1 mb-0">0</h4>
-        </div>
-        <p class="mb-1">Material maju</p>
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-lg-2 mb-4 me-4.0">
-  <div class="card card-border-shadow-warning h-100">
-    <div class="card-body">
-      <div class="d-flex align-items-center mb-2">
-        <div class="avatar me-2">
-              <span class="avatar-initial rounded bg-warning"><i class="fas fa-ship"></i></span>
-          </div>
-          <h4 class="ms-1 mb-0">0</h4>
-        </div>
-        <p class="mb-1">Kemaritiman</p>
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-lg-2 mb-4 me-4.0">
-  <div class="card card-border-shadow-warning h-100">
-    <div class="card-body">
-      <div class="d-flex align-items-center mb-2">
-        <div class="avatar me-2">
-            <span class="avatar-initial rounded bg-warning"><i class="fas fa-exclamation-triangle"></i></span>
-          </div>
-          <h4 class="ms-1 mb-0">0</h4>
-        </div>
-        <p class="mb-1">Kebencanaan</p>
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-lg-2 mb-4 me-4.0">
-  <div class="card card-border-shadow-warning h-100">
-    <div class="card-body">
-      <div class="d-flex align-items-center mb-2">
-        <div class="avatar me-2">
-            <span class="avatar-initial rounded bg-warning"><i class="fas fa-users"></i></span>
-          </div>
-          <h4 class="ms-1 mb-0">0</h4>
-        </div>
-        <p class="mb-1">Sosial humaniora, seni budaya, pendidikan</p>
-        </p>
-      </div>
-    </div>
-  </div>
-    </div>
-</div>
 
 
 
-    
     <!--  -->
     <table class="table" id="datatable">
         <thead>
@@ -264,7 +241,8 @@
                                     <div class="card-actions">
                                         <a href="javascript:;" class="text-muted me-3"><i class="bx bx-heart me-1"></i>
                                             236</a>
-                                        <a href="javascript:;" class="text-muted"><i class="bx bx-message me-1"></i> 12</a>
+                                        <a href="javascript:;" class="text-muted"><i class="bx bx-message me-1"></i>
+                                            12</a>
                                     </div>
                                     <div class="dropup d-none d-sm-block">
                                         <button class="btn p-0" type="button" id="sharedList" data-bs-toggle="dropdown"
@@ -293,7 +271,8 @@
                                     <p>{{ $anc->description }}</p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
