@@ -45,8 +45,8 @@
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                 <a class="nav-link dropdown-toggle hide-arrow" href="" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                        @if ($user->image)
-                            <img src="{{ asset($user->image) }}" alt class="w-40 h-40 rounded-circle"
+                        @if (Auth::user()->image)
+                            <img src="{{ asset(Auth::user()->image) }}" alt class="w-40 h-40 rounded-circle"
                                 style="object-fit: cover;">
                         @else
                             <img src="../../assets/img/avatars/user.png" alt class="w-40 h-40 rounded-circle"
@@ -60,9 +60,9 @@
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
                                     <div class="avatar avatar-online">
-                                        @if ($user->image)
-                                            <img src="{{ asset($user->image) }}" alt class="w-40 h-40 rounded-circle"
-                                                style="object-fit: cover;">
+                                        @if (Auth::user()->image)
+                                            <img src="{{ asset(Auth::user()->image) }}" alt
+                                                class="w-40 h-40 rounded-circle" style="object-fit: cover;">
                                         @else
                                             <img src="../../assets/img/avatars/user.png" alt
                                                 class="w-40 h-40 rounded-circle" style="object-fit: cover;">

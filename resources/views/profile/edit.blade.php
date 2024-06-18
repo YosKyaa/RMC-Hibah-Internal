@@ -5,6 +5,9 @@
     <span class="text-muted fw-light">Akun / </span>
 @endsection
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}">
+@endsection
 @section('style')
     <style>
         .img {
@@ -33,9 +36,10 @@
                     @endif
                     <div class="d-flex align-items-start align-items-sm-center gap-4">
                         @if ($user->image)
-                            <img src="{{ asset($user->image) }}" alt="user-avatar" class="img"  id="uploadedAvatar">
+                            <img src="{{ asset($user->image) }}" alt="user-avatar" class="img" id="uploadedAvatar">
                         @else
-                            <img src="../../assets/img/avatars/user.png" alt="user-avatar" class="img" id="uploadedAvatar">
+                            <img src="../../assets/img/avatars/user.png" alt="user-avatar" class="img"
+                                id="uploadedAvatar">
                         @endif
                         <form action="" method="POST" enctype="multipart/form-data">
                             @csrf
@@ -192,6 +196,12 @@
 @endsection
 
 @section('script')
+    <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
     <script>
         $(document).ready(function() {
             const image = document.getElementById('uploadedAvatar');
@@ -201,4 +211,5 @@
             });
         });
     </script>
+
 @endsection
