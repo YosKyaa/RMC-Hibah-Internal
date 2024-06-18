@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MainResearchTarget;
 use App\Models\Proposal;
+use App\Models\ResearchCategories;
+use App\Models\TktTypes;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -21,7 +24,10 @@ class ProposalController extends Controller
         $lecturers = User::role('lecture')->get();
         $reviewers = User::role('reviewer')->get();
         $totalUsers = $lecturers->concat($reviewers)->count();
-        return view('admin.index', compact( 'totalUsers', 'proposalCount', 'proposalApproved', 'proposalDisapprove'));
+        $researchcategories = ResearchCategories::all();
+        $tktTypes = TktTypes::all();
+        $mainresearchtargets = MainResearchTarget::all();
+        return view('admin.index', compact( 'totalUsers', 'proposalCount', 'proposalApproved', 'proposalDisapprove', 'researchcategories', 'tktTypes', 'mainresearchtargets'));
     }
 
     /**
@@ -60,6 +66,22 @@ class ProposalController extends Controller
         ->orderBy('id');
         return DataTables::of($data)
             ->filter(function ($instance) use ($request) {
+                if (!empty($request->get('select_category'))) {
+                    $instance->whereHas('researchTopic.researchTheme.researchCategory', function ($query) use ($request) {
+                        $query->where('research_topics_id', $request->get('select_category'));
+                    });
+                }
+
+                if (!empty($request->get('select_tkt_type'))) {
+                    $instance->whereHas('tktType', function ($query) use ($request) {
+                        $query->where('tkt_types_id', $request->get('select_tkt_type'));
+                    });
+                }
+                if (!empty($request->get('select_main_research_target'))) {
+                    $instance->whereHas('mainResearchTarget', function ($query) use ($request) {
+                        $query->where('main_research_targets_id', $request->get('select_main_research_target'));
+                    });
+                }
             if (!empty($request->get('search'))) {
                 $search = $request->get('search');
                 $instance->where(function ($query) use ($search) {

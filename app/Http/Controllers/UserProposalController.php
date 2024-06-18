@@ -107,9 +107,13 @@ class UserProposalController extends Controller
      */
     public function create(Request $request)
     {
-        $existingProposal = Proposal::where('users_id', Auth::user()->id)->first();
+        $existingProposal = Proposal::where('users_id', Auth::user()->id)->orderBy('id', 'desc')->first();
         if ($existingProposal) {
+            if ($existingProposal->status_id == 'S04') {
+            // Allow creating a new proposal
+            } else {
             return redirect()->route('user-proposals.index')->with('proposals', 'You have already created a proposal.');
+            }
         }
 
         if ($request->isMethod('POST')) {

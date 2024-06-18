@@ -130,29 +130,65 @@
                     Verifikasi Hasil Monev</a></li>
         </ul>
     </div>
-
     <div class="card border-0">
-        <div class="card-body p-4">
-            <div class="table-responsive">
-                <div class="card-datatable table-responsive">
-                    <table class="table table-hover table-sm" id="datatable" width="100%">
-                        <thead>
-                            <tr>
-                                <th width="20px">No.</th>
-                                <th data-priority="1">Nama Peneliti</th>
-                                <th data-priority="3" width="px" withd>Judul</th>
-                                <th>Kategori</th>
-                                <th>TKT</th>
-                                <th>Target Utama Riset</th>
-                                <th>Status</th>
-                                <th data-priority="2"></th>
-                            </tr>
-                        </thead>
-                    </table>
+        <div class="card-body p-3">
+            <div class="card-datatable table-responsive">
+                <div class="card-header flex-column flex-md-row pb-0">
+                    <div class="row">
+                        <div class="col-12 pt-3 pt-md-0">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class=" col-md-3">
+                                        <select id="select_category" class="select2 form-select"
+                                            data-placeholder="Category">
+                                            <option value="">Category</option>
+                                            @foreach ($researchcategories as $d)
+                                                <option value="{{ $d->id }}">{{ $d->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class=" col-md-3">
+                                        <select id="select_tkt_type" class="select2 form-select"
+                                            data-placeholder="TKT Type">
+                                            <option value="">TKT Type</option>
+                                            @foreach ($tktTypes as $d)
+                                                <option value="{{ $d->id }}">{{ $d->title }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class=" col-md-3">
+                                        <select id="select_main_research_target" class="select2 form-select"
+                                            data-placeholder="Main Research Target">
+                                            <option value="">Main Research Target</option>
+                                            @foreach ($mainresearchtargets as $d)
+                                                <option value="{{ $d->id }}">{{ $d->title }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <table class="table table-hover table-sm" id="datatable" width="100%">
+                    <thead>
+                        <tr>
+                            <th width="20px">No.</th>
+                            <th data-priority="1">Nama Peneliti</th>
+                            <th data-priority="3">Judul</th>
+                            <th>Kategori</th>
+                            <th>TKT</th>
+                            <th>Target Utama Riset</th>
+                            <th>Status</th>
+                            <th data-priority="2"></th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
         </div>
     </div>
+
 
 @endsection
 
@@ -167,7 +203,6 @@
     <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     @if (session('msg'))
         <script type="text/javascript">
             //swall message notification
@@ -178,6 +213,28 @@
             });
         </script>
     @endif
+    <script>
+        "use strict";
+        setTimeout(function() {
+            (function($) {
+                "use strict";
+                $(".select2").select2({
+                    allowClear: true,
+                    minimumResultsForSearch: 7
+                });
+            })(jQuery);
+        }, 350);
+        setTimeout(function() {
+            (function($) {
+                "use strict";
+                $(".select2-modal").select2({
+                    dropdownParent: $('#newrecord'),
+                    allowClear: true,
+                    minimumResultsForSearch: 5
+                });
+            })(jQuery);
+        }, 350);
+    </script>
     <script type="text/javascript">
         $(document).ready(function() {
             var table = $('#datatable').DataTable({
@@ -188,12 +245,15 @@
                 searching: true,
                 language: {
                     searchPlaceholder: 'Search..',
-                    // url: "{{ asset('assets/vendor/libs/datatables/id.json') }}"
+                    url: "{{ asset('assets/vendor/libs/datatables/id.json') }}"
                 },
                 ajax: {
                     url: "{{ route('proposals.data') }}",
                     data: function(d) {
-                        d.search = $('#datatable_filter input[type="search"]').val()
+                        d.select_category = $('#select_category').val(),
+                            d.select_tkt_type = $('#select_tkt_type').val(),
+                            d.select_main_research_target = $('#select_main_research_target').val(),
+                            d.search = $('#datatable_filter input[type="search"]').val()
                     },
                 },
                 columnDefs: [{
@@ -241,14 +301,15 @@
                     {
                         render: function(data, type, row, meta) {
                             var html =
-                                `<span class="badge bg-${row.statuses.color}">${row.statuses.status}</span>`;
+                                `<span class="badge rounded-pill bg-label-${row.statuses.color}">
+                                <span class="badge badge-dot bg-${row.statuses.color} me-1"></span>${row.statuses.status} </span>`;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = "";
-                            if (row.statuses.id === "S02") {
+                            var html = '';
+                            if (row.statuses.id === 'S02') {
                                 html =
                                     `<a class=" text-success" title="Show" href="{{ url('admin/proposals/show/` + row.id + `') }}"><i
             class="bx bx-show"></i></a>
@@ -271,10 +332,18 @@
                 ]
 
             });
+            $('#select_category').change(function() {
+                table.draw();
+            });
+            $('#select_tkt_type').change(function() {
+                table.draw();
+            });
+            $('#select_main_research_target').change(function() {
+                table.draw();
+            });
 
         });
-    </script>
-    <script>
+
         function DeleteId(id) {
             Swal.fire({
                 title: 'Are you sure?',

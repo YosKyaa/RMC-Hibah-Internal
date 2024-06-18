@@ -129,8 +129,7 @@
                                     <th>Judul Penelitian</th>
                                     <th>Jenis Penelitian</th>
                                     <th>Total Dana</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -245,13 +244,6 @@
                     {
                         render: function(data, type, row, meta) {
                             var html = row.research_type.total_funds;
-                            return html;
-                        }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
-                            var html =
-                                `<span class="badge bg-${row.statuses.color}">${row.statuses.status}</span>`;
                             return html;
                         }
                     },

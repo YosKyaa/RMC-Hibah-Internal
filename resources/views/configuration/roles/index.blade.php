@@ -220,7 +220,7 @@
                 responsive: true,
                 processing: true,
                 serverSide: true,
-                ordering: false,
+                ordering: true,
                 language: {
                     searchPlaceholder: 'Search..',
                     // url: "{{ asset('assets/vendor/libs/datatables/id.json') }}"

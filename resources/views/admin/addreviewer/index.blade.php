@@ -129,7 +129,6 @@
                                 <th>Judul Proposal</th>
                                 <th>Mulai Review</th>
                                 <th>Selesai Review</th>
-                                <th>Status</th>
                                 <th>Nama Reviewer</th>
                                 <th data-priority="2"></th>
                             </tr>
@@ -227,13 +226,6 @@
                     {
                         render: function(data, type, row, meta) {
                             var html = row.review_date_end;
-                            return html;
-                        }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
-                            var html =
-                                `<span class="badge bg-${row.statuses.color}">${row.statuses.status}</span>`;
                             return html;
                         }
                     },

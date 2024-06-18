@@ -52,18 +52,16 @@ class AddReviewerController extends Controller
         })
         ->orderBy('id');
         return DataTables::of($data)
-            ->filter(function ($instance) use ($request) {
+        ->filter(function ($query) use ($request) {
             if (!empty($request->get('search'))) {
                 $search = $request->get('search');
-                $instance->where(function ($query) use ($search) {
                 $query->where('research_title', 'LIKE', "%$search%")
                     ->orWhereHas('users', function ($query) use ($search) {
-                    $query->where('username', 'LIKE', "%$search%");
+                        $query->where('username', 'LIKE', "%$search%");
                     });
-                });
             }
-            })
-            ->make(true);
+        })
+        ->make(true);
     }
     public function datatables()
     {

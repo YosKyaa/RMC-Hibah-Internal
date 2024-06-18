@@ -107,14 +107,12 @@
                         <div class="card-body">
                             <h5 class="card-title">Hi {{ ucfirst(Auth::user()->username) }}!</h5>
                             <p class="mb-4">Silahkan Upload Proposal Anda!</p>
-                            @if ($proposals->isEmpty())
+                            @if ($proposals->isEmpty() || $proposals->last()->status_id == 'S04')
                                 <a href="../user-proposals/create" class="btn btn-primary"><span><i
                                             class="bx bx-plus me-sm-2"></i>
                                         <span>Ajukan Hibah</span></span></a>
                             @else
-                                @foreach ($proposals as $p)
-                                    <p>Terimakasih Sudah Mengupload!</p>
-                                @endforeach
+                                <p>Terimakasih Sudah Mengupload!</p>
                             @endif
                         </div>
                     </div>
@@ -122,19 +120,25 @@
             </div>
         </div>
     </div>
-    @foreach ($proposals as $p)
-        <div class="col-md-12">
-            <ul class="nav nav-pills flex-column flex-sm-row mb-4">
+
+    <div class="col-md-12">
+        <ul class="nav nav-pills flex-column flex-sm-row mb-4">
+            @if ($proposals->isEmpty())
+                <!-- Data is empty, do not display the upload and progress links -->
+            @else
                 <li class="nav-item"><a class="nav-link active" href="../user-proposals"><i
                             class="bx bx-add-to-queue me-1"></i>
                         Upload</a></li>
                 <li class="nav-item"><a class="nav-link" href="../user-proposals/timeline"><i
                             class="bx bx-line-chart me-1"></i>
                         Progres </a></li>
-            </ul>
-        </div>
+            @endif
+        </ul>
+    </div>
 
-
+    @if ($proposals->isEmpty())
+        <!-- Data is empty, do not display the table -->
+    @else
         <div class="card border-0">
             <div class="card-body p-4">
                 <div class="table-responsive">
@@ -150,18 +154,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="align-middle"></tr>
-                                <tr class="align-middle"></tr>
-                                <tr class="align-middle"></tr>
-                                <tr class="align-middle"></tr>
-                                <tr class="align-middle"></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-    @endforeach
+    @endif
 
 @endsection
 

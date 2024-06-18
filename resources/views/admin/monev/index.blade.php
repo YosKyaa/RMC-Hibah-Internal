@@ -129,9 +129,8 @@
                                 <th>Tim Penelitian</th>
                                 <th>Judul Proposal</th>
                                 <th>Tanggal Review</th>
-                                <th>Status</th>
                                 <th>Nama Reviewer</th>
-                                <th>Action</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -222,12 +221,6 @@
                             return no;
                         },
                         className: "text-center"
-                    },
-                    {
-                        render: function(data, type, row, meta) {
-                            var html = row.;
-                            return html;
-                        }
                     },
                     {
                         render: function(data, type, row, meta) {

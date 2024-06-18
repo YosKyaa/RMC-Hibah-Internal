@@ -135,7 +135,7 @@
                 searching: true,
                 language: {
                     searchPlaceholder: 'Search..',
-                    // url: "{{ asset('assets/vendor/libs/datatables/id.json') }}"
+                    url: "{{ asset('assets/vendor/libs/datatables/id.json') }}"
                 },
                 ajax: {
                     url: "{{ route('reviewers.data') }}",

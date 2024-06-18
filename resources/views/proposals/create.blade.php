@@ -19,37 +19,39 @@
         <!-- Basic Layout -->
         <div class="row">
             <div class="card mb-4">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Lengkapi Data dibawah ini!</h5> <small class="text-muted float-end">Upload
+                <div class="card-header d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="mb-0">Please Complete Your Details Below!</h4> <small class="text-muted float-end">Upload
                         Proposal</small>
                 </div>
                 <div class="card-body">
                     <form id="form-add-new-record" method="POST" action="{{ route('user-proposals.create') }}"
                         enctype="multipart/form-data">
                         @csrf
-                        <div class="mb-4">
-                            <label class="form-label">Jenis Penelitian</label>
-                            <div class="input-group input-group-merge has-validation">
-                                <select @error('research_type') is-invalid @enderror class="select2" name="research_type"
-                                    id="research_type" data-style="btn-default">
-                                    <option value="">-- Pilih Jenis Penelitian --</option>
-                                    @foreach ($researchtypes as $d)
-                                        <option value="{{ $d->id }}"
-                                            {{ $d->id == old('research_type') ? 'selected' : '' }}>
-                                            {{ $d->title }}</option>
-                                    @endforeach
-                                </select>
-                                @error('research_type')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                        <div class="row g-3">
+                            <div class="col sm mb-4">
+                                <label class="form-label">Jenis Penelitian</label>
+                                <div class="input-group input-group-merge has-validation">
+                                    <select @error('research_type') is-invalid @enderror class="select2"
+                                        name="research_type" id="research_type" data-style="btn-default">
+                                        <option value="">-- Pilih Jenis Penelitian --</option>
+                                        @foreach ($researchtypes as $d)
+                                            <option value="{{ $d->id }}"
+                                                {{ $d->id == old('research_type') ? 'selected' : '' }}>
+                                                {{ $d->title }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('research_type')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-4">
-                            <label class="form-label">Total Dana</label>
-                            <input type="text" class="form-control" id="researchtypesId"
-                                aria-describedby="defaultFormControlHelp" readonly disabled />
+                            <div class="col sm mb-4">
+                                <label class="form-label">Total Dana</label>
+                                <input type="text" class="form-control" id="researchtypesId"
+                                    aria-describedby="defaultFormControlHelp" readonly disabled />
+                            </div>
                         </div>
                         <div class="mb-4">
                             <label class="form-label">Kategori

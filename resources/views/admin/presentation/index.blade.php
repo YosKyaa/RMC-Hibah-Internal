@@ -129,7 +129,6 @@
                                 <th>Tim Penelitian</th>
                                 <th data-priority="4">Judul Proposal</th>
                                 <th data-priority="5">Tanggal Presentasi</th>
-                                <th>Status</th>
                                 <th data-priority="3"></th>
                             </tr>
                         </thead>
@@ -243,13 +242,6 @@
                     {
                         render: function(data, type, row, meta) {
                             var html = row.presentation_date;
-                            return html;
-                        }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
-                            var html =
-                                `<span class="badge bg-${row.statuses.color}">${row.statuses.status}</span>`;
                             return html;
                         }
                     },

@@ -118,46 +118,50 @@
                         <div class="col-sm">
                             <span for="inputAddress2" class="form-label"> JENIS PENELITIAN</span>
                             <input type="text" class="form-control" value="{{ $proposals->researchtype->title }}"
-                                readonly>
+                                readonly disabled>
                         </div>
                         <div class="col-sm">
                             <span for="inputAddress2" class="form-label">TOTAL DANA</span>
                             <input type="text" class="form-control" value="{{ $proposals->researchtype->total_funds }}"
-                                readonly>
+                                readonly disabled>
                         </div>
                     </div>
                     <div class="col-12">
                         <label for="inputAddress2" class="form-label"> KETEGORI PENELITIAN</label>
                         <input type="text" class="form-control"
-                            value="{{ $proposals->researchTopic->researchTheme->researchCategory->name }}" readonly>
+                            value="{{ $proposals->researchTopic->researchTheme->researchCategory->name }}" readonly
+                            disabled>
                     </div>
                     <div class="col-12">
                         <label for="inputAddress2" class="form-label">TEMA PENELITIAN</label>
                         <input type="text" class="form-control"
-                            value=" {{ $proposals->researchTopic->researchTheme->name }}" readonly>
+                            value=" {{ $proposals->researchTopic->researchTheme->name }}" readonly disabled>
                     </div>
                     <div class="col-12">
                         <label for="inputAddress2" class="form-label">TOPIK PENELITIAN</label>
-                        <input type="text" class="form-control" value=" {{ $proposals->researchTopic->name }}" readonly>
+                        <input type="text" class="form-control" value=" {{ $proposals->researchTopic->name }}" readonly
+                            disabled>
                     </div>
                     <div class="col-12">
                         <label for="inputAddress2" class="form-label">JUDUL PENELITIAN</label>
-                        <input type="text" class="form-control" value=" {{ $proposals->research_title }}" readonly>
+                        <input type="text" class="form-control" value=" {{ $proposals->research_title }}" readonly
+                            disabled>
                     </div>
                     <div class="row g-3">
                         <div class="col-sm">
                             <span for="inputAddress2" class="form-label">TARGET UTAMA RISET</span>
                             <input type="text" class="form-control" value=" {{ $proposals->mainResearchTarget->title }}"
-                                readonly>
+                                readonly disabled>
                         </div>
                         <div class="col-sm">
                             <span for="inputAddress2" class="form-label">JENIS TKT</span>
-                            <input type="text" class="form-control" value=" {{ $proposals->tktType->title }}" readonly>
+                            <input type="text" class="form-control" value=" {{ $proposals->tktType->title }}" readonly
+                                disabled>
                         </div>
                     </div>
                     <div class="col-12">
                         <label for="inputAddress2" class="form-label">CATATAN</label>
-                        <textarea class="form-control" id="inputAddress2" readonly>{{ $proposals->notes }}</textarea>
+                        <textarea class="form-control" id="inputAddress2" readonly disabled>{{ $proposals->notes }}</textarea>
                     </div>
                 </div>
             </div>

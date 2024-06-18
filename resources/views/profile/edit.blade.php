@@ -5,6 +5,16 @@
     <span class="text-muted fw-light">Akun / </span>
 @endsection
 
+@section('style')
+    <style>
+        .img {
+            height: 150px;
+            width: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #dfdfdf
+        }
+    </style>
 @section('content')
     <div class="content-wrapper">
 
@@ -23,11 +33,9 @@
                     @endif
                     <div class="d-flex align-items-start align-items-sm-center gap-4">
                         @if ($user->image)
-                            <img src="{{ asset($user->image) }}" alt="user-avatar" class="d-block rounded" height="100"
-                                width="100" id="uploadedAvatar">
+                            <img src="{{ asset($user->image) }}" alt="user-avatar" class="img"  id="uploadedAvatar">
                         @else
-                            <img src="{{ Auth::user()->image() }}" alt="user-avatar" class="d-block rounded" height="100"
-                                width="100" id="uploadedAvatar">
+                            <img src="../../assets/img/avatars/user.png" alt="user-avatar" class="img" id="uploadedAvatar">
                         @endif
                         <form action="" method="POST" enctype="multipart/form-data">
                             @csrf
@@ -181,4 +189,16 @@
 
         <div class="content-backdrop fade"></div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            const image = document.getElementById('uploadedAvatar');
+            const input = document.querySelector('input[type="file"]');
+            input.addEventListener('change', () => {
+                image.src = URL.createObjectURL(input.files[0]);
+            });
+        });
+    </script>
 @endsection
