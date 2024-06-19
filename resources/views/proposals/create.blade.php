@@ -18,7 +18,7 @@
         {{-- <h4 class="py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Vertical Layouts</h4> --}}
         <!-- Basic Layout -->
         <div class="row">
-            <div class="card mb-4">
+            <div class="card mb-4 p-4">
                 <div class="card-header d-flex justify-content-between align-items-center mb-3">
                     <h4 class="mb-0">Please Complete Your Details Below!</h4> <small class="text-muted float-end">Upload
                         Proposal</small>
@@ -94,138 +94,141 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
-                        <div class="mb-4">
-                            <label for="" class="form-label">Topik
-                                Penelitian</label>
-                            <div class="input-group input-group-merge has-validation">
-                                <select class="form-select @error('research_topics') is-invalid @enderror select2"
-                                    name="research_topics" id="research_topics"
-                                    data-placeholder="-- Pilih Topik Penelitian--">
-                                    <option value="">-- Pilih Topik Penelitian --</option>
-                                    @foreach ($researchtopics as $d)
-                                        <option value="{{ $d->id }}"
-                                            {{ $d->id == old('research_topics') ? 'selected' : '' }}>
-                                            {{ $d->name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('research_topics')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="mb-4">
-                            <label class="form-label" for="title">Judul Penelitian</label>
-                            <div class="input-group input-group-merge has-validation">
-                                <input type="text" class="form-control @error('research_title') is-invalid @enderror"
-                                    name="research_title" placeholder=" Judul Penelitian"
-                                    value="{{ old('research_title') }}">
-                                @error('research_title')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="mb-4">
-                            <div class="input-group input-group-merge has-validation">
-                                <label for="select2Multiple" class="form-label">Tim Peneliti</label>
-                                <select id="select2Multiple"
-                                    class="select2 form-select @error('researcher_id') is-invalid @enderror"
-                                    name="researcher_id[]" id="researcher_id" multiple>
-                                    <option value="" disabled selected>-- Pilih Tim Peneliti --</option>
-                                    @foreach ($users as $user)
-                                        @if (!in_array($user->id, $existingResearchers))
-                                            <option value="{{ $user->id }}"
-                                                {{ in_array($user->id, old('researcher_id', [])) ? 'selected' : '' }}>
-                                                {{ $user->name }}
-                                            </option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                                @error('researcher_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div id="defaultFormControlHelp" class="form-text">Silahkan Pilih Tim Peneliti Max 2.</div>
-                        </div>
-                        <div class="row g-3">
-                            <div class="col sm mb-4">
-                                <label for="" class="form-label">Jenis
-                                    TKT</label>
+
+                            <div class="mb-4">
+                                <label for="" class="form-label">Topik
+                                    Penelitian</label>
                                 <div class="input-group input-group-merge has-validation">
-                                    <select class="form-select @error('tkt_type') is-invalid @enderror select2"
-                                        name="tkt_type" id="tkt_type" data-placeholder="-- Pilih Jenis TKT--">
-                                        <option value="">-- Pilih Jenis TKT --</option>
-                                        @foreach ($tkttype as $d)
+                                    <select class="form-select @error('research_topics') is-invalid @enderror select2"
+                                        name="research_topics" id="research_topics"
+                                        data-placeholder="-- Pilih Topik Penelitian--">
+                                        <option value="">-- Pilih Topik Penelitian --</option>
+                                        @foreach ($researchtopics as $d)
                                             <option value="{{ $d->id }}"
-                                                {{ $d->id == old('tkt_type') ? 'selected' : '' }}>
-                                                {{ $d->title }}</option>
+                                                {{ $d->id == old('research_topics') ? 'selected' : '' }}>
+                                                {{ $d->name }}</option>
                                         @endforeach
                                     </select>
-                                    @error('tkt_type')
+                                    @error('research_topics')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col sm mb-4">
-                                <label for="" class="form-label">Target Utama
-                                    Riset</label>
+                            <div class="mb-4">
+                                <label class="form-label" for="title">Judul Penelitian</label>
                                 <div class="input-group input-group-merge has-validation">
-                                    <select class="form-select @error('main_research_target') is-invalid @enderror select2"
-                                        name="main_research_target" id="main_research_target"
-                                        data-placeholder="-- Pilih Target Utama Riset--">
-                                        <option value="">-- Target Utama Riset --</option>
-                                        @foreach ($mainresearch as $d)
-                                            <option value="{{ $d->id }}"
-                                                {{ $d->id == old('main_research_target') ? 'selected' : '' }}>
-                                                {{ $d->title }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('main_research_target')
+                                    <input type="text" class="form-control @error('research_title') is-invalid @enderror"
+                                        name="research_title" placeholder=" Judul Penelitian"
+                                        value="{{ old('research_title') }}">
+                                    @error('research_title')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </div>
                             </div>
-                        </div>
-                        <div class="mb-4">
-                            <label class="form-label">Upload File<i class="text-danger">*</i></label>
-                            <div class="input-group mb-4">
-                                <input class="form-control @error('proposal_doc') is-invalid @enderror"
-                                    name="proposal_doc" type="file" accept=".pdf" title="PDF">
-                                @error('proposal_doc')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <div class="mb-4">
+                                <div class="input-group input-group-merge has-validation">
+                                    <label for="select2Multiple" class="form-label">Tim Peneliti</label>
+                                    <select id="select2Multiple"
+                                        class="select2 form-select @error('researcher_id') is-invalid @enderror"
+                                        name="researcher_id[]" id="researcher_id" multiple>
+                                        <option value="" disabled selected>-- Pilih Tim Peneliti --</option>
+                                        @foreach ($users as $user)
+                                            @if (!in_array($user->id, $existingResearchers))
+                                                <option value="{{ $user->id }}"
+                                                    {{ in_array($user->id, old('researcher_id', [])) ? 'selected' : '' }}>
+                                                    {{ $user->name }}
+                                                </option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    @error('researcher_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div id="defaultFormControlHelp" class="form-text">Silahkan Pilih Tim Peneliti Max 2.
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-4">
-                            <label class="form-label" for="basicDate">Catatan</label>
-                            <div class="input-group input-group-merge has-validation">
-                                <textarea type="text" class="form-control @error('notes') is-invalid @enderror" name="notes"
-                                    value="{{ old('notes') }}"> </textarea>
-                                @error('notes')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <div class="row g-3">
+                                <div class="col sm mb-4">
+                                    <label for="" class="form-label">Jenis
+                                        TKT</label>
+                                    <div class="input-group input-group-merge has-validation">
+                                        <select class="form-select @error('tkt_type') is-invalid @enderror select2"
+                                            name="tkt_type" id="tkt_type" data-placeholder="-- Pilih Jenis TKT--">
+                                            <option value="">-- Pilih Jenis TKT --</option>
+                                            @foreach ($tkttype as $d)
+                                                <option value="{{ $d->id }}"
+                                                    {{ $d->id == old('tkt_type') ? 'selected' : '' }}>
+                                                    {{ $d->title }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('tkt_type')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col sm mb-4">
+                                    <label for="" class="form-label">Target Utama
+                                        Riset</label>
+                                    <div class="input-group input-group-merge has-validation">
+                                        <select
+                                            class="form-select @error('main_research_target') is-invalid @enderror select2"
+                                            name="main_research_target" id="main_research_target"
+                                            data-placeholder="-- Pilih Target Utama Riset--">
+                                            <option value="">-- Target Utama Riset --</option>
+                                            @foreach ($mainresearch as $d)
+                                                <option value="{{ $d->id }}"
+                                                    {{ $d->id == old('main_research_target') ? 'selected' : '' }}>
+                                                    {{ $d->title }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('main_research_target')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                            <div class="mb-4">
+                                <label class="form-label">Upload File<i class="text-danger">*</i></label>
+                                <div class="input-group mb-4">
+                                    <input class="form-control @error('proposal_doc') is-invalid @enderror"
+                                        name="proposal_doc" type="file" accept=".pdf" title="PDF">
+                                    @error('proposal_doc')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label" for="basicDate">Catatan</label>
+                                <div class="input-group input-group-merge has-validation">
+                                    <textarea type="text" class="form-control @error('notes') is-invalid @enderror" name="notes"
+                                        value="{{ old('notes') }}"> </textarea>
+                                    @error('notes')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
 
 @endsection
 

@@ -277,16 +277,23 @@ class UserProposalController extends Controller
         return redirect()->route('user-proposals.index')->with('proposals', 'Data BERHASIL diajukan!');
     }
 
-public function show($id)
+    public function show($id)
     {
-        $proposals = Proposal::findOrFail($id);
+
+        $proposals = Proposal::with([
+            'proposalTeams.researcher' => function ($query) {
+            $query->select('id', 'username', 'image');
+            },
+            'reviewer' => function ($query) {
+                $query->select('id', 'username', 'image');
+            },
+        ])->findOrFail($id);
         $documentPath = $proposals->documents->first()->proposal_doc;
         $documentUrl = url($documentPath);
-        return view('proposals.show', compact('proposals', 'documentUrl'));
+        $user = User::select('image');
+        return view('proposals.show', compact('proposals', 'documentUrl', 'user'));
     }
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function delete(Request $request){
         $data = Proposal::find($request->id);
         if($data){

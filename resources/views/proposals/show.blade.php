@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
     <link rel="stylesheet" href="assets/vendor/libs/bootstrap-select/bootstrap-select.css" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/sweetalert2.css') }}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 @endsection
 
 @section('style')
@@ -49,7 +50,7 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        user agent stylesheet i {
+        i {
             font-style: italic;
         }
 
@@ -68,7 +69,7 @@
             border-radius: 50%;
         }
 
-        user agent stylesheet li {
+        li {
             text-align: -webkit-match-parent;
         }
 
@@ -82,6 +83,22 @@
 
         .mb-4 {
             margin-bottom: 1.5rem !important;
+        }
+
+        .iframe {
+            height: 350px;
+            width: 100%;
+            border: none;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        .timeline .timeline-item .timeline-point-wrapper {
+            position: absolute;
+            top: 1rem;
+            left: 0rem;
+            z-index: 2;
+            display: block;
         }
     </style>
 @endsection
@@ -97,16 +114,35 @@
 
     <div class="row mb-4 g-4">
         <div class="col-12 col-xl-8">
-            <div class="card h-100">
+            <div class="card p-4">
                 <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="card-title m-0 me-2">Proposal Data</h5>
+                    <div class="d-flex justify-content-start align-items-center mt-lg-4">
+                        <div class="avatar me-3" style="width: 50px; height: 50px;">
+                            @if ($proposals->users->image)
+                                <img src="{{ asset($proposals->users->image) }}" alt="Avatar" class="rounded-circle"
+                                    style="width: 100%; height: 100%;">
+                            @else
+                                <img src="../../assets/img/avatars/user.png" alt="Avatar" class="rounded-circle"
+                                    style="width: 100%; height: 100%;">
+                            @endif
+                        </div>
+                        <div class="d-flex flex-column">
+                            <h6 class="mb-1 text-truncate" style="font-size: 20px;">{{ ucfirst($proposals->users->name) }}
+                            </h6>
+                            @if ($proposals->users->roles->isNotEmpty())
+                                <small class="text-truncate text-muted"
+                                    style="font-size: 15px;">{{ $proposals->users->roles->first()->name }}</small>
+                            @endif
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body row g-3">
+
+                <div class="card-body mb-4">
                     <p>
                         @if ($proposals->documents->isNotEmpty() && $documentUrl)
-                            <iframe src="{{ $documentUrl }}" style="height: 350px; width: 100%; border: none;"
+                            <iframe src="{{ $documentUrl }}" class="iframe mb-3"
                                 onerror="this.onerror=null; this.outerHTML='Cannot load PDF.';"></iframe><br>
-                            <a class="btn btn-primary" href="{{ $documentUrl }}" target="_blank">
+                            <a class="btn btn-primary mb-2" href="{{ $documentUrl }}" target="_blank">
                                 <i class="bx bx-import align-middle me-2" style="cursor:pointer"></i>
                                 <span>Download</span>
                             </a>
@@ -114,7 +150,7 @@
                             <p>Tidak ada dokumen yang tersedia.</p>
                         @endif
                     </p>
-                    <div class="row g-2">
+                    <div class="row g-2 mb-3">
                         <div class="col-sm">
                             <span for="inputAddress2" class="form-label"> JENIS PENELITIAN</span>
                             <input type="text" class="form-control" value="{{ $proposals->researchtype->title }}"
@@ -126,41 +162,41 @@
                                 readonly disabled>
                         </div>
                     </div>
-                    <div class="col-12">
-                        <label for="inputAddress2" class="form-label"> KETEGORI PENELITIAN</label>
+                    <div class="col-12 mb-3">
+                        <label for="inputAddress2" class="form-label mb-0"> KETEGORI PENELITIAN</label>
                         <input type="text" class="form-control"
                             value="{{ $proposals->researchTopic->researchTheme->researchCategory->name }}" readonly
                             disabled>
                     </div>
-                    <div class="col-12">
-                        <label for="inputAddress2" class="form-label">TEMA PENELITIAN</label>
+                    <div class="col-12 mb-3">
+                        <label for="inputAddress2" class="form-label mb-0">TEMA PENELITIAN</label>
                         <input type="text" class="form-control"
                             value=" {{ $proposals->researchTopic->researchTheme->name }}" readonly disabled>
                     </div>
-                    <div class="col-12">
-                        <label for="inputAddress2" class="form-label">TOPIK PENELITIAN</label>
+                    <div class="col-12 mb-3">
+                        <label for="inputAddress2" class="form-label mb-0">TOPIK PENELITIAN</label>
                         <input type="text" class="form-control" value=" {{ $proposals->researchTopic->name }}" readonly
                             disabled>
                     </div>
-                    <div class="col-12">
-                        <label for="inputAddress2" class="form-label">JUDUL PENELITIAN</label>
+                    <div class="col-12 mb-3">
+                        <label for="inputAddress2" class="form-label mb-0">JUDUL PENELITIAN</label>
                         <input type="text" class="form-control" value=" {{ $proposals->research_title }}" readonly
                             disabled>
                     </div>
-                    <div class="row g-3">
+                    <div class="row g-2 mb-3">
                         <div class="col-sm">
-                            <span for="inputAddress2" class="form-label">TARGET UTAMA RISET</span>
+                            <span for="inputAddress2" class="form-label mb-0">TARGET UTAMA RISET</span>
                             <input type="text" class="form-control" value=" {{ $proposals->mainResearchTarget->title }}"
                                 readonly disabled>
                         </div>
-                        <div class="col-sm">
-                            <span for="inputAddress2" class="form-label">JENIS TKT</span>
-                            <input type="text" class="form-control" value=" {{ $proposals->tktType->title }}" readonly
-                                disabled>
+                        <div class="col-sm mb-2">
+                            <span for="inputAddress2" class="form-label mb-0">JENIS TKT</span>
+                            <input type="text" class="form-control" value=" {{ $proposals->tktType->title }}"
+                                readonly disabled>
                         </div>
                     </div>
                     <div class="col-12">
-                        <label for="inputAddress2" class="form-label">CATATAN</label>
+                        <label for="inputAddress2" class="form-label mb-0">CATATAN</label>
                         <textarea class="form-control" id="inputAddress2" readonly disabled>{{ $proposals->notes }}</textarea>
                     </div>
                 </div>
@@ -168,90 +204,138 @@
         </div>
 
         <div class="col-12 col-xl-4 col-md-6">
-            <div class="card h-100">
-                <div class="card-header d-flex align-items-center justify-content-between">
-                    <div class="card-title mb-0">
-                        <h5 class="m-0 me-2">Popular Instructors</h5>
-                    </div>
-                </div>
-                <div class="table-responsive">
+            <div class="card mb-4 p-4 mt-2" data-aos="fade-left" data-aos-duration="3000">
+                <div class="table">
                     <table class="table table-borderless border-top">
                         <thead class="border-bottom">
                             <tr>
-                                <th>Instructors</th>
-                                <th class="text-end">courses</th>
+                                <th>Researcher Team</th>
+                                <th class="text-end"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>
-                                    <div class="d-flex justify-content-start align-items-center mt-lg-4">
-                                        <div class="avatar me-3">
-                                            <img src="../../assets/img/avatars/1.png" alt="Avatar"
-                                                class="rounded-circle">
+                                    @foreach ($proposals->proposalTeams as $r)
+                                        <div class="d-flex justify-content-start align-items-center mt-lg-2 mb-2">
+                                            <div class="avatar me-3">
+                                                @if ($r->researcher->image)
+                                                    <img src="{{ asset($r->researcher->image) }}" alt="Avatar"
+                                                        class="rounded-circle">
+                                                @else
+                                                    <img src="../../assets/img/avatars/user.png" alt="Avatar"
+                                                        class="rounded-circle">
+                                                @endif
+                                            </div>
+                                            <div class="d-flex flex-column">
+                                                <h6 class="mb-1 text-truncate">
+                                                    {{ ucfirst($r->researcher->username) }}
+                                                </h6>
+                                                @if ($r->researcher->roles->isNotEmpty())
+                                                    <small
+                                                        class="text-truncate text-muted">{{ $r->researcher->roles->first()->name }}</small>
+                                                @endif
+                                            </div>
                                         </div>
-                                        <div class="d-flex flex-column">
-                                            <h6 class="mb-1 text-truncate">Nama peneliti/</h6>
-                                            <small class="text-truncate text-muted">Business Intelligence</small>
-                                        </div>
-                                    </div>
+                                    @endforeach
+
                                 </td>
                                 <td class="text-end">
                                     <div class="user-progress mt-lg-4">
-                                        <h6 class="mb-0">33</h6>
+                                        <h6 class="mb-0"></h6>
                                     </div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                </div> <br>
+                </div>
+                <br>
                 <!--  -->
-                <div class="table-responsive">
+                <div class="table">
                     <table class="table table-borderless border-top">
                         <thead class="border-bottom">
                             <tr>
-                                <th>Instructors</th>
-                                <th class="text-end">courses</th>
+                                <th>Reviewer</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>
-                                    <div class="d-flex justify-content-start align-items-center mt-lg-4">
+                                    <div class="d-flex justify-content-start align-items-center mt-lg-2 mb-2">
                                         <div class="avatar me-3">
-                                            <img src="../../assets/img/avatars/1.png" alt="Avatar"
-                                                class="rounded-circle">
+                                            @if ($proposals->reviewer->image)
+                                                <img src="{{ asset($proposals->reviewer->image) }}" alt="Avatar"
+                                                    class="rounded-circle">
+                                            @else
+                                                <img src="../../assets/img/avatars/user.png" alt="Avatar"
+                                                    class="rounded-circle">
+                                            @endif
                                         </div>
                                         <div class="d-flex flex-column">
-                                            <h6 class="mb-1 text-truncate">Nama peneliti/</h6>
-                                            <small class="text-truncate text-muted">Business Intelligence</small>
+                                            <h6 class="mb-1 text-truncate">
+                                                {{ ucfirst($proposals->reviewer->username) }}
+                                            </h6>
+                                            @if ($proposals->reviewer->roles->isNotEmpty())
+                                                <small
+                                                    class="text-truncate text-muted">{{ $proposals->reviewer->roles->first()->name }}</small>
+                                            @endif
                                         </div>
                                     </div>
                                 </td>
                                 <td class="text-end">
                                     <div class="user-progress mt-lg-4">
-                                        <h6 class="mb-0">33</h6>
                                     </div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+                <br>
+                <div class="table-responsive">
+                    <table class="table table-borderless border-top">
+                        <thead class="border-bottom">
+                            <tr>
+                                <th>Timeline</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul class="timeline">
+                                        <li class="timeline-item timeline-item-transparent">
+                                            <span class="timeline-point-wrapper"><span
+                                                    class="timeline-point timeline-point-success"></span></span>
+                                            <div>
+                                                <div class="timeline-header mb-sm-0 mb-3">
+                                                    <h6 class="mb-0">Pengajuan</h6>
+                                                    <span class="text-muted"> </span>
+                                                    <span class="text-muted">21/2/2024</span>
+                                                </div>
+                                                <p>
+                                                    Approved
+                                                </p>
+                                            </div>
+                </div>
+                </li>
+                </ul>
+                </td>
             </div>
-            <!--  -->
+            </td>
+            </tr>
+            </tbody>
+            </table>
         </div>
     </div>
+    <!--  -->
     </div>
-
-    <!--  -->
-
-
-    <!--  -->
-
-
+    </div>
+    </div>
 
 @endsection
 
 @section('script')
-
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 @endsection
