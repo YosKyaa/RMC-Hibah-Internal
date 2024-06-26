@@ -65,6 +65,8 @@ Route::group(['prefix' => 'user-proposals'], function () {
     Route::post('/approve', [UserProposalController::class, 'approve'])->name('user-proposals.approve');
     Route::post('/submit', [UserProposalController::class, 'submit'])->name('user-proposals.submit');
     Route::get('/print_pdf/{id}', [UserProposalController::class, 'print_pdf'])->name('print_pdf');
+    Route::get('/account-bank/{id}', [UserProposalController::class, 'account_bank'])->name('user-proposals-account-bank.edit');
+    Route::put('/account-bank-update/{id}', [UserProposalController::class, 'account_bank_update'])->name('user-proposals-account-bank.update');
 });
 
 

@@ -241,7 +241,7 @@
                 responsive: true,
                 processing: true,
                 serverSide: true,
-                ordering: true,
+                ordering: false,
                 searching: true,
                 language: {
                     searchPlaceholder: 'Search..',

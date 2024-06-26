@@ -37,11 +37,12 @@ return new class extends Migration
             $table->text('notes')->nullable();
 
             $table->uuid('status_id')->nullable();
-            $table->foreign('status_id')->references('id')->on('statuses')->nullable()->onDelete('cascade');
+            $table->foreign('status_id')->references('id')->on('statuses')->nullable();
 
             $table->text('review_notes')->nullable();
 
-            $table->text('account_bank_detail')->nullable()->comment('Bank details for payment');
+            $table->unsignedBigInteger('bank_id')->nullable();
+            $table->foreign('bank_id')->references('id')->on('banks')->nullable();
 
             $table->date('review_date_start')->nullable();
 

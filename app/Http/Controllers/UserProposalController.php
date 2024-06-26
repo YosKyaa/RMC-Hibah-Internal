@@ -279,7 +279,6 @@ class UserProposalController extends Controller
 
     public function show($id)
     {
-
         $proposals = Proposal::with([
             'proposalTeams.researcher' => function ($query) {
             $query->select('id', 'username', 'image');
@@ -309,6 +308,30 @@ class UserProposalController extends Controller
             ]);
         }
     }
+
+    public function account_bank($id)
+    {
+        $proposal = Proposal::findOrfail($id);
+        return view('proposals.account-bank', compact('proposal'));
+    }
+
+    public function account_bank_update(Request $request, $id)
+    {
+        $request->validate([
+            'account_name' => 'required|string|max:255',
+            'account_number' => 'required|string|max:255',
+            'bank_name' => 'required|string|max:255',
+        ]);
+
+        $proposal = Proposal::findOrfail($id);
+        $proposal->account_name = $request->account_name;
+        $proposal->account_number = $request->account_number;
+        $proposal->bank_name = $request->bank_name;
+        $proposal->save();
+
+        return redirect()->route('user-proposals.index')->with('proposals', 'Data BERHASIL diperbarui!');
+    }
+
 
     public function print_pdf($id)
     {

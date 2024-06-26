@@ -2,7 +2,6 @@
 @section('title', 'Proposal')
 
 @section('css')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css">
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}">
@@ -233,7 +232,8 @@
                     {
                         render: function(data, type, row, meta) {
                             var html =
-                                `<span class="badge bg-${row.statuses.color}">${row.statuses.status}</span>`;
+                                `<span class="badge rounded-pill bg-label-${row.statuses.color}">
+                                <span class="badge badge-dot bg-${row.statuses.color} me-1"></span>${row.statuses.status} </span>`;
                             return html;
                         }
                     },
@@ -242,8 +242,9 @@
                             var html = '';
                             if (row.approval_vice_rector_2) {
                                 html =
-                                    `<a class="text-warning" title="Show" href="{{ url('reviewers/show/${row.id}') }}"><i class="bx bx-show"></i></a>
-                                <a class="text-success" title="Upload Nomor Rekening" href="{{ url('user-proposals/print_pdf/${row.id}') }}"><i class="bx bx-upload"></i></a>`;
+                                    `<a class="text-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>
+                                <a class="text-success" title="Upload Nomor Rekening" href="{{ url('user-proposals/print_pdf/${row.id}') }}"><i class="bx bx-upload"></i></a>
+                                <a class="text-success" title="Upload" href="{{ url('user-proposals/account-bank/${row.id}') }}"><i class="bx bxs-edit"></i></a>`;
 
                             } else if (row.statuses.id === 'S01' || row.statuses.id === 'S02' || row
                                 .statuses.id === 'S04' || row.statuses.id === 'S05' || row.statuses
