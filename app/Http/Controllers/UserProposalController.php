@@ -22,7 +22,10 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
 use Auth;
-use PDF;
+// use Dompdf\Options;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -335,8 +338,11 @@ class UserProposalController extends Controller
 
     public function print_pdf($id)
     {
+        $options = new Options();
+        $options->set('isRemoteEnablaled',true);
+        $dompdf = new Dompdf( $options );
         $proposals = Proposal::findOrFail($id);
-        $pdf = PDF::loadView('proposals.print', compact('proposals'));
+        $pdf = Pdf::loadView('proposals.print', compact('proposals'));
         return $pdf->stream('proposal.pdf');
     }
 }

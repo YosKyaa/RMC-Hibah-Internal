@@ -6,57 +6,59 @@
     <title>Kontrak Penelitian</title>
     <style>
         
-        body { font-family: "Times New Roman", Times, serif; }
+        body { 
+            font-family: "Times New Roman", Times, serif; 
+            padding-top: 50px; /* Adjust as needed to ensure content is below header */
+            padding-bottom: 10px; /* Adjust as needed to ensure content is above footer */
+        }
         .container { width: 80%; margin: auto; }
-        .header { display: flex; justify-content: space-between; align-items: center; }
+        .header { display: flex; justify-content: flex-end; align-items: center; }
         .header img { max-width: 150px; }
         h1, h2, h3, h4 { text-align: center; }
         .content { margin: 20px 0; }
         .content p { text-align: justify; }
-        td, li {text-align: justify;}
-        th{text-align: justify;}
-        .ttd{ width: 100%; text-align: center; }
-        .ttd p {text-align: center;}
+        td, li { text-align: justify; }
+        th { text-align: justify; }
+        .ttd { width: 100%; text-align: center; }
+        .ttd p { text-align: center; }
         .center { width: 100%; text-align: center; margin-top: 20px; }
-        .center p {text-align: center;}
-
-  header {
-    position: fixed;
-    left: 0;
-    top: 0;
-    right: 0;
-    height: 30px;
-    text-align: right;
-    background-color: #f0f0f0;
-  }
-  footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    height: 40px;
-    text-align: center;
-    background-color: #f0f0f0;
-  }
+        .center p { text-align: center; }
+        
+        header {
+            position: fixed;
+            left: 0;
+            top: -33;
+            right: -29;
+            height: 70px; /* Adjust as needed to fit the header content */
+            background-color: #fff;
+            text-align: right;
+            
+        }
+        footer {
+            position: fixed;
+            left: 0;
+            bottom: -35;
+            right: 0;
+            height: 60px; /* Adjust as needed to fit the footer content */
+            text-align: center;
+            background-color: #fff;
+        }
 </style>
 
 </head>
 <body>
 <header>
-    <img src="{{ public_path('assets/img/picture1.jgp') }}">
+<img src="{{ public_path('/assets/img/picture1.jpg') }}">
 </header>
 <footer>
-    <img src="{{ public_path('assets/img/picture2.jgp') }}">
+<img src="{{ public_path('/assets/img/picture2.jpg') }}">
 </footer>
   <div class="container">
-    <hr style="height: 2px; background-color: black;">
   </div>
     <div class="container">
         <div class="header">
-            <div>
                 <h3>KONTRAK PENELITIAN <br> PENELITIAN HIBAH UNIVERSITAS GLOBAL JAKARTA</h3>
                 <h4>Tahun Anggaran 2023 <br> Nomor : 013/L4/SK/VII/JGU/2023</h4>
-            </div>
         </div>
         <div class="content">
         <p>Pada hari ini Rabu tanggal 12 bulan Juli tahun Dua Ribu Dua Puluh Tiga, kami yang bertandatangan di bawah ini:</p>
@@ -70,17 +72,19 @@
             </thead>
             <tbody>
             <tr>
-                <th>1. Anugerah B. Adina, S.Farm., M.H.Sc. <br> <br> <br>  </th>
-                <td>: Kepala <i>Research Management Centre</i> (Pusat Pengelola Penelitian) Universitas Global Jakarta, 
+                <th  style="width: 40%; vertical-align: top;">1. Anugerah B. Adina, S.Farm., M.H.Sc. </th>
+                <td style="vertical-align: top;">:</td>
+                <td> Kepala <i>Research Management Centre</i> (Pusat Pengelola Penelitian) Universitas Global Jakarta, 
                         dalam hal ini bertindak untuk dan atas nama Universitas Global Jakarta, yang berkedudukan di 
                         Grand Depok City, Jl. Boulevard Raya No. 2, Kota Depok, 16412, Jawa Barat, Indonesia. Untuk 
                         selanjutnya disebut <b>PIHAK PERTAMA.</b></td>
             </tr>
             <tr>
-                <th>2. Safira Faizah, S.Tr.Kom., M.IT </th>
-                <td>: Dosen Program Studi Teknik Informatika Universitas Global Jakarta, dalam hal ini bertindak 
+                <th style="width: 40%; vertical-align: top;">2. Safira Faizah, S.Tr.Kom., M.IT </th>
+                <td style="width: 1%;vertical-align: top;">:</td>
+                <td> Dosen Program Studi Teknik Informatika Universitas Global Jakarta, dalam hal ini bertindak 
                 sebagai pengusul dan Ketua Pelaksana Penelitian Tahun Anggaran 2023 untuk selanjutnya disebut 
-                <b>PIHAK KEDUA.</b></td>
+                <b>PIHAK KEDUA.</td>
             </tr>
             </tbody>
         </table>
