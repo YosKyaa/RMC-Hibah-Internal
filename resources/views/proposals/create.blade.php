@@ -137,12 +137,10 @@
                                         name="researcher_id[]" id="researcher_id" multiple>
                                         <option value="" disabled selected>-- Pilih Tim Peneliti --</option>
                                         @foreach ($users as $user)
-                                            @if (!in_array($user->id, $existingResearchers))
                                                 <option value="{{ $user->id }}"
                                                     {{ in_array($user->id, old('researcher_id', [])) ? 'selected' : '' }}>
-                                                    {{ $user->name }}
+                                                    {{ $user->name }} ({{ $user->total}})
                                                 </option>
-                                            @endif
                                         @endforeach
                                     </select>
                                     @error('researcher_id')

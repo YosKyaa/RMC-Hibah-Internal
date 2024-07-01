@@ -22,12 +22,10 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
 use Auth;
-// use Dompdf\Options;
-use Barryvdh\DomPDF\Facade\Pdf;
-use Dompdf\Dompdf;
-use Dompdf\Options;
+use PDF;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
+use DB;
 
 class UserProposalController extends Controller
 {
@@ -151,6 +149,7 @@ class UserProposalController extends Controller
 
             // Add research team members
             foreach ($request->researcher_id as $researcher_id) {
+
             ProposalTeams::create([
                 'proposals_id' => $data->id,
                 'researcher_id' => $researcher_id,
@@ -199,9 +198,33 @@ class UserProposalController extends Controller
             $tkttype = TktTypes::all();
             $existingResearchers = ProposalTeams::pluck('researcher_id')->toArray();
             $mainresearch = MainResearchTarget::all();
-            $users = User::whereHas('roles', function ($query) {
-                $query->whereIn('name', ['lecture', 'reviewer']);
-            })->get();
+            // DB::table('users')
+            // ->select('users.id', 'users.name', DB::raw("'COUNT'('proposal_teams.id') as total"), 'proposals.status_id')
+            // ->leftJoin('proposal_teams','users.id','=','proposal_teams.researcher_id')
+            // ->leftJoin('proposals','proposals.id','=','proposal_teams.proposals_id')
+            // ->where('proposals.status_id','!=','S08')
+            // ->orWhere('proposals.status_id','!=','S04')
+            // ->orWhereNull('proposals.status_id')
+            // ->groupBy('users.id','users.name','proposals.status_id')
+            // ->having('total','<',2)
+            // ->get();
+
+            $users = User::select('users.id', 'users.name', DB::raw("COUNT('proposal_teams.id') as total"))
+            ->leftJoin('proposal_teams','users.id','=','proposal_teams.researcher_id')
+            ->leftJoin('proposals','proposals.id','=','proposal_teams.proposals_id')
+            ->whereHas('roles', function ($query) {
+                $query->whereIn('name', ['lecture']);
+            })
+            ->where(function ($query) {
+                $query->where('proposals.status_id','!=','S08')
+                      ->orWhere('proposals.status_id','!=','S04')
+                      ->orWhereNull('proposals.status_id');
+            })
+            ->groupBy('users.id', 'users.name')
+            ->havingRaw("total < 2")
+            ->get();
+
+
 
             return view('proposals.create', compact('proposals', 'researchtypes', 'researchthemes', 'researchcategories', 'tkttype', 'mainresearch', 'researchtopics','userproposal','users','existingResearchers'));
         }
@@ -338,11 +361,8 @@ class UserProposalController extends Controller
 
     public function print_pdf($id)
     {
-        $options = new Options();
-        $options->set('isRemoteEnablaled',true);
-        $dompdf = new Dompdf( $options );
         $proposals = Proposal::findOrFail($id);
-        $pdf = Pdf::loadView('proposals.print', compact('proposals'));
+        $pdf = PDF::loadView('proposals.print', compact('proposals'));
         return $pdf->stream('proposal.pdf');
     }
 }

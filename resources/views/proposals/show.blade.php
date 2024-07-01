@@ -122,7 +122,7 @@
                                 <img src="{{ asset($proposals->users->image) }}" alt="Avatar" class="rounded-circle"
                                     style="width: 100%; height: 100%;">
                             @else
-                                <img src="../../assets/img/avatars/user.png" alt="Avatar" class="rounded-circle"
+                                <img src="{{ asset('/assets/img/avatars/user.png') }}" alt="Avatar" class="rounded-circle"
                                     style="width: 100%; height: 100%;">
                             @endif
                         </div>
@@ -261,26 +261,30 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <div class="d-flex justify-content-start align-items-center mt-lg-2 mb-2">
-                                        <div class="avatar me-3">
-                                            @if ($proposals->reviewer->image)
-                                                <img src="{{ asset($proposals->reviewer->image) }}" alt="Avatar"
-                                                    class="rounded-circle">
-                                            @else
-                                                <img src="../../assets/img/avatars/user.png" alt="Avatar"
-                                                    class="rounded-circle">
-                                            @endif
+                                    @if ($proposals->reviewer)
+                                        <div class="d-flex justify-content-start align-items-center mt-lg-2 mb-2">
+                                            <div class="avatar me-3">
+                                                @if ($proposals->reviewer->image)
+                                                    <img src="{{ asset($proposals->reviewer->image) }}" alt="Avatar"
+                                                        class="rounded-circle">
+                                                @else
+                                                    <img src="../../assets/img/avatars/user.png" alt="Avatar"
+                                                        class="rounded-circle">
+                                                @endif
+                                            </div>
+                                            <div class="d-flex flex-column">
+                                                <h6 class="mb-1 text-truncate">
+                                                    {{ ucfirst($proposals->reviewer->username) }}
+                                                </h6>
+                                                @if ($proposals->reviewer->roles->isNotEmpty())
+                                                    <small
+                                                        class="text-truncate text-muted">{{ $proposals->reviewer->roles->first()->name }}</small>
+                                                @endif
+                                            </div>
                                         </div>
-                                        <div class="d-flex flex-column">
-                                            <h6 class="mb-1 text-truncate">
-                                                {{ ucfirst($proposals->reviewer->username) }}
-                                            </h6>
-                                            @if ($proposals->reviewer->roles->isNotEmpty())
-                                                <small
-                                                    class="text-truncate text-muted">{{ $proposals->reviewer->roles->first()->name }}</small>
-                                            @endif
-                                        </div>
-                                    </div>
+                                    @else
+                                        <p>Belum ada reviewer.</p>
+                                    @endif
                                 </td>
                                 <td class="text-end">
                                     <div class="user-progress mt-lg-4">

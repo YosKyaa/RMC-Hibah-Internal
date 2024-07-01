@@ -30,6 +30,21 @@ class ProposalController extends Controller
         return view('admin.index', compact( 'totalUsers', 'proposalCount', 'proposalApproved', 'proposalDisapprove', 'researchcategories', 'tktTypes', 'mainresearchtargets'));
     }
 
+    public function show($id)
+    {
+        $proposals = Proposal::with([
+            'proposalTeams.researcher' => function ($query) {
+            $query->select('id', 'username', 'image');
+            },
+            'reviewer' => function ($query) {
+                $query->select('id', 'username', 'image');
+            },
+        ])->findOrFail($id);
+        $documentPath = $proposals->documents->first()->proposal_doc;
+        $documentUrl = url($documentPath);
+        $user = User::select('image');
+        return view('proposals.show', compact('proposals', 'documentUrl', 'user'));
+    }
     /**
      * Show the form for creating a new resource.
      */
