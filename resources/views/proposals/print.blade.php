@@ -145,13 +145,14 @@
 <br>
 
 <h4>PASAL 6 <br> HAK DAN KEWAJIBAN PARA PIHAK</h4>
-<p>1. Hak dan Kewajiban <b>PIHAK PERTAMA</b>:</p>
+<ol> 
+    <li>1. Hak dan Kewajiban <b>PIHAK PERTAMA</b>:</li>
     <ul type="a">
     <li><b>PIHAK PERTAMA</b> berhak untuk mendapatkan dari <b>PIHAK KEDUA</b> laporan akhir dan bukti luaran penelitian.</li>
     <li><b>PIHAK PERTAMA</b> berkewajiban untuk memberikan dana penelitian kepada <b>PIHAK KEDUA</b> dengan jumlah sebagaimana dimaksud dalam Pasal 2 ayat (1) dan dengan tata cara pembayaran sebagaimana dimaksud dalam Pasal 3.</li>
     </ul>
-
-<p>2. Hak dan Kewajiban <b>PIHAK KEDUA</b>:</p>
+ </ol>
+<li>2. Hak dan Kewajiban <b>PIHAK KEDUA</b>:</li>
 <ul type="a">
     <li><b>PIHAK KEDUA</b> berhak menerima dana penelitian dari <b>PIHAK PERTAMA</b> dengan jumlah sebagaimana dimaksud dalam Pasal 2 ayat (1).</li>
     <li><b>PIHAK KEDUA</b> berkewajiban menyerahkan kepada <b>PIHAK PERTAMA</b> laporan sebagaimana dimaksud pada pasal 3 ayat (1b) Penelitian Hibah Universitas Global Jakarta dengan judul Sistem Deteksi Penyakit Tremor Istirahat Pada Penderita Parkinson Menggunakan Internet of Things (IoT).</li>

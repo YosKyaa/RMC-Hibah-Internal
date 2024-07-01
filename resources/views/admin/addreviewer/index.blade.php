@@ -108,8 +108,7 @@
                     Tambah Reviewer</a></li>
             <li class="nav-item"><a class="nav-link" href="../admin/presentation"><i class="bx bx-chart me-1"></i>
                     Presentasi</a></li>
-            <li class="nav-item"><a class="nav-link" href="../admin/fundsfinalization"><i
-                        class="bx bx-bar-chart-alt-2 me-1"></i>
+            <li class="nav-item"><a class="nav-link" href="../admin/fundsfinalization"><i class="bx bx-bar-chart-alt-2 me-1"></i>
                     Finalisasi Dana</a></li>
             <li class="nav-item"><a class="nav-link" href="../admin/loa"><i class="bx bx-task me-1"></i> LOA & Contract</a></li>
             <li class="nav-item"><a class="nav-link" href="../admin/monev"><i class="bx bx-select-multiple me-1"></i>

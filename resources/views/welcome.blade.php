@@ -28,14 +28,6 @@
 
     <!-- Main CSS File -->
     <link href="assets/css/main.css" rel="stylesheet">
-
-    <!-- =======================================================
-        * Template Name: QuickStart
-        * Template URL: https://bootstrapmade.com/quickstart-bootstrap-startup-website-template/
-        * Updated: Jun 06 2024 with Bootstrap v5.3.3
-        * Author: BootstrapMade.com
-        * License: https://bootstrapmade.com/license/
-        ======================================================== -->
 </head>
 
 <body class="index-page">
@@ -53,7 +45,7 @@
                     <li><a href="#hero" class="active">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#visi">Vision, Mision</a></li>
-                    <li><a href="#struktur">Struktur</a></li>
+                    <li><a href="#struktur">Structure</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -261,7 +253,7 @@
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>Struktur RMC</h2>
+                <h2>Structure RMC</h2>
             </div><!-- End Section Title -->
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -507,7 +499,7 @@
                         <li><a href="#hero" class="active">Home</a></li>
                         <li><a href="#about">About</a></li>
                         <li><a href="#visi">Vision, Mision</a></li>
-                        <li><a href="#struktur">Struktur</a></li>
+                        <li><a href="#struktur">Structure</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
