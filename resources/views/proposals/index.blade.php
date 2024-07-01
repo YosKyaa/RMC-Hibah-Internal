@@ -119,22 +119,6 @@
             </div>
         </div>
     </div>
-
-    <div class="col-md-12">
-        <ul class="nav nav-pills flex-column flex-sm-row mb-4">
-            @if ($proposals->isEmpty())
-                <!-- Data is empty, do not display the upload and progress links -->
-            @else
-                <li class="nav-item"><a class="nav-link active" href="../user-proposals"><i
-                            class="bx bx-add-to-queue me-1"></i>
-                        Upload</a></li>
-                <li class="nav-item"><a class="nav-link" href="../user-proposals/timeline"><i
-                            class="bx bx-line-chart me-1"></i>
-                        Progres </a></li>
-            @endif
-        </ul>
-    </div>
-
     @if ($proposals->isEmpty())
         <!-- Data is empty, do not display the table -->
     @else
@@ -240,12 +224,15 @@
                     {
                         render: function(data, type, row, meta) {
                             var html = '';
-                            if (row.approval_vice_rector_2) {
+                            if (row.bank_id) {
                                 html =
                                     `<a class="text-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>
-                                <a class="text-success" title="Upload Nomor Rekening" href="{{ url('user-proposals/print_pdf/${row.id}') }}"><i class="bx bx-upload"></i></a>
-                                <a class="text-success" title="Upload" href="{{ url('user-proposals/account-bank/${row.id}') }}"><i class="bx bxs-edit"></i></a>`;
-
+                                    <a class="text-success" title="Kontrak" href="{{ url('user-proposals/print_pdf/${row.id}') }}"><i class="bx bx-download"></i></a>`;
+                            }
+                            else if (row.approval_vice_rector_2) {
+                                html =
+                                    `<a class="text-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>
+                                    <a class="text-success" title="Upload Nomor Rekening" href="{{ url('user-proposals/account-bank/${row.id}') }}"><i class="bx bx-upload"></i></a>`;
                             } else if (row.statuses.id === 'S01' || row.statuses.id === 'S02' || row
                                 .statuses.id === 'S04' || row.statuses.id === 'S05' || row.statuses
                                 .id === 'S06' || row.statuses.id === 'S07') {

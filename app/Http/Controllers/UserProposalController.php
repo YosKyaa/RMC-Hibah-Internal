@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bank;
 use App\Models\CategoryResearch;
 use App\Models\FieldFocusResearch;
 use App\Models\MainResearchTarget;
@@ -338,21 +339,22 @@ class UserProposalController extends Controller
     public function account_bank($id)
     {
         $proposal = Proposal::findOrfail($id);
-        return view('proposals.account-bank', compact('proposal'));
+        $bank = Bank::all();
+        return view('proposals.account-bank', compact('proposal', 'bank'));
     }
 
     public function account_bank_update(Request $request, $id)
     {
         $request->validate([
-            'account_name' => 'required|string|max:255',
-            'account_number' => 'required|string|max:255',
-            'bank_name' => 'required|string|max:255',
+            'bank_account_name' => 'required|string|max:255',
+            'bank_account_number' => 'required|string|max:255',
+            'bank' => 'required|exists:banks,id',
         ]);
 
         $proposal = Proposal::findOrfail($id);
-        $proposal->account_name = $request->account_name;
-        $proposal->account_number = $request->account_number;
-        $proposal->bank_name = $request->bank_name;
+        $proposal->bank_account_name = $request->account_name;
+        $proposal->bank_account_number = $request->account_number;
+        $proposal->bank_id = $request->bank;
         $proposal->save();
 
         return redirect()->route('user-proposals.index')->with('proposals', 'Data BERHASIL diperbarui!');

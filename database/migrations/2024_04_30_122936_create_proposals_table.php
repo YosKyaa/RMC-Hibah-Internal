@@ -44,6 +44,10 @@ return new class extends Migration
             $table->unsignedBigInteger('bank_id')->nullable();
             $table->foreign('bank_id')->references('id')->on('banks')->nullable();
 
+            $table->string('bank_account_number')->nullable();
+            
+            $table->string('bank_account_name')->nullable();
+
             $table->date('review_date_start')->nullable();
 
             $table->date('review_date_end')->nullable();

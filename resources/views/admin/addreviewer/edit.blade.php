@@ -10,7 +10,7 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <!-- Basic Layout -->
         <div class="row">
-            <div class="card mb-4 p-5">
+            <div class="card mb-4 p-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Silahkan Pilih Reviewer!</h5> <small class="text-muted float-end">Add Reviewer</small>
                 </div>

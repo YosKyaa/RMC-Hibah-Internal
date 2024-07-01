@@ -12,4 +12,8 @@ class Bank extends Model
         'id',
         'name',
     ];
+    public function proposals()
+    {
+        return $this->hasMany(Proposal::class, 'bank_id', 'id');
+    }
 }

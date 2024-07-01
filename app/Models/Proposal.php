@@ -85,6 +85,11 @@ class Proposal extends Model
         return $this->belongsTo(MainResearchTarget::class, 'main_research_targets_id');
     }
 
+    public function bank()
+    {
+        return $this->belongsTo(Bank::class, 'bank_id');
+    }
+
 
 
 

@@ -180,8 +180,7 @@
                             <th>Kategori</th>
                             <th>TKT</th>
                             <th>Target Utama Riset</th>
-                            <th>Status</th>
-                            <th data-priority="2"></th>
+                            <th data-priority="2">Status</th>
                         </tr>
                     </thead>
                 </table>
@@ -305,29 +304,6 @@
                                 <span class="badge badge-dot bg-${row.statuses.color} me-1"></span>${row.statuses.status} </span>`;
                             return html;
                         }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
-                            var html = '';
-                            if (row.statuses.id === 'S02') {
-                                html =
-                                    `<a class=" text-success" title="Show" href="{{ url('admin/proposals/show/` + row.id + `') }}"><i
-            class="bx bx-show"></i></a>
-    <a class=" text-success" title="Edit" href="{{ url('admin/proposals/edit_add/` + row.id + `') }}"><i
-            class="bx bxs-edit"></i></a>`;
-                            } else {
-                                html = `<a class=" text-success" title="Edit" href="{{ url('admin/proposals/edit/` + row.id + `') }}"><i
-            class="bx bxs-edit"></i></a>
-    <a class=" text-danger" title="Hapus" style="cursor:pointer"
-        onclick="DeleteId(\'` +
-                                    row.id + `\',\'` + row.name +
-                                    `\')"><i
-            class="bx bx-trash"></i></a>`;
-                            }
-                            return html;
-                        },
-                        "orderable": false,
-                        className: "text-md-center"
                     }
                 ]
 
