@@ -1,12 +1,4 @@
 <!-- Menu -->
-@section('css')
-<link href="https://fonts.googleapis.com" rel="preconnect">
-    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-icons-1.11.3/font/bootstrap-icons.css') }}">
-@endsection
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme no-print">
     <div class="app-brand demo ">
         <a href="{{ route('dashboard') }}" class="app-brand-link">
@@ -60,12 +52,7 @@
                 <div data-i18n="Dashboards">VR II Approval</div>
             </a>
         </li>
-        <li class="menu-item {{ request()->segment(1) == 'proposals' ? 'active' : '' }}">
-            <a href="{{ route('proposals.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-book-reader"></i>
-                <div data-i18n="Dashboards">Manage Proposal</div>
-            </a>
-        </li>
+        
         @can('control panel.read')
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Control Panel</span>
@@ -109,7 +96,7 @@
                         </li>
                     @endcan
                     @can('setting/manage_data.read')
-                        <li class="menu-item {{ request()->segment(2) == 'manage_data' ? 'active' : '' }}">
+                        <li class="menu-item {{ request()->segment(2) == 'manage_data' ? 'open active' : '' }}">
                             <a href="" class="menu-link menu-toggle">
                                 <div>Manage Lookup</div>
                             </a>

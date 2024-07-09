@@ -236,7 +236,7 @@
         <br> 
         <br> 
         <br>
-        <p>Anugerah B. Adina S.Farm. M.H.Sc.<br>NIDN: 0422028905</p>
+        <p>Adhes Gamayel Ph.D<br>NIDN: 0322118204</p>
         </td>
         <td>
         <p>PIHAK KEDUA</p>
@@ -248,15 +248,6 @@
         <tr>
 </table>
 
-    <div class="center">
-        <p>Mengetahui<br>
-        WAKIL REKTOR I<br> 
-        <br> 
-        <br> 
-        <br> 
-        <br>
-        Adhes Gamayel Ph.D<br>NIDN: 0322118204</p>
-    </div>
     </div>
 </body>
 </html>

@@ -362,4 +362,10 @@ class UserProposalController extends Controller
         $pdf = PDF::loadView('proposals.print', compact('proposals'));
         return $pdf->stream('proposal.pdf');
     }
+    public function print_loa($id)
+    {
+        $proposals = Proposal::findOrFail($id);
+        $pdf = PDF::loadView('proposals.print_loa', compact('proposals'));
+        return $pdf->stream('proposal.pdf');
+    }
 }
