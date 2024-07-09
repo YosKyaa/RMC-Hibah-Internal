@@ -138,7 +138,14 @@
                                                     aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         @endif
-                                        @if ($p->documents->contains('doc_type_id', 'DC3'))
+                                        @if ($p->documents->contains('doc_type_id', 'DC4'))
+                                            <a class="w-100 btn btn-label-primary"><i class="bx bx-sync me-2"></i>Laporan
+                                                Akhir</a>
+                                        @elseif ($p->documents->contains('doc_type_id', 'DC5'))
+                                            <a class="w-100 btn btn-label-primary"
+                                                href="{{ route('vicerector2.transfer_receipt2', $p->id) }}"><i
+                                                    class="bx bx-sync me-2"></i>Pencairan Dana Tahap 2</a>
+                                        @elseif ($p->documents->contains('doc_type_id', 'DC3'))
                                             <a class="w-100 btn btn-label-primary"><i class="bx bx-sync me-2"></i>Laporan
                                                 Kemajuan</a>
                                         @elseif ($p->bank_id)

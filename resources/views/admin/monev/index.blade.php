@@ -112,7 +112,7 @@
             <li class="nav-item"><a class="nav-link" href="../admin/loa"><i class="bx bx-task me-1"></i> LOA & Contract</a>
             </li>
             <li class="nav-item"><a class="nav-link active" href="../admin/monev"><i class="bx bx-select-multiple me-1"></i>
-                    Verifikasi Hasil Monev</a></li>
+                    Monev</a></li>
 
 
         </ul>
@@ -126,24 +126,10 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama Peneliti</th>
-                                <th>Tim Penelitian</th>
                                 <th>Judul Proposal</th>
-                                <th>Tanggal Review</th>
-                                <th>Nama Reviewer</th>
-                                <th></th>
+                                <th>Laporan Monev</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                        </tbody>
                     </table>
                 </div>
             </div>
@@ -206,7 +192,7 @@
                     // url: "{{ asset('assets/vendor/libs/datatables/id.json') }}"
                 },
                 ajax: {
-                    url: "{{ route('proposals.data') }}",
+                    url: "{{ route('monev.data') }}",
                     data: function(d) {
                         d.search = $('#datatable_filter input[type="search"]').val()
                     },
@@ -224,45 +210,25 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.;
+                            var html = row.users.name;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.;
+                            var html = row.research_title;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.;
+                            var html = `
+                             <a href="{{ url('admin/monev/print_monev/${row.id}') }} class="btn btn-success btn-sm">
+                                    <i class="bx bx-download"></i> Print Monev
+                                </a>`;
                             return html;
                         }
                     },
-                    {
-                        render: function(data, type, row, meta) {
-                            var html = row.;
-                            return html;
-                        }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
-                            var html = row.;
-                            return html;
-                        }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
-                            var html =
-                                `<a class=" text-success" title="Edit" href="{{ url('setting/manage_studyprogram/studyprogram/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>
-                            <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row
-                                .id + `\',\'` + row.name + `\')" ><i class="bx bx-trash"></i></a>`;
-                            return html;
-                        },
-                        "orderable": false,
-                        className: "text-md-center"
-                    }
                 ]
             });
 

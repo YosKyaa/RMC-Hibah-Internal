@@ -355,10 +355,54 @@ class UserProposalController extends Controller
         return redirect()->route('user-proposals.index')->with('proposals', 'Data BERHASIL diperbarui!');
     }
 
+    public function monev($id){
+    $proposal = Proposal::findOrfail($id);
+
+    return view('proposals.monev', compact('proposal'));
+    }
+
+public function monev_update (Request $request, $id)
+    {
+       $request->validate([
+            'proposal_doc' => 'required|file|mimes:pdf|max:5120',
+            'monev_comment' => 'required|string',
+        ]);
+        $fileName = "";
+        if ($request->hasFile('proposal_doc')) {
+            $ext = $request->proposal_doc->extension();
+            $name = str_replace(' ', '_', $request->proposal_doc->getClientOriginalName());
+            $fileName = Auth::user()->id . '_' . $name;
+            $folderName = "storage/FILE/monev/" . Carbon::now()->format('Y/m');
+            $path = public_path() . "/" . $folderName;
+            if (!File::exists($path)) {
+                File::makeDirectory($path, 0755, true); //create folder
+            }
+            $upload = $request->proposal_doc->move($path, $fileName); //upload file to folder
+            if ($upload) {
+                $fileName = $folderName . "/" . $fileName;
+            } else {
+                $fileName = "";
+            }
+        }
+
+        $proposals = Proposal::findOrFail($id);
+        $proposals->update([
+            'monev_comment' => $request->monev_comment,
+        ]);
+        Documents::create([
+            'proposals_id' => $proposals->id,
+            'proposal_doc' => $fileName,
+            'doc_type_id' => 'DC5',
+            'created_by' => Auth::user()->id,
+        ]);
+
+        return redirect()->route('user-proposals.index')->with('success', 'Data berhasil diperbarui.');
+    }
 
     public function print_pdf($id)
     {
         $proposals = Proposal::findOrFail($id);
+
         $pdf = PDF::loadView('proposals.print', compact('proposals'));
         return $pdf->stream('proposal.pdf');
     }

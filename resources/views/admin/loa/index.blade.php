@@ -99,8 +99,7 @@
             <li class="nav-item"><a class="nav-link active" href="../admin/loa"><i class="bx bx-task me-1"></i> LOA &
                     Contract</a></li>
             <li class="nav-item"><a class="nav-link" href="../admin/monev"><i class="bx bx-select-multiple me-1"></i>
-                    Verifikasi
-                    Hasil Monev</a></li>
+                    Monev</a></li>
 
 
         </ul>

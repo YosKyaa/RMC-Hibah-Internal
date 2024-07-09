@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Proposal;
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Yajra\DataTables\Facades\DataTables;
 class MonevController extends Controller
 {
     /**
@@ -22,52 +22,47 @@ class MonevController extends Controller
         return view('admin.monev.index', compact( 'totalUsers', 'proposalCount', 'proposalApproved', 'proposalDisapprove'));
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function data(Request $request)
     {
-        //
+        $data = Proposal::with([
+                'users' => function ($query) {
+                    $query->select('id', 'name');
+                },
+                'researchType' => function ($query) {
+                    $query->select('id', 'title');
+                },
+                'researchTopic' => function ($query) {
+                    $query->select('id', 'name');
+                },
+            ])
+            ->select('*')
+            ->whereHas('documents', function ($query) {
+                $query->where('doc_type_id', 'DC5');
+            })
+            ->orderBy('id');
+
+        return DataTables::of($data)
+            ->filter(function ($instance) use ($request) {
+                if (!empty($request->get('search'))) {
+                    $search = $request->get('search');
+                    $instance->where(function ($query) use ($search) {
+                        $query->where('research_title', 'LIKE', "%$search%")
+                            ->orWhereHas('users', function ($query) use ($search) {
+                                $query->where('username', 'LIKE', "%$search%");
+                            });
+                    });
+                }
+            })
+            ->make(true);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function print_monev($id)
     {
-        //
+        $proposal = Proposal::findOrFail($id);
+        $documentPath = $proposal->documents->where('doc_type_id', 'DC5')->first()->proposal_doc;
+        $documentUrl = url($documentPath);
+        return response()->download($documentPath);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }
+

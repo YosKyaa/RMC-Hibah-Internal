@@ -67,6 +67,9 @@ Route::group(['prefix' => 'user-proposals'], function () {
     Route::get('/print_pdf/{id}', [UserProposalController::class, 'print_pdf'])->name('print_pdf');
     Route::get('/account-bank/{id}', [UserProposalController::class, 'account_bank'])->name('user-proposals-account-bank.edit');
     Route::put('/account-bank-update/{id}', [UserProposalController::class, 'account_bank_update'])->name('user-proposals-account-bank.update');
+    Route::get('/monev/{id}', [UserProposalController::class, 'monev'])->name('user-proposals-monev.edit');
+    Route::put('/monev-update/{id}', [UserProposalController::class, 'monev_update'])->name('user-proposals-monev.update');
+
 });
 
 
@@ -118,6 +121,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/data', [MonevController::class, 'data'])->name('monev.data');
         Route::delete('/delete', [MonevController::class, 'delete'])->name('monev.delete');
         Route::get('/edit/{id}', [MonevController::class, 'edit'])->name('monev.edit');
+        Route::get('/print_monev/{id}', [MonevController::class, 'print_monev'])->name('print_monev');
     });
 });
 
@@ -154,6 +158,9 @@ Route::group(['prefix' => 'vicerector2'], function () { //vicerector2
     Route::any('/show', [ViceRector2Controller::class, 'show'])->name('vicerector2.show');
     Route::get('/transfer_receipt/{id}', [ViceRector2Controller::class, 'transfer_receipt'])->name('vicerector2.transfer_receipt');
     Route::put('/transfer_receipt_update/{id}', [ViceRector2Controller::class, 'transfer_receipt_update'])->name('vicerector2.transfer_receipt_update');
+    Route::get('/transfer_receipt2/{id}', [ViceRector2Controller::class, 'transfer_receipt2'])->name('vicerector2.transfer_receipt2');
+    Route::put('/transfer_receipt2_update/{id}', [ViceRector2Controller::class, 'transfer_receipt2_update'])->name('vicerector2.transfer_receipt2_update');
+
 });
 
 Route::middleware('auth')->group(function () {

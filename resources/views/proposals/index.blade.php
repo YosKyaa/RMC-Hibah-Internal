@@ -234,7 +234,14 @@
                     {
                         render: function(data, type, row, meta) {
                             var html = '';
-                            if (row.bank_id) {
+                            if (row.documents && row.documents.some(doc => doc.doc_type_id === 'DC5')){
+                                 html =
+                                `<a class="text-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>`;
+                            } else if (row.documents && row.documents.some(doc => doc.doc_type_id === 'DC3')) {
+                                html =
+                                `<a class="text-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>
+                                <a class="text-success" title="Unggah Monev" href="{{ url('user-proposals/monev/${row.id}') }}"><i class="bx bx-upload"></i></a>`;
+                            } else if (row.bank_id) {
                                 html =
                                     `<a class="text-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>
                                     <a class="text-success" title="Kontrak" href="{{ url('user-proposals/print_pdf/${row.id}') }}"><i class="bx bx-download"></i></a>`;

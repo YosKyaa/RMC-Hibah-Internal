@@ -21,13 +21,14 @@
     <div class="col-xl">
         <div class="card mb-4 p-4">
             <div class="card-header justify-content-between align-items-center">
-                <h3 class="mb-0"><strong>Unggah Bukti Pendanaan Tahap 1</strong></h3>
+                <h3 class="mb-0"><strong>Unggah Bukti Pendanaan Tahap 2</strong></h3>
                 <span class="text-muted">Pendanaan akan ditransfer melalui rekening ini. </span>
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-4">
+                            <h6 >Dokumen Monitoring dan Evaluasi</h6>
                             <iframe src="{{ $documentUrl }}" class="iframe mb-3"
                                 onerror="this.onerror=null; this.outerHTML='Cannot load PDF.';"></iframe>
                         </div>
@@ -50,14 +51,14 @@
                             <p><strong style="font-size: 18px;">{{ $proposals->bank_account_name }}</strong></p>
                         </div>
                         <div class="mb-3">
-                            <h6 class="mb-0 text-muted" style="font-size: 15px;">Total Pendanaan Tahap 1</h6>
+                            <h6 class="mb-0 text-muted" style="font-size: 15px;">Total Pendanaan Tahap 2</h6>
                             <p><strong><em style="font-size: 18px;" id="seventyPercentDisplay"></em></strong></p>
                         </div>
                     </div>
                 </div>
                 <div class="mb-3">
                     <form id="form-add-new-record" method="POST"
-                        action="{{ route('vicerector2.transfer_receipt_update', $proposals->id) }}"
+                        action="{{ route('vicerector2.transfer_receipt2_update', $proposals->id) }}"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -92,7 +93,7 @@
                 event.preventDefault(); // Prevent the default form submission
                 Swal.fire({
                     title: "Apakah Anda yakin?",
-                    text: "Anda akan mengirimkan Nomor Rekening ini!",
+                    text: "Anda akan mengirimkan Bukti Transfer ini!",
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -139,7 +140,7 @@
                 let totalFunds = parseFloat("{{ $proposals->researchType->total_funds }}");
 
                 // Calculate 70% of total funds
-                let seventyPercent = totalFunds * 0.7;
+                let seventyPercent = totalFunds * 0.3;
 
                 // Format and display the value
                 document.getElementById('seventyPercentDisplay').textContent = formatRupiah(seventyPercent) + ' (' +
