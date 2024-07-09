@@ -107,28 +107,33 @@
                                             {{ ucfirst($p->users->username) }}</a>
                                         <p href="app-academy-course-details.html" class="mt-2">{{ $p->research_title }}
                                         </p>
-                                        @if ($p->approval_vice_rector_1)
+                                        @if ($p->approval_vice_rector_1 === null)
+                                            <p class="d-flex align-items-center text-secondary"><i
+                                                    class="bx bx-info-circle me-2"></i>Not Confirmed</p>
+                                        @elseif ($p->approval_vice_rector_1 === 0)
+                                            <p class="d-flex align-items-center text-danger"><i
+                                                    class="bx bx-x-circle me-2"></i>Disapproved</p>
+                                        @else
                                             <p class="d-flex align-items-center text-success"><i
                                                     class="bx bx-check-double me-2"></i>Approved</p>
-                                        @else
-                                            <p class="d-flex align-items-center text-seccondary"><i
-                                                    class="bx bx-info-circle me-2"></i>Not Confirmed</p>
                                         @endif
-                                        @if ($p->approval_vice_rector_1)
-                                            <div class="progress mb-4" style="height: 8px">
-                                                <div class="progress-bar w-75" role="progressbar" aria-valuenow="25"
-                                                    aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        @else
+                                        @if ($p->approval_vice_rector_1 === null)
                                             <div class="progress mb-4" style="height: 8px">
                                                 <div class="progress-bar w-50" role="progressbar" aria-valuenow="25"
                                                     aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
-                                        @endif
-                                        @if ($p->approval_vice_rector_1)
-                                            <a class="w-100 btn btn-label-primary"><i class="bx bx-sync me-2"></i>Vice
-                                                Rector II Approval</a>
+                                        @elseif ($p->approval_vice_rector_1 === 0)
+                                            <div class="progress mb-4" style="height: 8px">
+                                                <div class="progress-bar" role="progressbar" aria-valuenow="25"
+                                                    aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+                                            </div>
                                         @else
+                                            <div class="progress mb-4" style="height: 8px">
+                                                <div class="progress-bar w-75" role="progressbar" aria-valuenow="25"
+                                                    aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        @endif
+                                        @if ($p->approval_vice_rector_1 === null)
                                             <div
                                                 class="d-flex flex-column  flex-md-row gap-2 text-nowrap pe-xl-3 pe-xxl-0">
                                                 <a class="app-academy-md-50 btn btn-label-danger me-md-2 d-flex align-items-center"
@@ -143,6 +148,11 @@
                                                     <span>Approve</span>
                                                 </a>
                                             </div>
+                                        @elseif ($p->approval_vice_rector_1 === 0)
+                                            <a class="w-100 btn btn-label-danger"><i class="bx bx-x me-2"></i>Ditolak</a>
+                                        @else
+                                            <a class="w-100 btn btn-label-primary"><i class="bx bx-sync me-2"></i>Vice
+                                                Rector II Approval</a>
                                         @endif
                                     </div>
                                 </div>

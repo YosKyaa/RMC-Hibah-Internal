@@ -84,6 +84,7 @@ class ViceRector1Controller extends Controller
         $data = Proposal::find($request->id);
         if($data) {
             $data->approval_vice_rector_1 = false;
+            $data->status_id = 'S04';
             $data->save();
             return response()->json([
                 'success' => true,

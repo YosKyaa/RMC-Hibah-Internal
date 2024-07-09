@@ -157,6 +157,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     @if (session('proposals'))
         <script type="text/javascript">
             //swall message notification
@@ -170,6 +171,15 @@
                     },
                     buttonsStyling: false
                 });
+            });
+        </script>
+    @endif
+    @if (session('error'))
+        <script type="text/javascript">
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: "{{ session('error') }}",
             });
         </script>
     @endif
@@ -228,8 +238,7 @@
                                 html =
                                     `<a class="text-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>
                                     <a class="text-success" title="Kontrak" href="{{ url('user-proposals/print_pdf/${row.id}') }}"><i class="bx bx-download"></i></a>`;
-                            }
-                            else if (row.approval_vice_rector_2) {
+                            } else if (row.approval_vice_rector_2) {
                                 html =
                                     `<a class="text-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>
                                     <a class="text-success" title="Upload Nomor Rekening" href="{{ url('user-proposals/account-bank/${row.id}') }}"><i class="bx bx-upload"></i></a>`;

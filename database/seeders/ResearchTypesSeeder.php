@@ -17,8 +17,7 @@ class ResearchTypesSeeder extends Seeder
         $data = [
             [
                 'title' => 'Penelitian Dasar',
-                'total_funds' => 'Rp 5.000.000',
-
+                'total_funds' => 5000000,
             ],
 
 

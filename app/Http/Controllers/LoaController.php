@@ -6,6 +6,8 @@ use App\Models\Proposal;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\DB;
+use PDF;
 
 class LoaController extends Controller
 {
@@ -47,48 +49,30 @@ class LoaController extends Controller
             })->make(true);
     }
 
-    public function create()
+
+    public function print_contract($id)
     {
-        //
+        $proposals = Proposal::findOrFail($id);
+        $pdf = PDF::loadView('proposals.print', compact('proposals'));
+        return $pdf->stream('proposal.pdf');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function transfer_receipt_update (Request $request)
     {
-        //
+        $data = Proposal::find($request->id);
+        if($data) {
+            $data->transfer_receipt = $request->transfer_receipt;
+            $data->save();
+            return response()->json([
+                'success' => true,
+                'message' => 'Status berhasil diubah!'
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal mengubah status!'
+            ]);
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

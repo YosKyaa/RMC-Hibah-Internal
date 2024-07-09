@@ -15,13 +15,10 @@
 
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-        {{-- <h4 class="py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Vertical Layouts</h4> --}}
-        <!-- Basic Layout -->
         <div class="row">
             <div class="card mb-4 p-4">
                 <div class="card-header d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="mb-0">Please Complete Your Details Below!</h4> <small class="text-muted float-end">Upload
-                        Proposal</small>
+                    <h4 class="mb-0">Lengkapi Data Penelitian dibawah ini!</h4> <small class="text-muted float-end">Pengajuan Proposal</small>
                 </div>
                 <div class="card-body">
                     <form id="form-add-new-record" method="POST" action="{{ route('user-proposals.create') }}"
@@ -33,7 +30,7 @@
                                 <div class="input-group input-group-merge has-validation">
                                     <select @error('research_type') is-invalid @enderror class="select2"
                                         name="research_type" id="research_type" data-style="btn-default">
-                                        <option value="">-- Pilih Jenis Penelitian --</option>
+                                        <option value=""> Pilih Jenis Penelitian </option>
                                         @foreach ($researchtypes as $d)
                                             <option value="{{ $d->id }}"
                                                 {{ $d->id == old('research_type') ? 'selected' : '' }}>
@@ -49,8 +46,10 @@
                             </div>
                             <div class="col sm mb-4">
                                 <label class="form-label">Total Dana</label>
-                                <input type="text" class="form-control" id="researchtypesId"
-                                    aria-describedby="defaultFormControlHelp" readonly disabled />
+                                <div class="input-group input-group-merge has-validation">
+                                    <input type="text" class="form-control" id="researchtypesId"
+                                        aria-describedby="defaultFormControlHelp" readonly disabled />
+                                </div>
                             </div>
                         </div>
                         <div class="mb-4">
@@ -59,8 +58,8 @@
                             <div class="input-group input-group-merge has-validation">
                                 <select class="form-select @error('research_categories') is-invalid @enderror select2"
                                     name="research_categories" id="research_categories"
-                                    data-placeholder="-- Pilih Kategori Penelitian--">
-                                    <option value="">-- Pilih Kategori Penelitian --</option>
+                                    data-placeholder=" Pilih Kategori Penelitian">
+                                    <option value=""> Pilih Kategori Penelitian </option>
                                     @foreach ($researchcategories as $d)
                                         <option value="{{ $d->id }}"
                                             {{ $d->id == old('research_categories') ? 'selected' : '' }}>
@@ -80,8 +79,8 @@
                             <div class="input-group input-group-merge has-validation">
                                 <select class="form-select @error('research_themes') is-invalid @enderror select2"
                                     name="research_themes" id="research_themes"
-                                    data-placeholder="-- Pilih Tema Penelitian--">
-                                    <option value="">-- Pilih Tema Penelitian --</option>
+                                    data-placeholder=" Pilih Tema Penelitian">
+                                    <option value=""> Pilih Tema Penelitian </option>
                                     @foreach ($researchthemes as $d)
                                         <option value="{{ $d->id }}"
                                             {{ $d->id == old('research_themes') ? 'selected' : '' }}>
@@ -101,8 +100,8 @@
                                 <div class="input-group input-group-merge has-validation">
                                     <select class="form-select @error('research_topics') is-invalid @enderror select2"
                                         name="research_topics" id="research_topics"
-                                        data-placeholder="-- Pilih Topik Penelitian--">
-                                        <option value="">-- Pilih Topik Penelitian --</option>
+                                        data-placeholder=" Pilih Topik Penelitian">
+                                        <option value=""> Pilih Topik Penelitian </option>
                                         @foreach ($researchtopics as $d)
                                             <option value="{{ $d->id }}"
                                                 {{ $d->id == old('research_topics') ? 'selected' : '' }}>
@@ -135,12 +134,12 @@
                                     <select id="select2Multiple"
                                         class="select2 form-select @error('researcher_id') is-invalid @enderror"
                                         name="researcher_id[]" id="researcher_id" multiple>
-                                        <option value="" disabled selected>-- Pilih Tim Peneliti --</option>
+                                        <option value="" disabled selected> Pilih Tim Peneliti </option>
                                         @foreach ($users as $user)
-                                                <option value="{{ $user->id }}"
-                                                    {{ in_array($user->id, old('researcher_id', [])) ? 'selected' : '' }}>
-                                                    {{ $user->name }} ({{ $user->total}})
-                                                </option>
+                                            <option value="{{ $user->id }}"
+                                                {{ in_array($user->id, old('researcher_id', [])) ? 'selected' : '' }}>
+                                                {{ $user->name }}
+                                            </option>
                                         @endforeach
                                     </select>
                                     @error('researcher_id')
@@ -158,8 +157,8 @@
                                         TKT</label>
                                     <div class="input-group input-group-merge has-validation">
                                         <select class="form-select @error('tkt_type') is-invalid @enderror select2"
-                                            name="tkt_type" id="tkt_type" data-placeholder="-- Pilih Jenis TKT--">
-                                            <option value="">-- Pilih Jenis TKT --</option>
+                                            name="tkt_type" id="tkt_type" data-placeholder=" Pilih Jenis TKT">
+                                            <option value=""> Pilih Jenis TKT </option>
                                             @foreach ($tkttype as $d)
                                                 <option value="{{ $d->id }}"
                                                     {{ $d->id == old('tkt_type') ? 'selected' : '' }}>
@@ -180,8 +179,8 @@
                                         <select
                                             class="form-select @error('main_research_target') is-invalid @enderror select2"
                                             name="main_research_target" id="main_research_target"
-                                            data-placeholder="-- Pilih Target Utama Riset--">
-                                            <option value="">-- Target Utama Riset --</option>
+                                            data-placeholder=" Pilih Target Utama Riset">
+                                            <option value=""> Target Utama Riset </option>
                                             @foreach ($mainresearch as $d)
                                                 <option value="{{ $d->id }}"
                                                     {{ $d->id == old('main_research_target') ? 'selected' : '' }}>
@@ -232,19 +231,12 @@
 
 
 @section('script')
-    <script src="{{ asset('assets/vendor/libs/datatables/jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/datatables/datatables-bootstrap5.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/datatables/datatables.responsive.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/datatables/responsive.bootstrap5.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/datatables/datatables.checkboxes.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/datatables/datatables-buttons.js') }}"></script>
-    <script src="{{ asset('assets/vendor/libs/datatables/buttons.bootstrap5.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bs-stepper/dist/js/bs-stepper.min.js"></script>
     <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
+
     <script>
         "use strict";
         setTimeout(function() {
@@ -324,7 +316,11 @@
                         researchtypesId, // Ganti URL dengan endpoint yang sesuai
                     type: 'GET',
                     success: function(response) {
-                        $('#researchtypesId').val(response.total_funds);
+                        var formattedFunds = new Intl.NumberFormat('id-ID', {
+                            style: 'currency',
+                            currency: 'IDR'
+                        }).format(response.total_funds);
+                        $('#researchtypesId').val(formattedFunds);
                     },
                     error: function(xhr) {
                         console.log(xhr.responseText);

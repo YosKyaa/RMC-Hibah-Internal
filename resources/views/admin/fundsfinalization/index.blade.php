@@ -125,11 +125,11 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Peneliti</th>
+                                    <th data-priority="1">Nama Peneliti</th>
                                     <th>Judul Penelitian</th>
                                     <th>Jenis Penelitian</th>
-                                    <th>Total Dana</th>
-                                    <th></th>
+                                    <th data-priority="3">Total Dana</th>
+                                    <th data-priority="2"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -243,7 +243,7 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.research_type.total_funds;
+                            var html = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(row.research_type.total_funds);
                             return html;
                         }
                     },

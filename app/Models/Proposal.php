@@ -23,7 +23,15 @@ class Proposal extends Model
         'review_date_end',
         'reviewer_id',
         'presentation_date',
+        'presentation_time',
         'review_notes',
+        'approval_reviewer',
+        'approval_admin_fundfinalization',
+        'approval_vice_rector_1',
+        'approval_vice_rector_2',
+        'bank_id',
+        'bank_account_number',
+        'bank_account_name',
     ];
 
     public function scopeFilter($query, array $filters)

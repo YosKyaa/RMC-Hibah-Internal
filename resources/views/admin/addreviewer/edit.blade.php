@@ -86,17 +86,16 @@
         }, 350);
     </script>
     <script>
-        var flatpickrDate = document.querySelector("#flatpickr-date");
+        var today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
 
-        flatpickrDate.flatpickr({
-            monthSelectorType: "static"
+        document.querySelector("#flatpickr-date").flatpickr({
+            monthSelectorType: "static",
+            minDate: today // Set the minimum date to today
         });
-    </script>
-    <script>
-        var flatpickrDate = document.querySelector("#flatpickr-date2");
 
-        flatpickrDate.flatpickr({
-            monthSelectorType: "static"
+        document.querySelector("#flatpickr-date2").flatpickr({
+            monthSelectorType: "static",
+            minDate: today // Set the minimum date to today
         });
     </script>
 @endsection

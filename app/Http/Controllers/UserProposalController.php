@@ -112,82 +112,78 @@ class UserProposalController extends Controller
         $existingProposal = Proposal::where('users_id', Auth::user()->id)->orderBy('id', 'desc')->first();
         if ($existingProposal) {
             if ($existingProposal->status_id == 'S04') {
-            // Allow creating a new proposal
+                // Allow creating a new proposal
             } else {
-            return redirect()->route('user-proposals.index')->with('proposals', 'You have already created a proposal.');
+                return redirect()->route('user-proposals.index')->with('proposals', 'You have already created a proposal.');
             }
         }
 
         if ($request->isMethod('POST')) {
             // dd($request->all());
             $this->validate($request, [
-            'research_type' => 'required|exists:research_types,id',
-            'research_categories' => 'required|exists:research_categories,id',
-            'research_themes' => 'required|exists:research_themes,id',
-            'research_topics' => 'required|exists:research_topics,id',
-            'research_title' => 'required|string|max:255',
-            'tkt_type' => 'required|exists:tkt_types,id',
-            'main_research_target' => 'required|exists:main_research_targets,id',
-            // 'document' => 'required|mimes:pdf|max:10000', // max 10MB
-            'researcher_id' => 'required|array',
-            'researcher_id.*' => 'exists:users,id',
-            'proposal_doc' => 'required|mimes:pdf|max:10000', // max 10MB
+                'research_type' => 'required|exists:research_types,id',
+                'research_categories' => 'required|exists:research_categories,id',
+                'research_themes' => 'required|exists:research_themes,id',
+                'research_topics' => 'required|exists:research_topics,id',
+                'research_title' => 'required|string|max:255',
+                'tkt_type' => 'required|exists:tkt_types,id',
+                'main_research_target' => 'required|exists:main_research_targets,id',
+                // 'document' => 'required|mimes:pdf|max:10000', // max 10MB
+                'researcher_id' => 'required|array',
+                'researcher_id.*' => 'exists:users,id',
+                'proposal_doc' => 'required|mimes:pdf|max:10000', // max 10MB
             ]);
-
-
 
             // Create new proposal
             $data = Proposal::create([
-            'users_id' => Auth::user()->id,
-            'research_types_id' => $request->research_type,
-            'research_topics_id' => $request->research_topics,
-            'research_title' => $request->research_title,
-            'tkt_types_id' => $request->tkt_type,
-            'main_research_targets_id' => $request->main_research_target,
-            'notes' => $request->notes ?? '',
-            'status_id' => "S00",
+                'users_id' => Auth::user()->id,
+                'research_types_id' => $request->research_type,
+                'research_topics_id' => $request->research_topics,
+                'research_title' => $request->research_title,
+                'tkt_types_id' => $request->tkt_type,
+                'main_research_targets_id' => $request->main_research_target,
+                'notes' => $request->notes ?? '',
+                'status_id' => "S00",
             ]);
 
             // Add research team members
             foreach ($request->researcher_id as $researcher_id) {
-
-            ProposalTeams::create([
-                'proposals_id' => $data->id,
-                'researcher_id' => $researcher_id,
-            ]);
+                ProposalTeams::create([
+                    'proposals_id' => $data->id,
+                    'researcher_id' => $researcher_id,
+                ]);
             }
 
             $fileName = "";
             if ($request->hasFile('proposal_doc')) {
-            $ext = $request->proposal_doc->extension();
-            $name = str_replace(' ', '_', $request->proposal_doc->getClientOriginalName());
-            $fileName = Auth::user()->id . '_' . $name;
-            $folderName = "storage/FILE/proposals/" . Carbon::now()->format('Y/m');
-            $path = public_path() . "/" . $folderName;
-            if (!File::exists($path)) {
-                File::makeDirectory($path, 0755, true); //create folder
-            }
-            $upload = $request->proposal_doc->move($path, $fileName); //upload file to folder
-            if ($upload) {
-                $fileName = $folderName . "/" . $fileName;
-            } else {
-                $fileName = "";
-            }
+                $ext = $request->proposal_doc->extension();
+                $name = str_replace(' ', '_', $request->proposal_doc->getClientOriginalName());
+                $fileName = Auth::user()->id . '_' . $name;
+                $folderName = "storage/FILE/proposals/" . Carbon::now()->format('Y/m');
+                $path = public_path() . "/" . $folderName;
+                if (!File::exists($path)) {
+                    File::makeDirectory($path, 0755, true); //create folder
+                }
+                $upload = $request->proposal_doc->move($path, $fileName); //upload file to folder
+                if ($upload) {
+                    $fileName = $folderName . "/" . $fileName;
+                } else {
+                    $fileName = "";
+                }
             }
             // Add proposal document
             Documents::create([
-            'proposals_id' => $data->id,
-            'proposal_doc' => $fileName,
-            'doc_type_id' => 'DC1',
-            'created_by' => Auth::user()->id,
+                'proposals_id' => $data->id,
+                'proposal_doc' => $fileName,
+                'doc_type_id' => 'DC1',
+                'created_by' => Auth::user()->id,
             ]);
 
             if ($data) {
-            return redirect()->route('user-proposals.index')->with('proposals', 'Data (' . $request->research_title . ') BERHASIL ditambahkan!');
+                return redirect()->route('user-proposals.index')->with('proposals', 'Data (' . $request->research_title . ') BERHASIL ditambahkan!');
             } else {
-            return redirect()->route('user-proposals.index')->with('proposals', 'Proposal GAGAL dibuat!');
+                return redirect()->route('user-proposals.index')->with('error', 'Data tidak berhasil ditambahkan.');
             }
-
         } else {
             $userproposal = Auth::user()->id;
             $proposals = Proposal::where('users_id', $userproposal)->get();
@@ -211,23 +207,21 @@ class UserProposalController extends Controller
             // ->get();
 
             $users = User::select('users.id', 'users.name', DB::raw("COUNT('proposal_teams.id') as total"))
-            ->leftJoin('proposal_teams','users.id','=','proposal_teams.researcher_id')
-            ->leftJoin('proposals','proposals.id','=','proposal_teams.proposals_id')
-            ->whereHas('roles', function ($query) {
-                $query->whereIn('name', ['lecture']);
-            })
-            ->where(function ($query) {
-                $query->where('proposals.status_id','!=','S08')
-                      ->orWhere('proposals.status_id','!=','S04')
-                      ->orWhereNull('proposals.status_id');
-            })
-            ->groupBy('users.id', 'users.name')
-            ->havingRaw("total < 2")
-            ->get();
+                ->leftJoin('proposal_teams', 'users.id', '=', 'proposal_teams.researcher_id')
+                ->leftJoin('proposals', 'proposals.id', '=', 'proposal_teams.proposals_id')
+                ->whereHas('roles', function ($query) {
+                    $query->whereIn('name', ['lecture']);
+                })
+                ->where(function ($query) {
+                    $query->where('proposals.status_id', '!=', 'S08')
+                        ->orWhere('proposals.status_id', '!=', 'S04')
+                        ->orWhereNull('proposals.status_id');
+                })
+                ->groupBy('users.id', 'users.name')
+                ->havingRaw("total < 2")
+                ->get();
 
-
-
-            return view('proposals.create', compact('proposals', 'researchtypes', 'researchthemes', 'researchcategories', 'tkttype', 'mainresearch', 'researchtopics','userproposal','users','existingResearchers'));
+            return view('proposals.create', compact('proposals', 'researchtypes', 'researchthemes', 'researchcategories', 'tkttype', 'mainresearch', 'researchtopics', 'userproposal', 'users', 'existingResearchers'));
         }
     }
 
@@ -352,10 +346,11 @@ class UserProposalController extends Controller
         ]);
 
         $proposal = Proposal::findOrfail($id);
-        $proposal->bank_account_name = $request->account_name;
-        $proposal->bank_account_number = $request->account_number;
-        $proposal->bank_id = $request->bank;
-        $proposal->save();
+        $proposal->update([
+            'bank_account_name' => $request->bank_account_name,
+            'bank_account_number' => $request->bank_account_number,
+            'bank_id' => $request->bank,
+        ]);
 
         return redirect()->route('user-proposals.index')->with('proposals', 'Data BERHASIL diperbarui!');
     }

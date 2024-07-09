@@ -221,10 +221,17 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.research_title;
+                            var html = `
+                             <a href="{{ url('admin/loa/print_contract/${row.id}') }} class="btn btn-primary btn-sm">
+                                    <i class="bx bx-download"></i> Print LOA
+                                </a>
+                                <a href="{{ url('admin/loa/print_contract/${row.id}') }} class="btn btn-primary btn-sm">
+                                    <i class="bx bx-download"></i> Print Contract
+                                </a>
+                            `;
                             return html;
                         }
-                    },
+                    }
 
                 ]
             });

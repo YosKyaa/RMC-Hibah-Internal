@@ -67,15 +67,18 @@ class PresentasiController extends Controller
         $proposals = Proposal::findOrFail($id);
         return view('admin.presentation.edit', compact('proposals'));
     }
+
     public function update(Request $request, $id)
     {
         $request->validate([
             'presentation_date' => ['date','required'],
+            'presentation_time' => ['required', 'date_format:H:i'],
         ]);
 
         $proposals = Proposal::findOrFail($id);
         $proposals->update([
             'presentation_date' => $request->presentation_date,
+            'presentation_time' => $request->presentation_time,
             'status_id' => 'S06',
         ]);
 

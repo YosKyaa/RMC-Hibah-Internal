@@ -110,6 +110,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/data', [LoaController::class, 'data'])->name('loa.data');
         Route::delete('/delete', [LoaController::class, 'delete'])->name('loa.delete');
         Route::get('/edit/{id}', [LoaController::class, 'edit'])->name('loa.edit');
+        Route::get('/print_contract/{id}', [LoaController::class, 'print_contract'])->name('print_contract');
     });
 
     Route::group(['prefix' => 'monev'], function () { //Monev
@@ -150,6 +151,9 @@ Route::group(['prefix' => 'vicerector2'], function () { //vicerector2
     Route::get('/edit/{id}', [ViceRector2Controller::class, 'edit'])->name('vicerector2.edit');
     Route::post('/approve', [ViceRector2Controller::class, 'approve'])->name('vicerector2.approve');
     Route::post('/disapprove', [ViceRector2Controller::class, 'disapprove'])->name('vicerector2.disapprove');
+    Route::any('/show', [ViceRector2Controller::class, 'show'])->name('vicerector2.show');
+    Route::get('/transfer_receipt/{id}', [ViceRector2Controller::class, 'transfer_receipt'])->name('vicerector2.transfer_receipt');
+    Route::put('/transfer_receipt_update/{id}', [ViceRector2Controller::class, 'transfer_receipt_update'])->name('vicerector2.transfer_receipt_update');
 });
 
 Route::middleware('auth')->group(function () {
