@@ -75,7 +75,7 @@
             background-color: red;
             color: white;
             border-radius: 25%;
-            font-size: 6px;
+            font-size: 8px;
         }
     </style>
 
