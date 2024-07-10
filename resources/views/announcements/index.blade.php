@@ -55,7 +55,6 @@
         </div>
     @endif
     <div class="content-wrapper">
-        <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row">
                 <div class="col-lg-12 mb-4 order-0">
                     <div class="card">
@@ -191,7 +190,6 @@
                     </div>
                 </div>
             </div>
-        </div>
     </div>
     @foreach ($announcements as $anc)
         <div class="modal fade" id="modalToggle" aria-labelledby="modalToggleLabel" tabindex="-1"

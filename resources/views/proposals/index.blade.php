@@ -91,8 +91,9 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
-    <div class="container-xxl flex-grow-1 container-p-y">
+    
         <div class="order-4 mb-4 full-width">
+            @if ($proposals->isEmpty() || $proposals->last()->status_id == 'S04')
             <div class="card">
                 <div class="d-flex align-items-end row">
                     <div class="col-sm-5 text-center text-sm-left">
@@ -106,24 +107,126 @@
                         <div class="card-body">
                             <h5 class="card-title">Hi {{ ucfirst(Auth::user()->username) }}!</h5>
                             <p class="mb-4">Silahkan Upload Proposal Anda!</p>
-                            @if ($proposals->isEmpty() || $proposals->last()->status_id == 'S04')
+                            
                                 <a href="../user-proposals/create" class="btn btn-primary"><span><i
                                             class="bx bx-plus me-sm-2"></i>
                                         <span>Ajukan Hibah</span></span></a>
-                            @else
-                                <p>Terimakasih Sudah Mengupload!</p>
-                            @endif
                         </div>
                     </div>
+                </div> 
+            </div>
+                @else
+        
+
+    <div class="card">
+                <h5 class="card-header">Progress</h5>
+                <div class="card-body">
+                  <div class="progress">
+                    <!-- draft -->
+                    <div
+                      class="progress-bar bg-primary progress-bar-striped progress-bar-animated shadow-none"
+                      role="progressbar"
+                      style="width: 10%"
+                      aria-valuenow="10"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    ></div>
+                    <!-- pengajuan -->
+                    <div
+                      class="progress-bar bg-info progress-bar-striped progress-bar-animated shadow-none"
+                      role="progressbar"
+                      style="width: 20%"
+                      aria-valuenow="20"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    ></div>
+                    <!-- Menunggu Review -->
+                    <div
+                      class="progress-bar bg-primary progress-bar-striped progress-bar-animated shadow-none"
+                      role="progressbar"
+                      style="width: 20%"
+                      aria-valuenow="20"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    ></div>
+                    <!-- Revisi -->
+                    <!-- <div
+                      class="progress-bar bg-secondary progress-bar-striped progress-bar-animated shadow-none"
+                      role="progressbar"
+                      style="width: 10%"
+                      aria-valuenow="10"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    ></div> -->
+                    <!-- Pengajuan Ditolak -->
+                    <!-- <div
+                      class="progress-bar bg-danger progress-bar-striped progress-bar-animated shadow-none"
+                      role="progressbar"
+                      style="width: 100%"
+                      aria-valuenow="100"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    ></div> -->
+                    <!-- Menunggu Jadwal Presentasi -->
+                    <div
+                      class="progress-bar bg-dark progress-bar-striped progress-bar-animated shadow-none"
+                      role="progressbar"
+                      style="width: 10%"
+                      aria-valuenow="10"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    ></div>
+                    <!-- Persentasi -->
+                    <div
+                      class="progress-bar bg-dark progress-bar-striped progress-bar-animated shadow-none"
+                      role="progressbar"
+                      style="width: 10%"
+                      aria-valuenow="10"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    ></div>
+                    <!-- Proses Pencairan Dana -->
+                    <div
+                      class="progress-bar bg-info progress-bar-striped progress-bar-animated shadow-none"
+                      role="progressbar"
+                      style="width: 10%"
+                      aria-valuenow="10"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    ></div>
+                    <!-- Dana Sudah diterima -->
+                    <div
+                      class="progress-bar bg-success progress-bar-striped progress-bar-animated shadow-none"
+                      role="progressbar"
+                      style="width: 20%"
+                      aria-valuenow="20"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    ></div>
+                  </div>
+                  <br>
+                  <span class="text-light small fw-semibold mb-1" style="margin-right: 10px;"><span class="badge badge-dot bg-primary me-1"></span>Draft</span>
+                  <span class="text-light small fw-semibold mb-1" style="margin-right: 10px;"><span class="badge badge-dot bg-info me-1"></span>Pengajuan</span>
+                  <span class="text-light small fw-semibold mb-1" style="margin-right: 10px;"><span class="badge badge-dot bg-primary me-1"></span>Menunggu Review</span>
+                  <!-- <span class="text-light small fw-semibold mb-1" style="margin-right: 10px;"><span class="badge badge-dot bg-dark me-1"></span>Menunggu Jadwal Presentasi</span><br> -->
+                  <span class="text-light small fw-semibold mb-1" style="margin-right: 10px;"><span class="badge badge-dot bg-dark me-1"></span>Persentasi</span>
+                  <span class="text-light small fw-semibold mb-1" style="margin-right: 10px;"><span class="badge badge-dot bg-info me-1"></span>Proses Pencairan Dana</span>
+                  <span class="text-light small fw-semibold mb-1" style="margin-right: 10px;"><span class="badge badge-dot bg-success me-1"></span>Dana Sudah diterima</span><br>
+                  <span class="text-light small fw-semibold mb-1" style="margin-right: 10px;"><span class="badge badge-dot bg-secondary me-1"></span>Revisi</span>
+                  <span class="text-light small fw-semibold mb-1" style="margin-right: 10px;"><span class="badge badge-dot bg-danger me-1"></span>Pengajuan Ditolak</span>
+
                 </div>
             </div>
+            
+                @endif
         </div>
-    </div>
+
+    
     @if ($proposals->isEmpty())
         <!-- Data is empty, do not display the table -->
     @else
-        <div class="card border-0">
-            <div class="card-body p-4">
+        <div class="card border">
+            <div class="card-body">
                 <div class="table-responsive">
                     <div class="card-datatable table-responsive">
                         <table class="table table-hover table-sm" id="datatable" width="100%">
