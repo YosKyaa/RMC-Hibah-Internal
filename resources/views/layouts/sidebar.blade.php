@@ -28,34 +28,28 @@
                 <div data-i18n="Dashboards">Announcements</div>
             </a>
         </li>
-        <li class="menu-item {{ request()->segment(1) == 'proposal' ? 'active' : '' }}">
+        <li class="menu-item {{ request()->segment(1) == 'user-proposals' ? 'active' : '' }}">
             <a href="{{ route('user-proposals.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-file"></i>
-                <div data-i18n="Dashboards">Submit Proposal</div>
+                <div data-i18n="Dashboards">Submit Proposal</div> <span class="notification-badge">3</span>
             </a>
         </li>
-        <li class="menu-item {{ request()->segment(1) == 'reviewers' ? 'active' : '' }}">
+        <li class="menu-item {{ request()->segment(1) == 'reviewer' ? 'active' : '' }}">
             <a href="{{ route('reviewers.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-book-reader"></i>
-                <div data-i18n="Dashboards">Review Proposals</div>
+                <div data-i18n="Dashboards">Review Proposals</div> <span class="notification-badge">3</span>
             </a>
         </li>
         <li class="menu-item {{ request()->segment(1) == 'vicerector1' ? 'active' : '' }}">
             <a href="{{ route('vicerector1.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-book-reader"></i>
-                <div data-i18n="Dashboards">VR I Approval</div>
+                <div data-i18n="Dashboards">VR I Approval</div> <span class="notification-badge">3</span>
             </a>
         </li>
         <li class="menu-item {{ request()->segment(1) == 'vicerector2' ? 'active' : '' }}">
             <a href="{{ route('vicerector2.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-book-reader"></i>
-                <div data-i18n="Dashboards">VR II Approval</div>
-            </a>
-        </li>
-        <li class="menu-item {{ request()->segment(3) == 'proposals' ? 'active' : '' }}">
-            <a href="{{ route('proposals.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-book-reader"></i>
-                <div>Manage Proposals</div>
+                <div data-i18n="Dashboards">VR II Approval</div> <span class="notification-badge">3</span>
             </a>
         </li>
         @can('control panel.read')
@@ -100,26 +94,27 @@
                             </ul>
                         </li>
                     @endcan
+
                     @can('setting/manage_data.read')
                         <li class="menu-item {{ request()->segment(2) == 'manage_data' ? 'open active' : '' }}">
                             <a href="" class="menu-link menu-toggle">
                                 <div>Manage Lookup</div>
                             </a>
                             <ul class="menu-sub">
-                                <li class="menu-item {{ request()->segment(3) == 'proposals' ? 'active' : '' }}">
+                                <li class="menu-item {{ request()->segment(2) == 'proposals' ? 'active' : '' }}">
                                     <a href="{{ route('proposals.index') }}" class="menu-link">
                                         <div>Manage Proposals</div>
                                     </a>
                                 </li>
                                 @can('setting/manage_data/study_program.read')
-                                    <li class="menu-item {{ request()->segment(3) == 'manage_studyprogram' ? 'active' : '' }}">
+                                    <li class="menu-item {{ request()->segment(3) == 'studyprogram' ? 'active' : '' }}">
                                         <a href="{{ route('program.index') }}" class="menu-link">
                                             <div>Study Program</div>
                                         </a>
                                     </li>
                                 @endcan
                                 @can('setting/manage_data/department.read')
-                                    <li class="menu-item {{ request()->segment(4) == 'manage_departement' ? 'active' : '' }}">
+                                    <li class="menu-item {{ request()->segment(3) == 'department' ? 'active' : '' }}">
                                         <a href="{{ route('dept.index') }}" class="menu-link">
                                             <div>Departement</div>
                                         </a>
@@ -131,6 +126,12 @@
                 </ul>
             </li>
         @endcan
+        <li class="menu-item {{ request()->segment(2) == 'proposals' ? 'active' : '' }}">
+            <a href="{{ route('proposals.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-book-reader"></i>
+                <div>Manage Proposals</div> <span class="notification-badge">3</span>
+            </a>
+        </li>
     </ul>
 </aside>
 <!-- / Menu -->

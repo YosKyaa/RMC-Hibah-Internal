@@ -67,6 +67,16 @@
         #template-customizer .template-customizer-open-btn:hover {
             background: #333;
         }
+        .notification-badge {
+            position: absolute;
+            top: 2.5px;
+            right: 2.5px;
+            padding: 2.5px 5px;
+            background-color: red;
+            color: white;
+            border-radius: 25%;
+            font-size: 6px;
+        }
     </style>
 
     @yield('css')

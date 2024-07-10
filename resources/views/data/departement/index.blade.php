@@ -101,7 +101,7 @@
             <table class="table table-hover table-sm" id="datatable" width="75%">
                 <thead>
                     <tr>
-                        <th>No</th>
+                        <th style="width: 1%;">No</th>
                         <th>Departement</th>
                         <th>Action</th>
                     </tr>

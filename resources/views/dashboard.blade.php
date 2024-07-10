@@ -3,7 +3,7 @@
 @section('css')
     <style>
 
-        .card-container {
+        /* .card-container {
             display: flex;
             flex-wrap: wrap;
         }
@@ -18,7 +18,7 @@
     padding: 9;
     font-family: sans-serif;
     background-color: #f1f1f1;
-}
+} */
 
 /* .container {
     position: relative;
@@ -29,10 +29,10 @@
 
 .container .box {
     position: relative;
-    width: calc(250px - 30px);
-    height: calc(250px - 30px);
+    width: calc(150px - 10px);
+    height: calc(150px - 10px);
     float: left;
-    margin: 15px;
+    margin: 10px;
     box-sizing: border-box;
     overflow: hidden;
     border-radius: 10px;
@@ -50,10 +50,10 @@
 }
 
 .container .box:hover .icon {
-    top: 20px;
-    left: calc(50% - 40px);
-    width: 80px;
-    height: 80px;
+    top: 70px;
+    left: calc(50% - 00px);
+    width: 0px;
+    height: 0px;
     border-radius: 50%;
 }
 
@@ -62,13 +62,13 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 80px;
+    font-size: 50px;
     transition: 0.7s;
     color: #fff;
 }
 
 .container .box:hover .icon .fa {
-    font-size: 40px;
+    font-size: 0px;
 }
 
 .container a {
@@ -79,16 +79,16 @@
 .container .box .content {
     position: absolute;
     top: 100px;
-    height: calc(100% - 100px);
+    height: calc(80% - 100px);
     text-align: center;
     padding: 20px;
     box-sizing:  border-box;
     transition: 0.7s;
     opacity: 0;
-}
-
+} 
+/*  */
 .container .box:hover .content {
-    top: 100px;
+    top: 10px;
     opacity: 1;
 }
 
@@ -247,9 +247,9 @@
                 <i class="fa {{ $card['icon'] }}" aria-hidden="true"></i>
             </div>
             <div class="content">
-                <h3>
+                <p>
                     <a target="_blank">0</a>
-                </h3>
+                </p>
                 <p class="mb-1">{{ $card['text'] }}</p>
             </div>
         </div>
