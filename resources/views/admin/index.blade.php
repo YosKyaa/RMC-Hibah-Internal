@@ -112,27 +112,79 @@
             </div>
         </div>
     </div>
-    <div class="col-md-12">
-        <ul class="nav nav-pills flex-column flex-sm-row mb-4">
-            <li class="nav-item"><a class="nav-link active" href="../admin/proposals"><i
-                        class="bx bx-add-to-queue me-1"></i>
-                    Data Proposal</a></li>
-            <li class="nav-item"><a class="nav-link" href="../admin/addreviewer"><i class="bx bx-chart me-1"></i>
-                    Tambah Reviewer</a></li>
-            <li class="nav-item"><a class="nav-link" href="../admin/presentation"><i class="bx bx-chart me-1"></i>
-                    Presentasi</a></li>
-            <li class="nav-item"><a class="nav-link" href="../admin/fundsfinalization"><i
-                        class="bx bx-bar-chart-alt-2 me-1"></i>
-                    Finalisasi Dana</a></li>
-            <li class="nav-item"><a class="nav-link" href="../admin/loa"><i class="bx bx-task me-1"></i> LOA & Contract</a>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="../admin/monev"><i class="bx bx-select-multiple me-1"></i>
-                    Verifikasi Hasil Monev</a></li>
-        </ul>
-    </div>
-    <div class="card border-0">
-        <div class="card-body p-3">
-            <div class="card-datatable table-responsive">
+
+    <div class="nav-align-top mb-4">
+                    <ul class="nav nav-tabs nav-fill" role="tablist">
+                      <li class="nav-item">
+                        <a
+                          type="button"
+                          class="nav-link active"
+                          data-bs-target="#dataproposal"
+                          href="../admin/proposals"
+                        >
+                          <i class="tf-icons bx bx-add-to-queue me-1"></i> Data
+                          <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger">3</span>
+                        </a>
+                      </li>
+                      <li class="nav-item" href="../admin/addreviewer">
+                        <a
+                          type="button"
+                          class="nav-link"
+                          data-bs-target="#tambahreviewers"
+                          href="../admin/addreviewer"
+                        >
+                          <i class="tf-icons bx bx-chart me-1"></i> Reviewer
+                          <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger">3</span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a
+                          type="button"
+                          class="nav-link"
+                          data-bs-target="#presentasi"
+                          href="../admin/presentation"
+                        >
+                          <i class="tf-icons bx bx-chart me-1"></i> Presentasi
+                          <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger">3</span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a
+                          type="button"
+                          class="nav-link"
+                          data-bs-target="#dana"
+                          href="../admin/fundsfinalization"
+                        >
+                          <i class="tf-icons bx bx-bar-chart-alt-2 me-1"></i> Finalisasi Dana
+                          <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger">3</span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a
+                          type="button"
+                          class="nav-link"
+                          data-bs-target="#loa"
+                          href="../admin/loa"
+                        >
+                          <i class="tf-icons bx bx-task me-1"></i> LoA & Kontrak
+                          <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger">3</span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a
+                          type="button"
+                          class="nav-link"
+                          data-bs-target="#monev"
+                          href="../admin/monev"
+                        >
+                          <i class="tf-icons bx bx-select-multiple me-1"></i> Verifikasi Monev
+                          <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger">3</span>
+                        </a>
+                      </li>
+                    </ul>
+                    <div class="tab-content">
+                      <div class="tab-pane fade show active" id="dataproposal" role="tabpanel">
+                      <div class="card-datatable table-responsive">
                 <div class="card-header flex-column flex-md-row pb-0">
                     <div class="row">
                         <div class="col-12 pt-3 pt-md-0">
@@ -185,10 +237,24 @@
                     </thead>
                 </table>
             </div>
+                      </div>
+                      <div class="tab-pane fade" id="tambahreviewers" role="tabpanel">
+                        
+                      </div>
+                      <div class="tab-pane fade" id="presentasi" role="tabpanel">
+                        
+                      </div>
+                      <div class="tab-pane fade" id="dana" role="tabpanel">
+                        
+                      </div>
+                      <div class="tab-pane fade" id="loa" role="tabpanel">
+                        
+                      </div>
+                      <div class="tab-pane fade" id="monev" role="tabpanel">
+                        
+                      </div>
+                </div>
         </div>
-    </div>
-
-
 @endsection
 
 @section('script')
