@@ -16,6 +16,10 @@
 
 @section('style')
     <style>
+        .table{
+width: 100%;
+table-layout: fixed;
+        }
         table.dataTable tbody td {
             vertical-align: middle;
         }
@@ -258,7 +262,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             var table = $('#datatable').DataTable({
-                responsive: true,
+                responsive: false,
                 processing: true,
                 serverSide: true,
                 ordering: false,

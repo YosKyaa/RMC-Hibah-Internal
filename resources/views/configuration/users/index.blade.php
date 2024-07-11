@@ -309,18 +309,18 @@
                     {
                         render: function(data, type, row, meta) {
                             var html =
-                                `<a class=" text-info" title="Reset Password" href="{{ url('setting/manage_account/users/reset_password/` +
+                                `<a class="badge badge-center rounded-pill bg-info" title="Reset Password" href="{{ url('setting/manage_account/users/reset_password/` +
                                                                                             row.idd + `') }}"><i class="bx bxs-lock-open"></i></a>
-                            <a class=" text-success" title="Edit" href="{{ url('setting/manage_account/users/edit/` +
+                            <a class="badge badge-center rounded-pill bg-success" title="Edit" href="{{ url('setting/manage_account/users/edit/` +
                                                                                     row.idd + `') }}"><i class="bx bxs-edit"></i></a>`;
                             if ("{{ Auth::user()->id }}" == row.id) {
                                 html +=
-                                    ` <a class=" text-light" title="Delete" style="cursor:not-allowed"><i class="bx bx-trash"></i></a>`;
+                                    ` <a class="badge badge-center rounded-pill bg-secondary" title="Delete" style="cursor:not-allowed"><i class="bx bxs-trash" style="color: #ffff;"></i></a>`;
                             } else {
                                 html +=
-                                    ` <a class=" text-danger" title="Delete" style="cursor:pointer" onclick="DeleteId(` +
+                                    ` <a class="badge badge-center rounded-pill bg-danger" title="Delete" style="cursor:pointer" onclick="DeleteId(` +
                                     row
-                                    .id + `)" ><i class="bx bx-trash"></i></a>`;
+                                    .id + `)" ><i class="bx bxs-trash" style="color: #ffff;"></i></a>`;
                             }
                             return html;
                         },

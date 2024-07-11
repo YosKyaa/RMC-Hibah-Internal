@@ -288,18 +288,18 @@
                             var html = "";
                             @can('setting/manage_account/roles.update')
                                 html +=
-                                    `<a class=" text-success" title="Edit" href="{{ url('setting/manage_account/roles/edit/` +
+                                    `<a class="badge badge-center rounded-pill bg-success" title="Edit" href="{{ url('setting/manage_account/roles/edit/` +
                                                                                                     row.idd + `') }}"><i class="bx bxs-edit"></i></a>`;
                             @endcan
                             @can('setting/manage_account/roles.delete')
                                 if ("admin" == row.name) {
                                     html +=
-                                        ` <a class=" text-light" title="Delete" style="cursor:not-allowed"><i class="bx bx-trash"></i></a>`;
+                                        ` <a class="badge badge-center rounded-pill bg-secondary" title="Delete" style="cursor:not-allowed"><i class="bx bxs-trash" style="color: #ffff;"></i></a>`;
                                 } else {
                                     html +=
-                                        ` <a class=" text-danger" title="Delete" style="cursor:pointer" onclick="DeleteId(` +
+                                        ` <a class="badge badge-center rounded-pill bg-danger" title="Delete" style="cursor:pointer" onclick="DeleteId(` +
                                         row
-                                        .id + `)" ><i class="bx bx-trash"></i></a>`;
+                                        .id + `)" ><i class="bx bxs-trash" style="color: #ffff;"></i></a>`;
                                 }
                             @endcan
                             return html;

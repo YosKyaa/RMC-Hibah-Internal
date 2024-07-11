@@ -236,7 +236,7 @@
                                     <th>Jenis Penelitian</th>
                                     <th data-priority="3">TopiK Penelitian</th>
                                     <th>Status</th>
-                                    <th data-priority="2"></th>
+                                    <th data-priority="2" style="width: 50px;"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -339,33 +339,33 @@
                             var html = '';
                             if (row.documents && row.documents.some(doc => doc.doc_type_id === 'DC5')){
                                  html =
-                                `<a class="text-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>`;
+                                `<a class="badge badge-center rounded-pill bg-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>`;
                             } else if (row.documents && row.documents.some(doc => doc.doc_type_id === 'DC3')) {
                                 html =
-                                `<a class="text-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>
-                                <a class="text-success" title="Unggah Monev" href="{{ url('user-proposals/monev/${row.id}') }}"><i class="bx bx-upload"></i></a>`;
+                                `<a class="badge badge-center rounded-pill bg-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>
+                                <a class="badge badge-center rounded-pill bg-success" title="Unggah Monev" href="{{ url('user-proposals/monev/${row.id}') }}"><i class="bx bx-upload"></i></a>`;
                             } else if (row.bank_id) {
                                 html =
-                                    `<a class="text-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>
-                                    <a class="text-success" title="Kontrak" href="{{ url('user-proposals/print_pdf/${row.id}') }}"><i class="bx bx-download"></i></a>`;
+                                    `<a class="badge badge-center rounded-pill bg-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>
+                                    <a class="badge badge-center rounded-pill bg-success" title="Kontrak" href="{{ url('user-proposals/print_pdf/${row.id}') }}"><i class="bx bx-download"></i></a>`;
                             } else if (row.approval_vice_rector_2) {
                                 html =
-                                    `<a class="text-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>
-                                    <a class="text-success" title="Upload Nomor Rekening" href="{{ url('user-proposals/account-bank/${row.id}') }}"><i class="bx bx-upload"></i></a>`;
+                                    `<a class="badge badge-center rounded-pill bg-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>
+                                    <a class="badge badge-center rounded-pill bg-success" title="Upload Nomor Rekening" href="{{ url('user-proposals/account-bank/${row.id}') }}"><i class="bx bx-upload"></i></a>`;
                             } else if (row.statuses.id === 'S01' || row.statuses.id === 'S02' || row
                                 .statuses.id === 'S04' || row.statuses.id === 'S05' || row.statuses
                                 .id === 'S06' || row.statuses.id === 'S07') {
                                 html +=
-                                    `<a class="text-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>`;
+                                    `<a class="badge badge-center rounded-pill bg-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>`;
                             } else if (row.statuses.id === 'S03') {
                                 html +=
-                                    `<a class="text-success" title="Edit" href="{{ url('admin/proposals/edit/${row.id}') }}"><i class="bx bxs-edit"></i></a>
-                                <a class="text-success" title="Sumbit" style="cursor:pointer" onclick="SubmitId('${row.id}')"><i class="bx bx-check"></i></a>`;
+                                    `<a class="badge badge-center rounded-pill bg-success" title="Edit" href="{{ url('admin/proposals/edit/${row.id}') }}"><i class="bx bxs-edit"></i></a>
+                                <a class="badge badge-center rounded-pill bg-success" title="Sumbit" style="cursor:pointer" onclick="SubmitId('${row.id}')"><i class="bx bx-check"></i></a>`;
                             } else {
                                 html =
-                                    `<a class="text-success" title="Edit" href="{{ url('admin/proposals/edit/${row.id}') }}"><i class="bx bxs-edit"></i></a>
-                                <a class="text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId('${row.id}','${row.name}')"><i class="bx bx-trash"></i></a>
-                                <a class="text-success" title="Approve" style="cursor:pointer" onclick="approveId('${row.id}')"><i class="bx bx-check"></i></a>`;
+                                    `<a class="badge badge-center rounded-pill bg-success" title="Edit" href="{{ url('admin/proposals/edit/${row.id}') }}"><i class="bx bxs-edit"></i></a>
+                                <a class="badge badge-center rounded-pill bg-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId('${row.id}','${row.name}')"><i class="bx bxs-trash" style+"#ffff;"></i></a>
+                                <a class="badge badge-center rounded-pill bg-success" title="Approve" style="cursor:pointer" onclick="approveId('${row.id}')"><i class="bx bx-check"></i></a>`;
                             }
                             return html;
                         },

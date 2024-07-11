@@ -191,10 +191,10 @@
                     {
                         render: function(data, type, row, meta) {
                             var html =
-                                `<a class=" text-success" title="Edit" href="{{ url('setting/manage_data/studyprogram/edit/` +
+                                `<a class="badge badge-center rounded-pill bg-success" title="Edit" href="{{ url('setting/manage_data/studyprogram/edit/` +
                                                                                 row.id + `') }}"><i class="bx bxs-edit"></i></a> 
-                            <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row
-                                .id + `\',\'` + row.name + `\')" ><i class="bx bx-trash"></i></a>`;
+                            <a class="badge badge-center rounded-pill bg-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row
+                                .id + `\',\'` + row.name + `\')" ><i class="bx bxs-trash" style="color: #ffff;"></i></a>`;
                             return html;
                         },
                         "orderable": false,
