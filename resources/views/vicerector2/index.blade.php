@@ -16,12 +16,6 @@
 @endsection
 
 @section('content')
-    <div class="container-xxl flex-grow-1 container-p-y">
-
-
-
-        <h4 class="py-3 mb-4"><span class="text-muted fw-light">Academy/</span> My Proposals</h4>
-
         <div class="app-academy">
             <div class="card p-0 mb-4">
                 <div class="card-body d-flex flex-column flex-md-row justify-content-between p-0 pt-4">

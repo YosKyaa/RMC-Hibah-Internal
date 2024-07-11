@@ -25,8 +25,6 @@
     <div class="content-wrapper">
 
         <!-- Content -->
-        <div class="container-xxl flex-grow-1 container-p-y">
-
             <div class="row">
                 <div class="col-md-6 col-lg-4 mb-4 order-lg-1 order-2">
                     <div class="card">
@@ -74,7 +72,7 @@
                     </table>
                 </div>
             </div>
-        </div>
+        
         <!-- / Content -->
 
         <div class="content-backdrop fade"></div>

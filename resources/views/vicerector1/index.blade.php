@@ -16,7 +16,7 @@
 @endsection
 
 @section('content')
-    <div class="container-xxl flex-grow-1 container-p-y">
+
 
         <div class="app-academy">
             <div class="card p-0 mb-4">

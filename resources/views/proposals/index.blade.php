@@ -226,7 +226,7 @@
         <!-- Data is empty, do not display the table -->
     @else
         <div class="card border">
-            <div class="card-body">
+            <!-- <div class="card-body"> -->
                 <div class="table-responsive">
                     <div class="card-datatable table-responsive">
                         <table class="table table-hover table-sm" id="datatable" width="100%">
@@ -244,7 +244,7 @@
                         </table>
                     </div>
                 </div>
-            </div>
+            <!-- </div> -->
         </div>
     @endif
 
