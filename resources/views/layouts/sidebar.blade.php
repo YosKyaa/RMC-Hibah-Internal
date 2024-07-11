@@ -52,6 +52,12 @@
                 <div data-i18n="Dashboards">VR II Approval</div> <span class="notification-badge">3</span>
             </a>
         </li>
+        <li class="menu-item {{ request()->segment(1) == 'dokumentasi' ? 'active' : '' }}">
+            <a href="{{ route('dokumentasi') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-file"></i>
+                <div data-i18n="Dashboards">Dokumentasi</div>
+            </a>
+        </li>
         @can('control panel.read')
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Control Panel</span>

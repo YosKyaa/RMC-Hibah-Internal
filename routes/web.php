@@ -5,6 +5,7 @@ use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartementController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\DokumentasiController;
 use App\Http\Controllers\FinalisasiDanaController;
 use App\Http\Controllers\LoaController;
 use App\Http\Controllers\MonevController;
@@ -42,6 +43,7 @@ Route::get('/', function () {
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+Route::get('/dokumentasi', [DokumentasiController::class, 'index'])->name('dokumentasi')->middleware('auth');
 
 Route::group(['prefix' => 'announcements'], function () {
     Route::any('/', [AnnouncementController::class, 'index'])->name('announcements.index')->middleware('auth');
