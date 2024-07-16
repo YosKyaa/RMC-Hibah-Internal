@@ -31,10 +31,7 @@ class UserController extends Controller
             $this->validate($request, [
                 'name'=> ['required', 'string', 'max:255'],
                 'username'=> ['required', 'string', 'max:255', Rule::unique('users')],
-                'form_title'=> ['required', 'string', 'max:255'],
-                'back_title'=> ['required', 'string', 'max:255'],
                 'email'=> ['required', 'email', 'max:255', Rule::unique('users')],
-                'nidn'=> ['required', 'string', 'max:255', Rule::unique('users')],
                 'department'=> ['required', 'string', 'max:255'],
                 'study_program'=> ['required', 'string', 'max:255'],
                 'new_password' => ['required', 'string', 'min:8'],

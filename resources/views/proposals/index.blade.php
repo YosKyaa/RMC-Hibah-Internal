@@ -91,7 +91,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
-    
+
         <div class="order-4 mb-4 full-width">
             @if ($proposals->isEmpty() || $proposals->last()->status_id == 'S04')
             <div class="card">
@@ -107,16 +107,16 @@
                         <div class="card-body">
                             <h5 class="card-title">Hi {{ ucfirst(Auth::user()->username) }}!</h5>
                             <p class="mb-4">Silahkan Upload Proposal Anda!</p>
-                            
+
                                 <a href="../user-proposals/create" class="btn btn-primary"><span><i
                                             class="bx bx-plus me-sm-2"></i>
                                         <span>Ajukan Hibah</span></span></a>
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
                 @else
-        
+
 
     <div class="card">
                 <h5 class="card-header">Progress</h5>
@@ -217,11 +217,11 @@
 
                 </div>
             </div>
-            
+
                 @endif
         </div>
 
-    
+
     @if ($proposals->isEmpty())
         <!-- Data is empty, do not display the table -->
     @else
@@ -232,10 +232,10 @@
                         <table class="table table-hover table-sm" id="datatable" width="100%">
                             <thead>
                                 <tr>
-                                    <th data-priority="1">Judul Proposal</th>
-                                    <th>Jenis Penelitian</th>
-                                    <th data-priority="3">TopiK Penelitian</th>
-                                    <th>Status</th>
+                                    <th data-priority="1"><strong>Judul Proposal</strong></th>
+                                    <th><strong>Jenis Penelitian</strong></th>
+                                    <th data-priority="3"><strong>TopiK Penelitian</strong></th>
+                                    <th><strong>Status</strong></th>
                                     <th data-priority="2"></th>
                                 </tr>
                             </thead>
