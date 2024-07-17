@@ -22,12 +22,11 @@ class AnnouncementController extends Controller
     public function index(Request $request)
     {
         $this->authorize('manage_announcement.read');
-    
+
         if ($request->isMethod('POST')) {
             $this->validate($request, [
                 'title' => ['string', 'max:255'],
-                'date' => ['required','date'],
-                'file_path' => ['required','mimes:jpg,jpeg,png','max:5120'], // max 5MB
+                'file_path' => ['required','mimes:jpg,jpeg,png,pdf','max:5120'], // max 5MB
                 'description' => 'required',
             ]);
             $this->authorize('manage_announcement.create');
@@ -35,7 +34,7 @@ class AnnouncementController extends Controller
             if(isset($request->file_path)){
                 $ext = $request->file_path->extension();
                 $name = str_replace(' ', '_', $request->file_path->getClientOriginalName());
-                $fileName = Auth::user()->id.'_'.$name; 
+                $fileName = Auth::user()->id.'_'.$name;
                 $folderName =  "storage/FILE/announcements/".Carbon::now()->format('Y/m');
                 $path = public_path()."/".$folderName;
                 if (!File::exists($path)) {
@@ -48,10 +47,9 @@ class AnnouncementController extends Controller
                     $fileName = "";
                 }
             }
-            $date = Carbon::parse($request->date)->format('Y-m-d');
             $data = Announcement::create([
+                'users_id' => Auth::user()->id,
                 'title' => $request->title,
-                'date' => $date,
                 'file_path' => $fileName,
                 'description' => $request->description,
             ]);
@@ -65,7 +63,7 @@ class AnnouncementController extends Controller
             $announcements = Announcement::all('*');
             return view('announcements.index', compact('data','announcements'));
         }
-            
+
     }
 
 
@@ -101,11 +99,11 @@ class AnnouncementController extends Controller
      */
     public function update($id, Request $request)
     {
-        
+
         $request->validate([
             'title' => 'required',
             'date' => ['date','required'],
-            'file_path' => ['required','mimes:jpg,jpeg,png','max:5120'], // max 5MB
+            'file_path' => ['required','mimes:jpg,jpeg,png,pdf','max:5120'], // max 5MB
             'description' => 'required',
         ]);
         // dd($request);
@@ -113,7 +111,7 @@ class AnnouncementController extends Controller
         $fileName = $announcements->file_path;
         if(isset($request->file_path)){
             $name = str_replace(' ', '_', $request->file_path->getClientOriginalName());
-            $fileName = Auth::user()->id.'_'.$name; 
+            $fileName = Auth::user()->id.'_'.$name;
             $folderName =  "storage/FILE/announcements/".Carbon::now()->format('Y/m');
             $path = public_path()."/".$folderName;
             if (!File::exists($path)) {

@@ -16,6 +16,7 @@ use App\Http\Controllers\PresentasiController;
 use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\ReviewerController;
 use App\Http\Controllers\StudyProgramController;
+use App\Http\Controllers\UserAnnouncementController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProposalController;
 use App\Http\Controllers\ViceRector1Controller;
@@ -53,6 +54,11 @@ Route::group(['prefix' => 'announcements'], function () {
     Route::put('/update/{id}', [AnnouncementController::class, 'update'])->name('announcements.update');
 });
 
+Route::group(['prefix' => 'user-announcements'], function () {
+    Route::any('/', [UserAnnouncementController::class, 'index'])->name('user-announcements.index')->middleware('auth');
+});
+
+
 Route::group(['prefix' => 'user-proposals'], function () {
     Route::any('/', [UserProposalController::class, 'index'])->name('user-proposals.index')->middleware('auth');
     Route::get('/data', [UserProposalController::class, 'data'])->name('user-proposals.data');
@@ -77,7 +83,7 @@ Route::group(['prefix' => 'user-proposals'], function () {
 
 Route::get('/get_research_themes_by_id', [UserProposalController::class, 'getResearchThemeById'])->name('DOC.get_research_themes_by_id');
 Route::get('/get_research_topics_by_id', [UserProposalController::class, 'getResearchTopicById'])->name('DOC.get_research_topics_by_id');
- 
+
 Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'proposals'], function () { //manage admin proposal
         Route::any('/', [ProposalController::class, 'index'])->name('proposals.index')->middleware('auth');

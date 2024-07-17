@@ -12,40 +12,26 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/sweetalert2.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-icons-1.11.3/font/bootstrap-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/katex.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/editor.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/typography.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/typeahead-js/typeahead.css') }}">
 @endsection
 
 @section('style')
     <style>
-        .table{
-width: 100%;
-table-layout: fixed;
-        }
         table.dataTable tbody td {
             vertical-align: middle;
         }
 
-        table.dataTable td:nth-child(2) {
-            max-width: 150px;
+        table.dataTable tbody td {
+            vertical-align: middle;
         }
 
         table.dataTable td {
             white-space: nowrap;
             text-overflow: ellipsis;
             overflow: hidden;
-            word-wrap: break-word;
-        }
-
-        .content-wrapper {
-            display: flex;
-            align-items: stretch;
-            flex: 1 1 auto;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .teks {
-            width: 500px;
-            /* Lebar maksimum */
             word-wrap: break-word;
         }
     </style>
@@ -58,142 +44,238 @@ table-layout: fixed;
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
-    <div class="content-wrapper">
-            <div class="row">
-                <div class="col-lg-12 mb-4 order-0">
-                    <div class="card">
-                        <div class="d-flex align-items-end row">
-                            <div class="col-sm-7">
-                                <div class="card-body">
-                                    <h5 class="card-title text-primary">Create Announcements!</h5>
-                                    <p class="mb-4"><span class="fw-medium">Notify all Users of your news</span></p>
+
+    <div class="card p-3">
+        <div class="card-datatable table-responsive">
+            <div class="card-header flex-column flex-md-row pb-0">
+                <div class="row">
+                    <div class="col-12 pt-3 pt-md-0">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class=" col-md-3">
+                                    <select id="select_guard_name" class="select2 form-select"
+                                        data-placeholder="Guard Name">
+                                        <option value="">Guard Name</option>
+
+                                    </select>
+                                </div>
+                                <div class=" col-md-4">
+                                    <select id="select_permission" class="select2 form-select"
+                                        data-placeholder="Permissions">
+                                        <option value="">Permissions</option>
+
+                                    </select>
+                                </div>
+                                <div class="offset-md-2 col-md-3 text-md-end text-center pt-3 pt-md-0">
+
                                     <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
                                         data-bs-target="#newrecord" aria-controls="offcanvasEnd" tabindex="0"
                                         aria-controls="DataTables_Table_0" type="button"><span><i
                                                 class="bx bx-plus me-sm-2"></i>
-                                            <span>Add New Announcement</span></span>
+                                            <span>Tambah Pengumuman</span></span>
                                     </button>
+                                    </button>
+
                                 </div>
-                            </div>
-                            <div class="col-sm-5 text-center text-sm-left">
-                            <img src="../../assets/img//ANNOUNCEMENT.png" height="140" alt="View Badge User" 
-                                data-app-light-img="ANNOUNCEMENT.png" 
-                                    data-app-dark-img="ANNOUNCEMENT.png">
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Total Revenue -->
-                <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2 mb-4">
-                    <div class="card">
-                        <div class="card-datatable table-responsive">
-                            <div class="card-header flex-column flex-md-row pb-0">
-                                <div class="row">
-                                    <div class="col-12 pt-3 pt-md-0">
-                                        <div class="col-12">
-                                            <div class="row">
-                                                <div class="offset-md-0 col-md-0 text-md-end text-center pt-3 pt-md-0">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="offcanvas offcanvas-end @if ($errors->all()) show @endif"
-                                    tabindex="-1" id="newrecord" aria-labelledby="offcanvasEndLabel">
-                                    <div class="offcanvas-header">
-                                        <h6 id="offcanvasEndLabel" class="offcanvas-title">Add Annoucements</h6>
-                                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="offcanvas-body my-auto mx-0 flex-grow-1">
-                                        <form class="add-new-record pt-0 row g-2 fv-plugins-bootstrap5 fv-plugins-framework"
-                                            id="form-add-new-record" method="POST" action=""
-                                            enctype="multipart/form-data">
-                                            @csrf
-                                            <div class="col-sm-12 fv-plugins-icon-container">
-                                                <label class="form-label" for="title">Title</label>
-                                                <div class="input-group input-group-merge has-validation">
-                                                    <input type="text"
-                                                        class="form-control @error('title') is-invalid @enderror"
-                                                        name="title" placeholder="Input your title"
-                                                        value="{{ old('title') }}">
-                                                    @error('title')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 fv-plugins-icon-container">
-                                                <label class="form-label" for="basicDate">Date</label>
-                                                <div class="input-group input-group-merge has-validation">
-                                                    <input type="date"
-                                                        class="form-control @error('date') is-invalid @enderror"
-                                                        name="date" placeholder="yyyy-mm-dd"
-                                                        value="{{ old('date') }}">
-                                                    @error('date')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <label class="form-label">Upload Images<i class="text-danger">*</i></label>
-                                                <div class="input-group mb-3">
-                                                    <input class="form-control @error('file_path') is-invalid @enderror"
-                                                        name="file_path" type="file" accept=".jpg, .jpeg, .png"
-                                                        title="JPG/PNG">
-                                                    @error('file_path')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 fv-plugins-icon-container">
-                                                <label class="form-label" for="basicDate">Description</label>
-                                                <div class="input-group input-group-merge has-validation">
-                                                    <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description"
-                                                        placeholder="Input your description">{{ old('description') }}</textarea>
-                                                    @error('description')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 mt-4">
-                                                <button type="submit"
-                                                    class="btn btn-primary data-submit me-sm-3 me-1">Submit</button>
-                                                <button type="reset" class="btn btn-outline-secondary"
-                                                    data-bs-dismiss="offcanvas">Batal</button>
-                                            </div>
-                                            <br>
-                                            <span class="invalid-feedback" role="alert"><br>
-                                                <strong>Rasio 1:1</strong> <br>
-                                                <strong>Img Size Max 5mb</strong>
+
+                    <div class="offcanvas offcanvas-end @if ($errors->all()) show @endif" tabindex="-1"
+                        id="newrecord" aria-labelledby="offcanvasEndLabel">
+                        <div class="offcanvas-header">
+                            <h5 id="offcanvasEndLabel" class="offcanvas-title">Tambah Pengumuman</h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body my-auto mx-0 flex-grow-1">
+                            <form class="add-new-record pt-0 row g-2 fv-plugins-bootstrap5 fv-plugins-framework"
+                                id="form-add-new-record" method="POST" action="" enctype="multipart/form-data">
+                                @csrf
+                                <div class="col-sm-12 fv-plugins-icon-container mb-3">
+                                    <label class="form-label mb-1" for="title">Judul</label>
+                                    <div class="input-group input-group-merge has-validation">
+                                        <input type="text" class="form-control @error('title') is-invalid @enderror"
+                                            name="title" placeholder="Input your title" value="{{ old('title') }}">
+                                        @error('title')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
                                             </span>
-                                            <div></div><input type="hidden">
-                                        </form>
+                                        @enderror
                                     </div>
                                 </div>
+                                <div class="col-sm-12 mb-3">
+                                    <label class="form-label mb-1">Unggah Foto/dokumen<i class="text-danger">*</i></label>
+                                    <div class="input-group">
+                                        <input class="form-control @error('file_path') is-invalid @enderror"
+                                            name="file_path" type="file" accept=".jpg, .jpeg, .png, .pdf" title="JPG/PNG/PDF">
+                                        @error('file_path')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-text">Silahkan unggah foto/dokumen Max 5mb.
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 fv-plugins-icon-container mb-3">
+                                    <label class="form-label mb-1" for="description">Deskripsi</label>
+                                    <div class="input-group input-group-merge has-validation">
+                                        <textarea class="form-control @error('description') is-invalid @enderror" id="editor" cols="1"
+                                            rows="8" placeholder="Tuliskan isi pikiranmu..." name="description" value="{{ old('description') }}"> </textarea>
+                                        @error('description')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 mt-4">
+                                    <button type="submit" class="btn btn-primary data-submit me-sm-3 me-1">Kirim</button>
+                                    <button type="reset" class="btn btn-outline-secondary"
+                                        data-bs-dismiss="offcanvas">Batal</button>
+                                </div>
+                                <div></div><input type="hidden">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <table class="table table-hover table-sm" id="datatable" width="100%">
+                <thead>
+                    <tr>
+                        <th width="20px" data-priority="1">No</th>
+                        <th data-priority="2">Judul</th>
+                        <th>Description</th>
+                        <th width="50px" data-priority="4">File Gambae\r</th>
+                        <th width="40px" data-priority="3"></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+
+    {{-- <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-12 mb-4 order-0">
+                <div class="card">
+                    <div class="d-flex align-items-end row">
+                        <div class="col-sm-7">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary mb-1">Create Announcements!</h5>
+                                <p class="mb-4"><span class="fw-medium">Notify all Users of your news</span></p>
+                                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#newrecord" aria-controls="offcanvasEnd" tabindex="0"
+                                    aria-controls="DataTables_Table_0" type="button"><span><i
+                                            class="bx bx-plus me-sm-2"></i>
+                                        <span>Add New Announcement</span></span>
+                                </button>
                             </div>
-                            <table class="table table-hover table-sm" id="datatable" width="100%">
-                                <thead>
-                                    <tr>
-                                        <th width="10px">No</th>
-                                        <th width="60px">Title</th>
-                                        <th width="60px">Date</th>
-                                        <th width="60px">Image Source</th>
-                                        <th width="40px">Action</th>
-                                    </tr>
-                                </thead>
-                            </table>
+                        </div>
+                        <div class="col-sm-5 text-center text-sm-left">
+                            <img src="../../assets/img//ANNOUNCEMENT.png" height="140" alt="View Badge User"
+                                data-app-light-img="ANNOUNCEMENT.png" data-app-dark-img="ANNOUNCEMENT.png">
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- Total Revenue -->
+            <div class="col-12 col-lg-12 order-2 order-md-3 order-lg-2 mb-4">
+                <div class="card">
+                    <div class="card-datatable table-responsive">
+                        <div class="card-header flex-column flex-md-row pb-0">
+                            <div class="row">
+                                <div class="col-12 pt-3 pt-md-0">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="offset-md-0 col-md-0 text-md-end text-center pt-3 pt-md-0">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="offcanvas offcanvas-end @if ($errors->all()) show @endif"
+                                tabindex="-1" id="newrecord" aria-labelledby="offcanvasEndLabel">
+                                <div class="offcanvas-header">
+                                    <h5 id="offcanvasEndLabel" class="offcanvas-title">Tambah Pengumuman</h5>
+                                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="offcanvas-body my-auto mx-0 flex-grow-1">
+                                    <form class="add-new-record pt-0 row g-2 fv-plugins-bootstrap5 fv-plugins-framework"
+                                        id="form-add-new-record" method="POST" action=""
+                                        enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="col-sm-12 fv-plugins-icon-container mb-3">
+                                            <label class="form-label mb-1" for="title">Judul</label>
+                                            <div class="input-group input-group-merge has-validation">
+                                                <input type="text"
+                                                    class="form-control @error('title') is-invalid @enderror" name="title"
+                                                    placeholder="Input your title" value="{{ old('title') }}">
+                                                @error('title')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 mb-3">
+                                            <label class="form-label mb-1">Unggah Foto/dokumen<i
+                                                    class="text-danger">*</i></label>
+                                            <div class="input-group">
+                                                <input class="form-control @error('file_path') is-invalid @enderror"
+                                                    name="file_path" type="file" accept=".jpg, .jpeg, .png"
+                                                    title="JPG/PNG">
+                                                @error('file_path')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <div class="form-text">Silahkan unggah foto/dokumen Max 5mb.
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 fv-plugins-icon-container mb-3">
+                                            <label class="form-label mb-1" for="description">Deskripsi</label>
+                                            <div class="input-group input-group-merge has-validation">
+                                                <textarea class="form-control @error('description') is-invalid @enderror" id="editor" cols="1"
+                                                    rows="8" placeholder="Tuliskan isi pikiranmu..." name="description" value="{{ old('description') }}"> </textarea>
+                                                @error('description')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 mt-4">
+                                            <button type="submit"
+                                                class="btn btn-primary data-submit me-sm-3 me-1">Kirim</button>
+                                            <button type="reset" class="btn btn-outline-secondary"
+                                                data-bs-dismiss="offcanvas">Batal</button>
+                                        </div>
+                                        <div></div><input type="hidden">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-hover table-sm" id="datatable" width="100%">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10%;">No</th>
+                                    <th width="60px">Tanggal</th>
+                                    <th width="60px">Judul</th>
+                                    <th width="60px">File Gambar</th>
+                                    <th width="40px"></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     @foreach ($announcements as $anc)
         <div class="modal fade" id="modalToggle" aria-labelledby="modalToggleLabel" tabindex="-1"
@@ -215,7 +297,7 @@ table-layout: fixed;
                 </div>
             </div>
         </div>
-    @endforeach
+    @endforeach --}}
 @endsection
 @section('script')
     <script src="{{ asset('assets/vendor/libs/datatables/jquery.dataTables.js') }}"></script>
@@ -227,6 +309,14 @@ table-layout: fixed;
     <script src="{{ asset('assets/vendor/libs/datatables/buttons.bootstrap5.js') }}"></script>
     <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/quill/katex.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/quill/quill.js') }}"></script>
+    <script src="{{ asset('assets/js/forms-editors.js') }}"></script>
+    <script>
+        var quill = new Quill('#editor', {
+            theme: 'snow'
+        });
+    </script>
     @if (session('msg'))
         <script type="text/javascript">
             //swall message notification
@@ -262,7 +352,7 @@ table-layout: fixed;
     <script type="text/javascript">
         $(document).ready(function() {
             var table = $('#datatable').DataTable({
-                responsive: false,
+                responsive: true,
                 processing: true,
                 serverSide: true,
                 ordering: false,
@@ -290,13 +380,16 @@ table-layout: fixed;
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.title;
+                            var date = new Date(row.created_at);
+                            var formattedDate = date.toLocaleDateString();
+                            var formattedTime = date.toLocaleTimeString();
+                            var html = formattedDate + ' ' + formattedTime;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.date;
+                            var html = row.title;
                             return html;
                         }
                     },
@@ -310,9 +403,11 @@ table-layout: fixed;
                         render: function(data, type, row, meta) {
                             var html =
                                 `<a href="#modalToggle" data-bs-toggle="modal" data-bs-target="#modalToggle" class="badge badge-center rounded-pill bg-warning" title="Lihat"><i class="bx bx-show-alt badge-dark"></i></a>
-                                <a class="badge badge-center rounded-pill bg-success" title="Edit" href="{{ url('announcements/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a> 
-                            <a class="badge badge-center rounded-pill bg-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` + row
-                                .id + `\',\'` + row.name + `\')" ><i class="bx bxs-trash" style="color: #ffff;"></i></a>`;
+                                <a class="badge badge-center rounded-pill bg-success" title="Edit" href="{{ url('announcements/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>
+                            <a class="badge badge-center rounded-pill bg-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` +
+                                row
+                                .id + `\',\'` + row.name +
+                                `\')" ><i class="bx bxs-trash" style="color: #ffff;"></i></a>`;
                             return html;
                         },
                         "orderable": false,

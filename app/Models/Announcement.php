@@ -13,6 +13,15 @@ class Announcement extends Model
         'title',
         'file_path',
         'description',
-        'date',
+        'users_id',
     ];
+    public function proposals()
+    {
+        return $this->hasMany(Proposal::class, 'users_id', 'id');
+    }
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'users_id');
+    }
+
 }

@@ -28,6 +28,12 @@
                 <div data-i18n="Dashboards">Announcements</div>
             </a>
         </li>
+        <li class="menu-item {{ request()->segment(1) == 'user-announcements' ? 'active' : '' }}">
+            <a href="{{ route('user-announcements.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-upload"></i>
+                <div data-i18n="Dashboards">Announcements</div>
+            </a>
+        </li>
         <li class="menu-item {{ request()->segment(1) == 'user-proposals' ? 'active' : '' }}">
             <a href="{{ route('user-proposals.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-file"></i>
@@ -52,7 +58,7 @@
                 <div data-i18n="Dashboards">VR II Approval</div> <span class="notification-badge">3</span>
             </a>
         </li>
-        
+
         @can('control panel.read')
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Control Panel</span>
