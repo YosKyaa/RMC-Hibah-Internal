@@ -18,7 +18,66 @@
             /* Shadow di bagian bawah */
             transition: all 0.3s ease-in-out;
         }
+        .card-border-shadow-warning {
+            transition: all 0.3s ease-in-out;
+            border-bottom: 1px solid #FFFF00;
+        }
 
+        .card-border-shadow-warning:hover {
+            border-bottom: 3px solid #FFFF00;
+            /* Warna border (biru) */
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+            /* Shadow di bagian bawah */
+            transition: all 0.3s ease-in-out;
+        }
+        .card-border-shadow-danger {
+            transition: all 0.3s ease-in-out;
+            border-bottom: 1px solid #FF0000;
+        }
+
+        .card-border-shadow-danger:hover {
+            border-bottom: 3px solid #FF0000;
+            /* Warna border (biru) */
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+            /* Shadow di bagian bawah */
+            transition: all 0.3s ease-in-out;
+        }
+        .card-border-shadow-info {
+            transition: all 0.3s ease-in-out;
+            border-bottom: 1px solid #00FFFF;
+        }
+
+        .card-border-shadow-info:hover {
+            border-bottom: 3px solid #00FFFF;
+            /* Warna border (biru) */
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+            /* Shadow di bagian bawah */
+            transition: all 0.3s ease-in-out;
+        }
+        .card-border-shadow-success {
+            transition: all 0.3s ease-in-out;
+            border-bottom: 1px solid #008000;
+        }
+
+        .card-border-shadow-success:hover {
+            border-bottom: 3px solid #008000;
+            /* Warna border (biru) */
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+            /* Shadow di bagian bawah */
+            transition: all 0.3s ease-in-out;
+        }
+        .card-border-shadow-dark {
+            transition: all 0.3s ease-in-out;
+            border-bottom: 1px solid #000000;
+        }
+
+        .card-border-shadow-dark:hover {
+            border-bottom: 3px solid #000000;
+            /* Warna border (biru) */
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+            /* Shadow di bagian bawah */
+            transition: all 0.3s ease-in-out;
+        }
         .img {
             width: 15%;
             object-fit: cover;
@@ -81,7 +140,7 @@
                         </div>
                         <h3 class="mb-0"><strong>{{ $panganCount }}</strong></h3>
                     </div>
-                    <p class="mb-2">Pangan</p>
+                    <p class="mb-2" style="font-size: large;">Pangan</p>
                     <p class="mb-0">
                         <span class="text-heading fw-medium me-2">+18.2%</span>
                         <span class="text-muted">than last week</span>
@@ -94,11 +153,11 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <div class="avatar me-4">
-                            <span class="avatar-initial rounded bg-label-warning"><i class='bx bx-error bx-md'></i></span>
+                            <span class="avatar-initial rounded bg-label-warning"><i class='bx bxl-react bx-md'></i></span>
                         </div>
                         <h4 class="mb-0">8</h4>
                     </div>
-                    <p class="mb-2">Vehicles with errors</p>
+                    <p class="mb-2" style="font-size: large;">Energi</p>
                     <p class="mb-0">
                         <span class="text-heading fw-medium me-2">-8.7%</span>
                         <span class="text-muted">than last week</span>
@@ -112,11 +171,11 @@
                     <div class="d-flex align-items-center mb-2">
                         <div class="avatar me-4">
                             <span class="avatar-initial rounded bg-label-danger"><i
-                                    class='bx bx-git-repo-forked bx-lg'></i></span>
+                                    class='bx bx-heart bx-md'></i></span>
                         </div>
                         <h4 class="mb-0">27</h4>
                     </div>
-                    <p class="mb-2">Deviated from route</p>
+                    <p class="mb-2" style="font-size: large;">Kesehatan</p>
                     <p class="mb-0">
                         <span class="text-heading fw-medium me-2">+4.3%</span>
                         <span class="text-muted">than last week</span>
@@ -129,11 +188,113 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <div class="avatar me-4">
-                            <span class="avatar-initial rounded bg-label-info"><i class='bx bx-time-five bx-lg'></i></span>
+                            <span class="avatar-initial rounded bg-label-info"><i class='bx bx-car bx-md'></i></span>
                         </div>
                         <h4 class="mb-0">13</h4>
                     </div>
-                    <p class="mb-2">Late vehicles</p>
+                    <p class="mb-2" style="font-size: large;">Transportasi</p>
+                    <p class="mb-0">
+                        <span class="text-heading fw-medium me-2">-2.5%</span>
+                        <span class="text-muted">than last week</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 mb-3">
+            <div class="card card-border-shadow-success h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="avatar me-4">
+                            <span class="avatar-initial rounded bg-label-success"><i class='bx bx-shield-quarter bx-md'></i></span>
+                        </div>
+                        <h4 class="mb-0">13</h4>
+                    </div>
+                    <p class="mb-2" style="font-size: large;">Pertahanan dan keamanan</p>
+                    <p class="mb-0">
+                        <span class="text-heading fw-medium me-2">-2.5%</span>
+                        <span class="text-muted">than last week</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 mb-3">
+            <div class="card card-border-shadow-dark h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="avatar me-4">
+                            <span class="avatar-initial rounded bg-label-dark"><i class='bx bx-git-repo-forked bx-md'></i></span>
+                        </div>
+                        <h4 class="mb-0">13</h4>
+                    </div>
+                    <p class="mb-2" style="font-size: large;">Material maju</p>
+                    <p class="mb-0">
+                        <span class="text-heading fw-medium me-2">-2.5%</span>
+                        <span class="text-muted">than last week</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 mb-3">
+            <div class="card card-border-shadow-info h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="avatar me-4">
+                            <span class="avatar-initial rounded bg-label-info"><i class='bx bxl-digitalocean bx-md'></i></span>
+                        </div>
+                        <h4 class="mb-0">13</h4>
+                    </div>
+                    <p class="mb-2" style="font-size: large;">Kemaritiman</p>
+                    <p class="mb-0">
+                        <span class="text-heading fw-medium me-2">-2.5%</span>
+                        <span class="text-muted">than last week</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 mb-3">
+            <div class="card card-border-shadow-primary h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="avatar me-4">
+                            <span class="avatar-initial rounded bg-label-primary"><i class='bx bx-error bx-md'></i></span>
+                        </div>
+                        <h4 class="mb-0">13</h4>
+                    </div>
+                    <p class="mb-2" style="font-size: large;">Kebencanaan</p>
+                    <p class="mb-0">
+                        <span class="text-heading fw-medium me-2">-2.5%</span>
+                        <span class="text-muted">than last week</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="card card-border-shadow-warning h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="avatar me-4">
+                            <span class="avatar-initial rounded bg-label-warning"><i class='bx bx-laptop bx-md'></i></span>
+                        </div>
+                        <h4 class="mb-0">13</h4>
+                    </div>
+                    <p class="mb-2" style="font-size: large;">Teknologi informasi dan komunikasi</p>
+                    <p class="mb-0">
+                        <span class="text-heading fw-medium me-2">-2.5%</span>
+                        <span class="text-muted">than last week</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="card card-border-shadow-danger h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="avatar me-4">
+                            <span class="avatar-initial rounded bg-label-danger"><i class='bx bx-street-view bx-md'></i></span>
+                        </div>
+                        <h4 class="mb-0">13</h4>
+                    </div>
+                    <p class="mb-2" style="font-size: large;">Sosial humaniora, seni budaya, pendidikan</p>
                     <p class="mb-0">
                         <span class="text-heading fw-medium me-2">-2.5%</span>
                         <span class="text-muted">than last week</span>

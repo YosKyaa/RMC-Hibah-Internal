@@ -81,11 +81,11 @@
 
                 <div class="row gy-4">
 
-                    <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-md" data-aos="fade-up" data-aos-delay="100">
                         <div class="service-item d-flex">
                             <div class="icon flex-shrink-0"><i class="bi bi-briefcase"></i></div>
                             <div>
-                                <h4 class="title"><a href="#" class="stretched-link">Lorem Ipsum</a></h4>
+                                <h4 class="title"><a href="#" class="stretched-link">Hibah Internal</a></h4>
                                 <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias
                                     excepturi</p>
                             </div>
@@ -93,24 +93,13 @@
                     </div>
                     <!-- End Service Item -->
 
-                    <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="col-md" data-aos="fade-up" data-aos-delay="200">
                         <div class="service-item d-flex">
                             <div class="icon flex-shrink-0"><i class="bi bi-card-checklist"></i></div>
                             <div>
-                                <h4 class="title"><a href="#" class="stretched-link">Dolor Sitema</a></h4>
+                                <h4 class="title"><a href="#" class="stretched-link">Hibah Publikasi</a></h4>
                                 <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut
                                     aliquip exa</p>
-                            </div>
-                        </div>
-                    </div><!-- End Service Item -->
-
-                    <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="service-item d-flex">
-                            <div class="icon flex-shrink-0"><i class="bi bi-bar-chart"></i></div>
-                            <div>
-                                <h4 class="title"><a href="#" class="stretched-link">Sed ut perspiciatis</a></h4>
-                                <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum</p>
                             </div>
                         </div>
                     </div><!-- End Service Item -->
@@ -149,29 +138,14 @@
                         <li><i class="bi bi-check-circle"></i> <span>Pembentukan penerbit mandiri yang mampu
                                 menerbitkan jurnal ilmiah, buku/modul, dsb.</span></li>
                     </ul>
-                    <a href="https://www.google.com/search?q=pengertian+rmc&oq=pengertian+rmc&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIJCAEQABgNGIAEMgoIAhAAGIAEGKIEMgoIAxAAGIAEGKIEMgoIBBAAGIAEGKIE0gEINDI3MmowajeoAgCwAgA&sourceid=chrome&ie=UTF-8"
-                        class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
                 </div>
 
             </div>
         </section><!-- /About Section -->
 
         <!-- Clients Section -->
-        <section id="clients" class="clients section">
-
-            <div class="container text-center" data-aos="fade-up">
-
-                <!-- <div class="row gy-4"> -->
-
-                <a class="col-xl-2 col-md-3 col-6 client-logo" href="https://jgu.ac.id/">
-                    <img src="assets/img/jgu.png" class="img-fluid" alt="">
-                </a><!-- End Client Item -->
-
-                <!-- </div> -->
-
-            </div>
-
-        </section><!-- /Clients Section -->
+        
+        <!-- /Clients Section -->
 
         <!-- Faq Section -->
         <section id="visi" class="faq section">
