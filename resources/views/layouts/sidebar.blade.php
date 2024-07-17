@@ -52,12 +52,7 @@
                 <div data-i18n="Dashboards">VR II Approval</div> <span class="notification-badge">3</span>
             </a>
         </li>
-        <li class="menu-item {{ request()->segment(1) == 'dokumentasi' ? 'active' : '' }}">
-            <a href="{{ route('dokumentasi') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-file"></i>
-                <div data-i18n="Dashboards">Dokumentasi</div>
-            </a>
-        </li>
+        
         @can('control panel.read')
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Control Panel</span>
@@ -130,12 +125,18 @@
                         </li>
                     @endcan
                 </ul>
+                <li class="menu-item {{ request()->segment(1) == 'dokumentasi' ? 'active' : '' }}">
+                    <a href="{{ route('dokumentasi') }}" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-file"></i>
+                        <div data-i18n="Dashboards">Dokumentasi</div>
+                    </a>
+                </li>
             </li>
         @endcan
         <li class="menu-item {{ request()->segment(2) == 'proposals' ? 'active' : '' }}">
             <a href="{{ route('proposals.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-book-reader"></i>
-                <div>Manage Proposals</div> <span class="notification-badge">3</span>
+                <div>Manage Proposals</div> <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger">3</span>
             </a>
         </li>
     </ul>

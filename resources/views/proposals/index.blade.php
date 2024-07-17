@@ -91,7 +91,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
-    
+
         <div class="order-4 mb-4 full-width">
             @if ($proposals->isEmpty() || $proposals->last()->status_id == 'S04')
             <div class="card">
@@ -107,16 +107,16 @@
                         <div class="card-body">
                             <h5 class="card-title">Hi {{ ucfirst(Auth::user()->username) }}!</h5>
                             <p class="mb-4">Silahkan Upload Proposal Anda!</p>
-                            
+
                                 <a href="../user-proposals/create" class="btn btn-primary"><span><i
                                             class="bx bx-plus me-sm-2"></i>
                                         <span>Ajukan Hibah</span></span></a>
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
                 @else
-        
+
 
     <div class="card">
                 <h5 class="card-header">Progress</h5>
@@ -217,26 +217,26 @@
 
                 </div>
             </div>
-            
+
                 @endif
         </div>
 
-    
+
     @if ($proposals->isEmpty())
         <!-- Data is empty, do not display the table -->
     @else
         <div class="card border">
-            <!-- <div class="card-body"> -->
+            <div class="card-body">
                 <div class="table-responsive">
                     <div class="card-datatable table-responsive">
                         <table class="table table-hover table-sm" id="datatable" width="100%">
                             <thead>
                                 <tr>
-                                    <th data-priority="1">Judul Proposal</th>
-                                    <th>Jenis Penelitian</th>
-                                    <th data-priority="3">TopiK Penelitian</th>
-                                    <th>Status</th>
-                                    <th data-priority="2" style="width: 50px;"></th>
+                                    <th data-priority="1"><strong>Judul Proposal</strong></th>
+                                    <th><strong>Jenis Penelitian</strong></th>
+                                    <th data-priority="3"><strong>TopiK Penelitian</strong></th>
+                                    <th><strong>Status</strong></th>
+                                    <th data-priority="2"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -244,7 +244,7 @@
                         </table>
                     </div>
                 </div>
-            <!-- </div> -->
+            </div>
         </div>
     @endif
 
@@ -339,33 +339,33 @@
                             var html = '';
                             if (row.documents && row.documents.some(doc => doc.doc_type_id === 'DC5')){
                                  html =
-                                `<a class="badge badge-center rounded-pill bg-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>`;
+                                `<a class="text-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>`;
                             } else if (row.documents && row.documents.some(doc => doc.doc_type_id === 'DC3')) {
                                 html =
-                                `<a class="badge badge-center rounded-pill bg-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>
-                                <a class="badge badge-center rounded-pill bg-success" title="Unggah Monev" href="{{ url('user-proposals/monev/${row.id}') }}"><i class="bx bx-upload"></i></a>`;
+                                `<a class="text-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>
+                                <a class="text-success" title="Unggah Monev" href="{{ url('user-proposals/monev/${row.id}') }}"><i class="bx bx-upload"></i></a>`;
                             } else if (row.bank_id) {
                                 html =
-                                    `<a class="badge badge-center rounded-pill bg-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>
-                                    <a class="badge badge-center rounded-pill bg-success" title="Kontrak" href="{{ url('user-proposals/print_pdf/${row.id}') }}"><i class="bx bx-download"></i></a>`;
+                                    `<a class="text-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>
+                                    <a class="text-success" title="Kontrak" href="{{ url('user-proposals/print_pdf/${row.id}') }}"><i class="bx bx-download"></i></a>`;
                             } else if (row.approval_vice_rector_2) {
                                 html =
-                                    `<a class="badge badge-center rounded-pill bg-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>
-                                    <a class="badge badge-center rounded-pill bg-success" title="Upload Nomor Rekening" href="{{ url('user-proposals/account-bank/${row.id}') }}"><i class="bx bx-upload"></i></a>`;
+                                    `<a class="text-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>
+                                    <a class="text-success" title="Upload Nomor Rekening" href="{{ url('user-proposals/account-bank/${row.id}') }}"><i class="bx bx-upload"></i></a>`;
                             } else if (row.statuses.id === 'S01' || row.statuses.id === 'S02' || row
                                 .statuses.id === 'S04' || row.statuses.id === 'S05' || row.statuses
                                 .id === 'S06' || row.statuses.id === 'S07') {
                                 html +=
-                                    `<a class="badge badge-center rounded-pill bg-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>`;
+                                    `<a class="text-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>`;
                             } else if (row.statuses.id === 'S03') {
                                 html +=
-                                    `<a class="badge badge-center rounded-pill bg-success" title="Edit" href="{{ url('admin/proposals/edit/${row.id}') }}"><i class="bx bxs-edit"></i></a>
-                                <a class="badge badge-center rounded-pill bg-success" title="Sumbit" style="cursor:pointer" onclick="SubmitId('${row.id}')"><i class="bx bx-check"></i></a>`;
+                                    `<a class="text-success" title="Edit" href="{{ url('admin/proposals/edit/${row.id}') }}"><i class="bx bxs-edit"></i></a>
+                                <a class="text-success" title="Sumbit" style="cursor:pointer" onclick="SubmitId('${row.id}')"><i class="bx bx-check"></i></a>`;
                             } else {
                                 html =
-                                    `<a class="badge badge-center rounded-pill bg-success" title="Edit" href="{{ url('admin/proposals/edit/${row.id}') }}"><i class="bx bxs-edit"></i></a>
-                                <a class="badge badge-center rounded-pill bg-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId('${row.id}','${row.name}')"><i class="bx bxs-trash" style+"#ffff;"></i></a>
-                                <a class="badge badge-center rounded-pill bg-success" title="Approve" style="cursor:pointer" onclick="approveId('${row.id}')"><i class="bx bx-check"></i></a>`;
+                                    `<a class="text-success" title="Edit" href="{{ url('admin/proposals/edit/${row.id}') }}"><i class="bx bxs-edit"></i></a>
+                                <a class="text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId('${row.id}','${row.name}')"><i class="bx bx-trash"></i></a>
+                                <a class="text-success" title="Approve" style="cursor:pointer" onclick="approveId('${row.id}')"><i class="bx bx-check"></i></a>`;
                             }
                             return html;
                         },

@@ -94,7 +94,7 @@
                           href="../admin/proposals"
                         >
                           <i class="tf-icons bx bx-add-to-queue me-1"></i> Data
-                          <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger">3</span>
+                          <span class="badge bg-danger badge-notifications">3</span>
                         </a>
                       </li>
                       <li class="nav-item" href="../admin/addreviewer">
@@ -105,7 +105,7 @@
                           href="../admin/addreviewer"
                         >
                           <i class="tf-icons bx bx-chart me-1"></i> Reviewer
-                          <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger">3</span>
+                          <span class="badge bg-danger badge-notifications">3</span>
                         </a>
                       </li>
                       <li class="nav-item">
@@ -116,7 +116,7 @@
                           href="../admin/presentation"
                         >
                           <i class="tf-icons bx bx-chart me-1"></i> Presentasi
-                          <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger">3</span>
+                          <span class="badge bg-danger badge-notifications">3</span>
                         </a>
                       </li>
                       <li class="nav-item">
@@ -127,7 +127,7 @@
                           href="../admin/fundsfinalization"
                         >
                           <i class="tf-icons bx bx-bar-chart-alt-2 me-1"></i> Finalisasi Dana
-                          <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger">3</span>
+                          <span class="badge bg-danger badge-notifications">3</span>
                         </a>
                       </li>
                       <li class="nav-item">
@@ -138,7 +138,7 @@
                           href="../admin/loa"
                         >
                           <i class="tf-icons bx bx-task me-1"></i> LoA & Kontrak
-                          <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger">3</span>
+                          <span class="badge bg-danger badge-notifications">3</span>
                         </a>
                       </li>
                       <li class="nav-item">
@@ -149,7 +149,7 @@
                           href="../admin/monev"
                         >
                           <i class="tf-icons bx bx-select-multiple me-1"></i> Verifikasi Monev
-                          <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger">3</span>
+                          <span class="badge bg-danger badge-notifications">3</span>
                         </a>
                       </li>
                     </ul>
