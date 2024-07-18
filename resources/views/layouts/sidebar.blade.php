@@ -22,12 +22,6 @@
                 <div data-i18n="Dashboards">Dashboard</div>
             </a>
         </li>
-        <li class="menu-item {{ request()->segment(1) == 'announcements' ? 'active' : '' }}">
-            <a href="{{ route('announcements.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-upload"></i>
-                <div data-i18n="Dashboards">Announcements</div>
-            </a>
-        </li>
         <li class="menu-item {{ request()->segment(1) == 'user-announcements' ? 'active' : '' }}">
             <a href="{{ route('user-announcements.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-upload"></i>
@@ -131,6 +125,12 @@
                         </li>
                     @endcan
                 </ul>
+                <li class="menu-item {{ request()->segment(1) == 'announcements' ? 'active' : '' }}">
+                    <a href="{{ route('announcements.index') }}" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-upload"></i>
+                        <div data-i18n="Dashboards">Announcements</div>
+                    </a>
+                </li>
                 <li class="menu-item {{ request()->segment(1) == 'dokumentasi' ? 'active' : '' }}">
                     <a href="{{ route('dokumentasi') }}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-file"></i>
