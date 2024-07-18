@@ -110,7 +110,6 @@
                           href="../admin/proposals"
                         >
                           <i class="tf-icons bx bx-add-to-queue me-1"></i> Data
-                          <span class="badge bg-danger badge-notifications">3</span>
                         </a>
                       </li>
                       <li class="nav-item" href="../admin/addreviewer">
@@ -320,14 +319,14 @@
                             var html = '';
                             if (row.approval_admin_fundfinalization) {
                                 html =
-                                    `<a class="text-success" title="Show" style="cursor:pointer"><i class="bx bx-show"></i></a>`;
+                                    `<a class="badge badge-center rounded-pill bg-success" title="Show" style="cursor:pointer"><i class="bx bx-show" style="color:#ffff"></i></a>`;
                             } else {
                                 html =
-                                    `<a class="text-success" title="Approve" style="cursor:pointer" onclick="approveId(\'` +
+                                    `<a class="badge badge-center rounded-pill bg-success" title="Approve" style="cursor:pointer" onclick="approveId(\'` +
                                     row.id +
-                                    `\')"><i class="bx bx-check"></i></a>
-                                    <a class="text-danger" title="Disapprove" style="cursor:pointer" onclick="disapproveId(\'` +
-                                    row.id + `\')"><i class="bx bx-x"></i></a>`;
+                                    `\')"><i class="bx bx-check" style="color:#ffff"></i></a>
+                                    <a class="badge badge-center rounded-pill bg-danger" title="Disapprove" style="cursor:pointer" onclick="disapproveId(\'` +
+                                    row.id + `\')"><i class="bx bx-x" style="color:#ffff"></i></a>`;
                             }
                             return html;
                         },

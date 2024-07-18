@@ -106,7 +106,6 @@
             <li class="nav-item">
                 <a type="button" class="nav-link" data-bs-target="#dataproposal" href="../admin/proposals">
                     <i class="tf-icons bx bx-add-to-queue me-1"></i> Data
-                    <span class="badge bg-danger badge-notifications">3</span>
                 </a>
             </li>
             <li class="nav-item" href="../admin/addreviewer">
@@ -284,12 +283,12 @@
                             var html = "";
                             if (row.statuses.id === "S02") {
                                 html =
-                                    `<a class=" text-success" title="Show" href="{{ url('admin/addreviewer/show/` + row.id + `') }}"><i class="bx bx-show"></i></a>`;
+                                    `<a class="badge badge-center rounded-pill bg-success" title="Show" href="{{ url('admin/addreviewer/show/` + row.id + `') }}"><i class="bx bx-show" style="color:#ffff"></i></a>`;
                             } else {
-                                html = `<a class=" text-success" title="Edit" href="{{ url('admin/addreviewer/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>
-                                <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` +
+                                html = `<a class="badge badge-center rounded-pill bg-success" title="Edit" href="{{ url('admin/addreviewer/edit/` + row.id + `') }}"><i class="bx bxs-edit" style="color:#ffff"></i></a>
+                                <a class="badge badge-center rounded-pill bg-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` +
                                     row.id + `\',\'` + row.name +
-                                    `\')" ><i class="bx bx-trash"></i></a>`;
+                                    `\')" ><i class="bx bxs-trash" style="color:#ffff"></i></a>`;
                             }
                             return html;
                         },

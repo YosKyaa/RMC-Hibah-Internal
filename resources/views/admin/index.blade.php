@@ -123,7 +123,6 @@
                           href="../admin/proposals"
                         >
                           <i class="tf-icons bx bx-add-to-queue me-1"></i> Data
-                          <span class="badge bg-danger badge-notifications">3</span>
                         </a>
                       </li>
                       <li class="nav-item" href="../admin/addreviewer">

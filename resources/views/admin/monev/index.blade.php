@@ -110,7 +110,6 @@
                           href="../admin/proposals"
                         >
                           <i class="tf-icons bx bx-add-to-queue me-1"></i> Data
-                          <span class="badge bg-danger badge-notifications">3</span>
                         </a>
                       </li>
                       <li class="nav-item" href="../admin/addreviewer">
@@ -291,8 +290,8 @@
                     {
                         render: function(data, type, row, meta) {
                             var html = `
-                             <a href="{{ url('admin/monev/print_monev/${row.id}') }} class="btn btn-success btn-sm">
-                                    <i class="bx bx-download"></i> Print Monev
+                             <a href="{{ url('admin/monev/print_monev/${row.id}') }} class="badge badge-center rounded-pill bg-success">
+                                    <i class="bx bx-download" style="color:#ffff"></i> Print Monev
                                 </a>`;
                             return html;
                         }
