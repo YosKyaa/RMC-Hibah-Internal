@@ -108,37 +108,7 @@ class AddReviewerController extends Controller
 
         return redirect()->route('addreviewer.index')->with('success', 'Data berhasil diperbarui.');
     }
-    public function edit_add($id)
-    {
-        $users = User::all();
-        $proposals = Proposal::findOrFail($id);
-        return view('admin.addreviewer.edit', compact('proposals','users'));
-    }
-    public function update_add(Request $request, $id)
-    {
-        $request->validate([
-            'review_date_start' => ['date','required'],
-            'review_date_end' => ['date','required'],
-            'reviewer_id' => 'required|exists:users,id',
-        ]);
 
-        $proposals = Proposal::findOrFail($id);
-        $proposals->update([
-            'review_date_start' => $request->review_date_start,
-            'review_date_end' => $request->review_date_end,
-            'reviewer_id' => $request->reviewer_id,
-        ]);
-
-        // Assign reviewer role
-        $reviewer = User::findOrFail($request->reviewer_id);
-        $reviewer->assignRole('reviewer');
-
-        return redirect()->route('addreviewer.index')->with('Data,', 'Data berhasil diperbarui.');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function delete(Request $request){
         $data = Proposal::find($request->id);
         if($data){

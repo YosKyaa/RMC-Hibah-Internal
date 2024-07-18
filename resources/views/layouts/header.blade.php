@@ -49,7 +49,7 @@
                             <img src="{{ asset(Auth::user()->image) }}" alt class="w-40 h-40 rounded-circle"
                                 style="object-fit: cover;">
                         @else
-                            <img src="../../assets/img/avatars/user.png" alt class="w-40 h-40 rounded-circle"
+                            <img src="{{ asset('/assets/img/avatars/user.png') }}" alt class="w-40 h-40 rounded-circle"
                                 style="object-fit: cover;">
                         @endif
                     </div>
@@ -64,7 +64,7 @@
                                             <img src="{{ asset(Auth::user()->image) }}" alt
                                                 class="w-40 h-40 rounded-circle" style="object-fit: cover;">
                                         @else
-                                            <img src="../../assets/img/avatars/user.png" alt
+                                            <img src="{{ asset('/assets/img/avatars/user.png') }}" alt
                                                 class="w-40 h-40 rounded-circle" style="object-fit: cover;">
                                         @endif
                                     </div>

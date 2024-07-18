@@ -102,124 +102,94 @@
     </div>
 
     <div class="nav-align-top mb-4">
-                    <ul class="nav nav-tabs nav-fill" role="tablist">
-                      <li class="nav-item">
-                        <a
-                          type="button"
-                          class="nav-link"
-                          data-bs-target="#dataproposal"
-                          href="../admin/proposals"
-                        >
-                          <i class="tf-icons bx bx-add-to-queue me-1"></i> Data
-                          <span class="badge bg-danger badge-notifications">3</span>
-                        </a>
-                      </li>
-                      <li class="nav-item" href="../admin/addreviewer">
-                        <a
-                          type="button"
-                          class="nav-link active"
-                          data-bs-target="#tambahreviewers"
-                          href="../admin/addreviewer"
-                        >
-                          <i class="tf-icons bx bx-chart me-1"></i> Reviewer
-                          <span class="badge bg-danger badge-notifications">3</span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a
-                          type="button"
-                          class="nav-link"
-                          data-bs-target="#presentasi"
-                          href="../admin/presentation"
-                        >
-                          <i class="tf-icons bx bx-chart me-1"></i> Presentasi
-                          <span class="badge bg-danger badge-notifications">3</span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a
-                          type="button"
-                          class="nav-link"
-                          data-bs-target="#dana"
-                          href="../admin/fundsfinalization"
-                        >
-                          <i class="tf-icons bx bx-bar-chart-alt-2 me-1"></i> Finalisasi Dana
-                          <span class="badge bg-danger badge-notifications">3</span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a
-                          type="button"
-                          class="nav-link"
-                          data-bs-target="#loa"
-                          href="../admin/loa"
-                        >
-                          <i class="tf-icons bx bx-task me-1"></i> LoA & Kontrak
-                          <span class="badge bg-danger badge-notifications">3</span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a
-                          type="button"
-                          class="nav-link"
-                          data-bs-target="#monev"
-                          href="../admin/monev"
-                        >
-                          <i class="tf-icons bx bx-select-multiple me-1"></i> Verifikasi Monev
-                          <span class="badge bg-danger badge-notifications">3</span>
-                        </a>
-                      </li>
-                    </ul>
-                    <div class="tab-content">
-                      <div class="tab-pane fade" id="dataproposal" role="tabpanel">
-                      
-                      </div>
-                      <div class="tab-pane fade show active" id="tambahreviewers" role="tabpanel"> 
-            <div class="table-responsive">
-                <div class="card-datatable table-responsive">
-                    <table class="table table-hover table-sm" id="datatable" width="100%">
-                        <thead>
-                            <tr>
-                                <th>No.</th>
-                                <th data-priority="1">Nama Peneliti</th>
-                                <th>Judul Proposal</th>
-                                <th>Mulai Review</th>
-                                <th>Selesai Review</th>
-                                <th>Nama Reviewer</th>
-                                <th data-priority="2"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                            <tr class="align-middle"></tr>
-                        </tbody>
-                    </table>
+        <ul class="nav nav-tabs nav-fill" role="tablist">
+            <li class="nav-item">
+                <a type="button" class="nav-link" data-bs-target="#dataproposal" href="../admin/proposals">
+                    <i class="tf-icons bx bx-add-to-queue me-1"></i> Data
+                    <span class="badge bg-danger badge-notifications">3</span>
+                </a>
+            </li>
+            <li class="nav-item" href="../admin/addreviewer">
+                <a type="button" class="nav-link active" data-bs-target="#tambahreviewers" href="../admin/addreviewer">
+                    <i class="tf-icons bx bx-chart me-1"></i> Reviewer
+                    <span class="badge bg-danger badge-notifications">3</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a type="button" class="nav-link" data-bs-target="#presentasi" href="../admin/presentation">
+                    <i class="tf-icons bx bx-chart me-1"></i> Presentasi
+                    <span class="badge bg-danger badge-notifications">3</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a type="button" class="nav-link" data-bs-target="#dana" href="../admin/fundsfinalization">
+                    <i class="tf-icons bx bx-bar-chart-alt-2 me-1"></i> Finalisasi Dana
+                    <span class="badge bg-danger badge-notifications">3</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a type="button" class="nav-link" data-bs-target="#loa" href="../admin/loa">
+                    <i class="tf-icons bx bx-task me-1"></i> LoA & Kontrak
+                    <span class="badge bg-danger badge-notifications">3</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a type="button" class="nav-link" data-bs-target="#monev" href="../admin/monev">
+                    <i class="tf-icons bx bx-select-multiple me-1"></i> Verifikasi Monev
+                    <span class="badge bg-danger badge-notifications">3</span>
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade" id="dataproposal" role="tabpanel">
+
+            </div>
+            <div class="tab-pane fade show active" id="tambahreviewers" role="tabpanel">
+                <div class="table-responsive">
+                    <div class="card-datatable table-responsive">
+                        <table class="table table-hover table-sm" id="datatable" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th data-priority="1">Nama Peneliti</th>
+                                    <th>Judul Proposal</th>
+                                    <th>Mulai Review</th>
+                                    <th>Selesai Review</th>
+                                    <th>Nama Reviewer</th>
+                                    <th data-priority="2"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-                      </div>
-                      <div class="tab-pane fade" id="presentasi" role="tabpanel">
-                        
-                      </div>
-                      <div class="tab-pane fade" id="dana" role="tabpanel">
-                        
-                      </div>
-                      <div class="tab-pane fade" id="loa" role="tabpanel">
-                        
-                      </div>
-                      <div class="tab-pane fade" id="monev" role="tabpanel">
-                        
-                      </div>
-                </div>
-        </div>
+            <div class="tab-pane fade" id="presentasi" role="tabpanel">
 
-    
+            </div>
+            <div class="tab-pane fade" id="dana" role="tabpanel">
+
+            </div>
+            <div class="tab-pane fade" id="loa" role="tabpanel">
+
+            </div>
+            <div class="tab-pane fade" id="monev" role="tabpanel">
+
+            </div>
+        </div>
+    </div>
+
+
 
 @endsection
 
@@ -252,7 +222,7 @@
                 responsive: true,
                 processing: true,
                 serverSide: true,
-                ordering: true,
+                ordering: false,
                 searching: true,
                 language: {
                     searchPlaceholder: 'Search..',
@@ -314,8 +284,7 @@
                             var html = "";
                             if (row.statuses.id === "S02") {
                                 html =
-                                    `<a class=" text-success" title="Show" href="{{ url('admin/addreviewer/show/` + row.id + `') }}"><i class="bx bx-show"></i></a>
-                                    <a class=" text-success" title="Edit" href="{{ url('admin/addreviewer/edit_add/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>`;
+                                    `<a class=" text-success" title="Show" href="{{ url('admin/addreviewer/show/` + row.id + `') }}"><i class="bx bx-show"></i></a>`;
                             } else {
                                 html = `<a class=" text-success" title="Edit" href="{{ url('admin/addreviewer/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>
                                 <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` +

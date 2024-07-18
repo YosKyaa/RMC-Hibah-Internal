@@ -12,8 +12,10 @@
         <div class="row">
             <div class="card mb-4 p-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Silahkan Pilih Reviewer!</h5> <small class="text-muted float-end">Add Reviewer</small>
+                    <h3 class="mb-0">Silahkan Tentukan Reviewer!</h3> <small class="text-muted float-end">Add Reviewer</small>
+
                 </div>
+                       <hr class="my-0">
                 <div class="card-body">
                     <form id="form-add-new-record" method="POST"
                         action="{{ route('addreviewer.update', $proposals->id) }}">
@@ -56,7 +58,7 @@
                                 @foreach ($users as $user)
                                     @if (!$user->reviewer)
                                         <option value="{{ $user->id }}">
-                                            {{ $user->name }}
+                                            {{ ucfirst($user->name) }}
                                         </option>
                                     @endif
                                 @endforeach

@@ -9,11 +9,12 @@
 
 @section('content')
     <div class="col-xl">
-        <div class="card mb-4 p-4">
+        <div class="card mb-4 p-3">
             <div class="card-header justify-content-between align-items-center">
-                <h3 class="mb-0"><strong>Tambahkan Tanggal Presentasi</strong></h3>
-                <span class="text-muted">Presentasi. </span>
+                <h3 class="mb-0"><strong>Presentasi</strong></h3>
+                <span class="text-muted">Tambahkan Jadwal Presentasi. </span>
             </div>
+            <hr class="my-0">
             <div class="card-body">
                 <form id="form-add-new-record" method="POST" action="{{ route('presentation.update', $proposals->id) }}">
                     @csrf

@@ -96,8 +96,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::delete('/delete', [AddReviewerController::class, 'delete'])->name('addreviewer.delete');
         Route::get('/edit/{id}', [AddReviewerController::class, 'edit'])->name('addreviewer.edit');
         Route::put('/update/{id}', [AddReviewerController::class, 'update'])->name('addreviewer.update');
-        Route::get('/edit_add/{id}', [ProposalController::class, 'edit_add'])->name('addreviewer.edit_add');
-        Route::put('/update_add/{id}', [ProposalController::class, 'update_add'])->name('addreviewer.update_add');
+
     });
 
     Route::group(['prefix' => 'presentation'], function () { //Presentasi

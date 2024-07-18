@@ -53,7 +53,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card full-width">
+            <div class="card full-width p-3 mb-3">
                 <div class="container">
                     <table class="table table-hover table-sm" id="datatable" width="100%">
                         <thead>
@@ -72,9 +72,6 @@
                     </table>
                 </div>
             </div>
-        
-        <!-- / Content -->
-
         <div class="content-backdrop fade"></div>
     </div>
 @endsection
@@ -129,7 +126,7 @@
                 responsive: true,
                 processing: true,
                 serverSide: true,
-                ordering: true,
+                ordering: false,
                 searching: true,
                 language: {
                     searchPlaceholder: 'Search..',
