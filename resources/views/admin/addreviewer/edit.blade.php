@@ -13,7 +13,6 @@
             <div class="card mb-4 p-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h3 class="mb-0">Silahkan Tentukan Reviewer!</h3> <small class="text-muted float-end">Add Reviewer</small>
-
                 </div>
                        <hr class="my-0">
                 <div class="card-body">

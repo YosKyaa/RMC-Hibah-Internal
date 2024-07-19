@@ -96,14 +96,14 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
+            <div class="card p-3">
+                <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <h3 class="card-title mb-1"><span id="greeting">Selamat Pagi,</span> <strong><span
+                            <h2 class="card-title mb-1"><span id="greeting">Selamat Pagi,</span> <strong><span
                                         style="text-transform: capitalize; font-size: 30px;">{{ Auth::user()->name }}
                                         👋🏻</span></strong>
-                            </h3>
+                            </h2>
                             <p>Kamu memiliki akses sebagai @foreach (Auth::user()->roles as $x)
                                     <i class="badge rounded-pill bg-label"
                                         style="background-color:{{ $x->color }}">{{ $x->name }}</i>
@@ -155,7 +155,7 @@
                         <div class="avatar me-4">
                             <span class="avatar-initial rounded bg-label-warning"><i class='bx bxl-react bx-md'></i></span>
                         </div>
-                        <h4 class="mb-0">8</h4>
+                        <h4 class="mb-0">{{$energiCount}}</h4>
                     </div>
                     <p class="mb-2" style="font-size: large;">Energi</p>
                     <p class="mb-0">
@@ -173,7 +173,7 @@
                             <span class="avatar-initial rounded bg-label-danger"><i
                                     class='bx bx-heart bx-md'></i></span>
                         </div>
-                        <h4 class="mb-0">27</h4>
+                        <h4 class="mb-0">{{$kesehatanCount}}</h4>
                     </div>
                     <p class="mb-2" style="font-size: large;">Kesehatan</p>
                     <p class="mb-0">
@@ -190,7 +190,7 @@
                         <div class="avatar me-4">
                             <span class="avatar-initial rounded bg-label-info"><i class='bx bx-car bx-md'></i></span>
                         </div>
-                        <h4 class="mb-0">13</h4>
+                        <h4 class="mb-0">{{$transportasiCount}}</h4>
                     </div>
                     <p class="mb-2" style="font-size: large;">Transportasi</p>
                     <p class="mb-0">
@@ -207,7 +207,7 @@
                         <div class="avatar me-4">
                             <span class="avatar-initial rounded bg-label-success"><i class='bx bx-shield-quarter bx-md'></i></span>
                         </div>
-                        <h4 class="mb-0">13</h4>
+                        <h4 class="mb-0">{{$pertahananCount}}</h4>
                     </div>
                     <p class="mb-2" style="font-size: large;">Pertahanan dan keamanan</p>
                     <p class="mb-0">
@@ -224,7 +224,7 @@
                         <div class="avatar me-4">
                             <span class="avatar-initial rounded bg-label-dark"><i class='bx bx-git-repo-forked bx-md'></i></span>
                         </div>
-                        <h4 class="mb-0">13</h4>
+                        <h4 class="mb-0">{{$majuCount}}</h4>
                     </div>
                     <p class="mb-2" style="font-size: large;">Material maju</p>
                     <p class="mb-0">
@@ -241,7 +241,7 @@
                         <div class="avatar me-4">
                             <span class="avatar-initial rounded bg-label-info"><i class='bx bxl-digitalocean bx-md'></i></span>
                         </div>
-                        <h4 class="mb-0">13</h4>
+                        <h4 class="mb-0">{{$keamaritimanCount}}</h4>
                     </div>
                     <p class="mb-2" style="font-size: large;">Kemaritiman</p>
                     <p class="mb-0">
@@ -258,7 +258,7 @@
                         <div class="avatar me-4">
                             <span class="avatar-initial rounded bg-label-primary"><i class='bx bx-error bx-md'></i></span>
                         </div>
-                        <h4 class="mb-0">13</h4>
+                        <h4 class="mb-0">{{$kebencanaanCount}}</h4>
                     </div>
                     <p class="mb-2" style="font-size: large;">Kebencanaan</p>
                     <p class="mb-0">
@@ -275,7 +275,7 @@
                         <div class="avatar me-4">
                             <span class="avatar-initial rounded bg-label-warning"><i class='bx bx-laptop bx-md'></i></span>
                         </div>
-                        <h4 class="mb-0">13</h4>
+                        <h4 class="mb-0">{{$tiCount}}</h4>
                     </div>
                     <p class="mb-2" style="font-size: large;">Teknologi informasi dan komunikasi</p>
                     <p class="mb-0">
@@ -292,7 +292,7 @@
                         <div class="avatar me-4">
                             <span class="avatar-initial rounded bg-label-danger"><i class='bx bx-street-view bx-md'></i></span>
                         </div>
-                        <h4 class="mb-0">13</h4>
+                        <h4 class="mb-0">{{$sosialHumanioraCount}}</h4>
                     </div>
                     <p class="mb-2" style="font-size: large;">Sosial humaniora, seni budaya, pendidikan</p>
                     <p class="mb-0">

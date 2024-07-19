@@ -18,7 +18,44 @@ class DashboardController extends Controller
         $panganCount = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
             $query->where('name', 'Pangan');
         })->count();
-        return view('dashboard', compact('announcements','panganCount'));
+        $energiCount = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
+            $query->where('name', 'Energi');
+        })->count();
+
+        $kesehatanCount = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
+            $query->where('name', 'Kesehatan');
+        })->count();
+
+        $transportasiCount = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
+            $query->where('name', 'Transportasi');
+        })->count();
+
+        $pertahananCount = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
+            $query->where('name', 'Pertahanan dan keamanan');
+        })->count();
+
+        $majuCount = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
+            $query->where('name', 'Maju');
+        })->count();
+
+        $keamaritimanCount = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
+            $query->where('name', 'Kemaritiman');
+        })->count();
+
+        $kebencanaanCount = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
+            $query->where('name', 'Kebencanaan');
+        })->count();
+
+        $tiCount = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
+            $query->where('name', 'Teknologi informasi dan komunikasi');
+        })->count();
+
+        $sosialHumanioraCount = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
+            $query->where('name', 'Sosial humaniora, seni budaya, pendidikan');
+        })->count();
+
+
+        return view('dashboard', compact('announcements', 'panganCount', 'energiCount', 'kesehatanCount', 'transportasiCount', 'pertahananCount', 'majuCount', 'keamaritimanCount', 'kebencanaanCount', 'tiCount', 'sosialHumanioraCount'));
     }
 
     /**

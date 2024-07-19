@@ -9,6 +9,7 @@ use App\Http\Controllers\DokumentasiController;
 use App\Http\Controllers\FinalisasiDanaController;
 use App\Http\Controllers\LoaController;
 use App\Http\Controllers\MonevController;
+use App\Http\Controllers\NotificationAdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
@@ -85,9 +86,16 @@ Route::get('/get_research_themes_by_id', [UserProposalController::class, 'getRes
 Route::get('/get_research_topics_by_id', [UserProposalController::class, 'getResearchTopicById'])->name('DOC.get_research_topics_by_id');
 
 Route::group(['prefix' => 'admin'], function () {
+
+    Route::get('/total-null-reviewers', [NotificationAdminController::class, 'getTotalNullReviewers'])->name('getTotalNullReviewers');
+    Route::get('/totalS05Proposals', [NotificationAdminController::class, 'getTotalS05Proposals'])->name('getTotalS05Proposals');
+    Route::get('/total-null-admin-fund-finalization', [NotificationAdminController::class, 'getTotalNullAdminFundFinalization'])->name('getTotalNullAdminFundFinalization');
+
+
     Route::group(['prefix' => 'proposals'], function () { //manage admin proposal
         Route::any('/', [ProposalController::class, 'index'])->name('proposals.index')->middleware('auth');
         Route::get('/data', [ProposalController::class, 'data'])->name('proposals.data');
+        Route::any('/show/{id}', [ProposalController::class, 'show'])->name('user-proposals.show');
     });
 
     Route::group(['prefix' => 'addreviewer'], function () { //Presentasi

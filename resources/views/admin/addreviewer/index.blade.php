@@ -106,37 +106,35 @@
             <li class="nav-item">
                 <a type="button" class="nav-link" data-bs-target="#dataproposal" href="../admin/proposals">
                     <i class="tf-icons bx bx-add-to-queue me-1"></i> Data
-                    <span class="badge bg-danger badge-notifications">3</span>
                 </a>
             </li>
             <li class="nav-item" href="../admin/addreviewer">
                 <a type="button" class="nav-link active" data-bs-target="#tambahreviewers" href="../admin/addreviewer">
                     <i class="tf-icons bx bx-chart me-1"></i> Reviewer
-                    <span class="badge bg-danger badge-notifications">3</span>
+                    <span class="badge bg-danger badge-notifications" id="Reviewer" style="display: none;"></span>
                 </a>
             </li>
             <li class="nav-item">
                 <a type="button" class="nav-link" data-bs-target="#presentasi" href="../admin/presentation">
                     <i class="tf-icons bx bx-chart me-1"></i> Presentasi
-                    <span class="badge bg-danger badge-notifications">3</span>
+                    <span class="badge bg-danger badge-notifications" id="Presentasi" style="display: none;"></span>
                 </a>
             </li>
             <li class="nav-item">
                 <a type="button" class="nav-link" data-bs-target="#dana" href="../admin/fundsfinalization">
                     <i class="tf-icons bx bx-bar-chart-alt-2 me-1"></i> Finalisasi Dana
-                    <span class="badge bg-danger badge-notifications">3</span>
+                    <span class="badge bg-danger badge-notifications" id="AdminFundFinalization"
+                        style="display: none;"></span>
                 </a>
             </li>
             <li class="nav-item">
                 <a type="button" class="nav-link" data-bs-target="#loa" href="../admin/loa">
                     <i class="tf-icons bx bx-task me-1"></i> LoA & Kontrak
-                    <span class="badge bg-danger badge-notifications">3</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a type="button" class="nav-link" data-bs-target="#monev" href="../admin/monev">
                     <i class="tf-icons bx bx-select-multiple me-1"></i> Verifikasi Monev
-                    <span class="badge bg-danger badge-notifications">3</span>
                 </a>
             </li>
         </ul>
@@ -216,6 +214,80 @@
             });
         </script>
     @endif
+    <script>
+        $(document).ready(function() {
+            // Fungsi untuk mengambil jumlah totalNullReviewers
+            function fetchTotalNullReviewers() {
+                $.ajax({
+                    url: '{{ route('getTotalNullReviewers') }}',
+                    method: 'GET',
+                    success: function(response) {
+                        if (response.totalNullReviewers > 0) {
+                            $('#Reviewer').text(response.totalNullReviewers).show();
+                        } else {
+                            $('#Reviewer').hide();
+                        }
+                    },
+                    error: function() {
+                        console.error('Gagal mengambil data totalNullReviewers.');
+                    }
+                });
+            }
+
+            // Panggil fungsi saat halaman dimuat
+            fetchTotalNullReviewers();
+
+            // Anda dapat memanggil fungsi ini secara berkala jika diperlukan
+            // setInterval(fetchTotalNullReviewers, 30000); // Memanggil setiap 30 detik
+        });
+        // Fungsi untuk mengambil jumlah totalS05Proposals
+        function fetchTotalS05Proposals() {
+            $.ajax({
+                url: '{{ route('getTotalS05Proposals') }}',
+                method: 'GET',
+                success: function(response) {
+                    if (response.totalS05Proposals > 0) {
+                        $('#Presentasi').text(response.totalS05Proposals).show();
+                    } else {
+                        $('#Presentasi').hide();
+                    }
+                },
+                error: function() {
+                    console.error('Gagal mengambil data totalS05Proposals.');
+                }
+            });
+        }
+
+        // Panggil fungsi saat halaman dimuat
+        fetchTotalS05Proposals();
+
+        // Anda dapat memanggil fungsi ini secara berkala jika diperlukan
+        // setInterval(fetchTotalS05Proposals, 30000); // Memanggil setiap 30 detik
+
+        // Fungsi untuk mengambil jumlah totalNullAdminFundFinalization
+        function fetchTotalNullAdminFundFinalization() {
+            $.ajax({
+                url: '{{ route('getTotalNullAdminFundFinalization') }}',
+                method: 'GET',
+                success: function(response) {
+                    if (response.totalNullAdminFundFinalization > 0) {
+                        $('#AdminFundFinalization').text(response.totalNullAdminFundFinalization).show();
+                    } else {
+                        $('#AdminFundFinalization').hide();
+                    }
+                },
+                error: function() {
+                    console.error('Gagal mengambil data totalNullAdminFundFinalization.');
+                }
+            });
+        }
+
+        // Panggil fungsi saat halaman dimuat
+        fetchTotalNullAdminFundFinalization();
+
+        // Anda dapat memanggil fungsi ini secara berkala jika diperlukan
+        // setInterval(fetchTotalNullAdminFundFinalization, 30000); // Memanggil setiap 30 detik
+    </script>
     <script type="text/javascript">
         $(document).ready(function() {
             var table = $('#datatable').DataTable({
@@ -247,26 +319,27 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.users.username;
+                            var html =
+                                `<strong>${row.users.name.charAt(0).toUpperCase() + row.users.name.slice(1)}</strong>`;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
                             var html =
-                                `<a href="${row.documents[0].proposal_doc}" style="color: black;">${row.research_title}</a>`;
+                                `<a href="${row.documents[0].proposal_doc}" style="color: primary;">${row.research_title}</a>`;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.review_date_start;
+                            var html = `<em>${row.review_date_start}</em>`;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.review_date_end;
+                            var html = `<em>${row.review_date_end}</em>`;
                             return html;
                         }
                     },
@@ -274,7 +347,7 @@
                         render: function(data, type, row, meta) {
                             var html = "Belum ada reviewer";
                             if (row.reviewer != null) {
-                                html = row.reviewer.username;
+                                html = `<strong>${row.reviewer.username.charAt(0).toUpperCase() + row.reviewer.username.slice(1)}</strong>`;
                             }
                             return html;
                         }
@@ -284,7 +357,7 @@
                             var html = "";
                             if (row.statuses.id === "S02") {
                                 html =
-                                    `<a class=" text-success" title="Show" href="{{ url('admin/addreviewer/show/` + row.id + `') }}"><i class="bx bx-show"></i></a>`;
+                                    `<a class="badge badge-center rounded-pill bg-warning" title="Show" href="{{ url('admin/proposals/show/${row.id}') }}"><i class="bx bx-show" style="color:#ffff"></i></a>`;
                             } else {
                                 html = `<a class=" text-success" title="Edit" href="{{ url('admin/addreviewer/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>
                                 <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` +

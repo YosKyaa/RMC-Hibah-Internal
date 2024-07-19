@@ -14,11 +14,11 @@ class ReviewerController extends Controller
     public function index()
     {
         $status1 = 'S02';
-        $status2 = 'S05';
+        $status2 = ['S05', 'S06', 'S07', 'S08', 'S09', 'S10'];
         $dataCount = Proposal::where('status_id', $status1)->count();
         $dataCount2 = Proposal::where('status_id', $status2)->count();
-
-        return view('reviewers.index', compact('dataCount', 'dataCount2'));
+        $totalData = Proposal::where('reviewer_id', auth()->user()->id)->count();
+        return view('reviewers.index', compact('dataCount', 'dataCount2', 'totalData'));
     }
 
     public function data(Request $request)

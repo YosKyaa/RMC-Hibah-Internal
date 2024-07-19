@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Settings/Manage Lookup/Manage Proposal')
+@section('title', 'Manajemen Admin Proposal')
 
 
 @section('css')
@@ -44,13 +44,8 @@
 @endsection
 
 @section('content')
-    @if (session('msg'))
-        <div class="alert alert-primary alert-dismissible" role="alert">
-            {{ session('msg') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-    <div class="card mb-4">
+
+    <div class="card mb-3">
         <div class="card-widget-separator-wrapper">
             <div class="card-body card-widget-separator">
                 <div class="row gy-4 gy-sm-1">
@@ -114,147 +109,114 @@
     </div>
 
     <div class="nav-align-top mb-4">
-                    <ul class="nav nav-tabs nav-fill" role="tablist">
-                      <li class="nav-item">
-                        <a
-                          type="button"
-                          class="nav-link active"
-                          data-bs-target="#dataproposal"
-                          href="../admin/proposals"
-                        >
-                          <i class="tf-icons bx bx-add-to-queue me-1"></i> Data
-                          <span class="badge bg-danger badge-notifications">3</span>
-                        </a>
-                      </li>
-                      <li class="nav-item" href="../admin/addreviewer">
-                        <a
-                          type="button"
-                          class="nav-link"
-                          data-bs-target="#tambahreviewers"
-                          href="../admin/addreviewer"
-                        >
-                          <i class="tf-icons bx bx-chart me-1"></i> Reviewer
-                          <span class="badge bg-danger badge-notifications">3</span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a
-                          type="button"
-                          class="nav-link"
-                          data-bs-target="#presentasi"
-                          href="../admin/presentation"
-                        >
-                          <i class="tf-icons bx bx-chart me-1"></i> Presentasi
-                          <span class="badge bg-danger badge-notifications">3</span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a
-                          type="button"
-                          class="nav-link"
-                          data-bs-target="#dana"
-                          href="../admin/fundsfinalization"
-                        >
-                          <i class="tf-icons bx bx-bar-chart-alt-2 me-1"></i> Finalisasi Dana
-                          <span class="badge bg-danger badge-notifications">3</span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a
-                          type="button"
-                          class="nav-link"
-                          data-bs-target="#loa"
-                          href="../admin/loa"
-                        >
-                          <i class="tf-icons bx bx-task me-1"></i> LoA & Kontrak
-                          <span class="badge bg-danger badge-notifications">3</span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a
-                          type="button"
-                          class="nav-link"
-                          data-bs-target="#monev"
-                          href="../admin/monev"
-                        >
-                          <i class="tf-icons bx bx-select-multiple me-1"></i> Verifikasi Monev
-                          <span class="badge bg-danger badge-notifications">3</span>
-                        </a>
-                      </li>
-                    </ul>
-                    <div class="tab-content">
-                      <div class="tab-pane fade show active" id="dataproposal" role="tabpanel">
-                      <div class="card-datatable table-responsive">
-                <div class="card-header flex-column flex-md-row pb-0">
-                    <div class="row">
-                        <div class="col-12 pt-3 pt-md-0">
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class=" col-md-3">
-                                        <select id="select_category" class="select2 form-select"
-                                            data-placeholder="Category">
-                                            <option value="">Category</option>
-                                            @foreach ($researchcategories as $d)
-                                                <option value="{{ $d->id }}">{{ $d->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class=" col-md-3">
-                                        <select id="select_tkt_type" class="select2 form-select"
-                                            data-placeholder="TKT Type">
-                                            <option value="">TKT Type</option>
-                                            @foreach ($tktTypes as $d)
-                                                <option value="{{ $d->id }}">{{ $d->title }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class=" col-md-3">
-                                        <select id="select_main_research_target" class="select2 form-select"
-                                            data-placeholder="Main Research Target">
-                                            <option value="">Main Research Target</option>
-                                            @foreach ($mainresearchtargets as $d)
-                                                <option value="{{ $d->id }}">{{ $d->title }}</option>
-                                            @endforeach
-                                        </select>
+        <ul class="nav nav-tabs nav-fill" role="tablist">
+            <li class="nav-item">
+                <a type="button" class="nav-link active" data-bs-target="#dataproposal" href="../admin/proposals">
+                    <i class="tf-icons bx bx-add-to-queue me-1"></i> Data
+                </a>
+            </li>
+            <li class="nav-item" href="../admin/addreviewer">
+                <a type="button" class="nav-link" data-bs-target="#tambahreviewers" href="../admin/addreviewer">
+                    <i class="tf-icons bx bx-chart me-1" ></i> Reviewer
+                    <span class="badge bg-danger badge-notifications" id="Reviewer" style="display: none;"></span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a type="button" class="nav-link" data-bs-target="#presentasi" href="../admin/presentation">
+                    <i class="tf-icons bx bx-chart me-1"></i> Presentasi
+                    <span class="badge bg-danger badge-notifications" id="Presentasi" style="display: none;"></span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a type="button" class="nav-link" data-bs-target="#dana" href="../admin/fundsfinalization">
+                    <i class="tf-icons bx bx-bar-chart-alt-2 me-1"></i> Finalisasi Dana
+                    <span class="badge bg-danger badge-notifications" id="AdminFundFinalization" style="display: none;"></span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a type="button" class="nav-link" data-bs-target="#loa" href="../admin/loa">
+                    <i class="tf-icons bx bx-task me-1"></i> LoA & Kontrak
+                </a>
+            </li>
+            <li class="nav-item">
+                <a type="button" class="nav-link" data-bs-target="#monev" href="../admin/monev">
+                    <i class="tf-icons bx bx-select-multiple me-1"></i> Verifikasi Monev
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="dataproposal" role="tabpanel">
+                <div class="card-datatable table-responsive">
+                    <div class="card-header flex-column flex-md-row pb-0">
+                        <div class="row">
+                            <div class="col-12 pt-3 pt-md-0">
+                                <div class="col-12 ">
+                                    <div class="row">
+                                        <div class=" col-md-3 mb-3">
+                                            <select id="select_category" class="select2 form-select"
+                                                data-placeholder="Kategori">
+                                                <option value="">Kategori</option>
+                                                @foreach ($researchcategories as $d)
+                                                    <option value="{{ $d->id }}">{{ $d->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class=" col-md-3">
+                                            <select id="select_tkt_type" class="select2 form-select"
+                                                data-placeholder="TKT">
+                                                <option value="">TKT</option>
+                                                @foreach ($tktTypes as $d)
+                                                    <option value="{{ $d->id }}">{{ $d->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class=" col-md-3">
+                                            <select id="select_main_research_target" class="select2 form-select"
+                                                data-placeholder="Terget Utama Riset">
+                                                <option value="">Terget Utama Riset</option>
+                                                @foreach ($mainresearchtargets as $d)
+                                                    <option value="{{ $d->id }}">{{ $d->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <table class="table table-hover table-sm" id="datatable" width="100%">
+                        <thead>
+                            <tr>
+                                <th width="20px">No.</th>
+                                <th data-priority="1">Nama Peneliti</th>
+                                <th data-priority="4">Judul</th>
+                                <th>Kategori</th>
+                                <th>TKT</th>
+                                <th>Target Utama Riset</th>
+                                <th data-priority="3">Status</th>
+                                <th data-priority="2"></th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
-
-                <table class="table table-hover table-sm" id="datatable" width="100%">
-                    <thead>
-                        <tr>
-                            <th width="20px">No.</th>
-                            <th data-priority="1">Nama Peneliti</th>
-                            <th data-priority="3">Judul</th>
-                            <th>Kategori</th>
-                            <th>TKT</th>
-                            <th>Target Utama Riset</th>
-                            <th data-priority="2">Status</th>
-                        </tr>
-                    </thead>
-                </table>
             </div>
-                      </div>
-                      <div class="tab-pane fade" id="tambahreviewers" role="tabpanel">
-                        
-                      </div>
-                      <div class="tab-pane fade" id="presentasi" role="tabpanel">
-                        
-                      </div>
-                      <div class="tab-pane fade" id="dana" role="tabpanel">
-                        
-                      </div>
-                      <div class="tab-pane fade" id="loa" role="tabpanel">
-                        
-                      </div>
-                      <div class="tab-pane fade" id="monev" role="tabpanel">
-                        
-                      </div>
-                </div>
+            <div class="tab-pane fade" id="tambahreviewers" role="tabpanel">
+
+            </div>
+            <div class="tab-pane fade" id="presentasi" role="tabpanel">
+
+            </div>
+            <div class="tab-pane fade" id="dana" role="tabpanel">
+
+            </div>
+            <div class="tab-pane fade" id="loa" role="tabpanel">
+
+            </div>
+            <div class="tab-pane fade" id="monev" role="tabpanel">
+
+            </div>
         </div>
+    </div>
 @endsection
 
 @section('script')
@@ -278,6 +240,80 @@
             });
         </script>
     @endif
+    <script>
+         $(document).ready(function() {
+            // Fungsi untuk mengambil jumlah totalNullReviewers
+            function fetchTotalNullReviewers() {
+                $.ajax({
+                    url: '{{ route('getTotalNullReviewers') }}',
+                    method: 'GET',
+                    success: function(response) {
+                        if (response.totalNullReviewers > 0) {
+                            $('#Reviewer').text(response.totalNullReviewers).show();
+                        } else {
+                            $('#Reviewer').hide();
+                        }
+                    },
+                    error: function() {
+                        console.error('Gagal mengambil data totalNullReviewers.');
+                    }
+                });
+            }
+
+            // Panggil fungsi saat halaman dimuat
+            fetchTotalNullReviewers();
+
+            // Anda dapat memanggil fungsi ini secara berkala jika diperlukan
+            // setInterval(fetchTotalNullReviewers, 30000); // Memanggil setiap 30 detik
+        });
+        // Fungsi untuk mengambil jumlah totalS05Proposals
+        function fetchTotalS05Proposals() {
+            $.ajax({
+                url: '{{ route('getTotalS05Proposals') }}',
+                method: 'GET',
+                success: function(response) {
+                    if (response.totalS05Proposals > 0) {
+                        $('#Presentasi').text(response.totalS05Proposals).show();
+                    } else {
+                        $('#Presentasi').hide();
+                    }
+                },
+                error: function() {
+                    console.error('Gagal mengambil data totalS05Proposals.');
+                }
+            });
+        }
+
+        // Panggil fungsi saat halaman dimuat
+        fetchTotalS05Proposals();
+
+        // Anda dapat memanggil fungsi ini secara berkala jika diperlukan
+        // setInterval(fetchTotalS05Proposals, 30000); // Memanggil setiap 30 detik
+
+        // Fungsi untuk mengambil jumlah totalNullAdminFundFinalization
+        function fetchTotalNullAdminFundFinalization() {
+            $.ajax({
+                url: '{{ route('getTotalNullAdminFundFinalization') }}',
+                method: 'GET',
+                success: function(response) {
+                    if (response.totalNullAdminFundFinalization > 0) {
+                        $('#AdminFundFinalization').text(response.totalNullAdminFundFinalization).show();
+                    } else {
+                        $('#AdminFundFinalization').hide();
+                    }
+                },
+                error: function() {
+                    console.error('Gagal mengambil data totalNullAdminFundFinalization.');
+                }
+            });
+        }
+
+        // Panggil fungsi saat halaman dimuat
+        fetchTotalNullAdminFundFinalization();
+
+        // Anda dapat memanggil fungsi ini secara berkala jika diperlukan
+        // setInterval(fetchTotalNullAdminFundFinalization, 30000); // Memanggil setiap 30 detik
+    </script>
     <script>
         "use strict";
         setTimeout(function() {
@@ -334,14 +370,14 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.users.username;
+                            var html = `<strong>${row.users.name.charAt(0).toUpperCase() + row.users.name.slice(1)}</strong>`;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
                             var html =
-                                `<a href="${row.documents[0].proposal_doc}" style="color: black;">${row.research_title}</a>`;
+                                `<a href="${row.documents[0].proposal_doc}" style="color: primary;">${row.research_title}</a>`;
                             return html;
                         }
                     },
@@ -370,7 +406,14 @@
                                 <span class="badge badge-dot bg-${row.statuses.color} me-1"></span>${row.statuses.status} </span>`;
                             return html;
                         }
-                    }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            var html =
+                                `<a class="badge badge-center rounded-pill bg-warning" title="Show" href="{{ url('admin/proposals/show/${row.id}') }}"><i class="bx bx-show" style="color:#ffff"></i></a>`;
+                            return html;
+                        },
+                    },
                 ]
 
             });

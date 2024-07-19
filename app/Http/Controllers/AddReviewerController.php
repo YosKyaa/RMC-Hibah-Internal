@@ -18,7 +18,8 @@ class AddReviewerController extends Controller
         $lecturers = User::role('lecture')->get();
         $reviewers = User::role('reviewer')->get();
         $totalUsers = $lecturers->concat($reviewers)->count();
-        return view('admin.addreviewer.index', compact( 'totalUsers', 'proposalCount', 'proposalApproved', 'proposalDisapprove'));
+        $totalNullReviewers = Proposal::whereNull('reviewer_id')->count();
+        return view('admin.addreviewer.index', compact( 'totalUsers', 'proposalCount', 'proposalApproved', 'proposalDisapprove', 'totalNullReviewers'));
     }
 
 
@@ -30,7 +31,7 @@ class AddReviewerController extends Controller
         // $this->authorize('setting/manage_data/department.read');
         $data = Proposal::with([
             'users' => function ($query) {
-                $query->select('id', 'username');
+                $query->select('id', 'name');
             },
             'statuses' => function ($query) {
                 $query->select('id', 'status', 'color');

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Reviewers')
+@section('title', 'Review Proposal')
 @section('css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css">
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bs-stepper/bs-stepper.css') }}">
@@ -13,19 +13,76 @@
 @endsection
 
 @section('style')
-    <style>
-        .full-width {
-            width: 100%;
-        }
-    </style>
+
 
 @endsection
 
 @section('content')
     <div class="content-wrapper">
-
         <!-- Content -->
-            <div class="row">
+        <div class="flex-grow-1 container-p-y">
+            <!-- Hour chart  -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="col-12 col-md-12 p-3">
+                        <h2><strong>Halaman Review Proposal</strong></h2>
+                        <div class="col-12 col-lg-7">
+                            <p>Your progress this week is Awesome. let's keep it up and get a lot of points reward !</p>
+                        </div>
+                        <div class="d-flex justify-content-between flex-wrap gap-3 me-5">
+                            <div class="d-flex align-items-center gap-3 me-4 me-sm-0">
+                                <span class=" bg-label-primary p-2 rounded">
+                                    <i class="bx bx-laptop bx-sm"></i>
+                                </span>
+                                <div class="content-right">
+                                    <p class="mb-0">Jumlah Proposal yang Belum Direview</p>
+                                    <h4 class="text-primary mb-0">{{$dataCount}}</h4>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="bg-label-warning p-2 rounded">
+                                    <i class="bx bx-check-circle bx-sm"></i>
+                                </span>
+                                <div class="content-right">
+                                    <p class="mb-0">Jumlah Proposal yang Telah Direview</p>
+                                    <h4 class="text-warning mb-0">{{$dataCount2}}</h4>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="bg-label-info p-2 rounded">
+                                    <i class="bx bx-bulb bx-sm"></i>
+                                </span>
+                                <div class="content-right">
+                                    <p class="mb-0">Total Proposal</p>
+                                    <h4 class="text-info mb-0">{{$totalData}}</h4>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        {{-- <div class="row">
                 <div class="col-md-6 col-lg-4 mb-4 order-lg-1 order-2">
                     <div class="card">
                     </div>
@@ -52,27 +109,28 @@
                         </div>
                     </div>
                 </div>
+            </div> --}}
+        <div class="card p-3 mb-3">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h3 class="mb-0">List Pengajuan Proposal</h3>
             </div>
-            <div class="card full-width p-3 mb-3">
-                <div class="container">
-                    <table class="table table-hover table-sm" id="datatable" width="100%">
-                        <thead>
-                            <tr>
-                                <th data-priority="1">No</th>
-                                <th>Nama Peneliti</th>
-                                <th>Tim Peneliti</th>
-                                <th>Judul Penelitian</th>
-                                <th>Tanggal Mulai Review</th>
-                                <th>Tanggal Selesai Review</th>
-                                <th>Status</th>
-                                <th>Note</th>
-                                <th data-priority="2">Action</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
+            <div class="container mb-3">
+                <table class="table table-hover table-sm" id="datatable" width="100%">
+                    <thead>
+                        <tr>
+                            <th data-priority="1">No</th>
+                            <th>Nama Peneliti</th>
+                            <th>Tim Peneliti</th>
+                            <th>Judul Penelitian</th>
+                            <th>Tanggal Mulai Review</th>
+                            <th>Tanggal Selesai Review</th>
+                            <th>Status</th>
+                            <th data-priority="2">Action</th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
-        <div class="content-backdrop fade"></div>
+        </div>
     </div>
 @endsection
 
@@ -151,7 +209,8 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.users.username;
+                            var html = '<strong>' + row.users.username.charAt(0).toUpperCase() + row
+                                .users.username.slice(1) + '</strong>';
                             return html;
                         }
                     },
@@ -161,7 +220,7 @@
                             if (row.proposal_teams && row.proposal_teams.length > 0) {
                                 row.proposal_teams.forEach(function(team) {
                                     if (team.researcher) {
-                                        html += '<span class="badge bg-label-primary">' +
+                                        html += '<span class="badge bg-label-dark">' +
                                             team.researcher.username + '</span><br>';
                                     }
                                 });
@@ -172,32 +231,27 @@
                     {
                         render: function(data, type, row, meta) {
                             var html =
-                                `<a href="${row.documents[0].proposal_doc}" style="color: black;">${row.research_title}</a>`;
+                                `<a href="${row.documents[0].proposal_doc}" style="color: primary;">${row.research_title}</a>`;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.review_date_start;
+                            var html = '<em>' + row.review_date_start + '</em>';
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.review_date_end;
+                            var html = '<em>' + row.review_date_end + '</em>';
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
                             var html =
-                                `<span class="badge bg-${row.statuses.color}">${row.statuses.status}</span>`;
-                            return html;
-                        }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
-                            var html = row.notes;
+                                `<span class="badge rounded-pill bg-label-${row.statuses.color}">
+                                <span class="badge badge-dot bg-${row.statuses.color} me-1"></span>${row.statuses.status} </span>`;
                             return html;
                         }
                     },
@@ -217,12 +271,11 @@
                                     `<a class="text-warning" title="Show" href="{{ url('reviewers/show/${row.id}') }}"><i class="bx bx-show"></i></a>`;
                             } else {
                                 html +=
-                                    `<a class="text-warning" title="Edit" href="{{ url('reviewer/revision/${row.id}') }}"><i class="bx bx-revision"></i></a>
-                                     <a class="text-danger" title="Hapus" style="cursor:pointer" onclick="rejectId(\'` +
+                                    `<a class="badge badge-center rounded-pill bg-warning"title="Edit" href="{{ url('reviewer/revision/${row.id}') }}"><i class="bx bx-revision"  style="color:#ffff"></i></a>
+                                     <a class="badge badge-center rounded-pill bg-danger" title="Hapus" style="cursor:pointer" onclick="rejectId(\'` +
                                     row.id +
-                                    `\')"><i class="bx bx-x"></i></a>
-                                     <a class="text-success" title="Diterima" style="cursor:pointer" onclick="markAsReviewed(\'` +
-                                    row.id + `\')"><i class="bx bx-check"></i></a>`;
+                                    `\')"><i class="bx bx-x" style="color:#ffff"></i></a>
+                                                                         <a class="badge badge-center rounded-pill bg-success" title="Approve" style="cursor:pointer" onclick="markAsReviewed(\'${row.id}\')"><i class="bx bx-check" style="color:#ffff"></i></a>`;
                             }
                             return html;
                         },

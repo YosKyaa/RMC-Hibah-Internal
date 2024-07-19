@@ -270,11 +270,29 @@ class UserProposalController extends Controller
     public function edit($id)
     {
         $proposals = Proposal::findOrFail($id);
-        $proposalteam = ProposalTeams::where('proposals_id', $id)->first();
-        $users = User::whereHas('roles', function ($query) {
-            $query->whereIn('name', ['lecture', 'reviewer']);
-        })->get();
-        return view('proposals.edit', compact('proposals', 'proposalteam', 'users'));
+        $researchtypes = ResearchTypes::all();
+        $researchcategories = ResearchCategories::all();
+        $researchthemes = ResearchThemes::all();
+        $researchtopics = ResearchTopics::all();
+        // $researchteam = ResearchTeam::all();
+        $tkttype = TktTypes::all();
+        $existingResearchers = ProposalTeams::pluck('researcher_id')->toArray();
+        $mainresearch = MainResearchTarget::all();
+        $users = User::select('users.id', 'users.name', DB::raw("COUNT('proposal_teams.id') as total"))
+            ->leftJoin('proposal_teams', 'users.id', '=', 'proposal_teams.researcher_id')
+            ->leftJoin('proposals', 'proposals.id', '=', 'proposal_teams.proposals_id')
+            ->whereHas('roles', function ($query) {
+                $query->whereIn('name', ['lecture']);
+            })
+            ->where(function ($query) {
+                $query->where('proposals.status_id', '!=', 'S08')
+                    ->orWhere('proposals.status_id', '!=', 'S04')
+                    ->orWhereNull('proposals.status_id');
+            })
+            ->groupBy('users.id', 'users.name')
+            ->havingRaw("total < 2")
+            ->get();
+        return view('proposals.edit', compact('proposals', 'researchtypes', 'researchthemes', 'researchcategories', 'tkttype', 'mainresearch', 'researchtopics', 'users', 'existingResearchers'));
     }
     public function update(Request $request, $id)
     {

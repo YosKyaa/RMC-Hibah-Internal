@@ -100,122 +100,89 @@
         </div>
     </div>
 
-        <div class="nav-align-top mb-4">
-                    <ul class="nav nav-tabs nav-fill" role="tablist">
-                      <li class="nav-item">
-                        <a
-                          type="button"
-                          class="nav-link"
-                          data-bs-target="#dataproposal"
-                          href="../admin/proposals"
-                        >
-                          <i class="tf-icons bx bx-add-to-queue me-1"></i> Data
-                          <span class="badge bg-danger badge-notifications">3</span>
-                        </a>
-                      </li>
-                      <li class="nav-item" href="../admin/addreviewer">
-                        <a
-                          type="button"
-                          class="nav-link"
-                          data-bs-target="#tambahreviewers"
-                          href="../admin/addreviewer"
-                        >
-                          <i class="tf-icons bx bx-chart me-1"></i> Reviewer
-                          <span class="badge bg-danger badge-notifications">3</span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a
-                          type="button"
-                          class="nav-link"
-                          data-bs-target="#presentasi"
-                          href="../admin/presentation"
-                        >
-                          <i class="tf-icons bx bx-chart me-1"></i> Presentasi
-                          <span class="badge bg-danger badge-notifications">3</span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a
-                          type="button"
-                          class="nav-link active"
-                          data-bs-target="#dana"
-                          href="../admin/fundsfinalization"
-                        >
-                          <i class="tf-icons bx bx-bar-chart-alt-2 me-1"></i> Finalisasi Dana
-                          <span class="badge bg-danger badge-notifications">3</span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a
-                          type="button"
-                          class="nav-link"
-                          data-bs-target="#loa"
-                          href="../admin/loa"
-                        >
-                          <i class="tf-icons bx bx-task me-1"></i> LoA & Kontrak
-                          <span class="badge bg-danger badge-notifications">3</span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a
-                          type="button"
-                          class="nav-link"
-                          data-bs-target="#monev"
-                          href="../admin/monev"
-                        >
-                          <i class="tf-icons bx bx-select-multiple me-1"></i> Verifikasi Monev
-                          <span class="badge bg-danger badge-notifications">3</span>
-                        </a>
-                      </li>
-                    </ul>
-                    <div class="tab-content">
-                      <div class="tab-pane fade" id="dataproposal" role="tabpanel">
-                      
-                      </div>
-                      <div class="tab-pane fade" id="tambahreviewers" role="tabpanel">
-                        
-                      </div>
-                      <div class="tab-pane fade" id="presentasi" role="tabpanel">
-                        
-                      </div>
-                      <div class="tab-pane fade show active" id="dana" role="tabpanel">
-                        <div class="table-responsive">
-                            <div class="card-datatable table-responsive">
-                                <table class="table table-hover table-sm" id="datatable" width="100%">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th data-priority="1">Nama Peneliti</th>
-                                            <th>Judul Penelitian</th>
-                                            <th>Jenis Penelitian</th>
-                                            <th data-priority="3">Total Dana</th>
-                                            <th data-priority="2"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="align-middle"></tr>
-                                        <tr class="align-middle"></tr>
-                                        <tr class="align-middle"></tr>
-                                        <tr class="align-middle"></tr>
-                                        <tr class="align-middle"></tr>
-                                        <tr class="align-middle"></tr>
-                                        <tr class="align-middle"></tr>
-                                        <tr class="align-middle"></tr>
-                                        <tr class="align-middle"></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                      </div>
-                      <div class="tab-pane fade" id="loa" role="tabpanel">
-                        
-                      </div>
-                      <div class="tab-pane fade" id="monev" role="tabpanel">
-                        
-                      </div>
+    <div class="nav-align-top mb-4">
+        <ul class="nav nav-tabs nav-fill" role="tablist">
+            <li class="nav-item">
+                <a type="button" class="nav-link" data-bs-target="#dataproposal" href="../admin/proposals">
+                    <i class="tf-icons bx bx-add-to-queue me-1"></i> Data
+                </a>
+            </li>
+            <li class="nav-item" href="../admin/addreviewer">
+                <a type="button" class="nav-link" data-bs-target="#tambahreviewers" href="../admin/addreviewer">
+                    <i class="tf-icons bx bx-chart me-1"></i> Reviewer
+                    <span class="badge bg-danger badge-notifications" id="Reviewer" style="display: none;"></span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a type="button" class="nav-link" data-bs-target="#presentasi" href="../admin/presentation">
+                    <i class="tf-icons bx bx-chart me-1"></i> Presentasi
+                    <span class="badge bg-danger badge-notifications" id="Presentasi" style="display: none;"></span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a type="button" class="nav-link active" data-bs-target="#dana" href="../admin/fundsfinalization">
+                    <i class="tf-icons bx bx-bar-chart-alt-2 me-1"></i> Finalisasi Dana
+                    <span class="badge bg-danger badge-notifications" id="AdminFundFinalization" style="display: none;"></span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a type="button" class="nav-link" data-bs-target="#loa" href="../admin/loa">
+                    <i class="tf-icons bx bx-task me-1"></i> LoA & Kontrak
+                </a>
+            </li>
+            <li class="nav-item">
+                <a type="button" class="nav-link" data-bs-target="#monev" href="../admin/monev">
+                    <i class="tf-icons bx bx-select-multiple me-1"></i> Verifikasi Monev
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade" id="dataproposal" role="tabpanel">
+
+            </div>
+            <div class="tab-pane fade" id="tambahreviewers" role="tabpanel">
+
+            </div>
+            <div class="tab-pane fade" id="presentasi" role="tabpanel">
+
+            </div>
+            <div class="tab-pane fade show active" id="dana" role="tabpanel">
+                <div class="table-responsive">
+                    <div class="card-datatable table-responsive">
+                        <table class="table table-hover table-sm" id="datatable" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th data-priority="1">Nama Peneliti</th>
+                                    <th>Judul Penelitian</th>
+                                    <th>Jenis Penelitian</th>
+                                    <th data-priority="3">Total Dana</th>
+                                    <th data-priority="2"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                                <tr class="align-middle"></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+            </div>
+            <div class="tab-pane fade" id="loa" role="tabpanel">
+
+            </div>
+            <div class="tab-pane fade" id="monev" role="tabpanel">
+
+            </div>
         </div>
+    </div>
 
 @endsection
 
@@ -240,6 +207,80 @@
             });
         </script>
     @endif
+    <script>
+        $(document).ready(function() {
+           // Fungsi untuk mengambil jumlah totalNullReviewers
+           function fetchTotalNullReviewers() {
+               $.ajax({
+                   url: '{{ route('getTotalNullReviewers') }}',
+                   method: 'GET',
+                   success: function(response) {
+                       if (response.totalNullReviewers > 0) {
+                           $('#Reviewer').text(response.totalNullReviewers).show();
+                       } else {
+                           $('#Reviewer').hide();
+                       }
+                   },
+                   error: function() {
+                       console.error('Gagal mengambil data totalNullReviewers.');
+                   }
+               });
+           }
+
+           // Panggil fungsi saat halaman dimuat
+           fetchTotalNullReviewers();
+
+           // Anda dapat memanggil fungsi ini secara berkala jika diperlukan
+           // setInterval(fetchTotalNullReviewers, 30000); // Memanggil setiap 30 detik
+       });
+       // Fungsi untuk mengambil jumlah totalS05Proposals
+       function fetchTotalS05Proposals() {
+           $.ajax({
+               url: '{{ route('getTotalS05Proposals') }}',
+               method: 'GET',
+               success: function(response) {
+                   if (response.totalS05Proposals > 0) {
+                       $('#Presentasi').text(response.totalS05Proposals).show();
+                   } else {
+                       $('#Presentasi').hide();
+                   }
+               },
+               error: function() {
+                   console.error('Gagal mengambil data totalS05Proposals.');
+               }
+           });
+       }
+
+       // Panggil fungsi saat halaman dimuat
+       fetchTotalS05Proposals();
+
+       // Anda dapat memanggil fungsi ini secara berkala jika diperlukan
+       // setInterval(fetchTotalS05Proposals, 30000); // Memanggil setiap 30 detik
+
+       // Fungsi untuk mengambil jumlah totalNullAdminFundFinalization
+       function fetchTotalNullAdminFundFinalization() {
+           $.ajax({
+               url: '{{ route('getTotalNullAdminFundFinalization') }}',
+               method: 'GET',
+               success: function(response) {
+                   if (response.totalNullAdminFundFinalization > 0) {
+                       $('#AdminFundFinalization').text(response.totalNullAdminFundFinalization).show();
+                   } else {
+                       $('#AdminFundFinalization').hide();
+                   }
+               },
+               error: function() {
+                   console.error('Gagal mengambil data totalNullAdminFundFinalization.');
+               }
+           });
+       }
+
+       // Panggil fungsi saat halaman dimuat
+       fetchTotalNullAdminFundFinalization();
+
+       // Anda dapat memanggil fungsi ini secara berkala jika diperlukan
+       // setInterval(fetchTotalNullAdminFundFinalization, 30000); // Memanggil setiap 30 detik
+   </script>
     <script>
         "use strict";
         setTimeout(function() {
@@ -311,7 +352,10 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(row.research_type.total_funds);
+                            var html = new Intl.NumberFormat('id-ID', {
+                                style: 'currency',
+                                currency: 'IDR'
+                            }).format(row.research_type.total_funds);
                             return html;
                         }
                     },

@@ -27,6 +27,7 @@
         .layout-menu {
             min-height: unset;
         }
+
     </style>
 @endsection
 {{-- @section('content')
@@ -292,7 +293,8 @@
                     </div>
                     <div class="row g-6">
                         <div class="col-sm-6 mb-3">
-                            <label class="form-label mb-1" for="research_type">Jenis Penelitian<i class="text-danger">*</i></label>
+                            <label class="form-label mb-1" for="research_type">Jenis Penelitian<i
+                                    class="text-danger">*</i></label>
                             <select class="form-select select2" name="research_type" id="research_type">
                                 <option value=""> Pilih Jenis Penelitian </option>
                                 @foreach ($researchtypes as $d)
@@ -309,7 +311,8 @@
                                 aria-describedby="defaultFormControlHelp" readonly disabled />
                         </div>
                         <div class="col-sm-6 mb-3 form-password-toggle">
-                            <label class="form-label mb-1" for="formValidationEmail">Kategori Penelitian<i class="text-danger">*</i></label>
+                            <label class="form-label mb-1" for="formValidationEmail">Kategori Penelitian<i
+                                    class="text-danger">*</i></label>
                             <select class="form-select select2" name="research_categories" id="research_categories"
                                 data-placeholder=" Pilih Kategori Penelitian">
                                 <option value=""> Pilih Kategori Penelitian </option>
@@ -348,7 +351,8 @@
                             </select>
                         </div>
                         <div class="col-sm-6 mb-3 form-password-toggle">
-                            <label class="form-label mb-1" for="formValidationEmail">Judul Penelitian<i class="text-danger">*</i></label>
+                            <label class="form-label mb-1" for="formValidationEmail">Judul Penelitian<i
+                                    class="text-danger">*</i></label>
                             <input type="text" class="form-control" name="research_title" id="research_title"
                                 placeholder=" Judul Penelitian" value="{{ old('research_title') }}">
                         </div>
@@ -377,14 +381,15 @@
                                 @foreach ($users as $user)
                                     <option value="{{ $user->id }}"
                                         {{ in_array($user->id, old('researcher_id', [])) ? 'selected' : '' }}>
-                                        {{ $user->name }}
+                                        {{ ucfirst($user->name) }}
                                     </option>
                                 @endforeach
                             </select>
                             <div id="defaultFormControlHelp" class="form-text">Silahkan Pilih Tim Peneliti Max 2.</div>
                         </div>
                         <div class="col-sm-6 mb-3">
-                            <label class="form-label mb-1" for="formValidationLastName">Tingkat Kesiapan Teknologi<i class="text-danger">*</i></label>
+                            <label class="form-label mb-1" for="formValidationLastName">Tingkat Kesiapan Teknologi<i
+                                    class="text-danger">*</i></label>
                             <select class="form-select select2" name="tkt_type" id="tkt_type"
                                 data-placeholder=" Pilih Jenis TKT">
                                 <option value=""> Pilih Jenis TKT </option>
@@ -397,7 +402,8 @@
                             </select>
                         </div>
                         <div class="col-sm-6 mb-3">
-                            <label class="form-label mb-1" for="formValidationLastName">Target Utama Riset<i class="text-danger">*</i></label>
+                            <label class="form-label mb-1" for="formValidationLastName">Target Utama Riset<i
+                                    class="text-danger">*</i></label>
                             <select class="form-select select2" name="main_research_target" id="main_research_target"
                                 data-placeholder=" Pilih Target Utama Riset">
                                 <option value=""> Target Utama Riset </option>
@@ -428,14 +434,15 @@
                     </div>
                     <div class="row g-6">
                         <div class="col-sm-12 mb-3">
-                            <label class="form-label mb-1" for="proposal_doc">Upload Dokumen<i class="text-danger">*</i></label>
+                            <label class="form-label mb-1" for="proposal_doc">Upload Dokumen<i
+                                    class="text-danger">*</i></label>
                             <input class="form-control" name="proposal_doc" type="file" accept=".pdf"
                                 title="PDF">
                         </div>
                         <div class="col-sm-12 mb-3">
                             <label class="form-label mb-1" for="notes">Catatan</label>
-                            <textarea class="form-control" id="editor" cols="20" rows="8" placeholder="Tuliskan isi pikiranmu..."
-                                name="notes" value="{{ old('notes') }}"> </textarea>
+                            <div id="editor-container" class="form-control"></div>
+                            <textarea class="form-control d-none" id="notes" name="notes" placeholder="Tuliskan isi pikiranmu...">{{ old('notes') }}</textarea>
                         </div>
                     </div>
 
@@ -485,9 +492,21 @@
     <script src="{{ asset('assets/vendor/libs/quill/quill.js') }}"></script>
     <script src="{{ asset('assets/js/forms-editors.js') }}"></script>
     <script>
-        var quill = new Quill('#editor', {
+        var quill = new Quill('#editor-container', {
             theme: 'snow'
         });
+
+        // Sync the content of the Quill editor with the textarea
+        quill.on('text-change', function() {
+            var notes = document.querySelector('textarea[name=notes]');
+            notes.value = quill.root.innerHTML;
+        });
+
+        // If the textarea already has content, load it into Quill
+        var notes = document.querySelector('textarea[name=notes]').value;
+        if (notes) {
+            quill.root.innerHTML = notes;
+        }
     </script>
     <script>
         "use strict";
@@ -544,7 +563,7 @@
                                 '">' + value.name + '</option>');
                         });
                         $("#research_themes").prop('disabled', false).attr('data-placeholder',
-                        'Pilih Tema Penelitian');
+                            'Pilih Tema Penelitian');
                     }
                 });
             });

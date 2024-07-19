@@ -53,7 +53,7 @@ class ProposalController extends Controller
         // $this->authorize('setting/manage_data/department.read');
         $data = Proposal::with([
             'users' => function ($query) {
-                $query->select('id', 'username');
+                $query->select('id', 'name');
             },
             'statuses' => function ($query) {
                 $query->select('id', 'status', 'color');
@@ -83,7 +83,7 @@ class ProposalController extends Controller
             ->filter(function ($instance) use ($request) {
                 if (!empty($request->get('select_category'))) {
                     $instance->whereHas('researchTopic.researchTheme.researchCategory', function ($query) use ($request) {
-                        $query->where('research_topics_id', $request->get('select_category'));
+                        $query->where('id', $request->get('select_category'));
                     });
                 }
 
@@ -114,4 +114,6 @@ class ProposalController extends Controller
         $proposals = Proposal::select('*');
         return DataTables::of($proposals)->make(true);
     }
+
+    
 }

@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
     <link rel="stylesheet" href="assets/vendor/libs/bootstrap-select/bootstrap-select.css" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/sweetalert2.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/katex.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/editor.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/typography.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/typeahead-js/typeahead.css') }}">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 @endsection
 
@@ -122,8 +126,8 @@
                                 <img src="{{ asset($proposals->users->image) }}" alt="Avatar" class="rounded-circle"
                                     style="width: 100%; height: 100%;">
                             @else
-                                <img src="{{ asset('/assets/img/avatars/user.png') }}" alt="Avatar" class="rounded-circle"
-                                    style="width: 100%; height: 100%;">
+                                <img src="{{ asset('/assets/img/avatars/user.png') }}" alt="Avatar"
+                                    class="rounded-circle" style="width: 100%; height: 100%;">
                             @endif
                         </div>
                         <div class="d-flex flex-column">
@@ -144,7 +148,7 @@
                                 onerror="this.onerror=null; this.outerHTML='Cannot load PDF.';"></iframe><br>
                             <a class="btn btn-primary mb-2" href="{{ $documentUrl }}" target="_blank">
                                 <i class="bx bx-import align-middle me-2" style="cursor:pointer"></i>
-                                <span>Download</span>
+                                <span>More</span>
                             </a>
                         @else
                             <p>Tidak ada dokumen yang tersedia.</p>
@@ -154,51 +158,51 @@
                         <div class="col-sm">
                             <span for="inputAddress2" class="form-label"> JENIS PENELITIAN</span>
                             <input type="text" class="form-control" value="{{ $proposals->researchtype->title }}"
-                                readonly disabled>
+                                readonly style="font-weight: bold;">
                         </div>
                         <div class="col-sm">
                             <span for="inputAddress2" class="form-label">TOTAL DANA</span>
                             <input type="text" class="form-control" value="{{ $proposals->researchtype->total_funds }}"
-                                readonly disabled>
+                                readonly style="font-weight: bold;">
                         </div>
                     </div>
                     <div class="col-12 mb-3">
                         <label for="inputAddress2" class="form-label mb-0"> KETEGORI PENELITIAN</label>
                         <input type="text" class="form-control"
-                            value="{{ $proposals->researchTopic->researchTheme->researchCategory->name }}" readonly
-                            disabled>
+                            value="{{ $proposals->researchTopic->researchTheme->researchCategory->name }}" readonly style="font-weight: bold;">
                     </div>
                     <div class="col-12 mb-3">
                         <label for="inputAddress2" class="form-label mb-0">TEMA PENELITIAN</label>
                         <input type="text" class="form-control"
-                            value=" {{ $proposals->researchTopic->researchTheme->name }}" readonly disabled>
+                            value=" {{ $proposals->researchTopic->researchTheme->name }}" readonly style="font-weight: bold;">
                     </div>
                     <div class="col-12 mb-3">
                         <label for="inputAddress2" class="form-label mb-0">TOPIK PENELITIAN</label>
-                        <input type="text" class="form-control" value=" {{ $proposals->researchTopic->name }}" readonly
-                            disabled>
+                        <input type="text" class="form-control" value=" {{ $proposals->researchTopic->name }}" readonly style="font-weight: bold;">
                     </div>
                     <div class="col-12 mb-3">
                         <label for="inputAddress2" class="form-label mb-0">JUDUL PENELITIAN</label>
-                        <input type="text" class="form-control" value=" {{ $proposals->research_title }}" readonly
-                            disabled>
+                        <input type="text" class="form-control" value=" {{ $proposals->research_title }}" readonly style="font-weight: bold;">
                     </div>
                     <div class="row g-2 mb-3">
                         <div class="col-sm">
                             <span for="inputAddress2" class="form-label mb-0">TARGET UTAMA RISET</span>
-                            <input type="text" class="form-control" value=" {{ $proposals->mainResearchTarget->title }}"
-                                readonly disabled>
+                            <input type="text" class="form-control"
+                                value=" {{ $proposals->mainResearchTarget->title }}" readonly style="font-weight: bold;">
                         </div>
                         <div class="col-sm mb-2">
                             <span for="inputAddress2" class="form-label mb-0">JENIS TKT</span>
                             <input type="text" class="form-control" value=" {{ $proposals->tktType->title }}"
-                                readonly disabled>
+                                readonly style="font-weight: bold;">
                         </div>
                     </div>
                     <div class="col-12">
                         <label for="inputAddress2" class="form-label mb-0">CATATAN</label>
-                        <textarea class="form-control" id="inputAddress2" readonly disabled>{{ $proposals->notes }}</textarea>
+                        <div class="form-control" id="editor-container" style="height: auto;" readonly >
+                            {!! $proposals->notes !!}
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -339,7 +343,26 @@
 
 @section('script')
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="{{ asset('assets/vendor/libs/quill/katex.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/quill/quill.js') }}"></script>
+    <script src="{{ asset('assets/js/forms-editors.js') }}"></script>
     <script>
         AOS.init();
+    </script>
+    <script>
+        var quill = new Quill('#editor-container', {
+            theme: 'snow'
+            readOnly: true
+        });
+
+        // Memuat konten yang ada ke dalam editor Quill
+        var notesContent = {!! json_encode($proposals->notes) !!};
+        quill.root.innerHTML = notesContent;
+
+        // Sinkronisasi konten editor Quill dengan textarea
+        quill.on('text-change', function() {
+            var notes = document.querySelector('textarea[name=notes]');
+            notes.value = quill.root.innerHTML;
+        });
     </script>
 @endsection
