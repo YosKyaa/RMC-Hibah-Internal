@@ -142,7 +142,7 @@
         <li class="menu-item {{ request()->segment(2) == 'proposals' ? 'active' : '' }}">
             <a href="{{ route('proposals.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-book-reader"></i>
-                <div>Manage Proposals</div> <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger">3</span>
+                <div>Manage Proposals</div> <span class="notification-badge">3</span>
             </a>
         </li>
     </ul>

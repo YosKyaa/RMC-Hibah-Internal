@@ -359,10 +359,10 @@
                                 html =
                                     `<a class="badge badge-center rounded-pill bg-warning" title="Show" href="{{ url('admin/proposals/show/${row.id}') }}"><i class="bx bx-show" style="color:#ffff"></i></a>`;
                             } else {
-                                html = `<a class=" text-success" title="Edit" href="{{ url('admin/addreviewer/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>
-                                <a class=" text-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` +
+                                html = `<a class="badge badge-center rounded-pill bg-success" title="Edit" href="{{ url('admin/addreviewer/edit/` + row.id + `') }}"><i class="bx bxs-edit" style="color:#ffff"></i></a>
+                                <a class="badge badge-center rounded-pill bg-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` +
                                     row.id + `\',\'` + row.name +
-                                    `\')" ><i class="bx bx-trash"></i></a>`;
+                                    `\')" ><i class="bx bxs-trash" style="color:#ffff"></i></a>`;
                             }
                             return html;
                         },

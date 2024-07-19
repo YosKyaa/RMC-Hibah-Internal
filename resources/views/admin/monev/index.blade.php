@@ -333,8 +333,8 @@
                     {
                         render: function(data, type, row, meta) {
                             var html = `
-                             <a href="{{ url('admin/monev/print_monev/${row.id}') }} class="btn btn-success btn-sm">
-                                    <i class="bx bx-download"></i> Print Monev
+                             <a href="{{ url('admin/monev/print_monev/${row.id}') }} class="badge badge-center rounded-pill bg-success">
+                                    <i class="bx bx-download" style="color:#ffff"></i> Print Monev
                                 </a>`;
                             return html;
                         }

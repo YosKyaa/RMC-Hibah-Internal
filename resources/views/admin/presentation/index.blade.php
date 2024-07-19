@@ -357,7 +357,7 @@
                     {
                         render: function(data, type, row, meta) {
                             var html =
-                                `<a class=" text-success" title="Edit" href="{{ url('admin/presentation/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>`;
+                                `<a class=" badge badge-center rounded-pill bg-success" title="Edit" href="{{ url('admin/presentation/edit/` + row.id + `') }}"><i class="bx bxs-edit" style="color=#ffff"></i></a>`;
                             return html;
                         },
                         "orderable": false,
