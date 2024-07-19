@@ -260,10 +260,10 @@
                             var html = '';
                             if (row.statuses.id === 'S06') {
                                 html +=
-                                    `<a class="text-success" title="Approve" style="cursor:pointer" onclick="approveId(\'` +
+                                    `<a class="badge badge-center rounded-pill bg-success" title="Approve" style="cursor:pointer" onclick="approveId(\'` +
                                     row.id +
                                     `\')"><i class="bx bx-check"></i></a>
-                                     <a class="text-danger" title="Disapprove" style="cursor:pointer" onclick="disapproveId(\'` +
+                                     <a class="badge badge-center rounded-pill bg-danger" title="Disapprove" style="cursor:pointer" onclick="disapproveId(\'` +
                                     row.id + `\')"><i class="bx bx-x"></i></a>`;
                             } else if (row.statuses.id === 'S05' || row.statuses.id === 'S07' || row
                                 .statuses.id === 'S03' || row.statuses.id === 'S04') {
