@@ -125,7 +125,7 @@
                             <th>Tanggal Mulai Review</th>
                             <th>Tanggal Selesai Review</th>
                             <th>Status</th>
-                            <th data-priority="2">Action</th>
+                            <th data-priority="2" style="width: 15%;">Action</th>
                         </tr>
                     </thead>
                 </table>

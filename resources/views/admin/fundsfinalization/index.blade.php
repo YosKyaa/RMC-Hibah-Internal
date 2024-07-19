@@ -386,12 +386,12 @@
         function approveId(id) {
             Swal.fire({
                 title: "Are you sure?",
-                text: "You will disapprove this proposal!",
+                text: "You will approve this proposal!",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, disapprove it!',
+                confirmButtonText: 'Yes, approve it!',
                 customClass: {
                     confirmButton: 'btn btn-primary me-1',
                     cancelButton: 'btn btn-label-secondary'
