@@ -8,11 +8,12 @@
 
 @section('content')
     <div class="col-xl">
-        <div class="card mb-4 p-4">
+        <div class="card mb-3 p-4">
             <div class="card-header justify-content-between align-items-center">
-                <h3 class="mb-0">Account Bank</h3>
+                <h3 class="mb-0">Detail Bank</h3>
                 <span class="text-muted">Pendanaan akan ditransfer melalui rekening ini. </span>
             </div>
+            <hr class="my-0">
             <div class="card-body">
                 <form id="form-add-new-record" method="POST"
                     action="{{ route('user-proposals-account-bank.update', $proposal->id) }}">
@@ -56,7 +57,8 @@
                             <input type="text" id="basic-icon-default-email" class="form-control" name="bank_account_name" placeholder="Jhon Doe"
                                 aria-label="Jhon Doe" aria-describedby="basic-icon-default-email2">
                         </div>
-                        <div class="form-text"> You can use letters, numbers &amp; periods </div>
+                        <div class="form-text"> Pastikan Rekening Diisi dengan benar </div>
+                   
                     </div>
                     <button type="submit" class="btn btn-primary" onclick="return confirmSubmit(event)">Send</button>
                 </form>

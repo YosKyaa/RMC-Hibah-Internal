@@ -64,7 +64,7 @@
                                 <div
                                     class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
                                     <div class="user-profile-info">
-                                        <h4>{{ Auth::user()->name }}</h4>
+                                        <h4><strong>{{ strtoupper(Auth::user()->name) }}</strong></h4>
                                         <ul
                                             class="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-2">
                                             <li class="list-inline-item fw-semibold">
@@ -140,7 +140,7 @@
                 </div>
                 <div class="col-xl-8 col-lg-7 col-md-7">
                     <!-- Activity Timeline -->
-                    <div class="card card-action mb-4">
+                    {{-- <div class="card card-action mb-4">
                         <div class="card-header align-items-center">
                             <h5 class="card-action-title mb-0"><i class="bx bx-list-ul me-2"></i>Activity Timeline</h5>
                             <div class="card-action-element">
@@ -234,12 +234,12 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> --}}
                     <!--/ Activity Timeline -->
                 </div>
             </div>
             <!--/ User Profile Content -->
-
+        </div>
         </div>
         <!-- / Content -->
         <div class="content-backdrop fade"></div>

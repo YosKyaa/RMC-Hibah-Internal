@@ -32,7 +32,8 @@
                         <span class="text-primary fw-medium text-nowrap">Wakil Rektor I</span>.
                     </h2>
                     <p class="mb-4">
-                        Proses persetujuan untuk Wakil Rektor I melibatkan pengelolaan dan peninjauan proposal. Sebagai Wakil Rektor I, Anda memiliki wewenang untuk menyetujui atau menolak proposal penelitian.
+                        Proses persetujuan untuk Wakil Rektor I melibatkan pengelolaan dan peninjauan proposal. Sebagai
+                        Wakil Rektor I, Anda memiliki wewenang untuk menyetujui atau menolak proposal penelitian.
                     </p>
                     <form action="/vicerector1" method="GET">
                         <div class="d-flex align-items-center justify-content-between app-academy-md-80">
@@ -101,6 +102,7 @@
                                         {{ ucfirst($p->users->username) }}</a>
                                     <p href="app-academy-course-details.html" class="mt-2">{{ $p->research_title }}
                                     </p>
+                                    
                                     @if ($p->approval_vice_rector_1 === null)
                                         <p class="d-flex align-items-center text-secondary"><i
                                                 class="bx bx-info-circle me-2"></i>Not Confirmed</p>
@@ -127,8 +129,8 @@
                                                 aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     @endif
-                                    @if ($p->approval_vice_rector_1 === null)
-                                        <div class="d-flex flex-column  flex-md-row gap-2 text-nowrap pe-xl-3 pe-xxl-0">
+                                    <div class="d-flex flex-column  flex-md-row gap-2 text-nowrap pe-xl-3 pe-xxl-0">
+                                        @if ($p->approval_vice_rector_1 === null)
                                             <a class="app-academy-md-50 btn btn-label-danger me-md-2 d-flex align-items-center"
                                                 onclick="disapproveId('{{ $p->id }}')">
                                                 <i class="bx bx-x align-middle me-2" style="cursor:pointer"></i>
@@ -140,13 +142,13 @@
                                                 <i class="bx bx-check align-middle me-2" style="cursor:pointer"></i>
                                                 <span>Approve</span>
                                             </a>
-                                        </div>
-                                    @elseif ($p->approval_vice_rector_1 === 0)
-                                        <a class="w-100 btn btn-label-danger"><i class="bx bx-x me-2"></i>Ditolak</a>
-                                    @else
-                                        <a class="w-100 btn btn-label-primary"><i class="bx bx-sync me-2"></i>Vice
-                                            Rector II Approval</a>
-                                    @endif
+                                        @elseif ($p->approval_vice_rector_1 === 0)
+                                            <a class="w-100 btn btn-label-danger"><i class="bx bx-x me-2"></i>Ditolak</a>
+                                        @else
+                                            <a class="w-100 btn btn-label-primary"><i class="bx bx-sync me-2"></i>Vice
+                                                Rector II Approval</a>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
 

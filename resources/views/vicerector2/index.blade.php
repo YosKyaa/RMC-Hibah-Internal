@@ -107,7 +107,7 @@
                                     </p>
                                     @if ($p->approval_vice_rector_2 === null)
                                         <p class="d-flex align-items-center text-secondary"><i
-                                                class="bx bx-info-circle me-2"></i>Not Confirmed</p>
+                                                class="bx bx-info-circle me-2"></i>Menunggu Konfirmasi</p>
                                     @elseif ($p->approval_vice_rector_2 === 0)
                                         <p class="d-flex align-items-center text-danger"><i
                                                 class="bx bx-x-circle me-2"></i>Disapproved</p>
@@ -115,6 +115,7 @@
                                         <p class="d-flex align-items-center text-success"><i
                                                 class="bx bx-check-double me-2"></i>Approved</p>
                                     @endif
+                                    
                                     @if ($p->approval_vice_rector_2 === null)
                                         <div class="progress mb-4" style="height: 8px">
                                             <div class="progress-bar w-75" role="progressbar" aria-valuenow="25"

@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Settings/Manage Lookup/Manage Proposal')
+@section('title', 'Manage Proposal')
 
 
 @section('css')
@@ -385,102 +385,102 @@
 
         function approveId(id) {
             Swal.fire({
-                title: "Are you sure?",
-                text: "You will approve this proposal!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, approve it!',
-                customClass: {
-                    confirmButton: 'btn btn-primary me-1',
-                    cancelButton: 'btn btn-label-secondary'
-                },
-                buttonsStyling: false
+            title: "Apakah Anda yakin?",
+            text: "Anda akan menyetujui proposal ini!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, setujui!',
+            customClass: {
+                confirmButton: 'btn btn-primary me-1',
+                cancelButton: 'btn btn-label-secondary'
+            },
+            buttonsStyling: false
             }).then(function(result) {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: "{{ route('fundsfinalization.approve') }}",
-                        type: "POST",
-                        data: {
-                            id: id,
-                            _token: "{{ csrf_token() }}" // Include CSRF token for security
-                        },
-                        success: function(response) {
-                            if (response.success) {
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Disapproved!',
-                                    text: 'The Proposals has been disapproved.',
-                                    customClass: {
-                                        confirmButton: 'btn btn-success'
-                                    }
-                                });
-                                $('#datatable').DataTable().ajax.reload();
-                            } else {
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'Error!',
-                                    text: data.error,
-                                    customClass: {
-                                        confirmButton: 'btn btn-danger'
-                                    }
-                                });
-                            }
+            if (result.isConfirmed) {
+                $.ajax({
+                url: "{{ route('fundsfinalization.approve') }}",
+                type: "POST",
+                data: {
+                    id: id,
+                    _token: "{{ csrf_token() }}" // Sertakan token CSRF untuk keamanan
+                },
+                success: function(response) {
+                    if (response.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Disetujui!',
+                        text: 'Proposal telah disetujui.',
+                        customClass: {
+                        confirmButton: 'btn btn-success'
                         }
                     });
+                    $('#datatable').DataTable().ajax.reload();
+                    } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error!',
+                        text: data.error,
+                        customClass: {
+                        confirmButton: 'btn btn-danger'
+                        }
+                    });
+                    }
                 }
+                });
+            }
             });
         }
     </script>
     <script>
         function disapproveId(id) {
             Swal.fire({
-                title: "Are you sure?",
-                text: "You will disapprove this proposal!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, disapprove it!',
-                customClass: {
-                    confirmButton: 'btn btn-primary me-1',
-                    cancelButton: 'btn btn-label-secondary'
-                },
-                buttonsStyling: false
+            title: "Apakah Anda yakin?",
+            text: "Anda akan menolak proposal ini!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, tolak!',
+            customClass: {
+                confirmButton: 'btn btn-primary me-1',
+                cancelButton: 'btn btn-label-secondary'
+            },
+            buttonsStyling: false
             }).then(function(result) {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: "{{ route('fundsfinalization.disapprove') }}",
-                        type: "POST",
-                        data: {
-                            id: id,
-                            _token: "{{ csrf_token() }}" // Include CSRF token for security
-                        },
-                        success: function(response) {
-                            if (response.success) {
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Disapproved!',
-                                    text: 'The Proposals has been disapproved.',
-                                    customClass: {
-                                        confirmButton: 'btn btn-success'
-                                    }
-                                });
-                                $('#datatable').DataTable().ajax.reload();
-                            } else {
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'Error!',
-                                    text: data.error,
-                                    customClass: {
-                                        confirmButton: 'btn btn-danger'
-                                    }
-                                });
-                            }
+            if (result.isConfirmed) {
+                $.ajax({
+                url: "{{ route('fundsfinalization.disapprove') }}",
+                type: "POST",
+                data: {
+                    id: id,
+                    _token: "{{ csrf_token() }}" // Sertakan token CSRF untuk keamanan
+                },
+                success: function(response) {
+                    if (response.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Ditolak!',
+                        text: 'Proposal telah ditolak.',
+                        customClass: {
+                        confirmButton: 'btn btn-success'
                         }
                     });
+                    $('#datatable').DataTable().ajax.reload();
+                    } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error!',
+                        text: data.error,
+                        customClass: {
+                        confirmButton: 'btn btn-danger'
+                        }
+                    });
+                    }
                 }
+                });
+            }
             });
         }
     </script>

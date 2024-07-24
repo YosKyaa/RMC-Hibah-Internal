@@ -233,7 +233,8 @@
                                 </div>
                             </div>
                             <div class="col-md-6 text-end">
-                                <a href="../user-proposals/create" class="btn btn-md btn-primary"><span><i class="bx bx-plus me-sm-2"></i><span>Ajukan Proposal</span></span></a>
+                                <a href="../user-proposals/create" class="btn btn-md btn-primary"><span><i
+                                            class="bx bx-plus me-sm-2"></i><span>Ajukan Proposal</span></span></a>
                             </div>
                         </div>
 
@@ -423,14 +424,14 @@
                         type: "POST",
                         data: {
                             id: id,
-                            _token: "{{ csrf_token() }}" // Include CSRF token for security
+                            _token: "{{ csrf_token() }}"
                         },
                         success: function(response) {
                             if (response.success) {
                                 Swal.fire({
                                     icon: 'success',
-                                    title: 'Sumbitted!',
-                                    text: 'The Proposals has been submitted.',
+                                    title: 'Submitted!',
+                                    text: 'The Proposal has been submitted.',
                                     customClass: {
                                         confirmButton: 'btn btn-success'
                                     }
@@ -440,17 +441,31 @@
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'Error!',
-                                    text: data.error,
+                                    text: response.message,
                                     customClass: {
                                         confirmButton: 'btn btn-danger'
                                     }
                                 });
                             }
+                        },
+                        error: function(xhr) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error!',
+                                text: 'An error occurred while submitting the proposal.',
+                                customClass: {
+                                    confirmButton: 'btn btn-danger'
+                                }
+                            });
                         }
                     });
                 }
             });
         }
+
+
+
+
 
         function SubmitId(id) {
             Swal.fire({
@@ -552,7 +567,6 @@
             })
         }
     </script>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const status_id = {
@@ -582,8 +596,11 @@
                     });
                 }
             }
-
+            // Call the function with the initial status
+            setStepStatus('{{ $proposals->first()->statuses->id === "S04" ? $proposals[1]->statuses->id : $proposals->first()->statuses->id }}');
 
         });
     </script>
+
+
 @endsection

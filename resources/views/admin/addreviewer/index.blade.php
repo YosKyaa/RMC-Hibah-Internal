@@ -333,19 +333,19 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = `<em>${row.review_date_start}</em>`;
+                            var html = row.review_date_start ? `<em>${row.review_date_start}</em>` : '-';
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = `<em>${row.review_date_end}</em>`;
+                            var html = row.review_date_end ? `<em>${row.review_date_end}</em>` : '-';
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = "Belum ada reviewer";
+                            var html = "-";
                             if (row.reviewer != null) {
                                 html = `<strong>${row.reviewer.username.charAt(0).toUpperCase() + row.reviewer.username.slice(1)}</strong>`;
                             }
