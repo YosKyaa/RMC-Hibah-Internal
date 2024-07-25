@@ -333,13 +333,30 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.review_date_start ? `<em>${row.review_date_start}</em>` : '-';
+                            var reviewDateStart = new Date(row.review_date_start);
+                            var options = {
+                                timeZone: 'Asia/Jakarta',
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                            };
+                            var formattedDate = reviewDateStart.toLocaleDateString('id-ID',
+                            options);
+                            var html = '<em>' + formattedDate + '</em>';
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.review_date_end ? `<em>${row.review_date_end}</em>` : '-';
+                            var reviewDateEnd = new Date(row.review_date_end);
+                            var options = {
+                                timeZone: 'Asia/Jakarta',
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                            };
+                            var formattedDate = reviewDateEnd.toLocaleDateString('id-ID', options);
+                            var html = '<em>' + formattedDate + '</em>';
                             return html;
                         }
                     },
@@ -347,7 +364,8 @@
                         render: function(data, type, row, meta) {
                             var html = "-";
                             if (row.reviewer != null) {
-                                html = `<strong>${row.reviewer.username.charAt(0).toUpperCase() + row.reviewer.username.slice(1)}</strong>`;
+                                html =
+                                    `<strong>${row.reviewer.username.charAt(0).toUpperCase() + row.reviewer.username.slice(1)}</strong>`;
                             }
                             return html;
                         }
@@ -359,7 +377,8 @@
                                 html =
                                     `<a class="badge badge-center rounded-pill bg-warning" title="Show" href="{{ url('admin/proposals/show/${row.id}') }}"><i class="bx bx-show" style="color:#ffff"></i></a>`;
                             } else {
-                                html = `<a class="badge badge-center rounded-pill bg-success" title="Edit" href="{{ url('admin/addreviewer/edit/` + row.id + `') }}"><i class="bx bxs-edit" style="color:#ffff"></i></a>
+                                html =
+                                    `<a class="badge badge-center rounded-pill bg-success" title="Edit" href="{{ url('admin/addreviewer/edit/` + row.id + `') }}"><i class="bx bxs-edit" style="color:#ffff"></i></a>
                                 <a class="badge badge-center rounded-pill bg-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` +
                                     row.id + `\',\'` + row.name +
                                     `\')" ><i class="bx bxs-trash" style="color:#ffff"></i></a>`;

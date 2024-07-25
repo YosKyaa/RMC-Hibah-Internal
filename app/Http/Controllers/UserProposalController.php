@@ -267,54 +267,90 @@ class UserProposalController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function edit($id)
-    {
-        $proposals = Proposal::findOrFail($id);
-        $researchtypes = ResearchTypes::all();
-        $researchcategories = ResearchCategories::all();
-        $researchthemes = ResearchThemes::all();
-        $researchtopics = ResearchTopics::all();
-        // $researchteam = ResearchTeam::all();
-        $tkttype = TktTypes::all();
-        $existingResearchers = ProposalTeams::pluck('researcher_id')->toArray();
-        $mainresearch = MainResearchTarget::all();
-        $users = User::select('users.id', 'users.name', DB::raw("COUNT('proposal_teams.id') as total"))
-            ->leftJoin('proposal_teams', 'users.id', '=', 'proposal_teams.researcher_id')
-            ->leftJoin('proposals', 'proposals.id', '=', 'proposal_teams.proposals_id')
-            ->whereHas('roles', function ($query) {
-                $query->whereIn('name', ['lecture']);
-            })
-            ->where(function ($query) {
-                $query->where('proposals.status_id', '!=', 'S08')
-                    ->orWhere('proposals.status_id', '!=', 'S04')
-                    ->orWhereNull('proposals.status_id');
-            })
-            ->groupBy('users.id', 'users.name')
-            ->havingRaw("total < 2")
-            ->get();
-        return view('proposals.edit', compact('proposals', 'researchtypes', 'researchthemes', 'researchcategories', 'tkttype', 'mainresearch', 'researchtopics', 'users', 'existingResearchers'));
-    }
-    public function update(Request $request, $id)
-    {
-        // Aturan validasi
-        $request->validate([
-            'researcher_id' => 'required|array',
-            'researcher_id.*' => 'exists:users,id'
+   public function edit($id)
+{
+    $proposal = Proposal::with('documents')->findOrFail($id);
+    $researchtypes = ResearchTypes::all();
+    $researchcategories = ResearchCategories::all();
+    $researchthemes = ResearchThemes::all();
+    $researchtopics = ResearchTopics::all();
+    $tkttype = TktTypes::all();
+    $mainresearch = MainResearchTarget::all();
+    $users = User::select('users.id', 'users.name', DB::raw("COUNT('proposal_teams.id') as total"))
+        ->leftJoin('proposal_teams', 'users.id', '=', 'proposal_teams.researcher_id')
+        ->leftJoin('proposals', 'proposals.id', '=', 'proposal_teams.proposals_id')
+        ->whereHas('roles', function ($query) {
+            $query->whereIn('name', ['lecture']);
+        })
+        ->where(function ($query) {
+            $query->where('proposals.status_id', '!=', 'S08')
+                ->orWhere('proposals.status_id', '!=', 'S04')
+                ->orWhereNull('proposals.status_id');
+        })
+        ->groupBy('users.id', 'users.name')
+        ->havingRaw("total < 3")
+        ->get();
+    return view('proposals.edit', compact('proposal', 'researchtypes', 'researchthemes', 'researchcategories', 'tkttype', 'mainresearch', 'researchtopics', 'users'));
+}
+
+public function update(Request $request, $id)
+{
+    $proposal = Proposal::findOrFail($id);
+
+    $this->validate($request, [
+        'research_type' => 'required|exists:research_types,id',
+        'research_categories' => 'required|exists:research_categories,id',
+        'research_themes' => 'required|exists:research_themes,id',
+        'research_topics' => 'required|exists:research_topics,id',
+        'research_title' => 'required|string|max:255',
+        'tkt_type' => 'required|exists:tkt_types,id',
+        'main_research_target' => 'required|exists:main_research_targets,id',
+        'researcher_id' => 'required|array',
+        'researcher_id.*' => 'exists:users,id',
+        'proposal_doc' => 'nullable|mimes:pdf|max:10000', // max 10MB
+    ]);
+
+    $proposal->update([
+        'research_types_id' => $request->research_type,
+        'research_topics_id' => $request->research_topics,
+        'research_title' => $request->research_title,
+        'tkt_types_id' => $request->tkt_type,
+        'main_research_targets_id' => $request->main_research_target,
+        'notes' => $request->notes ?? '',
+    ]);
+
+    // Update research team members
+    ProposalTeams::where('proposals_id', $proposal->id)->delete();
+    foreach ($request->researcher_id as $researcher_id) {
+        ProposalTeams::create([
+            'proposals_id' => $proposal->id,
+            'researcher_id' => $researcher_id,
         ]);
-
-        // Hapus tim peneliti yang lama
-        ProposalTeams::where('proposals_id', $id)->delete();
-
-        // Tambahkan tim peneliti yang baru
-        foreach ($request->researcher_id as $researcher_id) {
-            ProposalTeams::create([
-                'proposals_id' => $id,
-                'researcher_id' => $researcher_id,
-            ]);
-        }
-
-        return redirect()->route('user-proposals.index')->with('proposals', 'Data BERHASIL diajukan!');
     }
+
+    if ($request->hasFile('proposal_doc')) {
+        $fileName = "";
+        $ext = $request->proposal_doc->extension();
+        $name = str_replace(' ', '_', $request->proposal_doc->getClientOriginalName());
+        $fileName = Auth::user()->id . '_' . $name;
+        $folderName = "storage/FILE/proposals/" . Carbon::now()->format('Y/m');
+        $path = public_path() . "/" . $folderName;
+        if (!File::exists($path)) {
+            File::makeDirectory($path, 0755, true); //create folder
+        }
+        $upload = $request->proposal_doc->move($path, $fileName); //upload file to folder
+        if ($upload) {
+            $fileName = $folderName . "/" . $fileName;
+            Documents::updateOrCreate(
+                ['proposals_id' => $proposal->id],
+                ['proposal_doc' => $fileName]
+            );
+        }
+    }
+
+    return redirect()->route('user-proposals.index')->with('proposals', 'Data (' . $request->research_title . ') BERHASIL diperbarui!');
+}
+
 
     public function show($id)
     {
@@ -322,6 +358,7 @@ class UserProposalController extends Controller
             'proposalTeams.researcher' => function ($query) {
             $query->select('id', 'username', 'image');
             },
+
             'reviewer' => function ($query) {
                 $query->select('id', 'username', 'image');
             },
@@ -406,6 +443,7 @@ public function monev_update (Request $request, $id)
         $proposals = Proposal::findOrFail($id);
         $proposals->update([
             'monev_comment' => $request->monev_comment,
+            'status_id' => 'S09',
         ]);
         Documents::create([
             'proposals_id' => $proposals->id,

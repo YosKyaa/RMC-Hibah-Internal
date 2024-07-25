@@ -27,7 +27,6 @@
         .layout-menu {
             min-height: unset;
         }
-
     </style>
 @endsection
 {{-- @section('content')
@@ -359,10 +358,10 @@
                         <div class="col-12 d-flex justify-content-between">
                             <button class="btn btn-label-secondary btn-prev" disabled>
                                 <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
-                                <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                <span class="align-middle d-sm-inline-block d-none">Kembali</span>
                             </button>
                             <button type="button" class="btn btn-primary btn-next">
-                                <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span>
+                                <span class="align-middle d-sm-inline-block d-none me-sm-1">Lanjut</span>
                                 <i class="bx bx-chevron-right bx-sm me-sm-n2"></i>
                             </button>
                         </div>
@@ -410,7 +409,7 @@
                                 @foreach ($mainresearch as $d)
                                     <option value="{{ $d->id }}"
                                         {{ $d->id == old('main_research_target') ? 'selected' : '' }}>
-                                        {{ $d->title }}
+                                        {{ $d->title }} | {{ $d->description }}
                                     </option>
                                 @endforeach
                             </select>
@@ -418,10 +417,10 @@
                         <div class="col-12 d-flex justify-content-between">
                             <button type="button" class="btn btn-primary btn-prev">
                                 <i class="bx bx-left-arrow-alt bx-sm ms-sm-n2 me-sm-2"></i>
-                                <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                <span class="align-middle d-sm-inline-block d-none">Kembali</span>
                             </button>
                             <button type="button" class="btn btn-primary btn-next">
-                                <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span>
+                                <span class="align-middle d-sm-inline-block d-none me-sm-1">Lanjut</span>
                                 <i class="bx bx-chevron-right bx-sm me-sm-n2"></i>
                             </button>
                         </div>
@@ -449,10 +448,10 @@
                     <div class="col-12 d-flex justify-content-between">
                         <button type="button" class="btn btn-primary btn-prev">
                             <i class="bx bx-left-arrow-alt bx-sm ms-sm-n2 me-sm-2"></i>
-                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                            <span class="align-middle d-sm-inline-block d-none">Kembali</span>
                         </button>
-                        <button type="button" class="btn btn-primary btn-submit">
-                            <span class="align-middle d-sm-inline-block d-none me-sm-1">Submit</span>
+                        <button type="button" class="btn btn-primary btn-submit" onclick="return confirmSubmit(event)">
+                            <span class="align-middle d-sm-inline-block d-none me-sm-1">Kirim</span>
                             <i class="bx bx-chevron-right bx-sm me-sm-n2"></i>
                         </button>
                     </div>
@@ -635,5 +634,31 @@
                 });
             });
         });
+    </script>
+
+    <script>
+        function confirmSubmit(event) {
+            event.preventDefault(); // Prevent the default form submission
+            Swal.fire({
+                title: "Apakah Anda yakin?",
+                text: "Anda ingin mengirim proposal ini!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Kirim!',
+                cancelButtonText: 'Batal',
+                customClass: {
+                    confirmButton: 'btn btn-primary me-1',
+                    cancelButton: 'btn btn-label-secondary'
+                },
+                buttonsStyling: false
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    // Submit the form via AJAX or standard form submission
+                    $('#wizard-validation-form').submit();
+                }
+            });
+        }
     </script>
 @endsection

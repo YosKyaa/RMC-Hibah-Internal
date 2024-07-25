@@ -45,7 +45,7 @@ return new class extends Migration
             $table->foreign('bank_id')->references('id')->on('banks')->nullable();
 
             $table->string('bank_account_number')->nullable();
-            
+
             $table->string('bank_account_name')->nullable();
 
             $table->date('review_date_start')->nullable();
@@ -53,6 +53,8 @@ return new class extends Migration
             $table->date('review_date_end')->nullable();
 
             $table->date('presentation_date')->nullable();
+
+            $table->boolean('mark_as_reviewed')->default(false);
 
             $table->boolean('approval_reviewer')->nullable();
 

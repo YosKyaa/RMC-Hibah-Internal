@@ -97,6 +97,9 @@ class ViceRector2Controller extends Controller
         }
 
         $proposals = Proposal::findOrFail($id);
+        $proposals->update([
+            'status_id' => 'S08',
+        ]);
         Documents::create([
             'proposals_id' => $proposals->id,
             'proposal_doc' => $fileName,
@@ -139,6 +142,9 @@ class ViceRector2Controller extends Controller
         }
 
         $proposals = Proposal::findOrFail($id);
+        $proposals->update([
+            'status_id' => 'S10',
+        ]);
         Documents::create([
             'proposals_id' => $proposals->id,
             'proposal_doc' => $fileName,

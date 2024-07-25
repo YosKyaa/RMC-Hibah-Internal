@@ -117,7 +117,7 @@
             </li>
             <li class="nav-item" href="../admin/addreviewer">
                 <a type="button" class="nav-link" data-bs-target="#tambahreviewers" href="../admin/addreviewer">
-                    <i class="tf-icons bx bx-chart me-1" ></i> Reviewer
+                    <i class="tf-icons bx bx-chart me-1"></i> Reviewer
                     <span class="badge bg-danger badge-notifications" id="Reviewer" style="display: none;"></span>
                 </a>
             </li>
@@ -130,7 +130,8 @@
             <li class="nav-item">
                 <a type="button" class="nav-link" data-bs-target="#dana" href="../admin/fundsfinalization">
                     <i class="tf-icons bx bx-bar-chart-alt-2 me-1"></i> Finalisasi Dana
-                    <span class="badge bg-danger badge-notifications" id="AdminFundFinalization" style="display: none;"></span>
+                    <span class="badge bg-danger badge-notifications" id="AdminFundFinalization"
+                        style="display: none;"></span>
                 </a>
             </li>
             <li class="nav-item">
@@ -193,6 +194,7 @@
                                 <th>Kategori</th>
                                 <th>TKT</th>
                                 <th>Target Utama Riset</th>
+                                <th>Kontrak</th>
                                 <th data-priority="3">Status</th>
                                 <th data-priority="2"></th>
                             </tr>
@@ -241,7 +243,7 @@
         </script>
     @endif
     <script>
-         $(document).ready(function() {
+        $(document).ready(function() {
             // Fungsi untuk mengambil jumlah totalNullReviewers
             function fetchTotalNullReviewers() {
                 $.ajax({
@@ -370,7 +372,8 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = `<strong>${row.users.name.charAt(0).toUpperCase() + row.users.name.slice(1)}</strong>`;
+                            var html =
+                                `<strong>${row.users.name.charAt(0).toUpperCase() + row.users.name.slice(1)}</strong>`;
                             return html;
                         }
                     },
@@ -396,6 +399,16 @@
                     {
                         render: function(data, type, row, meta) {
                             var html = row.main_research_target.title;
+                            return html;
+                        }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            var html = row.bank_id ? `
+                                <a href="{{ url('admin/loa/print_contract/${row.id}') }}" class="btn btn-primary btn-sm">
+                                    <i class="bx bx-file" title="Kontrak"></i>
+                                </a>
+                            ` : '-';
                             return html;
                         }
                     },

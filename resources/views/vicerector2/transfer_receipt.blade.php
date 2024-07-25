@@ -19,23 +19,25 @@
 
 @section('content')
     <div class="col-xl">
-        <div class="card mb-4 p-4">
+        <div class="card mb-3 p-4">
             <div class="card-header justify-content-between align-items-center">
                 <h3 class="mb-0"><strong>Unggah Bukti Pendanaan Tahap 1</strong></h3>
-                <span class="text-muted">Pendanaan akan ditransfer melalui rekening ini. </span>
+                <span class="text-muted">Dokumen Kontrak.</span>
+
             </div>
+            <hr class="my-0">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="mb-4">
+                        <div class="mb-3">
                             <iframe src="{{ $documentUrl }}" class="iframe mb-3"
                                 onerror="this.onerror=null; this.outerHTML='Cannot load PDF.';"></iframe>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <h6 class="mb-0 text-muted" style="font-size: 15px;" >Nama Peneliti</h6>
-                            <p style="font-size: 18px;">{{ $proposals->users->name }}</p>
+                            <h6 class="mb-0 text-muted" style="font-size: 15px;">Nama Peneliti</h6>
+                            <p style="font-size: 18px;">{{ ucfirst($proposals->users->name) }}</p>
                         </div>
                         <div class="mb-3">
                             <h6 class="mb-0 text-muted" style="font-size: 15px;">Judul Penelitian</h6>
@@ -73,7 +75,7 @@
                                 @enderror
                             </div>
                             <button type="submit" class="btn btn-primary"
-                                onclick="return confirmSubmit(event)">Sumbit</button>
+                                onclick="return confirmSubmit(event)">Kirim</button>
                     </form>
                 </div>
             </div>

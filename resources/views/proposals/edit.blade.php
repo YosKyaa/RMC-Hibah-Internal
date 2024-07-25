@@ -281,7 +281,7 @@
             </div>
         </div>
         <div class="bs-stepper-content">
-            <form id="wizard-validation-form" method="POST" action="{{ route('user-proposals.update', $proposals->id) }}"
+            <form id="wizard-validation-form" method="POST" action="{{ route('user-proposals.update', $proposal->id) }}"
                 enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -295,11 +295,14 @@
                         <div class="col-sm-6 mb-3">
                             <label class="form-label mb-1" for="research_type">Jenis Penelitian<i
                                     class="text-danger">*</i></label>
-                            <select class="form-select select2" name="research_type" id="research_type">
-                                @foreach ($researchtypes as $types)
-                                    <option value="{{ $types->id }}"
-                                        {{ $proposals->research_types_id == $types->id ? 'selected' : '' }}>
-                                        {{ $types->title }}</option>
+                            <select class="select2 form-select" name="research_type" id="research_type"
+                                data-style="btn-default">
+                                <option value=""> Pilih Jenis Penelitian </option>
+                                @foreach ($researchtypes as $d)
+                                    <option value="{{ $d->id }}"
+                                        {{ $d->id == old('research_type', $proposal->research_types_id) ? 'selected' : '' }}>
+                                        {{ $d->title }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -309,24 +312,28 @@
                                 aria-describedby="defaultFormControlHelp" readonly disabled />
                         </div>
                         <div class="col-sm-6 mb-3 form-password-toggle">
-                            <label class="form-label mb-1" for="formValidationEmail">Kategori Penelitian<i class="text-danger">*</i></label>
-                            <select class="form-select select2" name="research_categories" id="research_categories" data-placeholder=" Pilih Kategori Penelitian">
+                            <label class="form-label mb-1" for="formValidationEmail">Kategori Penelitian<i
+                                    class="text-danger">*</i></label>
+                            <select class="form-select @error('research_categories') is-invalid @enderror select2"
+                                name="research_categories" id="research_categories"
+                                data-placeholder="Pilih Kategori Penelitian">
                                 <option value=""> Pilih Kategori Penelitian </option>
-                                @foreach($researchtopics as $category)
-                                    <option value="{{ $category->researchThemes->researchCategory }}" {{ $proposals->research_topics_id == $category->id ? 'selected' : '' }}>
-                                        {{ $category->title }}
+                                @foreach ($researchcategories as $d)
+                                    <option value="{{ $d->id }}"
+                                        {{ $d->id == old('research_categories', $proposal->research_categories_id) ? 'selected' : '' }}>
+                                        {{ $d->name }}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="col-sm-6 mb-3 form-password-toggle">
                             <label class="form-label mb-1">Tema Penelitian<i class="text-danger">*</i></label>
-                            <select class="form-select select2" name="research_themes" id="research_themes"
-                                data-placeholder=" Pilih Tema Penelitian">
+                            <select class="form-select @error('research_themes') is-invalid @enderror select2"
+                                name="research_themes" id="research_themes" data-placeholder="Pilih Tema Penelitian">
                                 <option value=""> Pilih Tema Penelitian </option>
                                 @foreach ($researchthemes as $d)
                                     <option value="{{ $d->id }}"
-                                        {{ $d->id == old('research_themes') ? 'selected' : '' }}>
+                                        {{ $d->id == old('research_themes', $proposal->research_themes_id) ? 'selected' : '' }}>
                                         {{ $d->name }}
                                     </option>
                                 @endforeach
@@ -334,12 +341,12 @@
                         </div>
                         <div class="col-sm-6 mb-3 form-password-toggle">
                             <label class="form-label mb-1">Topik Penelitian<i class="text-danger">*</i></label>
-                            <select class="form-select select2" name="research_topics" id="research_topics"
-                                data-placeholder=" Pilih Topik Penelitian">
+                            <select class="form-select @error('research_topics') is-invalid @enderror select2"
+                                name="research_topics" id="research_topics" data-placeholder="Pilih Topik Penelitian">
                                 <option value=""> Pilih Topik Penelitian </option>
                                 @foreach ($researchtopics as $d)
                                     <option value="{{ $d->id }}"
-                                        {{ $d->id == old('research_topics') ? 'selected' : '' }}>
+                                        {{ $d->id == old('research_topics', $proposal->research_topics_id) ? 'selected' : '' }}>
                                         {{ $d->name }}
                                     </option>
                                 @endforeach
@@ -348,16 +355,18 @@
                         <div class="col-sm-6 mb-3 form-password-toggle">
                             <label class="form-label mb-1" for="formValidationEmail">Judul Penelitian<i
                                     class="text-danger">*</i></label>
-                            <input type="text" class="form-control" name="research_title" id="research_title"
-                                placeholder=" Judul Penelitian" value="{{ old('research_title') }}">
+                            <input type="text" name="research_title" id="research_title"
+                                class="form-control @error('research_title') is-invalid @enderror"
+                                value="{{ old('research_title', $proposal->research_title) }}"
+                                placeholder="Judul Penelitian" />
                         </div>
                         <div class="col-12 d-flex justify-content-between">
-                            <button class="btn btn-label-secondary btn-prev" disabled>
+                            <a href="{{ route('user-proposals.index') }}" class="btn btn-label-secondary btn-prev">
                                 <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
-                                <span class="align-middle d-sm-inline-block d-none">Previous</span>
-                            </button>
+                                <span class="align-middle d-sm-inline-block d-none">Kembali</span>
+                            </a>
                             <button type="button" class="btn btn-primary btn-next">
-                                <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span>
+                                <span class="align-middle d-sm-inline-block d-none me-sm-1">Lanjut</span>
                                 <i class="bx bx-chevron-right bx-sm me-sm-n2"></i>
                             </button>
                         </div>
@@ -385,12 +394,12 @@
                         <div class="col-sm-6 mb-3">
                             <label class="form-label mb-1" for="formValidationLastName">Tingkat Kesiapan Teknologi<i
                                     class="text-danger">*</i></label>
-                            <select class="form-select select2" name="tkt_type" id="tkt_type"
-                                data-placeholder=" Pilih Jenis TKT">
+                            <select class="form-select @error('tkt_type') is-invalid @enderror select2" name="tkt_type"
+                                id="tkt_type" data-placeholder="Pilih Jenis TKT">
                                 <option value=""> Pilih Jenis TKT </option>
                                 @foreach ($tkttype as $d)
                                     <option value="{{ $d->id }}"
-                                        {{ $d->id == old('tkt_type') ? 'selected' : '' }}>
+                                        {{ $d->id == old('tkt_type', $proposal->tkt_types_id) ? 'selected' : '' }}>
                                         {{ $d->title }}
                                     </option>
                                 @endforeach
@@ -399,12 +408,13 @@
                         <div class="col-sm-6 mb-3">
                             <label class="form-label mb-1" for="formValidationLastName">Target Utama Riset<i
                                     class="text-danger">*</i></label>
-                            <select class="form-select select2" name="main_research_target" id="main_research_target"
-                                data-placeholder=" Pilih Target Utama Riset">
-                                <option value=""> Target Utama Riset </option>
+                            <select class="form-select @error('main_research_target') is-invalid @enderror select2"
+                                name="main_research_target" id="main_research_target"
+                                data-placeholder="Pilih Target Utama Penelitian">
+                                <option value=""> Pilih Target Utama Penelitian </option>
                                 @foreach ($mainresearch as $d)
                                     <option value="{{ $d->id }}"
-                                        {{ $d->id == old('main_research_target') ? 'selected' : '' }}>
+                                        {{ $d->id == old('main_research_target', $proposal->main_research_targets_id) ? 'selected' : '' }}>
                                         {{ $d->title }}
                                     </option>
                                 @endforeach
@@ -413,10 +423,10 @@
                         <div class="col-12 d-flex justify-content-between">
                             <button type="button" class="btn btn-primary btn-prev">
                                 <i class="bx bx-left-arrow-alt bx-sm ms-sm-n2 me-sm-2"></i>
-                                <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                <span class="align-middle d-sm-inline-block d-none">Kembali</span>
                             </button>
                             <button type="button" class="btn btn-primary btn-next">
-                                <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span>
+                                <span class="align-middle d-sm-inline-block d-none me-sm-1">Lanjut</span>
                                 <i class="bx bx-chevron-right bx-sm me-sm-n2"></i>
                             </button>
                         </div>
@@ -429,22 +439,23 @@
                     </div>
                     <div class="row g-6">
                         <div class="col-sm-12 mb-3">
-                            <label class="form-label mb-1" for="proposal_doc">Upload Dokumen<i
-                                    class="text-danger">*</i></label>
-                            <input class="form-control" name="proposal_doc" type="file" accept=".pdf"
-                                title="PDF">
+                            <label class="form-label mb-1" for="proposal_doc">Unggah Dokumen<i class="text-danger">*</i></label>
+                            <input class="form-control" name="proposal_doc" type="file" accept=".pdf" title="PDF">
+                            @if ($proposal->documents)
+                                <p>Dokumen Saat Ini: <a href="{{ asset($proposal->documents->first()->proposal_doc) }}" target="_blank">Lihat Dokumen</a></p>
+                            @endif
                         </div>
                         <div class="col-sm-12 mb-3">
                             <label class="form-label mb-1" for="notes">Catatan</label>
                             <div id="editor-container" class="form-control"></div>
-                            <textarea class="form-control d-none" id="notes" name="notes" placeholder="Tuliskan isi pikiranmu...">{{ old('notes') }}</textarea>
+                            <textarea name="notes" class="form-control d-none" id="notes" placeholder="Tuliskan isi pikiranmu...">{{ old('notes', $proposal->notes) }}</textarea>
                         </div>
                     </div>
 
                     <div class="col-12 d-flex justify-content-between">
                         <button type="button" class="btn btn-primary btn-prev">
                             <i class="bx bx-left-arrow-alt bx-sm ms-sm-n2 me-sm-2"></i>
-                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                            <span class="align-middle d-sm-inline-block d-none">Kembali</span>
                         </button>
                         <button type="button" class="btn btn-primary btn-submit">
                             <span class="align-middle d-sm-inline-block d-none me-sm-1">Submit</span>

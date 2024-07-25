@@ -23,7 +23,7 @@ class StatusSeeder extends Seeder
             ['id' => 'S05', 'status' => 'Menunggu Jadwal Presentasi','color' => 'dark'],
             ['id' => 'S06', 'status' => 'Persentasi','color' => 'dark'],
             ['id' => 'S07', 'status' => 'Proses Pencairan Dana Tahap 1','color' => 'info'],
-            ['id' => 'S08', 'status' => 'Dana  Tahap 1 Sudah diterima','color' => 'success'],
+            ['id' => 'S08', 'status' => 'Dana  Tahap 1 Sudah diterima','color' => 'success'],   
             ['id' => 'S09', 'status' => 'Proses Pencairan Dana Tahap 2','color' => 'info'],
             ['id' => 'S10', 'status' => 'Dana  Tahap 2 Sudah diterima','color' => 'success'],
         ];

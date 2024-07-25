@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Proposal;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -58,6 +59,39 @@ class ReviewerController extends Controller
             ->make(true);
     }
 
+    public function show($id)
+    {
+        $proposals = Proposal::with([
+            'proposalTeams.researcher' => function ($query) {
+            $query->select('id', 'username', 'image');
+            },
+
+            'reviewer' => function ($query) {
+                $query->select('id', 'username', 'image');
+            },
+        ])->findOrFail($id);
+        $documentPath = $proposals->documents->first()->proposal_doc;
+        $documentUrl = url($documentPath);
+        $user = User::select('image');
+        return view('proposals.show', compact('proposals', 'documentUrl', 'user'));
+    }
+    public function mark_as_reviewed(Request $request)
+    {
+        $data = Proposal::find($request->id);
+        if($data) {
+            $data->mark_as_reviewed = true;
+            $data->save();
+            return response()->json([
+                'success' => true,
+                'message' => 'Status berhasil diubah!'
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal mengubah status!'
+            ]);
+        }
+    }
     public function presentation(Request $request)
     {
         $data = Proposal::find($request->id);
@@ -75,6 +109,7 @@ class ReviewerController extends Controller
             ]);
         }
     }
+
 
     public function approve(Request $request)
     {
@@ -94,6 +129,7 @@ class ReviewerController extends Controller
             ]);
         }
     }
+
 
     public function disapprove(Request $request)
     {

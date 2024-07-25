@@ -17,4 +17,5 @@ class ResearchTopics extends Model
     {
         return $this->belongsTo(ResearchThemes::class, 'research_theme_id');
     }
+    
 }

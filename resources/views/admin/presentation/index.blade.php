@@ -333,7 +333,8 @@
                     {
                         render: function(data, type, row, meta) {
                             var html = row.users.username;
-                            return html;
+                            var capitalized = html.charAt(0).toUpperCase() + html.slice(1);
+                            return `<strong>${capitalized}</strong>`;
                         }
                     },
                     {
@@ -350,7 +351,7 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.presentation_date;
+                            var html = `<em>${row.presentation_date}</em>`;
                             return html;
                         }
                     },

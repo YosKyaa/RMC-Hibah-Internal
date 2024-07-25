@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Proposal')
+@section('title', 'Detail Proposal')
 
 @section('css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css">
@@ -116,9 +116,9 @@
     @endif
 
 
-    <div class="row mb-4 g-4">
+    <div class="row mb-3 g-4">
         <div class="col-12 col-xl-8">
-            <div class="card p-4">
+            <div class="card p-3">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <div class="d-flex justify-content-start align-items-center mt-lg-4">
                         <div class="avatar me-3" style="width: 50px; height: 50px;">
@@ -208,7 +208,7 @@
         </div>
 
         <div class="col-12 col-xl-4 col-md-6">
-            <div class="card mb-4 p-4 mt-2" data-aos="fade-left" data-aos-duration="3000">
+            <div class="card mb-4 p-4 " data-aos="fade-left" data-aos-duration="2000">
                 <div class="table">
                     <table class="table table-borderless border-top">
                         <thead class="border-bottom">
@@ -287,7 +287,7 @@
                                             </div>
                                         </div>
                                     @else
-                                        <p>Belum ada reviewer.</p>
+                                        <p>-</p>
                                     @endif
                                 </td>
                                 <td class="text-end">

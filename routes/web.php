@@ -144,6 +144,8 @@ Route::group(['prefix' => 'reviewer'], function () { //reviewers
     Route::any('/', [ReviewerController::class, 'index'])->name('reviewers.index')->middleware('auth');
     Route::get('/data', [ReviewerController::class, 'data'])->name('reviewers.data');
     Route::delete('/delete', [ReviewerController::class, 'delete'])->name('reviewers.delete');
+    Route::get('/show/{id}', [ReviewerController::class, 'show'])->name('reviewers.show');
+    Route::post('/mark_as_reviewed', [ReviewerController::class, 'mark_as_reviewed'])->name('reviewers.mark_as_reviewed');
     Route::post('/presentation', [ReviewerController::class, 'presentation'])->name('reviewers.presentation');
     Route::post('/approve', [ReviewerController::class, 'approve'])->name('reviewers.approve');
     Route::post('/disapprove', [ReviewerController::class, 'disapprove'])->name('reviewers.disapprove');
