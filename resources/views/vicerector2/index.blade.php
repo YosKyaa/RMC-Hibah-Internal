@@ -83,15 +83,6 @@
                                             Courses</span></span><span class="select2-selection__arrow"
                                         role="presentation"><b role="presentation"></b></span></span></span><span
                                 class="dropdown-wrapper" aria-hidden="true"></span></span></div>
-
-                    <label class="switch">
-                        <input type="checkbox" class="switch-input">
-                        <span class="switch-toggle-slider">
-                            <span class="switch-on"></span>
-                            <span class="switch-off"></span>
-                        </span>
-                        <span class="switch-label text-nowrap mb-0">Hide completed</span>
-                    </label>
                 </div>
             </div>
             <div class="card-body">
