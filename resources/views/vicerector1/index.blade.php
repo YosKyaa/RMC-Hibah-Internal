@@ -143,12 +143,6 @@
                                                 <span>Terima</span>
                                             </a>
 
-
-                                            
-
-
-
-
                                         @elseif ($p->approval_vice_rector_1 === 0)
                                             <a class="w-100 btn btn-label-danger"><i class="bx bx-x me-2"></i>Ditolak</a>
                                         @else
