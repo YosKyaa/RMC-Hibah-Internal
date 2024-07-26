@@ -151,17 +151,17 @@
                                         <a class="w-100 btn btn-label-primary"><i class="bx bx-sync me-2"></i>Penerbitan
                                             LOA dan Kontrak</a>
                                     @elseif ($p->approval_vice_rector_2 === null)
-                                        <div class="d-flex flex-column flex-md-row gap-2 text-nowrap pe-xl-3 pe-xxl-0">
-                                            <a class="app-academy-md-50 btn btn-label-danger me-md-2 d-flex align-items-center"
+                                        <div class="d-flex flex-column flex-md-row gap-3 text-nowrap flex-wrap flex-md-nowrap flex-lg-wrap flex-xxl-nowrap">
+                                            <a class="w-100 btn btn-label-danger d-flex align-items-center"
                                                 onclick="disapproveId('{{ $p->id }}')">
                                                 <i class="bx bx-x align-middle me-2" style="cursor:pointer"></i>
-                                                <span>Disapprove</span>
+                                                <span>Terima</span>
                                             </a>
                                             </a>
-                                            <a class="app-academy-md-50 btn btn-label-success me-md-2 d-flex align-items-center"
+                                            <a class="w-100 btn btn-label-success d-flex align-items-center"
                                                 onclick="approveId('{{ $p->id }}')">
                                                 <i class="bx bx-check align-middle me-2" style="cursor:pointer"></i>
-                                                <span>Approve</span>
+                                                <span>Tolak</span>
                                             </a>
                                         </div>
                                     @else
