@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Reviewers')
+@section('title', 'Vicerector2')
 @section('css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css">
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bs-stepper/bs-stepper.css') }}">
@@ -13,6 +13,15 @@
 @endsection
 
 @section('style')
+<style>
+  .margin-right {
+    margin-right: 20px;
+  }
+
+  .margin-left {
+    margin-left: 20px;
+  }
+</style>
 @endsection
 
 @section('content')
@@ -106,16 +115,17 @@
                                     <p href="app-academy-course-details.html" class="mt-2">{{ $p->research_title }}
                                     </p>
                                     @if ($p->approval_vice_rector_2 === null)
-                                        <p class="d-flex align-items-center text-secondary"><i
+                                        <p class="text-secondary margin-right"><i
                                                 class="bx bx-info-circle me-2"></i>Menunggu Konfirmasi</p>
                                     @elseif ($p->approval_vice_rector_2 === 0)
-                                        <p class="d-flex align-items-center text-danger"><i
+                                        <p class="text-danger margin-right"><i
                                                 class="bx bx-x-circle me-2"></i>Disapproved</p>
                                     @else
-                                        <p class="d-flex align-items-center text-success"><i
+                                        <p class="text-success margin-right"><i
                                                 class="bx bx-check-double me-2"></i>Approved</p>
                                     @endif
-                                    
+                                    <a class="text-warning margin-left" href="../vicerector1/show"><i class="bx bx-link me-2"></i>File</a> <br><br>
+
                                     @if ($p->approval_vice_rector_2 === null)
                                         <div class="progress mb-4" style="height: 8px">
                                             <div class="progress-bar w-75" role="progressbar" aria-valuenow="25"

@@ -139,12 +139,54 @@
                 </li>
             </li>
         @endcan
-        <li class="menu-item {{ request()->segment(2) == 'proposals' ? 'active' : '' }}">
-            <a href="{{ route('proposals.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-book-reader"></i>
-                <div>Manage Proposals</div> <span class="notification-badge">3</span>
-            </a>
-        </li>
+        @can('control panel.read')
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">Admin</span>
+            </li>
+        @endcan
+            <li class="menu-item {{ request()->segment(1) == 'admin' ? 'open active' : '' }}">
+                <a href="#" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-cog"></i>
+                    <div>Manage Proposals</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item {{ request()->segment(2) == 'proposals' ? 'active' : '' }}">
+                        <a href="{{ route('proposals.index') }}" class="menu-link">
+                            
+                            <div>Data</div> <span class="notification-badge">3</span>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ request()->segment(2) == 'addreviewer' ? 'active' : '' }}">
+                        <a href="{{ route('addreviewer.index') }}" class="menu-link">
+                            
+                            <div>Reviewer</div> <span class="notification-badge">3</span>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ request()->segment(2) == 'presentation' ? 'active' : '' }}">
+                        <a href="{{ route('presentation.index') }}" class="menu-link">
+                            
+                            <div>Presentasi</div> <span class="notification-badge">3</span>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ request()->segment(2) == 'fundsfinalization' ? 'active' : '' }}">
+                        <a href="{{ route('fundsfinalization.index') }}" class="menu-link">
+                            
+                            <div>Finalisasi Dana</div> <span class="notification-badge">3</span>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ request()->segment(2) == 'loa' ? 'active' : '' }}">
+                        <a href="{{ route('loa.index') }}" class="menu-link">
+                            
+                            <div>LoA & Kontrak</div> <span class="notification-badge">3</span>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ request()->segment(2) == 'monev' ? 'active' : '' }}">
+                        <a href="{{ route('monev.index') }}" class="menu-link">
+                            
+                            <div>Verifikasi Monev</div> <span class="notification-badge">3</span>
+                        </a>
+                    </li>
+                </ul>
     </ul>
 </aside>
 <!-- / Menu -->
