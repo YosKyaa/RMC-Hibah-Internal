@@ -106,14 +106,14 @@
                                     <p href="app-academy-course-details.html" class="mt-2">{{ $p->research_title }}
                                     </p>
                                     @if ($p->approval_vice_rector_2 === null)
-                                        <p class="text-secondary margin-right"><i
-                                                class="bx bx-info-circle me-2"></i>Menunggu Konfirmasi</p>
+                                        <span class="text-secondary margin-right"><i
+                                                class="bx bx-info-circle me-2"></i>Menunggu Konfirmasi</span>
                                     @elseif ($p->approval_vice_rector_2 === 0)
-                                        <p class="text-danger margin-right"><i
-                                                class="bx bx-x-circle me-2"></i>Disapproved</p>
+                                        <span class="text-danger margin-right"><i
+                                                class="bx bx-x-circle me-2"></i>Ditolak</span>
                                     @else
-                                        <p class="text-success margin-right"><i
-                                                class="bx bx-check-double me-2"></i>Approved</p>
+                                        <span class="text-success margin-right"><i
+                                                class="bx bx-check-double me-2"></i>Diterima</span>
                                     @endif
                                     <a class="text-warning margin-left" href="../vicerector1/show"><i class="bx bx-link me-2"></i>File</a> <br><br>
 
