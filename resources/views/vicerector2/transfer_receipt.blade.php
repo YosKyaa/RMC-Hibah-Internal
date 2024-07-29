@@ -45,7 +45,8 @@
                         </div>
                         <div class="mb-3">
                             <h6 class="mb-0 text-muted" style="font-size: 15px;">Nomor Rekening</h6>
-                            <p><strong style="font-size: 18px;">{{ $proposals->bank_account_number }}  ({{$proposals->bank->name}})</strong></p>
+                            <p><strong style="font-size: 18px;">{{ $proposals->bank_account_number }}
+                                    ({{ $proposals->bank->name }})</strong></p>
                         </div>
                         <div class="mb-3">
                             <h6 class="mb-0 text-muted" style="font-size: 15px;">Atas Nama</h6>
@@ -55,7 +56,10 @@
                             <h6 class="mb-0 text-muted" style="font-size: 15px;">Total Pendanaan Tahap 1</h6>
                             <p><strong><em style="font-size: 18px;" id="seventyPercentDisplay"></em></strong></p>
                         </div>
+                        <div class="col-md-6"> <a href="{{ $documentUrl }}" class="btn btn-primary" target="_blank">Lihat Kontrak</a></div>
                     </div>
+
+
                 </div>
                 <div class="mb-3">
                     <form id="form-add-new-record" method="POST"
@@ -94,7 +98,7 @@
                 event.preventDefault(); // Prevent the default form submission
                 Swal.fire({
                     title: "Apakah Anda yakin?",
-                    text: "Anda akan mengirimkan Nomor Rekening ini!",
+                    text: "Anda akan mengirim bukti transfer ini!",
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',

@@ -75,48 +75,13 @@ class ReviewerController extends Controller
         $user = User::select('image');
         return view('proposals.show', compact('proposals', 'documentUrl', 'user'));
     }
-    public function mark_as_reviewed(Request $request)
-    {
-        $data = Proposal::find($request->id);
-        if($data) {
-            $data->mark_as_reviewed = true;
-            $data->save();
-            return response()->json([
-                'success' => true,
-                'message' => 'Status berhasil diubah!'
-            ]);
-        } else {
-            return response()->json([
-                'success' => false,
-                'message' => 'Gagal mengubah status!'
-            ]);
-        }
-    }
-    public function presentation(Request $request)
-    {
-        $data = Proposal::find($request->id);
-        if($data) {
-            $data->status_id = 'S05'; // Set the status to 'S05'
-            $data->save(); // Save the changes to the database
-            return response()->json([
-                'success' => true,
-                'message' => 'Status berhasil diubah!'
-            ]);
-        } else {
-            return response()->json([
-                'success' => false,
-                'message' => 'Gagal mengubah status!'
-            ]);
-        }
-    }
 
-
-    public function approve(Request $request)
+// Lolos Proposal
+    public function approval_reviewer(Request $request)
     {
         $data = Proposal::find($request->id);
         if($data) {
             $data->approval_reviewer = true;
-            $data->status_id = 'S07';
             $data->save();
             return response()->json([
                 'success' => true,
@@ -130,25 +95,7 @@ class ReviewerController extends Controller
         }
     }
 
-
-    public function disapprove(Request $request)
-    {
-        $data = Proposal::find($request->id);
-        if($data) {
-            $data->approval_reviewer = false;
-            $data->save();
-            return response()->json([
-                'success' => true,
-                'message' => 'Status berhasil diubah!'
-            ]);
-        } else {
-            return response()->json([
-                'success' => false,
-                'message' => 'Gagal mengubah status!'
-            ]);
-        }
-    }
-
+// Proposal Ditolak
     public function reject(Request $request)
     {
         $data = Proposal::find($request->id);
@@ -166,6 +113,8 @@ class ReviewerController extends Controller
             ]);
         }
     }
+
+
     public function revision($id)
     {
         $proposal = Proposal::findOrFail($id);
@@ -186,6 +135,68 @@ class ReviewerController extends Controller
 
         return redirect()->route('reviewers.index')->with('success', 'Catatan revisi berhasil disimpan.');
     }
+
+
+    public function last_revision($id)
+    {
+        $proposal = Proposal::findOrFail($id);
+        return view('reviewers.last-revision', compact('proposal'));
+    }
+    public function update2(Request $request, $id)
+    {
+        $request->validate([
+            'review_notes_2' => ['required', 'string'],
+        ]);
+
+        $proposal = Proposal::findOrFail($id);
+        $proposal->update([
+            'review_notes_2' => $request->review_notes_2,
+            'status_id' => 'S03',
+        ]);
+
+        return redirect()->route('reviewers.index')->with('success', 'Catatan revisi berhasil disimpan.');
+    }
+
+
+    public function presentation(Request $request)
+    {
+        $data = Proposal::find($request->id);
+        if($data) {
+            $data->status_id = 'S05'; // Set the status to 'S05'
+            $data->save(); // Save the changes to the database
+            return response()->json([
+                'success' => true,
+                'message' => 'Status berhasil diubah!'
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal mengubah status!'
+            ]);
+        }
+    }
+
+
+    public function mark_as_presented(Request $request)
+    {
+        $data = Proposal::find($request->id);
+        if($data) {
+            $data->mark_as_presented = true;
+            $data->status_id = 'S07';
+            $data->save();
+            return response()->json([
+                'success' => true,
+                'message' => 'Status berhasil diubah!'
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal mengubah status!'
+            ]);
+        }
+    }
+
+
 }
 
 

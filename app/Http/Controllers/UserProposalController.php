@@ -243,11 +243,30 @@ class UserProposalController extends Controller
         }
     }
 
-    public function submit(Request $request)
+    public function mark_as_revised_1(Request $request)
     {
         $data = Proposal::find($request->id);
         if ($data) {
             $data->status_id = "S02";
+            $data->mark_as_revised_1 = true;
+            $data->save();
+            return response()->json([
+                'success' => true,
+                'message' => 'Status berhasil diubah!'
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal mengubah status!'
+            ]);
+        }
+    }
+    public function mark_as_revised_2(Request $request)
+    {
+        $data = Proposal::find($request->id);
+        if ($data) {
+            $data->status_id = "S02";
+            $data->mark_as_revised_2 = true;
             $data->save();
             return response()->json([
                 'success' => true,
@@ -369,6 +388,8 @@ public function update(Request $request, $id)
         return view('proposals.show', compact('proposals', 'documentUrl', 'user'));
     }
 
+
+
     public function delete(Request $request){
         $data = Proposal::find($request->id);
         if($data){
@@ -467,5 +488,49 @@ public function monev_update (Request $request, $id)
         $proposals = Proposal::findOrFail($id);
         $pdf = PDF::loadView('proposals.print_loa', compact('proposals'));
         return $pdf->stream('proposal.pdf');
+    }
+
+    public function final_report($id)
+    {
+        $proposals = Proposal::findOrFail($id);
+        return view('proposals.final-report', compact('proposals'));
+    }
+
+    public function final_report_update (Request $request, $id)
+    {
+       $request->validate([
+            'proposal_doc' => 'required|file|mimes:pdf|max:5120',
+        ]);
+        $fileName = "";
+        if ($request->hasFile('proposal_doc')) {
+            $ext = $request->proposal_doc->extension();
+            $name = str_replace(' ', '_', $request->proposal_doc->getClientOriginalName());
+            $fileName = Auth::user()->id . '_' . $name;
+            $folderName = "storage/FILE/final-report/" . Carbon::now()->format('Y/m');
+            $path = public_path() . "/" . $folderName;
+            if (!File::exists($path)) {
+                File::makeDirectory($path, 0755, true); //create folder
+            }
+            $upload = $request->proposal_doc->move($path, $fileName); //upload file to folder
+            if ($upload) {
+                $fileName = $folderName . "/" . $fileName;
+            } else {
+                $fileName = "";
+            }
+        }
+
+        $proposals = Proposal::findOrFail($id);
+        $proposals->update([
+            'status_id' => 'S10',
+        ]);
+
+        Documents::create([
+            'proposals_id' => $proposals->id,
+            'proposal_doc' => $fileName,
+            'doc_type_id' => 'DC6',
+            'created_by' => Auth::user()->id,
+        ]);
+
+        return redirect()->route('user-proposals.index')->with('success', 'Data berhasil diperbarui.');
     }
 }

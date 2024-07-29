@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Proposal;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -13,14 +14,29 @@ class ViceRector1Controller extends Controller
      */
     public function index()
     {
+
+        $NonVerifCount = Proposal::where('approval_vice_rector_1', false)->count();
+        $VerifCount = Proposal::where('approval_vice_rector_1', true)->count();
+        $totalAdminFundApproval = Proposal::where('approval_admin_fundfinalization', true)->count();
         $proposals = Proposal::where('approval_admin_fundfinalization', true)->latest()->filter(request(['search']))->paginate(9);
-        return view('vicerector1.index', compact('proposals'));
+        return view('vicerector1.index', compact('proposals','NonVerifCount','VerifCount','totalAdminFundApproval'));
     }
 
-    public function show()
+    public function show($id)
     {
-        $proposals = Proposal::where('approval_admin_fundfinalization', true)->get();
-        return view('vicerector1.show', compact('proposals'));
+        $proposals = Proposal::with([
+            'proposalTeams.researcher' => function ($query) {
+            $query->select('id', 'username', 'image');
+            },
+
+            'reviewer' => function ($query) {
+                $query->select('id', 'username', 'image');
+            },
+        ])->findOrFail($id);
+        $documentPath = $proposals->documents->first()->proposal_doc;
+        $documentUrl = url($documentPath);
+        $user = User::select('image');
+        return view('proposals.show', compact('proposals', 'documentUrl', 'user'));
     }
 
     /**

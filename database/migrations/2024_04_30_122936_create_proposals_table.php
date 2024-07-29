@@ -39,7 +39,15 @@ return new class extends Migration
             $table->uuid('status_id')->nullable();
             $table->foreign('status_id')->references('id')->on('statuses')->nullable();
 
+            $table->boolean('approval_reviewer')->default(false);
+
+            $table->boolean('mark_as_revised_1')->default(false);
+
+            $table->boolean('mark_as_revised_2')->default(false);
+
             $table->text('review_notes')->nullable();
+
+            $table->text('review_notes_2')->nullable();
 
             $table->unsignedBigInteger('bank_id')->nullable();
             $table->foreign('bank_id')->references('id')->on('banks')->nullable();
@@ -56,13 +64,11 @@ return new class extends Migration
 
             $table->boolean('mark_as_reviewed')->default(false);
 
-            $table->boolean('approval_reviewer')->nullable();
+            $table->boolean('mark_as_presented')->nullable();
 
-            $table->text('approval_reviewer_notes')->nullable();
+            $table->boolean('approval_vice_rector_1')->default(false);
 
-            $table->boolean('approval_vice_rector_1')->nullable();
-
-            $table->boolean('approval_vice_rector_2')->nullable();
+            $table->boolean('approval_vice_rector_2')->default(false);
 
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->foreign('updated_by')->references('id')->on('users');

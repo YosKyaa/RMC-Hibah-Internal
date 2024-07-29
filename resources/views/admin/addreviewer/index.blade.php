@@ -238,7 +238,7 @@
             fetchTotalNullReviewers();
 
             // Anda dapat memanggil fungsi ini secara berkala jika diperlukan
-            // setInterval(fetchTotalNullReviewers, 30000); // Memanggil setiap 30 detik
+            setInterval(fetchTotalNullReviewers, 500); // Memanggil setiap 30 detik
         });
         // Fungsi untuk mengambil jumlah totalS05Proposals
         function fetchTotalS05Proposals() {
@@ -341,22 +341,25 @@
                                 day: 'numeric'
                             };
                             var formattedDate = reviewDateStart.toLocaleDateString('id-ID',
-                            options);
-                            var html = '<em>' + formattedDate + '</em>';
+                                options);
+                            var html = '<em>' + (row.review_date_start ? formattedDate : '-') +
+                                '</em>';
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var reviewDateEnd = new Date(row.review_date_end);
+                            var reviewDateStart = new Date(row.review_date_end);
                             var options = {
                                 timeZone: 'Asia/Jakarta',
                                 year: 'numeric',
                                 month: 'long',
                                 day: 'numeric'
                             };
-                            var formattedDate = reviewDateEnd.toLocaleDateString('id-ID', options);
-                            var html = '<em>' + formattedDate + '</em>';
+                            var formattedDate = reviewDateStart.toLocaleDateString('id-ID',
+                                options);
+                            var html = '<em>' + (row.review_date_end ? formattedDate : '-') +
+                                '</em>';
                             return html;
                         }
                     },
@@ -378,10 +381,7 @@
                                     `<a class="badge badge-center rounded-pill bg-warning" title="Show" href="{{ url('admin/proposals/show/${row.id}') }}"><i class="bx bx-show" style="color:#ffff"></i></a>`;
                             } else {
                                 html =
-                                    `<a class="badge badge-center rounded-pill bg-success" title="Edit" href="{{ url('admin/addreviewer/edit/` + row.id + `') }}"><i class="bx bxs-edit" style="color:#ffff"></i></a>
-                                <a class="badge badge-center rounded-pill bg-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` +
-                                    row.id + `\',\'` + row.name +
-                                    `\')" ><i class="bx bxs-trash" style="color:#ffff"></i></a>`;
+                                    `<a class="badge badge-center rounded-pill bg-success" title="Edit" href="{{ url('admin/addreviewer/edit/` + row.id + `') }}"><i class="bx bxs-edit" style="color:#ffff"></i></a>`;
                             }
                             return html;
                         },
@@ -393,55 +393,5 @@
             });
 
         });
-
-        function DeleteId(id) {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "Once deleted, data can't be recovered!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!',
-                customClass: {
-                    confirmButton: 'btn btn-primary me-1',
-                    cancelButton: 'btn btn-label-secondary'
-                },
-                buttonsStyling: false
-            }).then(function(result) {
-                if (result.value) {
-                    $.ajax({
-                        url: "{{ route('user-proposals.delete') }}",
-                        type: "DELETE",
-                        data: {
-                            "id": id,
-                            "_token": $("meta[name='csrf-token']").attr("content"),
-                        },
-                        success: function(data) {
-                            if (data['success']) {
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Deleted!',
-                                    text: 'Your file has been deleted.',
-                                    customClass: {
-                                        confirmButton: 'btn btn-success'
-                                    }
-                                });
-                                $('#datatable').DataTable().ajax.reload();
-                            } else {
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'Error!',
-                                    text: 'An error occurred while deleting the file.',
-                                    customClass: {
-                                        confirmButton: 'btn btn-success'
-                                    }
-                                });
-                            }
-                        }
-                    })
-                }
-            })
-        }
     </script>
 @endsection

@@ -213,7 +213,7 @@
                     <table class="table table-borderless border-top">
                         <thead class="border-bottom">
                             <tr>
-                                <th>Researcher Team</th>
+                                <th>Tim Peneliti</th>
                                 <th class="text-end"></th>
                             </tr>
                         </thead>

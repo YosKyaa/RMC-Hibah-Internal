@@ -20,6 +20,36 @@
 
 
 
+
+
+
+
+        else if (row.statuses.id === 'S05' || row.statuses.id === 'S07' || row
+        .statuses.id === 'S03' || row.statuses.id === 'S04' || row.statuses
+        .id === 'S08' || row.statuses.id === 'S09' || row.statuses.id ===
+        'S10') {
+        html +=
+            `<a class="badge badge-center rounded-pill bg-warning" title="Show" href="{{ url('reviewer/show/${row.id}') }}"><i class="bx bx-show" style="color:#ffff"></i></a>`;
+    }
+
+
+
+
+
+
+    else if (row.statuses.id === 'S03') {
+        html +=
+            `<a class="badge badge-center rounded-pill bg-success" title="Kirim Revisi 2" style="cursor:pointer" onclick="markAsRevisioned_2Id('${row.id}')"><i class="bx bx-check" style="color:#ffff"></i></a>
+            <a class="badge badge-center rounded-pill bg-success" title="Edit" href="{{ url('user-proposals/edit/${row.id}') }}"><i class="bx bxs-edit" style="color:#ffff"></i></a>`;
+    }
+
+
+
+
+
+
+
+
         <h4 class="py-3 mb-4"><span class="text-muted fw-light">Academy/</span> My Courses</h4>
 
         <div class="app-academy" data-select2-id="8">

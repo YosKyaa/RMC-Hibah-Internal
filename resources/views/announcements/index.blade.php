@@ -146,10 +146,11 @@
             <table class="table table-hover table-sm" id="datatable" width="100%">
                 <thead>
                     <tr>
-                        <th width="20px" data-priority="1">No</th>
-                        <th data-priority="2">Judul</th>
-                        <th>Description</th>
-                        <th width="50px" data-priority="4">File Gambae\r</th>
+                        <th width="20px">No</th>
+                        <th >Tanggal</th>
+                        <th data-priority="1">Judul</th>
+                        <th data-priority="2">Description</th>
+                        <th width="50px" data-priority="4">File Gambar</th>
                         <th width="40px" data-priority="3"></th>
                     </tr>
                 </thead>
@@ -381,15 +382,21 @@
                     {
                         render: function(data, type, row, meta) {
                             var date = new Date(row.created_at);
-                            var formattedDate = date.toLocaleDateString();
-                            var formattedTime = date.toLocaleTimeString();
-                            var html = formattedDate + ' ' + formattedTime;
+                            var options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+                            var formattedDate = date.toLocaleDateString('id-ID', options);
+                            var html = formattedDate;
                             return html;
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
                             var html = row.title;
+                            return html;
+                        }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            var html = row.description;
                             return html;
                         }
                     },

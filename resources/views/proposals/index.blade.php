@@ -125,23 +125,114 @@
 
 
     @foreach ($proposals as $proposal)
-        @if ($proposal->presentation_date)
-            @if ($proposal->status_id != 'S04')
-                <div class="row g-6 mb-4">
-                    <div class="col-md-12 col-xl-12">
-                        <div class="card bg-info text-white">
-                            <div class="card-body">
-                                <h5 class="card-title text-white">Jadwal Presentasi</h5>
-                                <p class="card-text">
-                                    Presentasi akan dilaksanakan pada {{ $proposal->presentation_date ? \Carbon\Carbon::parse($proposal->presentation_date)->format('d F Y') : 'Tanggal tidak tersedia' }} pukul {{ $proposal->presentation_time ? \Carbon\Carbon::parse($proposal->presentation_time)->format('H:i') : 'Waktu tidak tersedia' }} WIB.
-                                </p>
-                            </div>
+        @if ($proposal->presentation_date && !in_array($proposal->status_id, ['S04', 'S07', 'S08', 'S09', 'S10']))
+            <div class="row g-6 mb-3">
+                <div class="col-md-12 col-xl-12">
+                    <div class="card bg-info text-white">
+                        <div class="card-body">
+                            <h5 class="card-title text-white">Jadwal Presentasi</h5>
+                            <p class="card-text">
+                                Presentasi akan dilaksanakan pada
+                                {{ $proposal->presentation_date ? \Carbon\Carbon::parse($proposal->presentation_date)->format('d F Y') : 'Tanggal tidak tersedia' }}
+                                pukul
+                                {{ $proposal->presentation_time ? \Carbon\Carbon::parse($proposal->presentation_time)->format('H:i') : 'Waktu tidak tersedia' }}
+                                WIB.
+                            </p>
                         </div>
                     </div>
                 </div>
-            @endif
+            </div>
         @endif
     @endforeach
+
+
+
+
+    @foreach ($proposals as $proposal)
+        @if ($proposal->approval_vice_rector_2 === 1 && !($proposal->bank_id))
+            <div class="row g-6 mb-3">
+                <div class="col-md-12 col-xl-12">
+                    <div class="card bg-warning text-white">
+                        <div class="card-body">
+                            <h5 class="card-title text-white">Silahkan Lengkapi Nomor Rekening! </h5>
+                            <p class="card-text">
+                                Nomor rekening anda belum lengkap, silahkan lengkapi nomor rekening anda untuk
+                                melanjutkan proses selanjutnya.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+    @endforeach
+
+    @foreach ($proposals as $proposal)
+    @if ($proposal->bank_id && !($proposal->documents->contains('doc_type_id', 'DC3')))
+        <div class="row g-6 mb-3">
+            <div class="col-md-12 col-xl-12">
+                <div class="card bg-info text-white">
+                    <div class="card-body">
+                        <h5 class="card-title text-white">Kontrak Anda Telah terbit</h5>
+                        <p class="card-text">
+                            Silahkan cek dan unduh kontrak anda pada kolom tombol aksi.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+    @endforeach
+
+    @foreach ($proposals as $proposal)
+    @if ($proposal->documents->contains('doc_type_id', 'DC3') && !($proposal->monev_comment))
+        <div class="row g-6 mb-3">
+            <div class="col-md-12 col-xl-12">
+                <div class="card bg-warning text-white">
+                    <div class="card-body">
+                        <h5 class="card-title text-white">Silahkan Unggah Laporan Monev!</h5>
+                        <p class="card-text">
+                            Silahkan unggah laporan monitoring dan evaluasi anda pada kolom tombol aksi untuk Pencairan dana tahap II.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+@endforeach
+
+@foreach ($proposals as $proposal)
+@if ($proposal->documents->contains('doc_type_id', 'DC4' && !($proposal->documents->contains('doc_type_id', 'DC5'))))
+    <div class="row g-6 mb-3">
+        <div class="col-md-12 col-xl-12">
+            <div class="card bg-warning text-white">
+                <div class="card-body">
+                    <h5 class="card-title text-white">Silahkan Unggah Laporan Akhir</h5>
+                    <p class="card-text">
+                        Dana tahap 2 telah cair, silahkan cek rekening anda. silahkan unggah laporan akhir penelitian anda pada kolom aksi.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+@endforeach
+
+@foreach ($proposals as $proposal)
+@if ($proposal->documents->contains('doc_type_id', 'DC5'))
+    <div class="row g-6 mb-3">
+        <div class="col-md-12 col-xl-12">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <h5 class="card-title text-white">Rangkaian Pengajuan Telah Selesai</h5>
+                    <p class="card-text">
+                        Terima kasih telah menggunakan layanan kami, pengajuan anda telah selesai.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+@endforeach
 
 
     <div id="wizard-checkout" class="bs-stepper wizard-icons wizard-icons-example p-3">
@@ -361,9 +452,16 @@
                         render: function(data, type, row, meta) {
                             var html = '';
                             if (row.documents && row.documents.some(doc => doc.doc_type_id ===
+                                    'DC6')) {
+                                html =
+                                    `<a class="badge badge-center rounded-pill bg-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>
+                                    `;
+                            } else if (row.documents && row.documents.some(doc => doc
+                                    .doc_type_id ===
                                     'DC5')) {
                                 html =
-                                    `<a class="badge badge-center rounded-pill bg-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>`;
+                                    `<a class="badge badge-center rounded-pill bg-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>
+                                    <a class="badge badge-center rounded-pill bg-success" title="Unggah Laporan Akhir" href="{{ url('user-proposals/final-report/${row.id}') }}"><i class="bx bx-upload"></i></a>`;
                             } else if (row.documents && row.documents.some(doc => doc
                                     .doc_type_id === 'DC3')) {
                                 html =
@@ -377,15 +475,23 @@
                                 html =
                                     `<a class="badge badge-center rounded-pill bg-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show" style="color:#ffff"></i></a>
                                     <a class="badge badge-center rounded-pill bg-success" title="Upload Nomor Rekening" href="{{ url('user-proposals/account-bank/${row.id}') }}"><i class="bx bx-upload" style="color:#ffff"></i></a>`;
+                            } else if (row.mark_as_revised_2) {
+                                html =
+                                    `<a class="badge badge-center rounded-pill bg-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show" style="color:#ffff"></i></a>`;
+                            } else if (row.review_notes_2) {
+                                html +=
+                                    `<a class="badge badge-center rounded-pill bg-success" title="Kirim Revisi 2" style="cursor:pointer" onclick="mark_as_revised_2('${row.id}')"><i class="bx bx-check" style="color:#ffff"></i></a>
+                                    <a class="badge badge-center rounded-pill bg-success" title="Edit" href="{{ url('user-proposals/edit/${row.id}') }}"><i class="bx bxs-edit" style="color:#ffff"></i></a>`;
                             } else if (row.statuses.id === 'S01' || row.statuses.id === 'S02' || row
                                 .statuses.id === 'S04' || row.statuses.id === 'S05' || row.statuses
                                 .id === 'S06' || row.statuses.id === 'S07') {
                                 html +=
                                     `<a class="badge badge-center rounded-pill bg-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show" style="color:#ffff"></i></a>`;
-                            } else if (row.statuses.id === 'S03') {
+                            } else if (row.review_notes) {
                                 html +=
-                                    `<a class="badge badge-center rounded-pill bg-success" title="Kirim Revisi" style="cursor:pointer" onclick="SubmitId('${row.id}')"><i class="bx bx-check" style="color:#ffff"></i></a>
-                                    <a class="badge badge-center rounded-pill bg-success" title="Edit" href="{{ url('user-proposals/edit/${row.id}') }}"><i class="bx bxs-edit" style="color:#ffff"></i></a>`;
+                                    `<a class="badge badge-center rounded-pill bg-success" title="Kirim Revisi" style="cursor:pointer" onclick="mark_as_revised_1('${row.id}')"><i class="bx bx-check" style="color:#ffff"></i></a>
+                                    <a class="badge badge-center rounded-pill bg-success" title="Edit" href="{{ url('user-proposals/edit/${row.id}') }}"><i class="bx bxs-edit" style="color:#ffff"></i></a>
+                                    `;
                             } else {
                                 html =
                                     `<a class="badge badge-center rounded-pill bg-success mb-2" title="Kirim" style="cursor:pointer" onclick="SubmitFirst('${row.id}')"><i class="bx bx-check" style="color:#ffff"></i></a>
@@ -468,8 +574,8 @@
 
 
 
-
-        function SubmitId(id) {
+        //Revisi 1
+        function mark_as_revised_1(id) {
             Swal.fire({
                 title: "Apakah Anda yakin?",
                 text: "Anda akan mengirim hasil revisi ini!",
@@ -486,7 +592,7 @@
             }).then(function(result) {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "{{ route('user-proposals.submit') }}",
+                        url: "{{ route('user-proposals.mark_as_revised_1') }}",
                         type: "POST",
                         data: {
                             id: id,
@@ -518,6 +624,59 @@
                 }
             });
         }
+
+
+        //Revisi 2
+        function mark_as_revised_2(id) {
+            Swal.fire({
+                title: "Apakah Anda yakin?",
+                text: "Anda akan mengirim hasil revisi ini!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Kirim!',
+                customClass: {
+                    confirmButton: 'btn btn-primary me-1',
+                    cancelButton: 'btn btn-label-secondary'
+                },
+                buttonsStyling: false
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ route('user-proposals.mark_as_revised_2') }}",
+                        type: "POST",
+                        data: {
+                            id: id,
+                            _token: "{{ csrf_token() }}" // Include CSRF token for security
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Terkirim!',
+                                    text: 'Hasil revisi telah berhasil dikirim.',
+                                    customClass: {
+                                        confirmButton: 'btn btn-success'
+                                    }
+                                });
+                                $('#datatable').DataTable().ajax.reload();
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error!',
+                                    text: data.error,
+                                    customClass: {
+                                        confirmButton: 'btn btn-danger'
+                                    }
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
 
         function DeleteId(id) {
             Swal.fire({
@@ -573,6 +732,9 @@
         document.addEventListener('DOMContentLoaded', function() {
             const status_id = {
                 'S01': ['#Step-1'],
+                'S02': ['#Step-1'],
+                'S03': ['#Step-1'],
+                'S05': ['#Step-1'],
                 'S06': ['#Step-1', '#Step-2'],
                 'S07': ['#Step-1', '#Step-2', '#Step-3'],
                 'S08': ['#Step-1', '#Step-2', '#Step-3', '#Step-4'],

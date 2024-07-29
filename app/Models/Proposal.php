@@ -25,6 +25,7 @@ class Proposal extends Model
         'presentation_date',
         'presentation_time',
         'review_notes',
+        'review_notes_2',
         'approval_reviewer',
         'approval_admin_fundfinalization',
         'approval_vice_rector_1',

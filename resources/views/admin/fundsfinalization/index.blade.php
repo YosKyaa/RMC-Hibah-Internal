@@ -364,14 +364,12 @@
                             var html = '';
                             if (row.approval_admin_fundfinalization) {
                                 html =
-                                    `<a class="badge badge-center rounded-pill bg-success" title="Show" style="cursor:pointer"><i class="bx bx-show" style="color:#ffff"></i></a>`;
+                                    `<a class="badge badge-center rounded-pill bg-warning" title="Show" style="cursor:pointer"><i class="bx bx-show" style="color:#ffff"></i></a>`;
                             } else {
                                 html =
-                                    `<a class="badge badge-center rounded-pill bg-success" title="Approve" style="cursor:pointer" onclick="approveId(\'` +
+                                    `<a class="badge badge-center rounded-pill bg-success" title="Setujui" style="cursor:pointer" onclick="approveId(\'` +
                                     row.id +
-                                    `\')"><i class="bx bx-check" style="color:#ffff"></i></a>
-                                    <a class="badge badge-center rounded-pill bg-danger" title="Disapprove" style="cursor:pointer" onclick="disapproveId(\'` +
-                                    row.id + `\')"><i class="bx bx-x" style="color:#ffff"></i></a>`;
+                                    `\')"><i class="bx bx-check" style="color:#ffff"></i></a>`;
                             }
                             return html;
                         },
@@ -412,57 +410,6 @@
                         icon: 'success',
                         title: 'Disetujui!',
                         text: 'Proposal telah disetujui.',
-                        customClass: {
-                        confirmButton: 'btn btn-success'
-                        }
-                    });
-                    $('#datatable').DataTable().ajax.reload();
-                    } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error!',
-                        text: data.error,
-                        customClass: {
-                        confirmButton: 'btn btn-danger'
-                        }
-                    });
-                    }
-                }
-                });
-            }
-            });
-        }
-    </script>
-    <script>
-        function disapproveId(id) {
-            Swal.fire({
-            title: "Apakah Anda yakin?",
-            text: "Anda akan menolak proposal ini!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, tolak!',
-            customClass: {
-                confirmButton: 'btn btn-primary me-1',
-                cancelButton: 'btn btn-label-secondary'
-            },
-            buttonsStyling: false
-            }).then(function(result) {
-            if (result.isConfirmed) {
-                $.ajax({
-                url: "{{ route('fundsfinalization.disapprove') }}",
-                type: "POST",
-                data: {
-                    id: id,
-                    _token: "{{ csrf_token() }}" // Sertakan token CSRF untuk keamanan
-                },
-                success: function(response) {
-                    if (response.success) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Ditolak!',
-                        text: 'Proposal telah ditolak.',
                         customClass: {
                         confirmButton: 'btn btn-success'
                         }

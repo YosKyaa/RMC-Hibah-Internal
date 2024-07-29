@@ -55,6 +55,7 @@
                         <div class="mb-3">
                             <h6 class="mb-0 text-muted" style="font-size: 15px;">Total Pendanaan Tahap 2</h6>
                             <p><strong><em style="font-size: 18px;" id="seventyPercentDisplay"></em></strong></p>
+                            <div class="col-md-6"> <a href="{{ $documentUrl }}" class="btn btn-primary" target="_blank">Laporan Monev</a></div>
                         </div>
                     </div>
                 </div>
@@ -78,6 +79,7 @@
                             <div class="mb-3">
                                 <label for="inputAddress2" class="form-label mb-0">CATATAN Monev</label>
                                 <textarea class="form-control" id="inputAddress2" readonly disabled>{{ $proposals->monev_comment }}</textarea>
+
                             </div>
                             <button type="submit" class="btn btn-primary"
                                 onclick="return confirmSubmit(event)">Kirim</button>

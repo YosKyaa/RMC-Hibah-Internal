@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Revisi Pertama')
+@section('title', 'Revisi Kedua')
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/quill.css') }}">
@@ -9,25 +9,25 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/typeahead-js/typeahead.css') }}">
 @endsection
 @section('content')
-    <div class="container-xxl flex-grow-1 container-p-y">
+    {{-- <div class="container-xxl flex-grow-1 container-p-y"> --}}
         <!-- Basic Layout -->
-        <div class="row">
-            <div class="card mb-3 p-3">
+        {{-- <div class="row"> --}}
+            <div class="card p-3">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h2 class="mb-0">Berikan catatan!</h2> <small class="text-muted float-end">Max 2x Revisi</small>
                 </div>
-                <hr class="my-">
+                <hr class="my-0">
                 <div class="card-body">
-                    <form id="form-add-new-record" method="POST" action="{{ route('reviewers.update', $proposal->id) }}">
+                    <form id="form-add-new-record" method="POST" action="{{ route('reviewers.update2', $proposal->id) }}">
                         @csrf
                         @method('PUT')
                         <div class="mb-3">
-                            <label class="form-label mb-1" for="review_notes">Mohon berikan alasan mengapa proposal ini
+                            <label class="form-label mb-1" for="review_notes_2">Mohon berikan alasan mengapa proposal ini
                                 perlu direvisi:</label>
                             <div id="editor-container" class="form-control"></div>
-                            <textarea class="form-control d-none @error('review_notes') is-invalid @enderror" id="review_notes" name="review_notes"
-                                placeholder="Tuliskan isi pikiranmu..." style="height: 150px;">{{ old('review_notes') }}</textarea>
-                            @error('review_notes')
+                            <textarea class="form-control d-none @error('review_notes_2') is-invalid @enderror" id="review_notes_2" name="review_notes_2"
+                                placeholder="Tuliskan isi pikiranmu..." style="height: 150px;">{{ old('review_notes_2') }}</textarea>
+                            @error('review_notes_2')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -38,7 +38,8 @@
                 </div>
             </div>
         </div>
-    </div>
+
+    {{-- </div> --}}
 @endsection
 
 @section('script')
@@ -53,14 +54,14 @@
 
         // Sync the content of the Quill editor with the textarea
         quill.on('text-change', function() {
-            var review_notes = document.querySelector('textarea[name=review_notes]');
-            review_notes.value = quill.root.innerHTML;
+            var review_notes_2 = document.querySelector('textarea[name=review_notes_2]');
+            review_notes_2.value = quill.root.innerHTML;
         });
 
         // If the textarea already has content, load it into Quill
-        var review_notes = document.querySelector('textarea[name=review_notes]').value;
-        if (review_notes) {
-            quill.root.innerHTML = review_notes;
+        var review_notes_2 = document.querySelector('textarea[name=review_notes_2]').value;
+        if (review_notes_2) {
+            quill.root.innerHTML = review_notes_2;
         }
     </script>
 @endsection

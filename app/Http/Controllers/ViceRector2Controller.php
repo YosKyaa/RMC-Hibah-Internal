@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Documents;
 use App\Models\Proposal;
+use App\Models\User;
 use Illuminate\Http\Request;
 use PDF;
 use Carbon\Carbon;
@@ -19,14 +20,35 @@ class ViceRector2Controller extends Controller
      */
     public function index()
     {
+        $NonVerifCount = Proposal::where('approval_vice_rector_2', false)->count();
+        $VerifCount = Proposal::where('approval_vice_rector_2', true)->count();
         $proposals2 = Proposal::where('approval_vice_rector_1', true)
         ->with(['documents' => function ($query) {
             $query->select('id', 'proposals_id', 'proposal_doc', 'doc_type_id', 'created_by');
         }])
-        ->get();
-        return view('vicerector2.index', compact('proposals2'));
+        ->latest()->filter(request(['search']))->paginate(9);
+        $Total = Proposal::where('approval_vice_rector_1', true)
+        ->with(['documents' => function ($query) {
+            $query->select('id', 'proposals_id', 'proposal_doc', 'doc_type_id', 'created_by');
+        }])->count();
+        return view('vicerector2.index', compact('proposals2','NonVerifCount','VerifCount','Total'));
     }
+    public function show($id)
+    {
+        $proposals = Proposal::with([
+            'proposalTeams.researcher' => function ($query) {
+            $query->select('id', 'username', 'image');
+            },
 
+            'reviewer' => function ($query) {
+                $query->select('id', 'username', 'image');
+            },
+        ])->findOrFail($id);
+        $documentPath = $proposals->documents->first()->proposal_doc;
+        $documentUrl = url($documentPath);
+        $user = User::select('image');
+        return view('proposals.show', compact('proposals', 'documentUrl', 'user'));
+    }
     public function approve(Request $request)
     {
         $data = Proposal::find($request->id);

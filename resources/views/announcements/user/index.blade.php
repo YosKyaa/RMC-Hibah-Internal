@@ -34,7 +34,7 @@
         }
 
         .iframe {
-            height: 300px;
+            height: 500px;
             width: 100%;
             border: none;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);

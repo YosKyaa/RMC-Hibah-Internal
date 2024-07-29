@@ -72,12 +72,15 @@ Route::group(['prefix' => 'user-proposals'], function () {
     Route::get('/category/by_id', [UserProposalController::class, 'category_by_id'])->name('DOC.get_category_by_id');
     Route::get('/research_type_funds/{researchtypesId}', [UserProposalController::class, 'getResearchTypeFunds'])->name('get_research_type_funds');
     Route::post('/approve', [UserProposalController::class, 'approve'])->name('user-proposals.approve');
-    Route::post('/submit', [UserProposalController::class, 'submit'])->name('user-proposals.submit');
+    Route::post('/mark_as_revised_1', [UserProposalController::class, 'mark_as_revised_1'])->name('user-proposals.mark_as_revised_1');
+    Route::post('/mark_as_revised_2', [UserProposalController::class, 'mark_as_revised_2'])->name('user-proposals.mark_as_revised_2');
     Route::get('/print_pdf/{id}', [UserProposalController::class, 'print_pdf'])->name('print_pdf');
     Route::get('/account-bank/{id}', [UserProposalController::class, 'account_bank'])->name('user-proposals-account-bank.edit');
     Route::put('/account-bank-update/{id}', [UserProposalController::class, 'account_bank_update'])->name('user-proposals-account-bank.update');
     Route::get('/monev/{id}', [UserProposalController::class, 'monev'])->name('user-proposals-monev.edit');
     Route::put('/monev-update/{id}', [UserProposalController::class, 'monev_update'])->name('user-proposals-monev.update');
+    Route::get('final-report/{id}', [UserProposalController::class, 'final_report'])->name('user-proposals-final-report.edit');
+    Route::put('final-report-update/{id}', [UserProposalController::class, 'final_report_update'])->name('user-proposals-final-report.update');
 
 });
 
@@ -120,7 +123,6 @@ Route::group(['prefix' => 'admin'], function () {
         Route::any('/', [FinalisasiDanaController::class, 'index'])->name('fundsfinalization.index')->middleware('auth');
         Route::get('/data', [FinalisasiDanaController::class, 'data'])->name('fundsfinalization.data');
         Route::post('/approve', [FinalisasiDanaController::class, 'approve'])->name('fundsfinalization.approve');
-        Route::post('/disapprove', [FinalisasiDanaController::class, 'disapprove'])->name('fundsfinalization.disapprove');
     });
 
     Route::group(['prefix' => 'loa'], function () { //Loa
@@ -145,13 +147,16 @@ Route::group(['prefix' => 'reviewer'], function () { //reviewers
     Route::get('/data', [ReviewerController::class, 'data'])->name('reviewers.data');
     Route::delete('/delete', [ReviewerController::class, 'delete'])->name('reviewers.delete');
     Route::get('/show/{id}', [ReviewerController::class, 'show'])->name('reviewers.show');
-    Route::post('/mark_as_reviewed', [ReviewerController::class, 'mark_as_reviewed'])->name('reviewers.mark_as_reviewed');
-    Route::post('/presentation', [ReviewerController::class, 'presentation'])->name('reviewers.presentation');
-    Route::post('/approve', [ReviewerController::class, 'approve'])->name('reviewers.approve');
-    Route::post('/disapprove', [ReviewerController::class, 'disapprove'])->name('reviewers.disapprove');
+    Route::post('/approval_reviewer', [ReviewerController::class, 'approval_reviewer'])->name('reviewers.approval_reviewer');
+    Route::post('/reject', [ReviewerController::class, 'reject'])->name('reviewers.reject');
     Route::get('/revision/{id}', [ReviewerController::class, 'revision'])->name('reviewers.revision');
     Route::put('/update/{id}', [ReviewerController::class, 'update'])->name('reviewers.update');
-    Route::post('/reject', [ReviewerController::class, 'reject'])->name('reviewers.reject');
+    Route::get('/last-revision/{id}', [ReviewerController::class, 'last_revision'])->name('reviewers.last-revision');
+    Route::put('/update2/{id}', [ReviewerController::class, 'update2'])->name('reviewers.update2');
+    Route::post('/presentation', [ReviewerController::class, 'presentation'])->name('reviewers.presentation');
+    Route::post('/mark_as_presented', [ReviewerController::class, 'mark_as_presented'])->name('reviewers.mark_as_presented');
+
+
 
 });
 
@@ -162,22 +167,21 @@ Route::group(['prefix' => 'vicerector1'], function () { //vicerector1
     Route::get('/edit/{id}', [ViceRector1Controller::class, 'edit'])->name('vicerector1.edit');
     Route::post('/approve', [ViceRector1Controller::class, 'approve'])->name('vicerector1.approve');
     Route::post('/disapprove', [ViceRector1Controller::class, 'disapprove'])->name('vicerector1.disapprove');
-    Route::any('/show', [ViceRector1Controller::class, 'show'])->name('vicerector1.show');
+    Route::any('/show/{id}', [ViceRector1Controller::class, 'show'])->name('vicerector1.show');
 });
 
 Route::group(['prefix' => 'vicerector2'], function () { //vicerector2
-    Route::any('/', [ViceRector2Controller::class, 'index'])->name('vicerector2.index')->middleware('auth');
+    Route::get('/', [ViceRector2Controller::class, 'index'])->name('vicerector2.index')->middleware('auth');
     Route::get('/data', [ViceRector2Controller::class, 'data'])->name('vicerector2.data');
     Route::delete('/delete', [ViceRector2Controller::class, 'delete'])->name('vicerector2.delete');
     Route::get('/edit/{id}', [ViceRector2Controller::class, 'edit'])->name('vicerector2.edit');
     Route::post('/approve', [ViceRector2Controller::class, 'approve'])->name('vicerector2.approve');
     Route::post('/disapprove', [ViceRector2Controller::class, 'disapprove'])->name('vicerector2.disapprove');
-    Route::any('/show', [ViceRector2Controller::class, 'show'])->name('vicerector2.show');
+    Route::any('/show/{id}', [ViceRector2Controller::class, 'show'])->name('vicerector2.show');
     Route::get('/transfer_receipt/{id}', [ViceRector2Controller::class, 'transfer_receipt'])->name('vicerector2.transfer_receipt');
     Route::put('/transfer_receipt_update/{id}', [ViceRector2Controller::class, 'transfer_receipt_update'])->name('vicerector2.transfer_receipt_update');
     Route::get('/transfer_receipt2/{id}', [ViceRector2Controller::class, 'transfer_receipt2'])->name('vicerector2.transfer_receipt2');
     Route::put('/transfer_receipt2_update/{id}', [ViceRector2Controller::class, 'transfer_receipt2_update'])->name('vicerector2.transfer_receipt2_update');
-
 });
 
 Route::middleware('auth')->group(function () {

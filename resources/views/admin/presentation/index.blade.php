@@ -151,7 +151,6 @@
                                 <tr>
                                     <th>No</th>
                                     <th data-priority="1">Nama Peneliti</th>
-                                    <th>Tim Penelitian</th>
                                     <th data-priority="4">Judul Proposal</th>
                                     <th data-priority="5">Tanggal Presentasi</th>
                                     <th data-priority="3"></th>
@@ -345,13 +344,17 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.research_title;
-                            return html;
-                        }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
-                            var html = `<em>${row.presentation_date}</em>`;
+                            var reviewDateStart = new Date(row.presentation_date);
+                            var options = {
+                                timeZone: 'Asia/Jakarta',
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                            };
+                            var formattedDate = reviewDateStart.toLocaleDateString('id-ID',
+                                options);
+                            var html = '<em>' + (row.presentation_date ? formattedDate : '-') +
+                                '</em>';
                             return html;
                         }
                     },

@@ -47,7 +47,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" onclick="return confirmSubmit(event)">Kirim</button>
                 </form>
             </div>
         </div>
@@ -57,6 +57,8 @@
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         "use strict";
         setTimeout(function() {
@@ -89,5 +91,31 @@
             enableTime: true,
             noCalendar: true
         });
+
+
+        function confirmSubmit(event) {
+            event.preventDefault(); // Prevent the default form submission
+            Swal.fire({
+                title: "Apakah Anda yakin?",
+                text: "Anda akan menjadwalkan presentasi proposal ini!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Kirim!',
+                cancelButtonText: 'Batal',
+                customClass: {
+                    confirmButton: 'btn btn-primary me-1',
+                    cancelButton: 'btn btn-label-secondary'
+                },
+                buttonsStyling: false
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    // Submit the form via AJAX or standard form submission
+                    $('#form-add-new-record').submit();
+                }
+            });
+        }
+
     </script>
 @endsection

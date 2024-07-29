@@ -2,22 +2,30 @@
 @section('title', 'Dokumentasi')
 
 @section('css')
-<style>
-    /* .bs-stepper-header{
-        max-width:800px
-    }
-    .list-group .btn-pinned.btn-close{top:1.5rem !important}html:not([dir=rtl]) 
-    .list-group .btn-pinned.btn-close{right:1.5rem !important}[dir=rtl] 
-    .list-group .btn-pinned.btn-close{left:1.5rem !important}
-
-    .bs-stepper.wizard-icons .bs-stepper-header {
-    justify-content: space-around;
-} */
-</style>
-<link rel="stylesheet" href="../../assets/vendor/libs/bs-stepper/bs-stepper.css" />
 @endsection
 
 @section('content')
+<div class="card p-3 mb-3">
+    <div class="card-header">
+        <h2 class="card-title">Activity Diagram</h2>
+        <div class="card-body">
+            <a href="{{ asset('assets/img/dokumentasi/alur.png') }}" stream>
+            <img src="{{ asset('assets/img/dokumentasi/alur.png') }}" alt="Activity Diagram" class="img-fluid" style="max-width: 100%; height: auto;">
+            </a>
+        </div>
 
+    </div>
+</div>
+
+<div class="card p-3">
+    <div class="card-header">
+        <h2 class="card-title">User Guidance</h2>
+    </div>
+    <div class="card-body">
+        <a href="{{ asset('assets/img/dokumentasi/usecase.png') }}" stream>
+            <img src="{{ asset('assets/img/dokumentasi/usecase.png') }}" alt="User Guidance" class="img-fluid" style="max-width: 100%; height: auto;">
+        </a>
+    </div>
+</div>
 @endsection
 
