@@ -7,8 +7,8 @@
             </span>
         </a>
 
-        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto bg-dark">
-            <i class="bx bx-transfer-alt bx-sm align-middle"></i>
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto bg-primary">
+            <i class="bx bx-chevron-right bx-sm align-middle"></i>
         </a>
     </div>
     <div class="menu-inner-shadow"></div>
@@ -125,26 +125,9 @@
                         </li>
                     @endcan
                 </ul>
-                <li class="menu-item {{ request()->segment(1) == 'announcements' ? 'active' : '' }}">
-                    <a href="{{ route('announcements.index') }}" class="menu-link">
-                        <i class="menu-icon tf-icons bx bx-upload"></i>
-                        <div data-i18n="Dashboards">Announcements</div>
-                    </a>
-                </li>
-                <li class="menu-item {{ request()->segment(1) == 'dokumentasi' ? 'active' : '' }}">
-                    <a href="{{ route('dokumentasi') }}" class="menu-link">
-                        <i class="menu-icon tf-icons bx bx-file"></i>
-                        <div data-i18n="Dashboards">Dokumentasi</div>
-                    </a>
-                </li>
             </li>
         @endcan
-        @can('control panel.read')
-            <li class="menu-header small text-uppercase">
-                <span class="menu-header-text">Admin</span>
-            </li>
-        @endcan
-            <li class="menu-item {{ request()->segment(1) == 'admin' ? 'open active' : '' }}">
+        <li class="menu-item {{ request()->segment(1) == 'admin' ? 'open active' : '' }}">
                 <a href="#" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-cog"></i>
                     <div>Manage Proposals</div>
@@ -187,6 +170,25 @@
                         </a>
                     </li>
                 </ul>
+            </li>
+            <li class="menu-item {{ request()->segment(1) == 'announcements' ? 'active' : '' }}">
+                <a href="{{ route('announcements.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-upload"></i>
+                    <div data-i18n="Dashboards">Announcements</div>
+                </a>
+            </li>
+            
+        @can('control panel.read')
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">Dokumentasi</span>
+            </li>
+        @endcan
+            <li class="menu-item {{ request()->segment(1) == 'dokumentasi' ? 'active' : '' }}">
+                <a href="{{ route('dokumentasi') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-file"></i>
+                    <div data-i18n="Dashboards">Dokumentasi</div>
+                </a>
+            </li>    
     </ul>
 </aside>
 <!-- / Menu -->
