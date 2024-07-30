@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\LOA;
 use App\Models\Proposal;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use Mail;
 
 class ReviewerController extends Controller
 {
@@ -79,14 +81,24 @@ class ReviewerController extends Controller
 // Lolos Proposal
     public function approval_reviewer(Request $request)
     {
-        $data = Proposal::find($request->id);
+        $data = Proposal::with([
+            'users' => function ($query) {
+                $query->select('id', 'email');
+            }
+        ])->find($request->id);
+        // dd($data);
         if($data) {
             $data->approval_reviewer = true;
-            $data->save();
+            $x = $data->save();
+            if ($x) {
+//kirim email
+                Mail::to($data->users->email)->send(new LOA('emails.approval', "aaa"));
+            }
             return response()->json([
                 'success' => true,
                 'message' => 'Status berhasil diubah!'
             ]);
+
         } else {
             return response()->json([
                 'success' => false,

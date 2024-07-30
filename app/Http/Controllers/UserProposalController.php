@@ -392,6 +392,7 @@ public function update(Request $request, $id)
 
     public function delete(Request $request){
         $data = Proposal::find($request->id);
+        
         if($data){
             $data->delete();
             return response()->json([

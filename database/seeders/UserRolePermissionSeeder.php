@@ -32,7 +32,7 @@ class UserRolePermissionSeeder extends Seeder
             ], $default_user_value));
 
             $lecture1 = User::create(array_merge([
-                'email' => 'adam@gmail.com',
+                'email' => 'adamrinaldiakbar@gmail.com',
                 'name' => 'adamrinaldi',
                 'username' => 'adamrinaldi',
             ], $default_user_value));
