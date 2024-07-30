@@ -24,32 +24,35 @@
         </li>
         <li class="menu-item {{ request()->segment(1) == 'user-announcements' ? 'active' : '' }}">
             <a href="{{ route('user-announcements.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-upload"></i>
-                <div data-i18n="Dashboards">Announcements</div>
+                <i class="menu-icon tf-icons bx bx-calendar-event"></i>
+                <div data-i18n="Dashboards">Pengumuman</div>
             </a>
         </li>
         <li class="menu-item {{ request()->segment(1) == 'user-proposals' ? 'active' : '' }}">
             <a href="{{ route('user-proposals.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-file"></i>
-                <div data-i18n="Dashboards">Submit Proposal</div>
+                <div data-i18n="Dashboards">Pengajuan</div>
             </a>
         </li>
         <li class="menu-item {{ request()->segment(1) == 'reviewer' ? 'active' : '' }}">
             <a href="{{ route('reviewers.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-book-reader"></i>
                 <div data-i18n="Dashboards">Review Proposals</div>
+                <!-- <span class="notification-badge" id="">3</span> -->
             </a>
         </li>
         <li class="menu-item {{ request()->segment(1) == 'vicerector1' ? 'active' : '' }}">
             <a href="{{ route('vicerector1.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-book-reader"></i>
-                <div data-i18n="Dashboards">VR I Approval</div>
+                <div data-i18n="Dashboards">Verifikasi Warek I</div>
+                <!-- <span class="notification-badge" id="">3</span> -->
             </a>
         </li>
         <li class="menu-item {{ request()->segment(1) == 'vicerector2' ? 'active' : '' }}">
             <a href="{{ route('vicerector2.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-book-reader"></i>
-                <div data-i18n="Dashboards">VR II Approval</div>
+                <div data-i18n="Dashboards">Verifikasi Warek II</div>
+                <!-- <span class="notification-badge" id="">3</span> -->
             </a>
         </li>
 
@@ -62,13 +65,13 @@
             <li class="menu-item {{ request()->segment(1) == 'setting' ? 'open active' : '' }}">
                 <a href="#" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-cog"></i>
-                    <div>Settings</div>
+                    <div>Pengaturan</div>
                 </a>
                 <ul class="menu-sub">
                     @can('setting/manage_account.read')
                         <li class="menu-item {{ request()->segment(2) == 'manage_account' ? 'open active' : '' }}">
                             <a href="" class="menu-link menu-toggle">
-                                <div>Manage Account</div>
+                                <div>Kelola Akun</div>
                             </a>
                             <ul class="menu-sub">
                                 @can('setting/manage_account/users.read')
@@ -99,7 +102,7 @@
                     @can('setting/manage_data.read')
                         <li class="menu-item {{ request()->segment(2) == 'manage_data' ? 'open active' : '' }}">
                             <a href="" class="menu-link menu-toggle">
-                                <div>Manage Lookup</div>
+                                <div>Kelola Data</div>
                             </a>
                             <ul class="menu-sub">
                                 <li class="menu-item {{ request()->segment(2) == 'proposals' ? 'active' : '' }}">
@@ -177,7 +180,7 @@
             <li class="menu-item {{ request()->segment(1) == 'announcements' ? 'active' : '' }}">
                 <a href="{{ route('announcements.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-upload"></i>
-                    <div data-i18n="Dashboards">Announcements</div>
+                    <div data-i18n="Dashboards">Kelola Pengumuman</div>
                 </a>
             </li>
             

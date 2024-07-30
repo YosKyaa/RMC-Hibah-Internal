@@ -135,15 +135,14 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <div class="avatar me-4">
-                            <span class="avatar-initial rounded bg-label-primary"><i
-                                    class="bx bx-baguette bx-md"></i></span>
+                            <span style="color: #e1a440;"><i
+                                    class="bx bx-baguette bx-lg"></i></span>
                         </div>
-                        <h3 class="mb-0"><strong>{{ $panganCount }}</strong></h3>
+                        <p style="width: 65%; font-size: smaller;">Jumlah usulan draft / submited kategori Pangan</p>
                     </div>
-                    <p class="mb-2" style="font-size: large;">Pangan</p>
+                    
                     <p class="mb-0">
-                        <span class="text-heading fw-medium me-2">+18.2%</span>
-                        <span class="text-muted">than last week</span>
+                    <h3 class="mb-0 text-center"><strong>{{ $panganCount }} / </strong></h3>
                     </p>
                 </div>
             </div>
@@ -153,14 +152,12 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <div class="avatar me-4">
-                            <span class="avatar-initial rounded bg-label-warning"><i class='bx bxl-react bx-md'></i></span>
+                            <span style="color:#FFFF00"><i class='bx bxl-react bx-lg'></i></span>
                         </div>
-                        <h4 class="mb-0">{{$energiCount}}</h4>
+                        <p style="width: 65%; font-size: smaller;">Jumlah usulan draft / submited kategori Energi</p>
                     </div>
-                    <p class="mb-2" style="font-size: large;">Energi</p>
-                    <p class="mb-0">
-                        <span class="text-heading fw-medium me-2">-8.7%</span>
-                        <span class="text-muted">than last week</span>
+                     <p class="mb-0">
+                     <h3 class="mb-0 text-center"><strong>{{$energiCount}} / </strong></h3>
                     </p>
                 </div>
             </div>
@@ -170,15 +167,13 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <div class="avatar me-4">
-                            <span class="avatar-initial rounded bg-label-danger"><i
-                                    class='bx bx-heart bx-md'></i></span>
+                            <span style="color:#FF0000"><i
+                                    class='bx bx-heart bx-lg'></i></span>
                         </div>
-                        <h4 class="mb-0">{{$kesehatanCount}}</h4>
+                        <p style="width: 65%; font-size: smaller;">Jumlah usulan draft / submited kategori Kesehatan</p>
                     </div>
-                    <p class="mb-2" style="font-size: large;">Kesehatan</p>
                     <p class="mb-0">
-                        <span class="text-heading fw-medium me-2">+4.3%</span>
-                        <span class="text-muted">than last week</span>
+                    <h3 class="mb-0 text-center"><strong>{{$kesehatanCount}} / </strong></h3>
                     </p>
                 </div>
             </div>
@@ -188,14 +183,13 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <div class="avatar me-4">
-                            <span class="avatar-initial rounded bg-label-info"><i class='bx bx-car bx-md'></i></span>
+                            <span style="color:#00FFFF"><i class='bx bx-car bx-lg'></i></span>
                         </div>
-                        <h4 class="mb-0">{{$transportasiCount}}</h4>
+                        <p style="width: 65%; font-size: smaller;">Jumlah usulan draft / submited kategori Transportasi</p>
                     </div>
-                    <p class="mb-2" style="font-size: large;">Transportasi</p>
+                    
                     <p class="mb-0">
-                        <span class="text-heading fw-medium me-2">-2.5%</span>
-                        <span class="text-muted">than last week</span>
+                    <h3 class="mb-0 text-center"><strong>{{$transportasiCount}} / </strong></h3>
                     </p>
                 </div>
             </div>
@@ -205,14 +199,12 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <div class="avatar me-4">
-                            <span class="avatar-initial rounded bg-label-success"><i class='bx bx-shield-quarter bx-md'></i></span>
+                            <span style="color: #008000;"><i class='bx bx-shield-quarter bx-lg'></i></span>
                         </div>
-                        <h4 class="mb-0">{{$pertahananCount}}</h4>
+                        <p style="width: 65%; font-size: smaller;">Jumlah usulan draft / submited kategori Pertahanan dan Keamanan</p>
                     </div>
-                    <p class="mb-2" style="font-size: large;">Pertahanan dan keamanan</p>
                     <p class="mb-0">
-                        <span class="text-heading fw-medium me-2">-2.5%</span>
-                        <span class="text-muted">than last week</span>
+                        <h3 class="mb-0 text-center"><strong>{{$pertahananCount}} / </strong></h3>
                     </p>
                 </div>
             </div>
@@ -222,14 +214,12 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <div class="avatar me-4">
-                            <span class="avatar-initial rounded bg-label-dark"><i class='bx bx-git-repo-forked bx-md'></i></span>
+                            <span style="color: #000000"><i class='bx bx-git-repo-forked bx-lg'></i></span>
                         </div>
-                        <h4 class="mb-0">{{$majuCount}}</h4>
+                        <p style="width: 65%; font-size: smaller;">Jumlah usulan draft / submited kategori Material Maju</p>
                     </div>
-                    <p class="mb-2" style="font-size: large;">Material maju</p>
                     <p class="mb-0">
-                        <span class="text-heading fw-medium me-2">-2.5%</span>
-                        <span class="text-muted">than last week</span>
+                        <h3 class="mb-0 text-center"><strong>{{$majuCount}} / </strong></h3>
                     </p>
                 </div>
             </div>
@@ -239,14 +229,12 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <div class="avatar me-4">
-                            <span class="avatar-initial rounded bg-label-info"><i class='bx bxl-digitalocean bx-md'></i></span>
+                            <span style="color: aqua;"><i class='bx bxl-digitalocean bx-lg'></i></span>
                         </div>
-                        <h4 class="mb-0">{{$keamaritimanCount}}</h4>
+                        <p style="width: 65%; font-size: smaller;">Jumlah usulan draft / submited kategori Kemaritiman</p>
                     </div>
-                    <p class="mb-2" style="font-size: large;">Kemaritiman</p>
                     <p class="mb-0">
-                        <span class="text-heading fw-medium me-2">-2.5%</span>
-                        <span class="text-muted">than last week</span>
+                    <h3 class="mb-0 text-center"><strong>{{$keamaritimanCount}} / </strong></h3>
                     </p>
                 </div>
             </div>
@@ -256,14 +244,12 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <div class="avatar me-4">
-                            <span class="avatar-initial rounded bg-label-primary"><i class='bx bx-error bx-md'></i></span>
+                            <span style="color: #e1a440;"><i class='bx bx-error bx-lg'></i></span>
                         </div>
-                        <h4 class="mb-0">{{$kebencanaanCount}}</h4>
+                        <p style="width: 65%; font-size: smaller;">Jumlah usulan draft / submited kategori Kebencanaan</p>
                     </div>
-                    <p class="mb-2" style="font-size: large;">Kebencanaan</p>
                     <p class="mb-0">
-                        <span class="text-heading fw-medium me-2">-2.5%</span>
-                        <span class="text-muted">than last week</span>
+                        <h3 class="mb-0 text-center"><strong>{{$kebencanaanCount}} / </strong></h3>
                     </p>
                 </div>
             </div>
@@ -273,14 +259,12 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <div class="avatar me-4">
-                            <span class="avatar-initial rounded bg-label-warning"><i class='bx bx-laptop bx-md'></i></span>
+                            <span style="color: #FFFF00;"><i class='bx bx-laptop bx-lg'></i></span>
                         </div>
-                        <h4 class="mb-0">{{$tiCount}}</h4>
                     </div>
-                    <p class="mb-2" style="font-size: large;">Teknologi informasi dan komunikasi</p>
+                    <p style="font-size: smaller;">Jumlah usulan draft / submited kategori Teknologi informasi dan komunikasi</p>
                     <p class="mb-0">
-                        <span class="text-heading fw-medium me-2">-2.5%</span>
-                        <span class="text-muted">than last week</span>
+                        <h3 class="mb-0 text-center"><strong>{{$tiCount}} / </strong></h3>
                     </p>
                 </div>
             </div>
@@ -290,14 +274,12 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <div class="avatar me-4">
-                            <span class="avatar-initial rounded bg-label-danger"><i class='bx bx-street-view bx-md'></i></span>
+                            <span style="color: #FF0000;"><i class='bx bx-street-view bx-lg'></i></span>
                         </div>
-                        <h4 class="mb-0">{{$sosialHumanioraCount}}</h4>
                     </div>
-                    <p class="mb-2" style="font-size: large;">Sosial humaniora, seni budaya, pendidikan</p>
+                    <p style="font-size: smaller;">Jumlah usulan draft / submited kategori Sosial humaniora, seni budaya, pendidikan</p>
                     <p class="mb-0">
-                        <span class="text-heading fw-medium me-2">-2.5%</span>
-                        <span class="text-muted">than last week</span>
+                        <h3 class="mb-0 text-center"><strong>{{$sosialHumanioraCount}} / </strong></h3>
                     </p>
                 </div>
             </div>
