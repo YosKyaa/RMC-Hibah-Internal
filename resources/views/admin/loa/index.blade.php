@@ -1,4 +1,4 @@
-@extends('layouts.master')
+<!-- @extends('layouts.master')
 @section('title', 'Settings/Manage Lookup/Manage Proposal')
 
 
@@ -377,4 +377,4 @@
                 })
         }
     </script>
-@endsection
+@endsection -->

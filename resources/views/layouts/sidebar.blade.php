@@ -163,12 +163,12 @@
                             <div>Finalisasi Dana</div>
                         </a>
                     </li>
-                    <li class="menu-item {{ request()->segment(2) == 'loa' ? 'active' : '' }}">
+                    <!-- <li class="menu-item {{ request()->segment(2) == 'loa' ? 'active' : '' }}">
                         <a href="{{ route('loa.index') }}" class="menu-link">
                             
                             <div>LoA & Kontrak</div>
                         </a>
-                    </li>
+                    </li> -->
                     <li class="menu-item {{ request()->segment(2) == 'monev' ? 'active' : '' }}">
                         <a href="{{ route('monev.index') }}" class="menu-link">
                             

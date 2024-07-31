@@ -141,7 +141,7 @@
                     </div>
 
                     <p class="mb-0">
-                    <h3 class="mb-0 text-center"><strong>{{ $panganCount }} / {{ $panganCount }}</strong></h3>
+                    <h3 class="mb-0 text-center"><strong>{{ $panganCount }} / {{ $panganCount2 }}</strong></h3>
                     </p>
                 </div>
             </div>
@@ -156,7 +156,7 @@
                         <p style="width: 65%; font-size: smaller;">Jumlah usulan draft / submited kategori Energi</p>
                     </div>
                      <p class="mb-0">
-                     <h3 class="mb-0 text-center"><strong>{{$energiCount}} / {{$energiCount}}</strong></h3>
+                     <h3 class="mb-0 text-center"><strong>{{$energiCount}} / {{$energiCount2}}</strong></h3>
                     </p>
                 </div>
             </div>
@@ -172,7 +172,7 @@
                         <p style="width: 65%; font-size: smaller;">Jumlah usulan draft / submited kategori Kesehatan</p>
                     </div>
                     <p class="mb-0">
-                    <h3 class="mb-0 text-center"><strong>{{$kesehatanCount}} / {{$kesehatanCount}}</strong></h3>
+                    <h3 class="mb-0 text-center"><strong>{{$kesehatanCount}} / {{$kesehatanCount2}}</strong></h3>
                     </p>
                 </div>
             </div>
@@ -188,7 +188,7 @@
                     </div>
 
                     <p class="mb-0">
-                    <h3 class="mb-0 text-center"><strong>{{$transportasiCount}} / {{$transportasiCount}}</strong></h3>
+                    <h3 class="mb-0 text-center"><strong>{{$transportasiCount}} / {{$transportasiCount2}}</strong></h3>
                     </p>
                 </div>
             </div>

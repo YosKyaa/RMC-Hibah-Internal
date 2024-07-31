@@ -86,7 +86,7 @@
                             <div class="icon flex-shrink-0"><i class="bi bi-briefcase"></i></div>
                             <div>
                                 <h4 class="title"><a href="#" class="stretched-link">Hibah Internal</a></h4>
-                                <p class="description">Dana yang disediakan oleh institusi, dalam hal ini Jakarta Global University (JGU), untuk mendukung penelitian yang dilakukan oleh anggota fakultas, mahasiswa, atau staf universitas.</p>
+                                <p class="description">Dana yang disediakan oleh institusi, dalam hal ini Universitas Global Jakarta (JGU), untuk mendukung penelitian yang dilakukan oleh  mahasiswa atau staf universitas.</p>
                             </div>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                         <div class="service-item d-flex">
                             <div class="icon flex-shrink-0"><i class="bi bi-card-checklist"></i></div>
                             <div>
-                                <h4 class="title"><a href="#" class="stretched-link">Hibah Publikasi</a></h4>
+                                <h4 class="title"><a href="#" class="stretched-link">Hibah Eksternal</a></h4>
                                 <p class="description">Dana yang diperoleh dari sumber di luar institusi, seperti pemerintah, lembaga swasta, organisasi non-profit, atau badan internasional, untuk mendukung penelitian dan proyek akademik.</p>
                             </div>
                         </div>
@@ -118,8 +118,8 @@
                     <h3>Research Management Center</h3>
                     <p class="fst-italic">
                         Research Management Center (RMC) adalah unsur pelaksana akademik yang melaksanakan sebagian
-                        tugas dan fungsi JGU di bidang penelitian yang berada di bawah Wakil Rektor I.
-                        RMC dipimpin oleh seorang Ketua yang bertanggung jawab langsung kepada Wakil Rektor I.
+                        tugas dan fungsi JGU di bidang penelitian yang berada di bawah Wakil Rektor III.
+                        RMC dipimpin oleh seorang Ketua yang bertanggung jawab langsung kepada Wakil Rektor III.
                         Ketua dalam melaksanakan tugasnya dibantu oleh 2 (dua) orang Staf. <br> <br>
                         RMC mempunyai tugas melaksanakan koordinasi, pelaksanaan, pemantauan, dan evaluasi kegiatan
                         penelitian. Dalam melaksanakan tugas tersebut RMC menyelenggarakan fungsi:
@@ -128,7 +128,7 @@
                         <li><i class="bi bi-check-circle"></i> <span>Perbaikan sistem penelitian internal terkait
                                 dengan perencanaan, monitoring, dan evaluasi.</span></li>
                         <li><i class="bi bi-check-circle"></i> <span>Peningkatan kapasitas dan kapabilitas SDM melalui
-                                pelatihan.</span></li>
+                                penelitian.</span></li>
                         <li><i class="bi bi-check-circle"></i> <span>Peningkatan pendanaan penelitian melalui dana
                                 internal, kompetisi hibah, dan kerjasama.</span></li>
                         <li><i class="bi bi-check-circle"></i> <span>Pembentukan pusat studi/Center of Excelence (CoE)
@@ -262,20 +262,6 @@
                             <div class="testimonial-item">
                                 <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img"
                                     alt="">
-                                <h3>(NAMA REKTOR)</h3>
-                                <h4>Rektor</h4>
-                                <div class="profile mt-auto">
-                                    <p>
-                                        (PROFIL SINGKAT)
-                                    </p>
-                                </div>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img"
-                                    alt="">
                                 <h3>(NAMA WAREK 1)</h3>
                                 <h4>Wakil Rektor 1</h4>
                                 <div class="profile mt-auto">
@@ -288,10 +274,24 @@
 
                         <div class="swiper-slide">
                             <div class="testimonial-item">
+                                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img"
+                                    alt="">
+                                <h3>(NAMA WAREK 2)</h3>
+                                <h4>Wakil Rektor 2</h4>
+                                <div class="profile mt-auto">
+                                    <p>
+                                        (PROFIL SINGKAT)
+                                    </p>
+                                </div>
+                            </div>
+                        </div><!-- End testimonial item -->
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
                                 <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img"
                                     alt="">
-                                <h3>(NAWA WAREK 2)</h3>
-                                <h4>Wakil Rektor 2</h4>
+                                <h3>(NAWA WAREK 3)</h3>
+                                <h4>Wakil Rektor 3</h4>
                                 <div class="profile mt-auto">
                                     <p>
                                         (PROFIL SINGKAT)
@@ -306,34 +306,6 @@
                                     alt="">
                                 <h3>(NAMA KEPALA RMC)</h3>
                                 <h4>Kepala RMC</h4>
-                                <div class="profile mt-auto">
-                                    <p>
-                                        (PROFIL SINGKAT)
-                                    </p>
-                                </div>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img"
-                                    alt="">
-                                <h3>(NAMA STAF RMC)</h3>
-                                <h4>Staf RMC</h4>
-                                <div class="profile mt-auto">
-                                    <p>
-                                        (PROFIL SINGKAT)
-                                    </p>
-                                </div>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img"
-                                    alt="">
-                                <h3>(NAMA STAF RMC)</h3>
-                                <h4>Staf RMC</h4>
                                 <div class="profile mt-auto">
                                     <p>
                                         (PROFIL SINGKAT)

@@ -126,11 +126,11 @@
                     <span class="badge bg-danger badge-notifications" id="AdminFundFinalization" style="display: none;"></span>
                 </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a type="button" class="nav-link" data-bs-target="#loa" href="../admin/loa">
                     <i class="tf-icons bx bx-task me-1"></i> LoA & Kontrak
                 </a>
-            </li>
+            </li> -->
             <li class="nav-item">
                 <a type="button" class="nav-link active" data-bs-target="#monev" href="../admin/monev">
                     <i class="tf-icons bx bx-select-multiple me-1"></i> Verifikasi Monev
@@ -150,9 +150,9 @@
             <div class="tab-pane fade" id="dana" role="tabpanel">
 
             </div>
-            <div class="tab-pane fade" id="loa" role="tabpanel">
+            <!-- <div class="tab-pane fade" id="loa" role="tabpanel">
 
-            </div>
+            </div> -->
             <div class="tab-pane fade show active" id="monev" role="tabpanel">
                 <div class="table-responsive">
                     <div class="card-datatable table-responsive">
