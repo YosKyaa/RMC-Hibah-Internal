@@ -73,11 +73,11 @@
 
         <p style="text-indent: 4em;">Berdasarkan hasil seleksi proposal dari Tim Reviewer Internal JGU menetapkan penerima hibah internal penelitian yang ditetapkan melalui Surat Keputusan Rektor Universitas Global Jakarta Nomor: 91/SK/JGU/VI/2024 tanggal 08 Juni 2024 tentang Penerima Program Hibah Internal Penelitian Tahun 2024 maka bersama ini kami sampaikan daftar nama terlampir.</p>
 
-        <p style="text-indent: 4em;">Berkenaan dengan hal tersebut, Research Management Centre mengucapkan selamat kepada para Penerima Program Hibah Internal Penelitian Tahun 2024.</p>
+        <p style="text-indent: 4em;">Berkenaan dengan hal tersebut, Research Management Centre mengucapkan terima kasih kepada seluruh pengusul Program Hibah Internal Penelitian Tahun 2024. Kami informasikan bahwa nama pengusul tidak tercantum dalam daftar penerima hibah tahun ini. Kami menghargai partisipasi Anda dan mendorong untuk mengajukan kembali pada kesempatan mendatang.</p>
 
         <p>Berkaitan dengan hal ini dapat kami sampaikan beberapa hal sebagai berikut yaitu:
             <ul type="1" style="font-size: 14px;">
-                <li>Bagi pengusul yang dinyatakan lolos dan menerima pendanaan hibah untuk dapat segera merevisi proposal hasil review sebagaimana yang tertulis dalam catatan review. Proposal revisi dapat diupload di www.rmc.jgu.ac.id mulai tanggal 10 s/d 16 Juni 2024 pukul 16.00 WIB. Jika pada sampai batas waktu pengumpulan proposal revisi calon penerima hibah belum mengumpulkan maka pengusul akan dinyatakan gugur.</li>
+                <li>Bagi pengusul yang dinyatakan lolos dan menerima pendanaan hibah untuk dapat segera merevisi proposal hasil review sebagaimana yang tertulis dalam catatan review. Proposal revisi dapat diupload di www.rmc.jgu.ac.id Sampai waktu yang ditentukan di menu Pengumuman. Jika pada sampai batas waktu pengumpulan proposal revisi calon penerima hibah belum mengumpulkan maka pengusul akan dinyatakan gugur.</li>
                 <li>Penandatanganan kontrak pelaksanaan program penelitian akan diinformasikan lebih lanjut.</li>
                 <li>Hal-hal lain yang terkait dengan penandatanganan kontrak pencairan dana dan pelaksanaan program penelitian akan diinformasikan lebih lanjut melalui web RMC (www.rmc.jgu.ac.id).</li>
             </ul>
