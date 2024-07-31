@@ -21,6 +21,12 @@
         .margin-left {
             margin-left: 20px;
         }
+        .layout-page,
+        .content-wrapper,
+        .content-wrapper>*,
+        .layout-menu {
+            min-height: unset;
+        }
     </style>
 @endsection
 

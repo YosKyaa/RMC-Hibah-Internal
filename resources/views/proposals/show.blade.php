@@ -352,7 +352,7 @@
                                             @elseif ($proposals->status_id == 'S04')
                                                 <span class="badge bg-label-danger">Ditolak</span>
                                             @else
-                                                <span class="badge bg-label-warning">Pending</span>
+                                                <span class="badge bg-label-secondary">-</span>
                                             @endif
                                         </h6>
                                     </div>
@@ -370,7 +370,7 @@
                                             @if ($proposals->approval_vice_rector_1)
                                                 <span class="badge bg-label-success">Telah Terverifikasi</span>
                                             @else
-                                                <span class="badge bg-label-warning">Pending</span>
+                                                <span class="badge bg-label-secondary">-</span>
                                             @endif
                                         </h6>
                                     </div>
@@ -388,7 +388,7 @@
                                             @if ($proposals->approval_vice_rector_2)
                                                 <span class="badge bg-label-success">Telah Terverifikasi</span>
                                             @else
-                                                <span class="badge bg-label-warning">Pending</span>
+                                                <span class="badge bg-label-secondary">-</span>
                                             @endif
                                         </h6>
                                     </div>

@@ -13,8 +13,14 @@
 @endsection
 
 @section('style')
-
-
+<style>
+    .layout-page,
+        .content-wrapper,
+        .content-wrapper>*,
+        .layout-menu {
+            min-height: unset;
+        }
+</style>
 @endsection
 
 @section('content')

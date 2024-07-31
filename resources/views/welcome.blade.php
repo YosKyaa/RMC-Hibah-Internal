@@ -260,7 +260,7 @@
 
                         <div class="swiper-slide">
                             <div class="testimonial-item">
-                                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img"
+                                <img src="assets/img/avatars/user.png" class="testimonial-img"
                                     alt="">
                                 <h3>(NAMA WAREK 1)</h3>
                                 <h4>Wakil Rektor 1</h4>
@@ -274,7 +274,7 @@
 
                         <div class="swiper-slide">
                             <div class="testimonial-item">
-                                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img"
+                                <img src="assets/img/avatars/user.png" class="testimonial-img"
                                     alt="">
                                 <h3>(NAMA WAREK 2)</h3>
                                 <h4>Wakil Rektor 2</h4>
@@ -288,7 +288,7 @@
 
                         <div class="swiper-slide">
                             <div class="testimonial-item">
-                                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img"
+                                <img src="assets/img/avatars/user.png" class="testimonial-img"
                                     alt="">
                                 <h3>(NAWA WAREK 3)</h3>
                                 <h4>Wakil Rektor 3</h4>
@@ -302,7 +302,7 @@
 
                         <div class="swiper-slide">
                             <div class="testimonial-item">
-                                <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img"
+                                <img src="assets/img/avatars/user.png" class="testimonial-img"
                                     alt="">
                                 <h3>(NAMA KEPALA RMC)</h3>
                                 <h4>Kepala RMC</h4>

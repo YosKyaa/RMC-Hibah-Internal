@@ -36,6 +36,12 @@
             border-top-left-radius: .375rem !important;
             border-top-right-radius: .375rem !important;
         }
+        .layout-page,
+        .content-wrapper,
+        .content-wrapper>*,
+        .layout-menu {
+            min-height: unset;
+        }
     </style>
 @endsection
 
@@ -85,7 +91,7 @@
             <!--/ Header -->
 
             <!-- Navbar pills -->
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-md-12">
                     <ul class="nav nav-pills flex-column flex-sm-row mb-4">
                         <li class="nav-item"><a class="nav-link active" href="javascript:void(0);"><i
@@ -98,7 +104,7 @@
                                     class="bx bx-link-alt me-1"></i> Connections</a></li>
                     </ul>
                 </div>
-            </div>
+            </div> -->
             <!--/ Navbar pills -->
 
             <!-- User Profile Content -->
@@ -242,6 +248,4 @@
         </div>
         </div>
         <!-- / Content -->
-        <div class="content-backdrop fade"></div>
-    </div>
 @endsection
