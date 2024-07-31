@@ -6,6 +6,7 @@ use App\Models\Proposal;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use PDF;
 
 class ViceRector1Controller extends Controller
 {
@@ -15,7 +16,9 @@ class ViceRector1Controller extends Controller
     public function index()
     {
 
-        $NonVerifCount = Proposal::where('approval_vice_rector_1', false)->count();
+        $NonVerifCount = Proposal::where('approval_vice_rector_1', false)
+            ->where('approval_admin_fundfinalization', true)
+            ->count();
         $VerifCount = Proposal::where('approval_vice_rector_1', true)->count();
         $totalAdminFundApproval = Proposal::where('approval_admin_fundfinalization', true)->count();
         $proposals = Proposal::where('approval_admin_fundfinalization', true)->latest()->filter(request(['search']))->paginate(9);
@@ -113,5 +116,10 @@ class ViceRector1Controller extends Controller
             ]);
         }
     }
-
+    public function print_contract($id)
+    {
+        $proposals = Proposal::findOrFail($id);
+        $pdf = PDF::loadView('proposals.print', compact('proposals'));
+        return $pdf->stream('proposal.pdf');
+    }
 }

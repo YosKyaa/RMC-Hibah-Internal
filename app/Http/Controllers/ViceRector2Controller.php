@@ -20,7 +20,9 @@ class ViceRector2Controller extends Controller
      */
     public function index()
     {
-        $NonVerifCount = Proposal::where('approval_vice_rector_2', false)->count();
+        $NonVerifCount = Proposal::where('approval_vice_rector_2', false)
+            ->where('approval_vice_rector_1', true)
+            ->count();
         $VerifCount = Proposal::where('approval_vice_rector_2', true)->count();
         $proposals2 = Proposal::where('approval_vice_rector_1', true)
         ->with(['documents' => function ($query) {

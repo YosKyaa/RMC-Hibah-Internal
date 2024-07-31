@@ -13,15 +13,15 @@
 @endsection
 
 @section('style')
-<style>
-  .margin-right {
-    margin-right: 20px;
-  }
+    <style>
+        .margin-right {
+            margin-right: 20px;
+        }
 
-  .margin-left {
-    margin-left: 20px;
-  }
-</style>
+        .margin-left {
+            margin-left: 20px;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -68,7 +68,8 @@
                                 <i class="bx bx-laptop bx-sm"></i>
                             </span>
                             <div class="content-right">
-                                <p class="mb-0">Jumlah Proposal yang <strong>Belum diverifikasi {{$NonVerifCount}}</strong> </p>
+                                <p class="mb-0">Jumlah Proposal yang <strong>Belum diverifikasi
+                                        {{ $NonVerifCount }}</strong> </p>
                                 <h4 class="text-primary mb-0"></h4>
                             </div>
                         </div>
@@ -77,7 +78,8 @@
                                 <i class="bx bx-check-circle bx-sm"></i>
                             </span>
                             <div class="content-right">
-                                <p class="mb-0">Jumlah Proposal yang <strong>Telah diverifikasi {{$VerifCount}}</strong> </p>
+                                <p class="mb-0">Jumlah Proposal yang <strong>Telah diverifikasi
+                                        {{ $VerifCount }}</strong> </p>
                                 <h4 class="text-warning mb-0"></h4>
                             </div>
                         </div>
@@ -89,7 +91,8 @@
             <div class="card-header d-flex flex-wrap justify-content-between gap-3">
                 <div class="card-title mb-0 me-1">
                     <h5 class="mb-1">List Proposal</h5>
-                    <p class="text-muted mb-0">Total <strong>{{ $totalAdminFundApproval}}</strong> proposal pengajuan yang tersedia.</p>
+                    <p class="text-muted mb-0">Total <strong>{{ $totalAdminFundApproval }}</strong> proposal pengajuan yang
+                        tersedia.</p>
                 </div>
                 {{-- <div class="d-flex justify-content-md-end align-items-center gap-3 flex-wrap">
                     <div class="position-relative"><select id="select2_course_select"
@@ -128,31 +131,40 @@
                                     <div class="d-flex justify-content-start align-items-center mt-lg-4 mb-3">
                                         <div class="avatar me-3" style="width: 40px; height: 40px;">
                                             @if ($p->users->image)
-                                                <img src="{{ asset($p->users->image) }}" alt="Avatar" class="rounded-circle"
-                                                    style="width: 100%; height: 100%;">
+                                                <img src="{{ asset($p->users->image) }}" alt="Avatar"
+                                                    class="rounded-circle" style="width: 100%; height: 100%;">
                                             @else
                                                 <img src="{{ asset('/assets/img/avatars/user.png') }}" alt="Avatar"
                                                     class="rounded-circle" style="width: 100%; height: 100%;">
                                             @endif
                                         </div>
                                         <div class="d-flex flex-column">
-                                            <h6 class="mb-1 text-truncate" style="font-size: 20px;">{{ ucfirst($p->users->name) }}
+                                            <h6 class="mb-1 text-truncate" style="font-size: 20px;">
+                                                {{ ucfirst($p->users->name) }}
                                             </h6>
                                             @if ($p->users->roles->isNotEmpty())
-                                                <small class="text-truncate text-muted" style="font-size: 15px;"><em>{{ $p->users->roles->first()->name }}</em></small>
+                                                <small class="text-truncate text-muted"
+                                                    style="font-size: 15px;"><em>{{ $p->users->roles->first()->name }}</em></small>
                                             @endif
                                         </div>
                                     </div>
                                     <hr>
-                                    <p href="app-academy-course-details.html" class="mt-2"><strong>{{ $p->research_title }}</strong></p>
+                                    <p href="app-academy-course-details.html" class="mt-2">
+                                        <strong>{{ $p->research_title }}</strong>
+                                    </p>
                                     </p>
                                     <hr>
                                     @if ($p->approval_vice_rector_1 === 0)
-                                    <span class="text-secondary margin-right"><i class="bx bx-info-circle me-2"></i><strong>Belum diverifikasi </strong> </span>
+                                        <span class="text-secondary margin-right"><i
+                                                class="bx bx-info-circle me-2"></i><strong>Belum diverifikasi </strong>
+                                        </span>
                                     @else
-                                        <span class="text-success margin-right"><i class="bx bx-check-double me-2"></i><strong>Telah diverifikasi</strong></span>
+                                        <span class="text-success margin-right"><i
+                                                class="bx bx-check-double me-2"></i><strong>Telah
+                                                diverifikasi</strong></span>
                                     @endif
-                                    <a class="text-warning margin-left" href="../vicerector1/show/{{ $p->id }}"><i class="bx bx-link me-2"></i>Proposal</a> <br><br>
+                                    <a class="text-warning margin-left" href="../vicerector1/show/{{ $p->id }}"><i
+                                            class="bx bx-link me-2"></i>Proposal</a> <br><br>
                                     @if ($p->approval_vice_rector_1 === 0)
                                         <div class="progress mb-4" style="height: 8px">
                                             <div class="progress-bar w-0" role="progressbar" aria-valuenow="25"
@@ -164,12 +176,23 @@
                                                 aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     @endif
-                                    <div class="d-flex flex-column flex-md-row gap-3 text-nowrap flex-wrap flex-md-nowrap flex-lg-wrap flex-xxl-nowrap">
+                                    <div
+                                        class="d-flex flex-column flex-md-row gap-3 text-nowrap flex-wrap flex-md-nowrap flex-lg-wrap flex-xxl-nowrap">
                                         @if ($p->approval_vice_rector_1 === 0)
-                                        <a class="w-100 btn btn-label-success" onclick="approveId('{{ $p->id }}')"><i class="bx bx-check me-2" ></i>
-                                            Verifikasi</a>
+                                            <a class="w-100 btn btn-label-success"
+                                                onclick="approveId('{{ $p->id }}')"><i
+                                                    class="bx bx-check me-2"></i>
+                                                Verifikasi</a>
+                                        @elseif ($p->bank_id)
+                                            <a class="w-100 btn btn-label-info"
+                                                href="../vicerector1/print_contract/{{ $p->id }}"><i
+                                                    class="bx bx-download me-2"></i>Kontrak</a>
+                                        @elseif ($p->approval_vice_rector_2 === 1)
+                                            <a class="w-100 btn btn-label-primary"><i class="bx bx-sync me-2"></i>Menunggu
+                                                Penerbitan Kontrak</a>
                                         @else
-                                            <a class="w-100 btn btn-label-primary"><i class="bx bx-sync me-2"></i>Verifikasi Warek II</a>
+                                            <a class="w-100 btn btn-label-primary"><i
+                                                    class="bx bx-sync me-2"></i>Verifikasi Warek II</a>
                                         @endif
                                     </div>
                                 </div>
@@ -212,62 +235,62 @@
     <script>
         function approveId(id) {
             Swal.fire({
-            title: 'Apakah Anda yakin?',
-            text: "Anda ingin memverifikasi Proposal ini!",
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, setujui!',
-            customClass: {
-                confirmButton: 'btn btn-primary me-1',
-                cancelButton: 'btn btn-label-secondary'
-            },
-            buttonsStyling: false
+                title: 'Apakah Anda yakin?',
+                text: "Anda ingin memverifikasi Proposal ini!",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, setujui!',
+                customClass: {
+                    confirmButton: 'btn btn-primary me-1',
+                    cancelButton: 'btn btn-label-secondary'
+                },
+                buttonsStyling: false
             }).then(function(result) {
-            if (result.isConfirmed) {
-                $.ajax({
-                url: "{{ route('vicerector1.approve') }}",
-                type: "POST",
-                data: {
-                    id: id,
-                    _token: "{{ csrf_token() }}" // Sertakan token CSRF untuk keamanan
-                },
-                success: function(response) {
-                    if (response.success) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Disetujui!',
-                        text: 'Proposal telah diverifikasi.',
-                        customClass: {
-                        confirmButton: 'btn btn-success'
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ route('vicerector1.approve') }}",
+                        type: "POST",
+                        data: {
+                            id: id,
+                            _token: "{{ csrf_token() }}" // Sertakan token CSRF untuk keamanan
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Disetujui!',
+                                    text: 'Proposal telah diverifikasi.',
+                                    customClass: {
+                                        confirmButton: 'btn btn-success'
+                                    }
+                                }).then(function() {
+                                    location.reload(); // Muat ulang halaman setelah persetujuan
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error!',
+                                    text: response.message,
+                                    customClass: {
+                                        confirmButton: 'btn btn-danger'
+                                    }
+                                });
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error!',
+                                text: 'Terjadi kesalahan saat menyetujui Proposal.',
+                                customClass: {
+                                    confirmButton: 'btn btn-danger'
+                                }
+                            });
                         }
-                    }).then(function() {
-                        location.reload(); // Muat ulang halaman setelah persetujuan
-                    });
-                    } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error!',
-                        text: response.message,
-                        customClass: {
-                        confirmButton: 'btn btn-danger'
-                        }
-                    });
-                    }
-                },
-                error: function(xhr, status, error) {
-                    Swal.fire({
-                    icon: 'error',
-                    title: 'Error!',
-                    text: 'Terjadi kesalahan saat menyetujui Proposal.',
-                    customClass: {
-                        confirmButton: 'btn btn-danger'
-                    }
                     });
                 }
-                });
-            }
             });
         }
     </script>

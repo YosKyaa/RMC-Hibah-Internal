@@ -208,8 +208,8 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = '<strong>' + row.users.username.charAt(0).toUpperCase() + row
-                                .users.username.slice(1) + '</strong>';
+                            var html = '<strong>' + row.users.name.charAt(0).toUpperCase() + row
+                                .users.name.slice(1) + '</strong>';
                             return html;
                         }
                     },
@@ -220,7 +220,7 @@
                                 row.proposal_teams.forEach(function(team) {
                                     if (team.researcher) {
                                         html += '<span class="badge bg-label-dark">' +
-                                            team.researcher.username + '</span><br>';
+                                            team.researcher.name + '</span><br>';
                                     }
                                 });
                             }

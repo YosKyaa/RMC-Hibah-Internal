@@ -16,46 +16,77 @@ class DashboardController extends Controller
         $announcements = Announcement::all('*');
 
         $panganCount = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
-            $query->where('name', 'Pangan');
+            $query->where('name', 'Pangan')->where('status_id', 'S00');
         })->count();
+        $panganCount2 = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
+            $query->where('name', 'Pangan')->where('status_id', '!=', 'S00');
+        })->count();
+
         $energiCount = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
-            $query->where('name', 'Energi');
+            $query->where('name', 'Energi')->where('status_id', 'S00');
+        })->count();
+        $energiCount2 = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
+            $query->where('name', 'Energi')->where('status_id', '!=', 'S00');
         })->count();
 
         $kesehatanCount = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
-            $query->where('name', 'Kesehatan');
+            $query->where('name', 'Kesehatan')->where('status_id', 'S00');
+        })->count();
+        $kesehatanCount2 = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
+            $query->where('name', 'Kesehatan')->where('status_id', '!=', 'S00');
         })->count();
 
         $transportasiCount = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
-            $query->where('name', 'Transportasi');
+            $query->where('name', 'Transportasi')->where('status_id', 'S00');
+        })->count();
+        $transportasiCount2 = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
+            $query->where('name', 'Transportasi')->where('status_id', '!=', 'S00');
         })->count();
 
         $pertahananCount = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
-            $query->where('name', 'Pertahanan dan keamanan');
+            $query->where('name', 'Pertahanan dan keamanan')->where('status_id', 'S00');
+        })->count();
+        $pertahananCount2 = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
+            $query->where('name', 'Pertahanan dan keamanan')->where('status_id', '!=', 'S00');
         })->count();
 
         $majuCount = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
-            $query->where('name', 'Maju');
+            $query->where('name', 'Maju')->where('status_id', 'S00');
+        })->count();
+        $majuCount2 = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
+            $query->where('name', 'Maju')->where('status_id', '!=', 'S00');
         })->count();
 
         $keamaritimanCount = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
-            $query->where('name', 'Kemaritiman');
+            $query->where('name', 'Kemaritiman')->where('status_id', 'S00');
+        })->count();
+        $keamaritimanCount2 = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
+            $query->where('name', 'Kemaritiman')->where('status_id', '!=', 'S00');
         })->count();
 
         $kebencanaanCount = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
-            $query->where('name', 'Kebencanaan');
+            $query->where('name', 'Kebencanaan')->where('status_id', 'S00');
+        })->count();
+        $kebencanaanCount2 = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
+            $query->where('name', 'Kebencanaan')->where('status_id', '!=', 'S00');
         })->count();
 
         $tiCount = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
-            $query->where('name', 'Teknologi informasi dan komunikasi');
+            $query->where('name', 'Teknologi informasi dan komunikasi')->where('status_id', 'S00');
+        })->count();
+        $tiCount2 = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
+            $query->where('name', 'Teknologi informasi dan komunikasi')->where('status_id', '!=', 'S00');
         })->count();
 
         $sosialHumanioraCount = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
-            $query->where('name', 'Sosial humaniora, seni budaya, pendidikan');
+            $query->where('name', 'Sosial humaniora, seni budaya, pendidikan')->where('status_id', 'S00');
+        })->count();
+        $sosialHumanioraCount2 = Proposal::whereHas('researchTopic.researchTheme.researchCategory', function ($query) {
+            $query->where('name', 'Sosial humaniora, seni budaya, pendidikan')->where('status_id', '!=', 'S00');
         })->count();
 
 
-        return view('dashboard', compact('announcements', 'panganCount', 'energiCount', 'kesehatanCount', 'transportasiCount', 'pertahananCount', 'majuCount', 'keamaritimanCount', 'kebencanaanCount', 'tiCount', 'sosialHumanioraCount'));
+        return view('dashboard', compact('announcements', 'panganCount', 'energiCount', 'kesehatanCount', 'transportasiCount', 'pertahananCount', 'majuCount', 'keamaritimanCount', 'kebencanaanCount', 'tiCount', 'sosialHumanioraCount', 'panganCount2', 'energiCount2', 'kesehatanCount2', 'transportasiCount2', 'pertahananCount2', 'majuCount2', 'keamaritimanCount2', 'kebencanaanCount2', 'tiCount2', 'sosialHumanioraCount2'));
     }
 
     /**

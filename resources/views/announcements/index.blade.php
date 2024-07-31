@@ -45,7 +45,16 @@
         </div>
     @endif
 
-    <div class="card p-3">
+    <div class="card mb-3 ">
+        <div class="card-body">
+            <div class="card-header justify-content-between align-items-center">
+                <h2 class="mb-0"><strong>Halaman Manajemen Pengumuman</strong></h2>
+                    <span class="text-muted">Ini adalah halaman untuk mengelola Informasi & Pengumuman.</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="card p-5">
         <div class="card-datatable table-responsive">
             <div class="card-header flex-column flex-md-row pb-0">
                 <div class="row">
@@ -53,18 +62,18 @@
                         <div class="col-12">
                             <div class="row">
                                 <div class=" col-md-3">
-                                    <select id="select_guard_name" class="select2 form-select"
+                                    {{-- <select id="select_guard_name" class="select2 form-select"
                                         data-placeholder="Guard Name">
                                         <option value="">Guard Name</option>
 
-                                    </select>
+                                    </select> --}}
                                 </div>
                                 <div class=" col-md-4">
-                                    <select id="select_permission" class="select2 form-select"
+                                    {{-- <select id="select_permission" class="select2 form-select"
                                         data-placeholder="Permissions">
                                         <option value="">Permissions</option>
 
-                                    </select>
+                                    </select> --}}
                                 </div>
                                 <div class="offset-md-2 col-md-3 text-md-end text-center pt-3 pt-md-0">
 
@@ -122,8 +131,8 @@
                                 <div class="col-sm-12 fv-plugins-icon-container mb-3">
                                     <label class="form-label mb-1" for="description">Deskripsi</label>
                                     <div class="input-group input-group-merge has-validation">
-                                        <textarea class="form-control @error('description') is-invalid @enderror" id="editor" cols="1"
-                                            rows="8" placeholder="Tuliskan isi pikiranmu..." name="description" value="{{ old('description') }}"> </textarea>
+                                        <div id="editor-container" class="form-control"></div>
+                                        <textarea class="form-control d-none" id="description" name="description" placeholder="Tuliskan isi pikiranmu...">{{ old('description') }}</textarea>
                                         @error('description')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -314,9 +323,21 @@
     <script src="{{ asset('assets/vendor/libs/quill/quill.js') }}"></script>
     <script src="{{ asset('assets/js/forms-editors.js') }}"></script>
     <script>
-        var quill = new Quill('#editor', {
+        var quill = new Quill('#editor-container', {
             theme: 'snow'
         });
+
+        // Sync the content of the Quill editor with the textarea
+        quill.on('text-change', function() {
+            var description = document.querySelector('textarea[name=description]');
+            description.value = quill.root.innerHTML;
+        });
+
+        // If the textarea already has content, load it into Quill
+        var description = document.querySelector('textarea[name=description]').value;
+        if (description) {
+            quill.root.innerHTML = description;
+        }
     </script>
     @if (session('msg'))
         <script type="text/javascript">
@@ -397,7 +418,10 @@
                     {
                         render: function(data, type, row, meta) {
                             var html = row.description;
-                            return html;
+                            var div = document.createElement('div');
+                            div.innerHTML = html;
+                            var text = div.textContent || div.innerText;
+                            return text;
                         }
                     },
                     {

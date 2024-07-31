@@ -146,10 +146,6 @@
                         @if ($proposals->documents->isNotEmpty() && $documentUrl)
                             <iframe src="{{ $documentUrl }}" class="iframe mb-3"
                                 onerror="this.onerror=null; this.outerHTML='Cannot load PDF.';"></iframe><br>
-                            <a class="btn btn-primary mb-2" href="{{ $documentUrl }}" target="_blank">
-                                <i class="bx bx-import align-middle me-2" style="cursor:pointer"></i>
-                                <span>More</span>
-                            </a>
                         @else
                             <p>Tidak ada dokumen yang tersedia.</p>
                         @endif
@@ -158,49 +154,50 @@
                         <div class="col-sm">
                             <span for="inputAddress2" class="form-label"> JENIS PENELITIAN</span>
                             <input type="text" class="form-control" value="{{ $proposals->researchtype->title }}"
-                                readonly style="font-weight: bold;">
+                                readonly disabled>
                         </div>
                         <div class="col-sm">
                             <span for="inputAddress2" class="form-label">TOTAL DANA</span>
                             <input type="text" class="form-control" value="{{ $proposals->researchtype->total_funds }}"
-                                readonly style="font-weight: bold;">
+                                readonly disabled>
                         </div>
                     </div>
                     <div class="col-12 mb-3">
                         <label for="inputAddress2" class="form-label mb-0"> KETEGORI PENELITIAN</label>
                         <input type="text" class="form-control"
-                            value="{{ $proposals->researchTopic->researchTheme->researchCategory->name }}" readonly style="font-weight: bold;">
+                            value="{{ $proposals->researchTopic->researchTheme->researchCategory->name }}" readonly
+                            disabled>
                     </div>
                     <div class="col-12 mb-3">
                         <label for="inputAddress2" class="form-label mb-0">TEMA PENELITIAN</label>
                         <input type="text" class="form-control"
-                            value=" {{ $proposals->researchTopic->researchTheme->name }}" readonly style="font-weight: bold;">
+                            value=" {{ $proposals->researchTopic->researchTheme->name }}" readonly disabled>
                     </div>
                     <div class="col-12 mb-3">
                         <label for="inputAddress2" class="form-label mb-0">TOPIK PENELITIAN</label>
-                        <input type="text" class="form-control" value=" {{ $proposals->researchTopic->name }}" readonly style="font-weight: bold;">
+                        <input type="text" class="form-control" value=" {{ $proposals->researchTopic->name }}" readonly
+                            disabled>
                     </div>
                     <div class="col-12 mb-3">
                         <label for="inputAddress2" class="form-label mb-0">JUDUL PENELITIAN</label>
-                        <input type="text" class="form-control" value=" {{ $proposals->research_title }}" readonly style="font-weight: bold;">
+                        <input type="text" class="form-control" value=" {{ $proposals->research_title }}" readonly
+                            disabled>
                     </div>
                     <div class="row g-2 mb-3">
                         <div class="col-sm">
                             <span for="inputAddress2" class="form-label mb-0">TARGET UTAMA RISET</span>
                             <input type="text" class="form-control"
-                                value=" {{ $proposals->mainResearchTarget->title }}" readonly style="font-weight: bold;">
+                                value=" {{ $proposals->mainResearchTarget->title }}" readonly disabled>
                         </div>
                         <div class="col-sm mb-2">
                             <span for="inputAddress2" class="form-label mb-0">JENIS TKT</span>
                             <input type="text" class="form-control" value=" {{ $proposals->tktType->title }}"
-                                readonly style="font-weight: bold;">
+                                readonly disabled>
                         </div>
                     </div>
                     <div class="col-12">
                         <label for="inputAddress2" class="form-label mb-0">CATATAN</label>
-                        <div class="form-control" id="editor-container" style="height: auto;" readonly >
-                            {!! $proposals->notes !!}
-                        </div>
+                        <p>{!! $proposals->notes !!}</p>
                     </div>
 
                 </div>
@@ -299,7 +296,7 @@
                     </table>
                 </div>
                 <br>
-                <div class="table-responsive">
+                {{-- <div class="table-responsive">
                     <table class="table table-borderless border-top">
                         <thead class="border-bottom">
                             <tr>
@@ -324,7 +321,9 @@
                                                 </p>
                                             </div>
                 </div>
+
                 </li>
+
                 </ul>
                 </td>
             </div>
@@ -332,10 +331,146 @@
             </tr>
             </tbody>
             </table>
+        </div> --}}
+                <div class="table">
+                    <table class="table table-borderless border-top">
+                        <thead class="border-bottom">
+                            <tr>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Review Pengajuan
+                                </td>
+                                <td class="text-end">
+                                    <div class="user-progress">
+                                        <h6 class="mb-0">
+                                            @if ($proposals->approval_reviewer)
+                                                <span class="badge bg-success">Lolos</span>
+                                            @elseif ($proposals->status_id == 'S04')
+                                                <span class="badge bg-label-danger">Ditolak</span>
+                                            @else
+                                                <span class="badge bg-label-warning">Pending</span>
+                                            @endif
+                                        </h6>
+                                    </div>
+                                </td>
+                            </tr>
+                            </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Verifikasi Warek I
+                                </td>
+                                <td class="text-end">
+                                    <div class="user-progress">
+                                        <h6 class="mb-0">
+                                            @if ($proposals->approval_vice_rector_1)
+                                                <span class="badge bg-label-success">Telah Terverifikasi</span>
+                                            @else
+                                                <span class="badge bg-label-warning">Pending</span>
+                                            @endif
+                                        </h6>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Verifikasi Warek II
+                                </td>
+                                <td class="text-end">
+                                    <div class="user-progress">
+                                        <h6 class="mb-0">
+                                            @if ($proposals->approval_vice_rector_2)
+                                                <span class="badge bg-label-success">Telah Terverifikasi</span>
+                                            @else
+                                                <span class="badge bg-label-warning">Pending</span>
+                                            @endif
+                                        </h6>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <div class="table">
+                    <table class="table table-borderless border-top">
+                        <thead class="border-bottom">
+                            <tr>
+                                <th>Dokumen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <h6>Proposal</h6>
+                                </td>
+                                <td class="text-end">
+                                    <div class="user-progress">
+                                        <h6 class="mb-0">
+                                            @if ($proposals->documents->first())
+                                            <a class="btn btn-primary" href="{{ $documentUrl }}" target="_blank">
+                                                <i class="bx bx-download align-middle" style="cursor:pointer"></i>
+                                            </a>
+                                            @else
+                                                <span class="badge bg-label-warning">Tidak Tersedia</span>
+                                            @endif
+                                        </h6>
+                                    </div>
+                                </td>
+                            </tr>
+                            </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <h6>LOA</h6>
+                                </td>
+                                <td class="text-end">
+                                    <div class="user-progress">
+                                        <h6 class="mb-0">
+                                            @if ($proposals->approval_reviewer)
+                                            <a class="btn btn-primary" href="../print_loa/{{ $proposals->id }}" target="_blank">
+                                                <i class="bx bx-download align-middle" style="cursor:pointer"></i>
+                                            </a>
+                                            @else
+                                                <span class="badge bg-label-warning">Tidak Tersedia</span>
+                                            @endif
+                                        </h6>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <h6>Kontrak</h6>
+                                </td>
+                                <td class="text-end">
+                                    <div class="user-progress">
+                                        <h6 class="mb-0">
+                                            @if ($proposals->bank_id)
+                                            <a class="btn btn-primary" href="../print_contract/{{ $proposals->id }}" target="_blank">
+                                                <i class="bx bx-download align-middle" style="cursor:pointer"></i>
+                                            </a>
+                                            @else
+                                                <span class="badge bg-label-warning">tidak tersedia</span>
+                                            @endif
+                                        </h6>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!--  -->
         </div>
-    </div>
-    <!--  -->
-    </div>
     </div>
     </div>
 

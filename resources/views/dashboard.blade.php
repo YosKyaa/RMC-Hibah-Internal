@@ -122,7 +122,6 @@
         </div>
     </div>
     <br>
-    <br>
 
     <div class="col-md-12 mb-1">
         <h4 class="responsive-text"> <strong>Rekaputulasi usulan Hibah Internal di Jakarta Global University</strong>
@@ -140,9 +139,9 @@
                         </div>
                         <p style="width: 65%; font-size: smaller;">Jumlah usulan draft / submited kategori Pangan</p>
                     </div>
-                    
+
                     <p class="mb-0">
-                    <h3 class="mb-0 text-center"><strong>{{ $panganCount }} / </strong></h3>
+                    <h3 class="mb-0 text-center"><strong>{{ $panganCount }} / {{ $panganCount }}</strong></h3>
                     </p>
                 </div>
             </div>
@@ -157,7 +156,7 @@
                         <p style="width: 65%; font-size: smaller;">Jumlah usulan draft / submited kategori Energi</p>
                     </div>
                      <p class="mb-0">
-                     <h3 class="mb-0 text-center"><strong>{{$energiCount}} / </strong></h3>
+                     <h3 class="mb-0 text-center"><strong>{{$energiCount}} / {{$energiCount}}</strong></h3>
                     </p>
                 </div>
             </div>
@@ -173,7 +172,7 @@
                         <p style="width: 65%; font-size: smaller;">Jumlah usulan draft / submited kategori Kesehatan</p>
                     </div>
                     <p class="mb-0">
-                    <h3 class="mb-0 text-center"><strong>{{$kesehatanCount}} / </strong></h3>
+                    <h3 class="mb-0 text-center"><strong>{{$kesehatanCount}} / {{$kesehatanCount}}</strong></h3>
                     </p>
                 </div>
             </div>
@@ -187,9 +186,9 @@
                         </div>
                         <p style="width: 65%; font-size: smaller;">Jumlah usulan draft / submited kategori Transportasi</p>
                     </div>
-                    
+
                     <p class="mb-0">
-                    <h3 class="mb-0 text-center"><strong>{{$transportasiCount}} / </strong></h3>
+                    <h3 class="mb-0 text-center"><strong>{{$transportasiCount}} / {{$transportasiCount}}</strong></h3>
                     </p>
                 </div>
             </div>
@@ -204,7 +203,7 @@
                         <p style="width: 65%; font-size: smaller;">Jumlah usulan draft / submited kategori Pertahanan dan Keamanan</p>
                     </div>
                     <p class="mb-0">
-                        <h3 class="mb-0 text-center"><strong>{{$pertahananCount}} / </strong></h3>
+                        <h3 class="mb-0 text-center"><strong>{{$pertahananCount}} / {{$pertahananCount2}}</strong></h3>
                     </p>
                 </div>
             </div>
@@ -219,7 +218,7 @@
                         <p style="width: 65%; font-size: smaller;">Jumlah usulan draft / submited kategori Material Maju</p>
                     </div>
                     <p class="mb-0">
-                        <h3 class="mb-0 text-center"><strong>{{$majuCount}} / </strong></h3>
+                        <h3 class="mb-0 text-center"><strong>{{$majuCount}} / {{$majuCount2}}</strong></h3>
                     </p>
                 </div>
             </div>
@@ -234,7 +233,7 @@
                         <p style="width: 65%; font-size: smaller;">Jumlah usulan draft / submited kategori Kemaritiman</p>
                     </div>
                     <p class="mb-0">
-                    <h3 class="mb-0 text-center"><strong>{{$keamaritimanCount}} / </strong></h3>
+                    <h3 class="mb-0 text-center"><strong>{{$keamaritimanCount}} / {{$keamaritimanCount2}}</strong></h3>
                     </p>
                 </div>
             </div>
@@ -249,7 +248,7 @@
                         <p style="width: 65%; font-size: smaller;">Jumlah usulan draft / submited kategori Kebencanaan</p>
                     </div>
                     <p class="mb-0">
-                        <h3 class="mb-0 text-center"><strong>{{$kebencanaanCount}} / </strong></h3>
+                        <h3 class="mb-0 text-center"><strong>{{$kebencanaanCount}} / {{$kebencanaanCount2}}</strong></h3>
                     </p>
                 </div>
             </div>
@@ -264,7 +263,7 @@
                     </div>
                     <p style="font-size: smaller;">Jumlah usulan draft / submited kategori Teknologi informasi dan komunikasi</p>
                     <p class="mb-0">
-                        <h3 class="mb-0 text-center"><strong>{{$tiCount}} / </strong></h3>
+                        <h3 class="mb-0 text-center"><strong>{{$tiCount}} / {{$tiCount2}}</strong></h3>
                     </p>
                 </div>
             </div>
@@ -279,7 +278,7 @@
                     </div>
                     <p style="font-size: smaller;">Jumlah usulan draft / submited kategori Sosial humaniora, seni budaya, pendidikan</p>
                     <p class="mb-0">
-                        <h3 class="mb-0 text-center"><strong>{{$sosialHumanioraCount}} / </strong></h3>
+                        <h3 class="mb-0 text-center"><strong>{{$sosialHumanioraCount}} / {{$sosialHumanioraCount2}}</strong></h3>
                     </p>
                 </div>
             </div>

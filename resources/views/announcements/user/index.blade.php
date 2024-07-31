@@ -99,9 +99,9 @@
                             <img src="{{ asset($anc->file_path) }}" class="iframe" alt="">
                         @endif
                     <div class="card-body">
-                        <h5 class="card-title">{{ ucfirst($anc->title) }}</h5>
+                        <h3 class="card-title">{{ ucfirst($anc->title) }}</h3>
                         <p class="card-text">
-                            {{ $anc->description }}
+                            {!! $anc->description !!}
                         </p>
                         <p class="card-text">
                             <small class="text-muted">Terakhir diperbarui {{ $anc->created_at->diffForHumans() }}</small>

@@ -75,6 +75,7 @@ Route::group(['prefix' => 'user-proposals'], function () {
     Route::post('/mark_as_revised_1', [UserProposalController::class, 'mark_as_revised_1'])->name('user-proposals.mark_as_revised_1');
     Route::post('/mark_as_revised_2', [UserProposalController::class, 'mark_as_revised_2'])->name('user-proposals.mark_as_revised_2');
     Route::get('/print_pdf/{id}', [UserProposalController::class, 'print_pdf'])->name('print_pdf');
+    Route::get('/print_loa/{id}', [UserProposalController::class, 'print_loa'])->name('print_loa');
     Route::get('/account-bank/{id}', [UserProposalController::class, 'account_bank'])->name('user-proposals-account-bank.edit');
     Route::put('/account-bank-update/{id}', [UserProposalController::class, 'account_bank_update'])->name('user-proposals-account-bank.update');
     Route::get('/monev/{id}', [UserProposalController::class, 'monev'])->name('user-proposals-monev.edit');
@@ -168,6 +169,7 @@ Route::group(['prefix' => 'vicerector1'], function () { //vicerector1
     Route::post('/approve', [ViceRector1Controller::class, 'approve'])->name('vicerector1.approve');
     Route::post('/disapprove', [ViceRector1Controller::class, 'disapprove'])->name('vicerector1.disapprove');
     Route::any('/show/{id}', [ViceRector1Controller::class, 'show'])->name('vicerector1.show');
+    Route::get('/print_contract/{id}', [ViceRector1Controller::class, 'print_contract'])->name('vicerector1.print_contract');
 });
 
 Route::group(['prefix' => 'vicerector2'], function () { //vicerector2

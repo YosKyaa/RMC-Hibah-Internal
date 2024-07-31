@@ -201,7 +201,7 @@
 @endforeach
 
 @foreach ($proposals as $proposal)
-@if ($proposal->documents->contains('doc_type_id', 'DC4' && !($proposal->documents->contains('doc_type_id', 'DC5'))))
+@if ($proposal->documents->contains('doc_type_id', 'DC4') && !($proposal->documents->contains('doc_type_id', 'DC5')) && in_array($proposal->status_id, ['S00', 'S01', 'S02', 'S03', 'S04', 'S05', 'S06', 'S07', 'S08', 'S09']))
     <div class="row g-6 mb-3">
         <div class="col-md-12 col-xl-12">
             <div class="card bg-warning text-white">
@@ -218,7 +218,7 @@
 @endforeach
 
 @foreach ($proposals as $proposal)
-@if ($proposal->documents->contains('doc_type_id', 'DC5'))
+@if ($proposal->documents->contains('doc_type_id', 'DC5') && ! in_array($proposal->status_id, ['S00', 'S01', 'S02', 'S03', 'S04', 'S05', 'S06', 'S07', 'S08', 'S09']))
     <div class="row g-6 mb-3">
         <div class="col-md-12 col-xl-12">
             <div class="card bg-success text-white">

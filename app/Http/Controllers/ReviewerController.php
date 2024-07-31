@@ -30,16 +30,16 @@ class ReviewerController extends Controller
         $data = Proposal::where('reviewer_id', $reviewerId)
             ->with([
                 'users' => function ($query) {
-                    $query->select('id', 'username');
+                    $query->select('id', 'name');
                 },
                 'statuses' => function ($query) {
                     $query->select('id', 'status', 'color');
                 },
                 'reviewer' => function ($query) {
-                    $query->select('id', 'username');
+                    $query->select('id', 'name');
                 },
                 'proposalTeams.researcher' => function ($query) {
-                    $query->select('id', 'username');
+                    $query->select('id', 'name', 'image');
                 },
                 'documents' => function ($query) {
                     $query->select('id', 'proposals_id','proposal_doc', 'doc_type_id', 'created_by');

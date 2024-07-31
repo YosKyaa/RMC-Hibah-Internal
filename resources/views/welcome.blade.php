@@ -42,11 +42,11 @@
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="#hero" class="active">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#visi">Vision, Mision</a></li>
-                    <li><a href="#struktur">Structure</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#hero" class="active">Beranda</a></li>
+                    <li><a href="#about">Tentang</a></li>
+                    <li><a href="#visi">Visi & Misi</a></li>
+                    <li><a href="#struktur">Struktur</a></li>
+                    <li><a href="#contact">Hubugi Kami</a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
@@ -114,7 +114,7 @@
             <div class="container">
 
                 <div class="content" data-aos="fade-up" data-aos-delay="100">
-                    <p class="who-we-are">Who We Are</p>
+                    {{-- <p class="who-we-are">Who We Are</p> --}}
                     <h3>Research Management Center</h3>
                     <p class="fst-italic">
                         Research Management Center (RMC) adalah unsur pelaksana akademik yang melaksanakan sebagian
@@ -142,7 +142,7 @@
         </section><!-- /About Section -->
 
         <!-- Clients Section -->
-        
+
         <!-- /Clients Section -->
 
         <!-- Faq Section -->
@@ -225,7 +225,7 @@
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>Structure RMC</h2>
+                <h2>Struktur RMC</h2>
             </div><!-- End Section Title -->
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -355,7 +355,7 @@
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>Contact</h2>
+                <h2>Kontak</h2>
             </div><!-- End Section Title -->
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -366,7 +366,7 @@
                         <div class="info-item d-flex flex-column justify-content-center align-items-center"
                             data-aos="fade-up" data-aos-delay="200">
                             <i class="bi bi-geo-alt"></i>
-                            <h3>Address</h3>
+                            <h3>Alamat</h3>
                             <p>Jl. Boulevard Grand Depok City, Kec. Sukmajaya, Kota Depok, Jawa Barat 16412</p>
                         </div>
                     </div><!-- End Info Item -->
@@ -375,7 +375,7 @@
                         <div class="info-item d-flex flex-column justify-content-center align-items-center"
                             data-aos="fade-up" data-aos-delay="300">
                             <i class="bi bi-telephone"></i>
-                            <h3>Call Us</h3>
+                            <h3>Hubugi Kami</h3>
                             <p>+62 851 5921 1558</p>
                         </div>
                     </div><!-- End Info Item -->
@@ -384,7 +384,7 @@
                         <div class="info-item d-flex flex-column justify-content-center align-items-center"
                             data-aos="fade-up" data-aos-delay="400">
                             <i class="bi bi-envelope"></i>
-                            <h3>Email Us</h3>
+                            <h3>Email Kami</h3>
                             <p>rmc@jgu.ac.id</p>
                         </div>
                     </div><!-- End Info Item -->
@@ -433,11 +433,11 @@
                 <div class="col-lg-2 col-md-3 footer-links">
                     <h4>Useful Links</h4>
                     <ul>
-                        <li><a href="#hero" class="active">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#visi">Vision, Mision</a></li>
-                        <li><a href="#struktur">Structure</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#hero" class="active">Beranda</a></li>
+                        <li><a href="#about">Tentang</a></li>
+                        <li><a href="#visi">Visi & Misi</a></li>
+                        <li><a href="#struktur">Struktur</a></li>
+                        <li><a href="#contact">Hubungi Kami</a></li>
                     </ul>
                 </div>
 

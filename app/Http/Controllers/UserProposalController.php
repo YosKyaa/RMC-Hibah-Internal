@@ -385,14 +385,14 @@ public function update(Request $request, $id)
         $documentPath = $proposals->documents->first()->proposal_doc;
         $documentUrl = url($documentPath);
         $user = User::select('image');
+
         return view('proposals.show', compact('proposals', 'documentUrl', 'user'));
     }
 
 
-
     public function delete(Request $request){
         $data = Proposal::find($request->id);
-        
+
         if($data){
             $data->delete();
             return response()->json([

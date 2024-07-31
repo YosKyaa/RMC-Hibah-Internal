@@ -36,7 +36,7 @@ class FinalisasiDanaController extends Controller
             ->with(['researchType' => function ($query) {
                 $query->select('id', 'title', 'total_funds');
             }])
-            ->where('approval_reviewer', true)
+            ->where('mark_as_presented', true)
             ->select('*')
             ->orderBy("id");
 
