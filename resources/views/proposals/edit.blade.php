@@ -415,7 +415,7 @@
                                 @foreach ($mainresearch as $d)
                                     <option value="{{ $d->id }}"
                                         {{ $d->id == old('main_research_target', $proposal->main_research_targets_id) ? 'selected' : '' }}>
-                                        {{ $d->title }}
+                                        {{ $d->title }} | {{ $d->description }}
                                     </option>
                                 @endforeach
                             </select>
