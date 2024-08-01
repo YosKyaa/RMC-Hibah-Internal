@@ -1,13 +1,20 @@
 @extends('layouts.master')
+@section('style')
+<style>
+    .layout-page,
+        .content-wrapper,
+        .content-wrapper>*,
+        .layout-menu {
+            min-height: unset;
+        }
+</style>
+@endsection
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <div class="card">
-                    <div class="card-header">
+<div class="col-xl">
+        <div class="card mb-3 p-2">
+            <div class="card-header justify-content-between align-items-center">
                         Edit Announcement
-                    </div>
                     <div class="card-body">
                         <form action="{{ route('announcements.update', $announcements->id) }}" method="POST"
                             enctype="multipart/form-data">
@@ -28,7 +35,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-12 fv-plugins-icon-container">
+                            <!-- <div class="col-sm-12 fv-plugins-icon-container">
                                 <label class="form-label" for="basicDate">Date</label>
                                 <div class="input-group input-group-merge has-validation">
                                     <input type="date" class="form-control @error('date') is-invalid @enderror"
@@ -40,7 +47,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="col-sm-12">
                                 <label class="form-label">Upload Images<i class="text-danger">*</i></label>
@@ -66,13 +73,12 @@
                                         </span>
                                     @enderror
                                 </div>
-                            </div>
+                            </div><br>
 
                             <button type="submit" class="btn btn-primary">Update</button>
                         </form>
                     </div>
-                </div>
             </div>
         </div>
-    </div>
+</div>
 @endsection

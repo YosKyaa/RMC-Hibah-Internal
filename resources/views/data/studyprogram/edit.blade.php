@@ -3,10 +3,9 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
+<div class="col-xl">
+        <div class="card mb-3 p-2">
+            <div class="card-header justify-content-between align-items-center">
                     <div class="card-header">Edit Study Program</div>
                     <div class="card-body">
                         <form action="{{ route('program.update', $studyprogram->id) }}" method="POST">
@@ -16,12 +15,11 @@
                                 <label for="name_program">Name Program Study</label>
                                 <input type="text" name="name_program" id="name_program" class="form-control"
                                     value="{{ $studyprogram->name_program }}">
-                            </div>
+                            </div><br>
                             <button type="submit" class="btn btn-primary">Update</button>
                         </form>
                     </div>
-                </div>
             </div>
         </div>
-    </div>
+</div>
 @endsection

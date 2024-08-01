@@ -34,6 +34,12 @@
             overflow: hidden;
             word-wrap: break-word;
         }
+        .layout-page,
+        .content-wrapper,
+        .content-wrapper>*,
+        .layout-menu {
+            min-height: unset;
+        }
     </style>
 @endsection
 
@@ -433,7 +439,7 @@
                     {
                         render: function(data, type, row, meta) {
                             var html =
-                                `<a href="#modalToggle" data-bs-toggle="modal" data-bs-target="#modalToggle" class="badge badge-center rounded-pill bg-warning" title="Lihat"><i class="bx bx-show-alt badge-dark"></i></a>
+                                `<a href="{{ url('user-announcements') }}" class="badge badge-center rounded-pill bg-warning" title="Lihat"><i class="bx bx-show-alt badge-dark"></i></a>
                                 <a class="badge badge-center rounded-pill bg-success" title="Edit" href="{{ url('announcements/edit/` + row.id + `') }}"><i class="bx bxs-edit"></i></a>
                             <a class="badge badge-center rounded-pill bg-danger" title="Hapus" style="cursor:pointer" onclick="DeleteId(\'` +
                                 row
