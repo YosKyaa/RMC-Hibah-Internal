@@ -123,6 +123,46 @@
         </div>
     </div>
 
+    @foreach ($proposals as $proposal)
+        @if ($proposal->review_notes && !$proposal->review_notes)
+            <div class="row g-6 mb-3">
+                <div class="col-md-12 col-xl-12">
+                    <div class="card bg-warning text-white">
+                        <div class="card-body">
+                            <h5 class="card-title text-white">Mohon Segera Melakukan Revisi! </h5>
+                            <p class="card-text">
+                                Mohon segera melakukan revisi. Proposal Anda membutuhkan perbaikan sebelum dapat melanjutkan
+                                proses selanjutnya.
+                                <br>
+                               Catatan Reviewer: {!! $proposal->review_notes !!}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+    @endforeach
+
+    @foreach ($proposals as $proposal)
+    @if ($proposal->review_notes_2 &&
+                !in_array($proposal->status_id, [ 'S02','S05', 'S06', 'S07', 'S08', 'S09', 'S10']))
+        <div class="row g-6 mb-3">
+            <div class="col-md-12 col-xl-12">
+                <div class="card bg-warning text-white">
+                    <div class="card-body">
+                        <h5 class="card-title text-white">Mohon Segera Melakukan Revisi! </h5>
+                        <p class="card-text">
+                            Mohon segera melakukan revisi. Proposal Anda membutuhkan perbaikan sebelum dapat melanjutkan
+                            proses selanjutnya.
+                            <br>
+                           Catatan Reviewer: {!! $proposal->review_notes_2 !!}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+@endforeach
 
     @foreach ($proposals as $proposal)
         @if ($proposal->presentation_date && !in_array($proposal->status_id, ['S04', 'S07', 'S08', 'S09', 'S10']))

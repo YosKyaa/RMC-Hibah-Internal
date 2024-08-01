@@ -127,7 +127,7 @@
             <h4>Tahun Anggaran 2023 <br> Nomor : 01/L4/SK/VII/JGU/2023</h4>
         </div>
         <div class="content">
-            <p>Pada hari ini Rabu tanggal 8 bulan Juli tahun Dua Ribu Dua Puluh Empat, kami yang bertandatangan di bawah
+            <p>Pada hari ini Rabu tanggal 1 bulan Agustus tahun Dua Ribu Dua Puluh Empat, kami yang bertandatangan di bawah
                 ini:</p>
 
             <table>
