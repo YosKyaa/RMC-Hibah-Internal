@@ -335,7 +335,7 @@
                     {
                         render: function(data, type, row, meta) {
                             var html = `
-                             <a href="{{ url('admin/monev/print_monev/${row.id}') }} class="btn btn-primary">
+                             <a href="{{ url('admin/monev/print_monev/${row.id}') }} class="btn btn-primary btn-sm">
                                     <i class="bx bx-file align-middle" style="cursor:pointer"></i>
                                 </a>`;
                             return html;
