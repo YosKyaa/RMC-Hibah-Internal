@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Mail;
+use PDF;
 
 class ReviewerController extends Controller
 {
@@ -92,7 +93,7 @@ class ReviewerController extends Controller
             $x = $data->save();
             if ($x) {
 //kirim email
-                Mail::to($data->users->email)->send(new LOA('emails.approval', "aaa"));
+                Mail::to($data->users->email)->send(new LOA('emails.approval', "Proposal Anda Lolos"));
             }
             return response()->json([
                 'success' => true,
@@ -110,10 +111,19 @@ class ReviewerController extends Controller
 // Proposal Ditolak
     public function reject(Request $request)
     {
-        $data = Proposal::find($request->id);
+        $data = Proposal::with([
+            'users' => function ($query) {
+                $query->select('id', 'email');
+            }
+        ])->find($request->id);
+        // dd($data);
         if($data) {
             $data->status_id = 'S04';
-            $data->save();
+            $x = $data->save();
+            if ($x) {
+//kirim email
+                Mail::to($data->users->email)->send(new LOA('emails.rejection', "Proposal di tolak"));
+            }
             return response()->json([
                 'success' => true,
                 'message' => 'Status berhasil diubah!'
@@ -208,7 +218,19 @@ class ReviewerController extends Controller
         }
     }
 
+    public function print_pdf($id)
+    {
+        $proposals = Proposal::findOrFail($id);
 
+        $pdf = PDF::loadView('proposals.print', compact('proposals'));
+        return $pdf->stream('proposal.pdf');
+    }
+    public function print_loa($id)
+    {
+        $proposals = Proposal::findOrFail($id);
+        $pdf = PDF::loadView('proposals.print_loa', compact('proposals'));
+        return $pdf->stream('proposal.pdf');
+    }
 }
 
 

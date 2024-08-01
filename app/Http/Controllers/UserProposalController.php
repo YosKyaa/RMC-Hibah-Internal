@@ -114,7 +114,7 @@ class UserProposalController extends Controller
             if ($existingProposal->status_id == 'S04') {
                 // Allow creating a new proposal
             } else {
-                return redirect()->route('user-proposals.index')->with('proposals', 'You have already created a proposal.');
+                return redirect()->route('user-proposals.index')->with('proposals', 'Anda sudah membuat proposal sebelumnya.');
             }
         }
 

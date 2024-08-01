@@ -34,9 +34,6 @@ class ProfileController extends Controller
                 'email'=> ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore(Auth::user()->id, 'id')],
                 'username'=> ['nullable', 'string', 'max:255', Rule::unique('users')->ignore(Auth::user()->id, 'id')],
                 'name' => ['required', 'string'],
-                'nidn' => ['required', 'string'],
-                'front_title' => ['required', 'string'],
-                'back_title' => ['required', 'string'],
                 'study_programs' => ['required', 'exists:study_programs,id'],
                 'department' => ['required', 'exists:departments,id'],
                 'image' => ['mimes:jpg,jpeg,png','max:5120'], // max 5MB
@@ -62,12 +59,12 @@ class ProfileController extends Controller
             User::where('id', Auth::user()->id)->update([
                 'name'=> $request->name,
                 'username' => $request->username,
-                'front_title' => $request->front_title,
-                'back_title' => $request->back_title,
+                'front_title' => $request->front_title ?? '',
+                'back_title' => $request->back_title ?? '',
                 'study_program_id' => $request->study_programs,
                 'departments_id' => $request->department,
                 'email'=> $request->email,
-                'nidn' => $request->nidn,
+                'nidn' => $request->nidn ?? '',
                 'image' => $fileName
             ]);
             return redirect()->route('profile.edit')->with('msg','Profil telah diperbarui!');

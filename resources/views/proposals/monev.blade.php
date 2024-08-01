@@ -4,6 +4,11 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/sweetalert2.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/quill.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/katex.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/editor.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/typography.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/typeahead-js/typeahead.css') }}">
     <style>
         .layout-page,
         .content-wrapper,
@@ -40,15 +45,16 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Comment</label>
-                        <div class="input-group input-group-merge has-validation">
-                            <textarea type="text" class="form-control @error('monev_comment') is-invalid @enderror" name="monev_comment">{{ $proposal->monev_comment ?? old('monev_comment') }}</textarea>
+                        <div id="editor-container" class="form-control"></div>
+                        <textarea class="form-control d-none @error('monev_comment') is-invalid @enderror" id="monev_comment" name="monev_comment"
+                            placeholder="Tuliskan isi pikiranmu..." style="height: 150px;">{{ old('monev_comment') }}</textarea>
                             @error('monev_comment')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
-                    </div>
+                  
                     <button type="submit" class="btn btn-primary" onclick="return confirmSubmit(event)">Send</button>
                 </form>
             </div>
@@ -62,6 +68,10 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
+    <script src="{{ asset('assets/js/forms-file-upload.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/quill/katex.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/quill/quill.js') }}"></script>
+    <script src="{{ asset('assets/js/forms-editors.js') }}"></script>
     <script>
         function confirmSubmit(event) {
             event.preventDefault(); // Prevent the default form submission
@@ -107,5 +117,22 @@
                 });
             })(jQuery);
         }, 350);
+    </script>
+    <script>
+        var quill = new Quill('#editor-container', {
+            theme: 'snow'
+        });
+
+        // Sync the content of the Quill editor with the textarea
+        quill.on('text-change', function() {
+            var monev_comment = document.querySelector('textarea[name=monev_comment]');
+            monev_comment.value = quill.root.innerHTML;
+        });
+
+        // If the textarea already has content, load it into Quill
+        var monev_comment = document.querySelector('textarea[name=monev_comment]').value;
+        if (monev_comment) {
+            quill.root.innerHTML = monev_comment;
+        }
     </script>
 @endsection

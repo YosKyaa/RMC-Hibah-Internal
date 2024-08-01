@@ -348,7 +348,7 @@
                                     <div class="user-progress">
                                         <h6 class="mb-0">
                                             @if ($proposals->approval_reviewer)
-                                                <span class="badge bg-success">Lolos</span>
+                                                <span class="badge bg-label-success">Lolos</span>
                                             @elseif ($proposals->status_id == 'S04')
                                                 <span class="badge bg-label-danger">Ditolak</span>
                                             @else
@@ -414,9 +414,9 @@
                                     <div class="user-progress">
                                         <h6 class="mb-0">
                                             @if ($proposals->documents->first())
-                                            <a class="btn btn-primary" href="{{ $documentUrl }}" target="_blank">
-                                                <i class="bx bx-download align-middle" style="cursor:pointer"></i>
-                                            </a>
+                                                <a class="btn btn-primary" href="{{ $documentUrl }}" target="_blank">
+                                                    <i class="bx bx-download align-middle" style="cursor:pointer"></i>
+                                                </a>
                                             @else
                                                 <span class="badge bg-label-warning">Tidak Tersedia</span>
                                             @endif
@@ -434,9 +434,15 @@
                                     <div class="user-progress">
                                         <h6 class="mb-0">
                                             @if ($proposals->approval_reviewer)
-                                            <a class="btn btn-primary" href="../print_loa/{{ $proposals->id }}" target="_blank">
-                                                <i class="bx bx-download align-middle" style="cursor:pointer"></i>
-                                            </a>
+                                                <a class="btn btn-primary" href="../print_loa/{{ $proposals->id }}"
+                                                    target="_blank">
+                                                    <i class="bx bx-download align-middle" style="cursor:pointer"></i>
+                                                </a>
+                                            @elseif($proposals->status_id == 'S04')
+                                                <a class="btn btn-primary"
+                                                    href="../print_loa_reject/{{ $proposals->id }}" target="_blank">
+                                                    <i class="bx bx-download align-middle" style="cursor:pointer"></i>
+                                                </a>
                                             @else
                                                 <span class="badge bg-label-warning">Tidak Tersedia</span>
                                             @endif
@@ -454,9 +460,10 @@
                                     <div class="user-progress">
                                         <h6 class="mb-0">
                                             @if ($proposals->bank_id)
-                                            <a class="btn btn-primary" href="../print_contract/{{ $proposals->id }}" target="_blank">
-                                                <i class="bx bx-download align-middle" style="cursor:pointer"></i>
-                                            </a>
+                                                <a class="btn btn-primary" href="../print_pdf/{{ $proposals->id }}"
+                                                    target="_blank">
+                                                    <i class="bx bx-download align-middle" style="cursor:pointer"></i>
+                                                </a>
                                             @else
                                                 <span class="badge bg-label-warning">tidak tersedia</span>
                                             @endif

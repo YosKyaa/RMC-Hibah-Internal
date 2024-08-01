@@ -113,7 +113,7 @@
                     <!-- About User -->
                     <div class="card mb-4">
                         <div class="card-body">
-                            <small class="text-muted text-uppercase">About Me</small>
+                            <small class="text-muted text-uppercase">Tentang saya</small>
                             <ul class="list-unstyled mb-4 mt-3">
                                 <li class="d-flex align-items-center mb-3"><i class="bx bx-user"></i><span
                                         class="fw-semibold mx-2">Nama:</span>
@@ -131,11 +131,11 @@
                                         class="fw-semibold mx-2">NIDN:</span>
                                     <span>{{ Auth::user()->nidn }}</span>
                                 </li>
-                                <li class="d-flex align-items-center mb-3"><i class="bx bx-male-sign"></i><span
+                                <li class="d-flex align-items-center mb-3"><i class="bx bx-home"></i><span
                                         class="fw-semibold mx-2">Department:</span>
                                     <span>{{ Auth::user()->department }}</span>
                                 </li>
-                                <li class="d-flex align-items-center mb-3"><i class="bx bx-male-sign"></i><span
+                                <li class="d-flex align-items-center mb-3"><i class="bx bx-home"></i><span
                                         class="fw-semibold mx-2">Study Program:</span>
                                     <span>{{ Auth::user()->study_program }}</span>
                                 </li>

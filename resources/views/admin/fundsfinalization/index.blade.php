@@ -334,7 +334,7 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.users.username;
+                            var html = '<strong>' + row.users.name.charAt(0).toUpperCase() + row.users.name.slice(1) + '</strong>';
                             return html;
                         }
                     },
@@ -346,7 +346,7 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.research_type.title;
+                            var html = '<em>' + row.research_type.title + '</em>';
                             return html;
                         }
                     },

@@ -28,7 +28,7 @@ class FinalisasiDanaController extends Controller
     public function data(Request $request)
     {
         $data = Proposal::with(['users' => function ($query) {
-            $query->select('id', 'username');
+            $query->select('id', 'username', 'name');
         }])
             ->with(['statuses' => function ($query) {
                 $query->select('id', 'status', 'color');

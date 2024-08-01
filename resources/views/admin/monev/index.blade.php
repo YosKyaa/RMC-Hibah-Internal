@@ -163,6 +163,7 @@
                                     <th>Nama Peneliti</th>
                                     <th>Judul Proposal</th>
                                     <th>Laporan Monev</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                         </table>
@@ -183,6 +184,7 @@
     <script src="{{ asset('assets/vendor/libs/datatables/buttons.bootstrap5.js') }}"></script>
     <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if (session('msg'))
         <script type="text/javascript">
             //swall message notification
@@ -320,7 +322,7 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            var html = row.users.name;
+                            var html = '<strong>' + row.users.name.charAt(0).toUpperCase() + row.users.name.slice(1) + '</strong>';
                             return html;
                         }
                     },
@@ -333,49 +335,83 @@
                     {
                         render: function(data, type, row, meta) {
                             var html = `
-                             <a href="{{ url('admin/monev/print_monev/${row.id}') }} class="badge badge-center rounded-pill bg-success">
-                                    <i class="bx bx-download" style="color:#ffff"></i> Print Monev
+                             <a href="{{ url('admin/monev/print_monev/${row.id}') }} class="btn btn-primary">
+                                    <i class="bx bx-file align-middle" style="cursor:pointer"></i>
                                 </a>`;
                             return html;
                         }
                     },
+                    {
+                        render: function(data, type, row, meta) {
+                            var html = '';
+                            if (row.mark_as_verif_monev) {
+                                html =
+                                    `<a class="badge badge-center rounded-pill bg-warning" title="Show" style="cursor:pointer"><i class="bx bx-show" style="color:#ffff"></i></a>`;
+                            } else {
+                                html =
+                                    `<a class="badge badge-center rounded-pill bg-success" title="Setujui" style="cursor:pointer" onclick="approveId(\'` +
+                                    row.id +
+                                    `\')"><i class="bx bx-check" style="color:#ffff"></i></a>`;
+                            }
+                            return html;
+                        },
+                        "orderable": false,
+                        className: "text-md-center"
+                    }
                 ]
             });
 
         });
 
-        function DeleteId(id) {
-            swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, data can't be recovered!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        $.ajax({
-                            url: "{{ route('dept.delete') }}",
-                            type: "DELETE",
-                            data: {
-                                "id": id,
-                                "_token": $("meta[name='csrf-token']").attr("content"),
-                            },
-                            success: function(data) {
-                                if (data['success']) {
-                                    swal(data['message'], {
-                                        icon: "success",
-                                    });
-                                    $('#datatable').DataTable().ajax.reload();
-                                } else {
-                                    swal(data['message'], {
-                                        icon: "error",
-                                    });
-                                }
-                            }
-                        })
+        function approveId(id) {
+            Swal.fire({
+            title: "Apakah Anda yakin?",
+            text: "Anda akan menyetujui proposal ini!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, setujui!',
+            customClass: {
+                confirmButton: 'btn btn-primary me-1',
+                cancelButton: 'btn btn-label-secondary'
+            },
+            buttonsStyling: false
+            }).then(function(result) {
+            if (result.isConfirmed) {
+                $.ajax({
+                url: "{{ route('monev.approve') }}",
+                type: "POST",
+                data: {
+                    id: id,
+                    _token: "{{ csrf_token() }}" // Sertakan token CSRF untuk keamanan
+                },
+                success: function(response) {
+                    if (response.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Disetujui!',
+                        text: 'Proposal telah disetujui.',
+                        customClass: {
+                        confirmButton: 'btn btn-success'
+                        }
+                    });
+                    $('#datatable').DataTable().ajax.reload();
+                    } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error!',
+                        text: data.error,
+                        customClass: {
+                        confirmButton: 'btn btn-danger'
+                        }
+                    });
                     }
-                })
+                }
+                });
+            }
+            });
         }
+
     </script>
 @endsection

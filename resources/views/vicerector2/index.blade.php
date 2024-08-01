@@ -191,7 +191,7 @@
                                     @if ($p->documents->contains('doc_type_id', 'DC4'))
                                         <a class="w-100 btn btn-label-primary"><i class="bx bx-sync me-2"></i>Laporan
                                             Akhir</a>
-                                    @elseif ($p->documents->contains('doc_type_id', 'DC5'))
+                                    @elseif ($p->mark_as_verif_monev)
                                         <a class="w-100 btn btn-label-warning"
                                             href="{{ route('vicerector2.transfer_receipt2', $p->id) }}"><i
                                                 class="bx bx-upload me-2"></i>Pencairan Dana Tahap 2</a>

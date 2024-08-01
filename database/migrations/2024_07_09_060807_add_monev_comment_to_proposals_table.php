@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('proposals', function (Blueprint $table) {
             $table -> text('monev_comment') -> nullable();
+            $table ->boolean('mark_as_verif_monev') -> default(false);
         });
     }
 
@@ -23,6 +24,7 @@ return new class extends Migration
     {
         Schema::table('proposals', function (Blueprint $table) {
             $table -> dropColumn('monev_comment');
+            $table -> dropColumn('mark_as_verif_monev');
         });
     }
 };

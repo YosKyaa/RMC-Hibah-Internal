@@ -34,6 +34,7 @@
                 <div data-i18n="Dashboards">Pengajuan</div>
             </a>
         </li>
+        @can('manage_reviewer')
         <li class="menu-item {{ request()->segment(1) == 'reviewer' ? 'active' : '' }}">
             <a href="{{ route('reviewers.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-book-reader"></i>
@@ -41,6 +42,8 @@
                 <!-- <span class="notification-badge" id="">3</span> -->
             </a>
         </li>
+        @endcan
+        @can('manage_warek1')
         <li class="menu-item {{ request()->segment(1) == 'vicerector1' ? 'active' : '' }}">
             <a href="{{ route('vicerector1.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-book-reader"></i>
@@ -48,6 +51,8 @@
                 <!-- <span class="notification-badge" id="">3</span> -->
             </a>
         </li>
+        @endcan
+        @can('manage_warek2')
         <li class="menu-item {{ request()->segment(1) == 'vicerector2' ? 'active' : '' }}">
             <a href="{{ route('vicerector2.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-book-reader"></i>
@@ -55,7 +60,7 @@
                 <!-- <span class="notification-badge" id="">3</span> -->
             </a>
         </li>
-
+@endcan
         @can('control panel.read')
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Control Panel</span>
@@ -105,11 +110,6 @@
                                 <div>Kelola Data</div>
                             </a>
                             <ul class="menu-sub">
-                                <li class="menu-item {{ request()->segment(2) == 'proposals' ? 'active' : '' }}">
-                                    <a href="{{ route('proposals.index') }}" class="menu-link">
-                                        <div>Manage Proposals</div>
-                                    </a>
-                                </li>
                                 @can('setting/manage_data/study_program.read')
                                     <li class="menu-item {{ request()->segment(3) == 'studyprogram' ? 'active' : '' }}">
                                         <a href="{{ route('program.index') }}" class="menu-link">
@@ -130,6 +130,7 @@
                 </ul>
             </li>
         @endcan
+        @can('manage_admin')
         <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">ADMIN</span>
             </li>
@@ -141,37 +142,37 @@
                 <ul class="menu-sub">
                     <li class="menu-item {{ request()->segment(2) == 'proposals' ? 'active' : '' }}">
                         <a href="{{ route('proposals.index') }}" class="menu-link">
-                            
+
                             <div>Data</div>
                         </a>
                     </li>
                     <li class="menu-item {{ request()->segment(2) == 'addreviewer' ? 'active' : '' }}">
                         <a href="{{ route('addreviewer.index') }}" class="menu-link">
-                            
+
                             <div>Reviewer</div>
                         </a>
                     </li>
                     <li class="menu-item {{ request()->segment(2) == 'presentation' ? 'active' : '' }}">
                         <a href="{{ route('presentation.index') }}" class="menu-link">
-                            
+
                             <div>Presentasi</div>
                         </a>
                     </li>
                     <li class="menu-item {{ request()->segment(2) == 'fundsfinalization' ? 'active' : '' }}">
                         <a href="{{ route('fundsfinalization.index') }}" class="menu-link">
-                            
+
                             <div>Finalisasi Dana</div>
                         </a>
                     </li>
                     <!-- <li class="menu-item {{ request()->segment(2) == 'loa' ? 'active' : '' }}">
                         <a href="{{ route('loa.index') }}" class="menu-link">
-                            
+
                             <div>LoA & Kontrak</div>
                         </a>
                     </li> -->
                     <li class="menu-item {{ request()->segment(2) == 'monev' ? 'active' : '' }}">
                         <a href="{{ route('monev.index') }}" class="menu-link">
-                            
+
                             <div>Verifikasi Monev</div>
                         </a>
                     </li>
@@ -183,7 +184,7 @@
                     <div data-i18n="Dashboards">Kelola Pengumuman</div>
                 </a>
             </li>
-            
+            @endcan
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Dokumentasi</span>
             </li>
@@ -192,7 +193,7 @@
                     <i class="menu-icon tf-icons bx bx-file"></i>
                     <div data-i18n="Dashboards">Dokumentasi</div>
                 </a>
-            </li>    
+            </li>
     </ul>
 </aside>
 <!-- / Menu -->

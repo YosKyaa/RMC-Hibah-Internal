@@ -124,10 +124,10 @@
     <div class="container">
         <div class="header">
             <h3>KONTRAK PENELITIAN <br> PENELITIAN HIBAH UNIVERSITAS GLOBAL JAKARTA</h3>
-            <h4>Tahun Anggaran 2023 <br> Nomor : 013/L4/SK/VII/JGU/2023</h4>
+            <h4>Tahun Anggaran 2023 <br> Nomor : 01/L4/SK/VII/JGU/2023</h4>
         </div>
         <div class="content">
-            <p>Pada hari ini Rabu tanggal 12 bulan Juli tahun Dua Ribu Dua Puluh Tiga, kami yang bertandatangan di bawah
+            <p>Pada hari ini Rabu tanggal 8 bulan Juli tahun Dua Ribu Dua Puluh Empat, kami yang bertandatangan di bawah
                 ini:</p>
 
             <table>
@@ -148,10 +148,10 @@
                             selanjutnya disebut <b>PIHAK PERTAMA.</b></td>
                     </tr>
                     <tr>
-                        <th style="width: 40%; vertical-align: top;">2. Safira Faizah, S.Tr.Kom., M.IT </th>
+                        <th style="width: 40%; vertical-align: top;">2. {{ ucfirst($proposals->users->name) }} </th>
                         <td style="width: 1%;vertical-align: top;">:</td>
-                        <td> Dosen Program Studi Teknik Informatika Universitas Global Jakarta, dalam hal ini bertindak
-                            sebagai pengusul dan Ketua Pelaksana Penelitian Tahun Anggaran 2023 untuk selanjutnya
+                        <td> Dosen Program Studi {{ $proposals->users->studyProgram->name ?? '-' }} Universitas Global Jakarta, dalam hal ini bertindak
+                            sebagai pengusul dan Ketua Pelaksana Penelitian Tahun Anggaran 2024 untuk selanjutnya
                             disebut
                             <b>PIHAK KEDUA.
                         </td>
@@ -163,21 +163,20 @@
             </table>
 
             <p><b>PIHAK PERTAMA</b> dan <b>PIHAK KEDUA</b> secara bersama-sama sepakat mengikatkan diri dalam suatu
-                Kontrak Penelitian Hibah Universitas Global Jakarta Tahun Anggaran 2023 dengan ketentuan dan
+                Kontrak Penelitian Hibah Universitas Global Jakarta Tahun Anggaran 2024 dengan ketentuan dan
                 syarat-syarat sebagai berikut:</p>
             <br>
 
             <h4>PASAL 1 <br> RUANG LINGKUP KONTRAK</h4>
             <p><b>PIHAK PERTAMA</b> memberi pekerjaan kepada <b>PIHAK KEDUA</b> dan <b>PIHAK KEDUA</b> menerima
                 pekerjaan tersebut dari <b>PIHAK PERTAMA</b> untuk melaksanakan dan menyelesaikan Penelitian Hibah
-                Universitas Global Jakarta Tahun Anggaran 2023 dengan judul “Sistem Deteksi Penyakit Tremor Istirahat
-                Pada Penderita Parkinson Menggunakan Internet of Things (IoT)”.</p>
+                Universitas Global Jakarta Tahun Anggaran 2024 dengan judul "<b>{{$proposals->research_title}}</b>".</p>
             <br>
 
             <h4>PASAL 2 <br> DANA PENELITIAN</h4>
             <ol>
                 <li>Besarnya dana untuk melaksanakan penelitian dengan judul sebagaimana dimaksud pada Pasal 1 adalah
-                    sebesar Rp. 14.500.000.- (Empat Belas Juta Lima Ratus Ribu Rupiah) sudah termasuk pajak. </li>
+                    sebesar <b>Rp. {{ number_format($proposals->researchType->total_funds, 0, ',', '.') }} Rupiah</b>, sudah termasuk pajak. </li>
                 <li>Dana Penelitian sebagaimana dimaksud pada ayat (1) dibebankan pada Dana Penelitian Hibah Universitas
                     Global Jakarta.</li>
             </ol>

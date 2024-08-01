@@ -62,7 +62,7 @@
                                 <span class="d-none d-sm-block">Reset</span>
                             </button>
                         </div>
-                        <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+                        <p class="text-muted mb-0">Hanya diperbolehkan JPG, GIF, atau PNG. Ukuran maksimal 800K</p>
 
                     </div>
                 </div>

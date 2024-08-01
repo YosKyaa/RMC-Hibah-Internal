@@ -140,6 +140,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::delete('/delete', [MonevController::class, 'delete'])->name('monev.delete');
         Route::get('/edit/{id}', [MonevController::class, 'edit'])->name('monev.edit');
         Route::get('/print_monev/{id}', [MonevController::class, 'print_monev'])->name('print_monev');
+        ROute::post('/approve', [MonevController::class, 'approve'])->name('monev.approve');
     });
 });
 
@@ -156,7 +157,8 @@ Route::group(['prefix' => 'reviewer'], function () { //reviewers
     Route::put('/update2/{id}', [ReviewerController::class, 'update2'])->name('reviewers.update2');
     Route::post('/presentation', [ReviewerController::class, 'presentation'])->name('reviewers.presentation');
     Route::post('/mark_as_presented', [ReviewerController::class, 'mark_as_presented'])->name('reviewers.mark_as_presented');
-
+    Route::get('/print_pdf/{id}', [ReviewerController::class, 'print_pdf'])->name('print_pdf');
+    Route::get('/print_loa/{id}', [ReviewerController::class, 'print_loa'])->name('print_loa');
 
 
 });

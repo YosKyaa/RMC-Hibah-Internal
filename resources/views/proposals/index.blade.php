@@ -149,7 +149,7 @@
 
 
     @foreach ($proposals as $proposal)
-        @if ($proposal->approval_vice_rector_2 === 1 && !($proposal->bank_id))
+        @if ($proposal->approval_vice_rector_2 === 1 && !$proposal->bank_id)
             <div class="row g-6 mb-3">
                 <div class="col-md-12 col-xl-12">
                     <div class="card bg-warning text-white">
@@ -167,72 +167,79 @@
     @endforeach
 
     @foreach ($proposals as $proposal)
-    @if ($proposal->bank_id && !($proposal->documents->contains('doc_type_id', 'DC3')))
-        <div class="row g-6 mb-3">
-            <div class="col-md-12 col-xl-12">
-                <div class="card bg-info text-white">
-                    <div class="card-body">
-                        <h5 class="card-title text-white">Kontrak Anda Telah terbit</h5>
-                        <p class="card-text">
-                            Silahkan cek dan unduh kontrak anda pada kolom tombol aksi.
-                        </p>
+        @if ($proposal->bank_id && !$proposal->documents->contains('doc_type_id', 'DC3'))
+            <div class="row g-6 mb-3">
+                <div class="col-md-12 col-xl-12">
+                    <div class="card bg-info text-white">
+                        <div class="card-body">
+                            <h5 class="card-title text-white">Kontrak Anda Telah terbit</h5>
+                            <p class="card-text">
+                                Silahkan cek dan unduh kontrak anda pada kolom tombol aksi.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    @endif
+        @endif
     @endforeach
 
     @foreach ($proposals as $proposal)
-    @if ($proposal->documents->contains('doc_type_id', 'DC3') && !($proposal->monev_comment))
-        <div class="row g-6 mb-3">
-            <div class="col-md-12 col-xl-12">
-                <div class="card bg-warning text-white">
-                    <div class="card-body">
-                        <h5 class="card-title text-white">Silahkan Unggah Laporan Monev!</h5>
-                        <p class="card-text">
-                            Silahkan unggah laporan monitoring dan evaluasi anda pada kolom tombol aksi untuk Pencairan dana tahap II.
-                        </p>
+        @if ($proposal->documents->contains('doc_type_id', 'DC3') && !$proposal->monev_comment)
+            <div class="row g-6 mb-3">
+                <div class="col-md-12 col-xl-12">
+                    <div class="card bg-warning text-white">
+                        <div class="card-body">
+                            <h5 class="card-title text-white">Silahkan Unggah Laporan Monev!</h5>
+                            <p class="card-text">
+                                Silahkan unggah laporan monitoring dan evaluasi anda pada kolom tombol aksi untuk Pencairan
+                                dana tahap II.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    @endif
-@endforeach
+        @endif
+    @endforeach
 
-@foreach ($proposals as $proposal)
-@if ($proposal->documents->contains('doc_type_id', 'DC4') && !($proposal->documents->contains('doc_type_id', 'DC5')) && in_array($proposal->status_id, ['S00', 'S01', 'S02', 'S03', 'S04', 'S05', 'S06', 'S07', 'S08', 'S09']))
-    <div class="row g-6 mb-3">
-        <div class="col-md-12 col-xl-12">
-            <div class="card bg-warning text-white">
-                <div class="card-body">
-                    <h5 class="card-title text-white">Silahkan Unggah Laporan Akhir</h5>
-                    <p class="card-text">
-                        Dana tahap 2 telah cair, silahkan cek rekening anda. silahkan unggah laporan akhir penelitian anda pada kolom aksi.
-                    </p>
+    @foreach ($proposals as $proposal)
+        @if (
+            $proposal->documents->contains('doc_type_id', 'DC4') &&
+                !$proposal->documents->contains('doc_type_id', 'DC6') &&
+                !in_array($proposal->status_id, ['S00', 'S01', 'S02', 'S03', 'S04', 'S05', 'S06', 'S07', 'S08']))
+            <div class="row g-6 mb-3">
+                <div class="col-md-12 col-xl-12">
+                    <div class="card bg-warning text-white">
+                        <div class="card-body">
+                            <h5 class="card-title text-white">Silahkan Unggah Laporan Akhir</h5>
+                            <p class="card-text">
+                                Dana tahap 2 telah cair, silahkan cek rekening anda. silahkan unggah laporan akhir
+                                penelitian anda pada kolom aksi.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-@endif
-@endforeach
+        @endif
+    @endforeach
 
-@foreach ($proposals as $proposal)
-@if ($proposal->documents->contains('doc_type_id', 'DC5') && ! in_array($proposal->status_id, ['S00', 'S01', 'S02', 'S03', 'S04', 'S05', 'S06', 'S07', 'S08', 'S09']))
-    <div class="row g-6 mb-3">
-        <div class="col-md-12 col-xl-12">
-            <div class="card bg-success text-white">
-                <div class="card-body">
-                    <h5 class="card-title text-white">Rangkaian Pengajuan Telah Selesai</h5>
-                    <p class="card-text">
-                        Terima kasih telah menggunakan layanan kami, pengajuan anda telah selesai.
-                    </p>
+    @foreach ($proposals as $proposal)
+        @if (
+            $proposal->documents->contains('doc_type_id', 'DC6') &&
+                !in_array($proposal->status_id, ['S00', 'S01', 'S02', 'S03', 'S04', 'S05', 'S06', 'S07', 'S08', 'S09']))
+            <div class="row g-6 mb-3">
+                <div class="col-md-12 col-xl-12">
+                    <div class="card bg-success text-white">
+                        <div class="card-body">
+                            <h5 class="card-title text-white">Rangkaian Pengajuan Telah Selesai</h5>
+                            <p class="card-text">
+                                Terima kasih telah menggunakan layanan kami, pengajuan anda telah selesai.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-@endif
-@endforeach
+        @endif
+    @endforeach
 
 
     <div id="wizard-checkout" class="bs-stepper wizard-icons wizard-icons-example p-3">
@@ -458,10 +465,15 @@
                                     `;
                             } else if (row.documents && row.documents.some(doc => doc
                                     .doc_type_id ===
-                                    'DC5')) {
+                                    'DC4')) {
                                 html =
                                     `<a class="badge badge-center rounded-pill bg-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>
                                     <a class="badge badge-center rounded-pill bg-success" title="Unggah Laporan Akhir" href="{{ url('user-proposals/final-report/${row.id}') }}"><i class="bx bx-upload"></i></a>`;
+                            } else if (row.documents && row.documents.some(doc => doc
+                                    .doc_type_id ===
+                                    'DC5')) {
+                                html =
+                                    `<a class="badge badge-center rounded-pill bg-warning" title="Show" href="{{ url('user-proposals/show/${row.id}') }}"><i class="bx bx-show"></i></a>`;
                             } else if (row.documents && row.documents.some(doc => doc
                                     .doc_type_id === 'DC3')) {
                                 html =

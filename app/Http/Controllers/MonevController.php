@@ -61,8 +61,25 @@ class MonevController extends Controller
         $proposal = Proposal::findOrFail($id);
         $documentPath = $proposal->documents->where('doc_type_id', 'DC5')->first()->proposal_doc;
         $documentUrl = url($documentPath);
-        return response()->download($documentPath);
+        return redirect()->away($documentUrl);
     }
 
+    public function approve(Request $request)
+    {
+        $data = Proposal::find($request->id);
+        if ($data) {
+            $data->mark_as_verif_monev = true;
+            $data->save();
+            return response()->json([
+                'success' => true,
+                'message' => 'Status berhasil diubah!'
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal mengubah status!'
+            ]);
+        }
+    }
 }
 

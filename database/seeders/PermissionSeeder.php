@@ -45,17 +45,57 @@ class PermissionSeeder extends Seeder
             ["guard_name" => "web", "name" => "manage_announcement.create"],
             ["guard_name" => "web", "name" => "manage_announcement.delete"],
             ["guard_name" => "web", "name" => "manage_announcement.update"],
-
-            
+            ["guard_name" => "web", "name" => "manage_admin"],
+            ["guard_name" => "web", "name" => "manage_warek1"],
+            ["guard_name" => "web", "name" => "manage_warek2"],
+            ["guard_name" => "web", "name" => "manage_reviewer"],
             //tambahkan permissionnya disini
         ];
+        $warek1 = [
+            ["guard_name" => "web", "name" => "manage_warek1"],
+        ];
+
+        $warek2 = [
+            ["guard_name" => "web", "name" => "manage_warek2"],
+        ];
+        $reviewer = [
+            ["guard_name" => "web", "name" => "manage_reviewer"],
+        ];
         foreach ($data as $x) {
-            if(!Permission::where('name', $x['name'])
-            ->where('guard_name', $x['guard_name'])->first()){
-                $permission = Permission::create(['name' => $x['name'],'guard_name' => $x['guard_name']]);
-                $role_admin = Role::where('name',"admin")->first();
+            if (!Permission::where('name', $x['name'])
+                ->where('guard_name', $x['guard_name'])->first()) {
+                $permission = Permission::create(['name' => $x['name'], 'guard_name' => $x['guard_name']]);
+                $role_admin = Role::where('name', "admin")->first();
                 $role_admin->givePermissionTo($x['name']);
             }
+        }
+
+        foreach ($warek1 as $x) {
+            if (!Permission::where('name', $x['name'])
+                ->where('guard_name', $x['guard_name'])) {
+                $permission = Permission::create(['name' => $x['name'], 'guard_name' => $x['guard_name']]);
+                $role_admin = Role::where('name', "warek1");
+                $role_admin->givePermissionTo($x['name']);
+            }
+        }
+
+        foreach ($warek2 as $x) {
+            if (!Permission::where('name', $x['name'])
+                ->where('guard_name', $x['guard_name'])) {
+                $permission = Permission::create(['name' => $x['name'], 'guard_name' => $x['guard_name']]);
+                $role_admin = Role::where('name', "warek2");
+                $role_admin->givePermissionTo($x['name']);
+            }
+        }
+
+        foreach ($reviewer as $x) {
+            if (!Permission::where('name', $x['name'])
+                ->where('guard_name', $x['guard_name'])) {
+                $permission = Permission::create(['name' => $x['name'], 'guard_name' => $x['guard_name']]);
+                $role_admin = Role::where('name', "reviewer");
+                $role_admin->givePermissionTo($x['name']);
+            }
+        }
     }
-    }
+
 }

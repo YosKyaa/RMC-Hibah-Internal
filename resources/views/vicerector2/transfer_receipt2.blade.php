@@ -76,9 +76,9 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-5">
                                 <label for="inputAddress2" class="form-label mb-0">CATATAN Monev</label>
-                                <textarea class="form-control" id="inputAddress2" readonly disabled>{{ $proposals->monev_comment }}</textarea>
+                                <p>{!! $proposals->monev_comment !!}</p>
 
                             </div>
                             <button type="submit" class="btn btn-primary"
