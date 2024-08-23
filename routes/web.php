@@ -19,6 +19,7 @@ use App\Http\Controllers\ReviewerController;
 use App\Http\Controllers\StudyProgramController;
 use App\Http\Controllers\UserAnnouncementController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserProposalController;
 use App\Http\Controllers\ViceRector1Controller;
 use App\Http\Controllers\ViceRector2Controller;
@@ -43,6 +44,8 @@ Route::get('/', function () {
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('register', [AuthController::class, 'register']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 Route::get('/dokumentasi', [DokumentasiController::class, 'index'])->name('dokumentasi')->middleware('auth');
@@ -63,8 +66,8 @@ Route::group(['prefix' => 'user-announcements'], function () {
 Route::group(['prefix' => 'user-proposals'], function () {
     Route::any('/', [UserProposalController::class, 'index'])->name('user-proposals.index')->middleware('auth');
     Route::get('/data', [UserProposalController::class, 'data'])->name('user-proposals.data');
-    Route::any('/create', [UserProposalController::class,'create'])->name('user-proposals.create');
-    Route::any('/timeline', [UserProposalController::class,'timeline'])->name('user-proposals.timeline');
+    Route::any('/create', [UserProposalController::class, 'create'])->name('user-proposals.create');
+    Route::any('/timeline', [UserProposalController::class, 'timeline'])->name('user-proposals.timeline');
     Route::delete('/delete', [UserProposalController::class, 'delete'])->name('user-proposals.delete');
     Route::any('/show/{id}', [UserProposalController::class, 'show'])->name('user-proposals.show');
     Route::get('/edit/{id}', [UserProposalController::class, 'edit'])->name('user-proposals.edit');
@@ -82,7 +85,6 @@ Route::group(['prefix' => 'user-proposals'], function () {
     Route::put('/monev-update/{id}', [UserProposalController::class, 'monev_update'])->name('user-proposals-monev.update');
     Route::get('final-report/{id}', [UserProposalController::class, 'final_report'])->name('user-proposals-final-report.edit');
     Route::put('final-report-update/{id}', [UserProposalController::class, 'final_report_update'])->name('user-proposals-final-report.update');
-
 });
 
 
@@ -108,7 +110,6 @@ Route::group(['prefix' => 'admin'], function () {
         Route::delete('/delete', [AddReviewerController::class, 'delete'])->name('addreviewer.delete');
         Route::get('/edit/{id}', [AddReviewerController::class, 'edit'])->name('addreviewer.edit');
         Route::put('/update/{id}', [AddReviewerController::class, 'update'])->name('addreviewer.update');
-
     });
 
     Route::group(['prefix' => 'presentation'], function () { //Presentasi
@@ -159,8 +160,6 @@ Route::group(['prefix' => 'reviewer'], function () { //reviewers
     Route::post('/mark_as_presented', [ReviewerController::class, 'mark_as_presented'])->name('reviewers.mark_as_presented');
     Route::get('/print_pdf/{id}', [ReviewerController::class, 'print_pdf'])->name('print_pdf');
     Route::get('/print_loa/{id}', [ReviewerController::class, 'print_loa'])->name('print_loa');
-
-
 });
 
 Route::group(['prefix' => 'vicerector1'], function () { //vicerector1
@@ -195,9 +194,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
-Route::group(['prefix' => 'setting','middleware' => ['auth']],function () {
+Route::group(['prefix' => 'setting', 'middleware' => ['auth']], function () {
     // Route::resource('roles', RoleController::class);
 
     Route::group(['prefix' => 'manage_account'], function () {
@@ -227,7 +226,7 @@ Route::group(['prefix' => 'setting','middleware' => ['auth']],function () {
             Route::get('/edit/{id}', [StudyProgramController::class, 'edit'])->name('program.edit');
             Route::put('/update/{id}', [StudyProgramController::class, 'update'])->name('program.update');
         });
-          Route::group(['prefix' => 'department'], function () { //route to manage study program
+        Route::group(['prefix' => 'department'], function () { //route to manage study program
             Route::any('/', [DepartmentController::class, 'index'])->name('dept.index')->middleware('auth');
             Route::get('/data', [DepartmentController::class, 'data'])->name('dept.data');
             Route::delete('/delete', [DepartmentController::class, 'delete'])->name('dept.delete');

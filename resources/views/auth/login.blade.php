@@ -138,61 +138,62 @@
             </form>
         </div>
         <div class="container b-container" id="b-container">
-        <form method="POST" action="{{ route('register') }}">
-                <h2 class="form_title title">Buat Akun</h2>
-                <div class="form__icons">
-                    <a class="btn rounded-pill btn-icon btn-outline-dark" onclick="Klas2Login()" title="Single Sign-On JGU (User Klas)">
-                        <img style="max-height: 20px;" src="{{asset('assets/img/favicon.png')}}">
-                    </a>
-                    <a class="btn rounded-pill btn-icon btn-outline-dark" href="{{ url('login/google') }}" title="Login with (Email JGU / Gmail)">
-                        <img style="max-height: 20px;" src="https://avatars.githubusercontent.com/u/19180220?s=200&v=4">
-                    </a>
-                </div><span class="form__span">atau gunakan email untuk regristrasi</span>
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
+                <!-- Fields for name, username, email, and password -->
                 <div class="form-floating mb-0">
-                    <input class="form-control  @error('name') is-invalid @enderror" name="name" id="floatingInput"
-                        aria-describedby="floatingInputHelp" value="{{ old('name') }}" placeholder="Name" id="name"
-                        type="name" required autofocus>
-                    <label for="floatingInput">nama</label>
+                    <input class="form-control  @error('name') is-invalid @enderror" name="name" id="name"
+                        value="{{ old('name') }}" placeholder="Name" required autofocus>
+                    <label for="name">Nama</label>
                     @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
+            
                 <div class="form-floating mb-0">
-                    <input class="form-control  @error('username') is-invalid @enderror" name="username" id="floatingInput"
-                        aria-describedby="floatingInputHelp" value="{{ old('username') }}" placeholder="username"
-                        id="username" type="text" pattern="[a-z]+" required autofocus>
-                    <label for="floatingInput">username</label>
+                    <input class="form-control  @error('username') is-invalid @enderror" name="username" id="username"
+                        value="{{ old('username') }}" placeholder="Username" required autofocus>
+                    <label for="username">Username</label>
                     @error('username')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
+            
                 <div class="form-floating mb-0">
-                    <input class="form-control  @error('email') is-invalid @enderror" name="email" id="floatingInput"
-                        aria-describedby="floatingInputHelp" value="{{ old('email') }}" placeholder="name@example.com"
-                        id="email" type="email" required autofocus>
-                    <label for="floatingInput">email</label>
+                    <input class="form-control  @error('email') is-invalid @enderror" name="email" id="email"
+                        value="{{ old('email') }}" placeholder="Email" type="email" required autofocus>
+                    <label for="email">Email</label>
                     @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
+            
                 <div class="form-floating mb-0">
                     <input class="form-control @error('password') is-invalid @enderror" id="password" type="password"
-                        name="password" required autocomplete="current-password" placeholder="Password">
-                    <label for="floatingPassword">Password</label>
+                        name="password" required placeholder="Password">
+                    <label for="password">Password</label>
                     @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
-                <button class="form__button button" type="submit">REGRISTRASI</button>
+            
+                <div class="form-floating mb-0">
+                    <input class="form-control" id="password-confirm" type="password"
+                        name="password_confirmation" required placeholder="Confirm Password">
+                    <label for="password-confirm">Confirm Password</label>
+                </div>
+            
+                <button type="submit" class="form__button button">Register</button>
             </form>
+            
         </div>
         <div class="switch" id="switch-cnt">
             <div class="switch__circle"></div>
