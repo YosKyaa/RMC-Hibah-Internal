@@ -90,161 +90,147 @@
             </div>
             <!--/ Header -->
 
-            <!-- Navbar pills -->
-            <!-- <div class="row">
-                <div class="col-md-12">
-                    <ul class="nav nav-pills flex-column flex-sm-row mb-4">
-                        <li class="nav-item"><a class="nav-link active" href="javascript:void(0);"><i
-                                    class="bx bx-user me-1"></i> Profile</a></li>
-                        <li class="nav-item"><a class="nav-link" href="pages-profile-teams.html"><i
-                                    class="bx bx-group me-1"></i> Teams</a></li>
-                        <li class="nav-item"><a class="nav-link" href="pages-profile-projects.html"><i
-                                    class="bx bx-grid-alt me-1"></i> Projects</a></li>
-                        <li class="nav-item"><a class="nav-link" href="pages-profile-connections.html"><i
-                                    class="bx bx-link-alt me-1"></i> Connections</a></li>
-                    </ul>
-                </div>
-            </div> -->
-            <!--/ Navbar pills -->
-
-            <!-- User Profile Content -->
-            <div class="row">
-                <div class="col-xl-4 col-lg-5 col-md-5">
-                    <!-- About User -->
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <small class="text-muted text-uppercase">Tentang saya</small>
-                            <ul class="list-unstyled mb-4 mt-3">
-                                <li class="d-flex align-items-center mb-3"><i class="bx bx-user"></i><span
-                                        class="fw-semibold mx-2">Nama:</span>
-                                    <span>{{ Auth::user()->name }}</span>
-                                </li>
-                                <li class="d-flex align-items-center mb-3"><i class="bx bx-user-check"></i><span
-                                        class="fw-semibold mx-2">Username:</span>
-                                    <span>{{ Auth::user()->username }}</span>
-                                </li>
-                                <li class="d-flex align-items-center mb-3"><i class="bx bx-mail-send"></i><span
-                                        class="fw-semibold mx-2">Email:</span>
-                                    <span>{{ Auth::user()->email }}</span>
-                                </li>
-                                <li class="d-flex align-items-center mb-3"><i class="bx bx-briefcase"></i><span
-                                        class="fw-semibold mx-2">NIDN:</span>
-                                    <span>{{ Auth::user()->nidn }}</span>
-                                </li>
-                                <li class="d-flex align-items-center mb-3"><i class="bx bx-home"></i><span
-                                        class="fw-semibold mx-2">Department:</span>
-                                    <span>{{ Auth::user()->department }}</span>
-                                </li>
-                                <li class="d-flex align-items-center mb-3"><i class="bx bx-home"></i><span
-                                        class="fw-semibold mx-2">Study Program:</span>
-                                    <span>{{ Auth::user()->study_program }}</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!--/ About User -->
-                </div>
-                <div class="col-xl-8 col-lg-7 col-md-7">
-                    <!-- Activity Timeline -->
-                    {{-- <div class="card card-action mb-4">
-                        <div class="card-header align-items-center">
-                            <h5 class="card-action-title mb-0"><i class="bx bx-list-ul me-2"></i>Activity Timeline</h5>
-                            <div class="card-action-element">
-                                <div class="dropdown">
-                                    <button type="button" class="btn dropdown-toggle hide-arrow p-0"
-                                        data-bs-toggle="dropdown" aria-expanded="false"><i
-                                            class="bx bx-dots-vertical-rounded"></i></button>
-                                    <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><a class="dropdown-item" href="javascript:void(0);">Share timeline</a></li>
-                                        <li><a class="dropdown-item" href="javascript:void(0);">Suggest edits</a></li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li><a class="dropdown-item" href="javascript:void(0);">Report bug</a></li>
+     <!-- User Profile Content -->
+<div class="row">
+    <div class="col-xl-4 col-lg-5 col-md-5">
+      <!-- About User -->
+      <div class="card mb-4">
+        <div class="card-body">
+            <small class="text-muted text-uppercase">Tentang saya</small>
+            <ul class="list-unstyled mb-4 mt-3">
+                <li class="d-flex align-items-center mb-3"><i class="bx bx-user"></i><span
+                        class="fw-semibold mx-2">Nama:</span>
+                    <span>{{ Auth::user()->name }}</span>
+                </li>
+                <li class="d-flex align-items-center mb-3"><i class="bx bx-user-check"></i><span
+                        class="fw-semibold mx-2">Username:</span>
+                    <span>{{ Auth::user()->username }}</span>
+                </li>
+                <li class="d-flex align-items-center mb-3"><i class="bx bx-mail-send"></i><span
+                        class="fw-semibold mx-2">Email:</span>
+                    <span>{{ Auth::user()->email }}</span>
+                </li>
+                <li class="d-flex align-items-center mb-3"><i class="bx bx-briefcase"></i><span
+                        class="fw-semibold mx-2">NIDN:</span>
+                    <span>{{ Auth::user()->nidn }}</span>
+                </li>
+                <li class="d-flex align-items-center mb-3"><i class="bx bx-home"></i><span
+                        class="fw-semibold mx-2">Department:</span>
+                    <span>{{ Auth::user()->department }}</span>
+                </li>
+                <li class="d-flex align-items-center mb-3"><i class="bx bx-home"></i><span
+                        class="fw-semibold mx-2">Study Program:</span>
+                    <span>{{ Auth::user()->study_program }}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--/ About User -->
+     
+    </div>
+    <div class="col-xl-8 col-lg-7 col-md-7">
+     
+        <div class="row">
+            <!-- Connections -->
+            @foreach ($proposals as $pr)
+                <div class="col-xl-12 col-lg-6 col-md-6 mb-3">
+                    <div class="card">
+                        {{-- <div class="card-body">
+                            <div class=" justify-content-between align-items-left mb-3">
+                                <span
+                                    class="badge bg-label-primary">{{ $pr->researchTopic->researchTheme->researchCategory->name }}</span>
+                                <span class="badge bg-label-primary">{{ $pr->tktType->title }}</span>
+                                <span class="badge bg-label-primary">{{ $pr->mainResearchTarget->title }}</span>
+                            </div>
+                            <a href="{{ route('user-proposals.show', $pr->id) }}">
+                                <p class="mb-3 pb-1"><strong>{{ $pr->research_title }}</strong></p>
+                            </a>
+                           
+                            
+                            <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
+                                        @foreach ($pr->proposalTeams as $r)
+                                            @if ($r->researcher->image)
+                                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="Kaith D'souza" class="avatar avatar-sm pull-up">
+                                                    <img class="rounded-circle" src="{{ asset($r->researcher->image) }}" alt="Avatar">
+                                                </li>
+                                            @else
+                                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="Kaith D'souza" class="avatar avatar-sm pull-up">
+                                                    <img class="rounded-circle" src="../../assets/img/avatars/user.png" alt="Avatar">
+                                                </li>
+                                            @endif
+                                        @endforeach
                                     </ul>
                                 </div>
+
+                                
+                                <div class="ms-auto">
+                                    @if ($pr->status_id == 'S10')
+                                    <a href="javascript:;"><span class="badge bg-label-success">Diterima</span></a>
+                                    @elseif ($pr->status_id == 'S04')
+                                    <a href="javascript:;"><span class="badge bg-label-danger">Ditolak</span></a>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
+                            <p class="mt-3">{{ $pr->created_at->diffforhumans() }}</p>
+                        </div> --}}
                         <div class="card-body">
-                            <ul class="timeline ms-2">
-                                <li class="timeline-item timeline-item-transparent">
-                                    <span class="timeline-point-wrapper"><span
-                                            class="timeline-point timeline-point-warning"></span></span>
-                                    <div class="timeline-event">
-                                        <div class="timeline-header mb-1">
-                                            <h6 class="mb-0">Client Meeting</h6>
-                                            <small class="text-muted">Today</small>
-                                        </div>
-                                        <p class="mb-2">Project meeting with john @10:15am</p>
-                                        <div class="d-flex flex-wrap">
-                                            <div class="avatar me-3">
-                                                <img src="../../assets/img/avatars/3.png" alt="Avatar"
-                                                    class="rounded-circle">
-                                            </div>
-                                            <div>
-                                                <h6 class="mb-0">Lester McCarthy (Client)</h6>
-                                                <span>CEO of Infibeam</span>
-                                            </div>
-                                        </div>
+                            <div class="row gy-6 mb-6">
+                              <div class="col-sm-6 col-lg-12">
+                                <div class="card p-2 h-100 shadow-none border">
+                                  <div class="rounded-2 text-center mb-4">
+                                    <ul class="list-unstyled d-flex align-items-center justify-content-center avatar-group mb-0">
+                                        @foreach ($pr->proposalTeams as $r)
+                                            @if ($r->researcher->image)
+                                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title=" {{ ucfirst($r->researcher->username) }}" class="avatar avatar-sm pull-up">
+                                                    <img class="rounded-circle" src="{{ asset($r->researcher->image) }}" alt="Avatar">
+                                                </li>
+                                            @else
+                                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title=" {{ ucfirst($r->researcher->username) }}" class="avatar avatar-sm pull-up">
+                                                    <img class="rounded-circle" src="../../assets/img/avatars/user.png" alt="Avatar">
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                  </div>
+                                  <div class="card-body p-4 pt-2">
+                                    <span
+                                    class="badge bg-label-primary">{{ $pr->researchTopic->researchTheme->researchCategory->name }}</span>
+                                <span class="badge bg-label-primary">{{ $pr->tktType->title }}</span>
+                                <span class="badge bg-label-primary">{{ $pr->mainResearchTarget->title }}</span>
+                                    <div class="d-flex justify-content-between align-items-center mb-4">
+                                      {{-- <span class="badge bg-label-primary">Web</span> --}}
+                                     
                                     </div>
-                                </li>
-                                <li class="timeline-item timeline-item-transparent">
-                                    <span class="timeline-point-wrapper"><span
-                                            class="timeline-point timeline-point-info"></span></span>
-                                    <div class="timeline-event">
-                                        <div class="timeline-header mb-1">
-                                            <h6 class="mb-0">Create a new project for client</h6>
-                                            <small class="text-muted">2 Day Ago</small>
-                                        </div>
-                                        <p class="mb-0">Add files to new design folder</p>
+                                    <a href="app-academy-course-details.html" class="h5">  <p class="mb-3 pb-1"><strong>{{ $pr->research_title }}</strong></p></a>
+                                    @if ($pr->status_id == 'S10')
+                                    <a href="javascript:;"><span class="badge bg-label-success col-lg-12 mb-3">Diterima</span></a>
+                                    @elseif ($pr->status_id == 'S04')
+                                    <a href="javascript:;"><span class="badge bg-label-danger col-lg-12 mb-3">Ditolak</span></a>
+                                    @elseif ($pr->status_id == 'S01')
+                                    <a href="javascript:;"><span class="badge bg-label-warning col-lg-12 mb-3">Menunggu</span></a>
+                                    @endif
+                                    <p class="d-flex align-items-center mb-1"><i class="bx bx-time-five me-1"></i>{{ $pr->created_at->diffforhumans() }}</p>
+                                    
                                     </div>
-                                </li>
-                                <li class="timeline-item timeline-item-transparent">
-                                    <span class="timeline-point-wrapper"><span
-                                            class="timeline-point timeline-point-primary"></span></span>
-                                    <div class="timeline-event">
-                                        <div class="timeline-header mb-1">
-                                            <h6 class="mb-0">Shared 2 New Project Files</h6>
-                                            <small class="text-muted">6 Day Ago</small>
-                                        </div>
-                                        <p class="mb-2">Sent by Mollie Dixon <img src="../../assets/img/avatars/4.png"
-                                                class="rounded-circle ms-3" alt="avatar" height="20"
-                                                width="20"></p>
-                                        <div class="d-flex flex-wrap gap-2">
-                                            <a href="javascript:void(0)" class="me-3">
-                                                <img src="../../assets/img/icons/misc/pdf.png" alt="Document image"
-                                                    width="20" class="me-2">
-                                                <span class="h6">App Guidelines</span>
-                                            </a>
-                                            <a href="javascript:void(0)">
-                                                <img src="../../assets/img/icons/misc/doc.png" alt="Excel image"
-                                                    width="20" class="me-2">
-                                                <span class="h6">Testing Results</span>
-                                            </a>
-                                        </div>
+                                    <div class="d-flex flex-column flex-md-row gap-4 text-nowrap flex-wrap flex-md-nowrap flex-lg-wrap flex-xxl-nowrap">
+                                      <a class="w-50 btn btn-label-secondary d-flex align-items-center" href="{{ route('profile.details', encrypt($pr->id)) }}">
+                                        <i class="bx bx-rotate-right bx-sm align-middle scaleX-n1-rtl me-2"></i><span>Lihat Proposal</span>
+                                      </a>
+                                    
                                     </div>
-                                </li>
-                                <li class="timeline-item timeline-item-transparent">
-                                    <span class="timeline-point-wrapper"><span
-                                            class="timeline-point timeline-point-success"></span></span>
-                                    <div class="timeline-event pb-0">
-                                        <div class="timeline-header mb-1">
-                                            <h6 class="mb-0">Project status updated</h6>
-                                            <small class="text-muted">10 Day Ago</small>
-                                        </div>
-                                        <p class="mb-0">Woocommerce iOS App Completed</p>
-                                    </div>
-                                </li>
-                                <li class="timeline-end-indicator">
-                                    <i class="bx bx-check-circle"></i>
-                                </li>
-                            </ul>
-                        </div>
-                    </div> --}}
-                    <!--/ Activity Timeline -->
+                                  </div>
+                                </div>
+                              </div>
+                    </div>
                 </div>
-            </div>
-            <!--/ User Profile Content -->
+            @endforeach
+            <!--/ Connections -->
+           
+        </div>
+  </div>
+  <!--/ User Profile Content -->
         </div>
         </div>
         <!-- / Content -->

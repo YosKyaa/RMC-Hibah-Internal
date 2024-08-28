@@ -43,7 +43,7 @@ class ReviewerController extends Controller
                     $query->select('id', 'name', 'image');
                 },
                 'documents' => function ($query) {
-                    $query->select('id', 'proposals_id','proposal_doc', 'doc_type_id', 'created_by');
+                    $query->select('id', 'proposals_id', 'proposal_doc', 'doc_type_id', 'created_by');
                 },
             ])
             ->orderBy('id')
@@ -66,7 +66,7 @@ class ReviewerController extends Controller
     {
         $proposals = Proposal::with([
             'proposalTeams.researcher' => function ($query) {
-            $query->select('id', 'username', 'image');
+                $query->select('id', 'username', 'image');
             },
 
             'reviewer' => function ($query) {
@@ -79,7 +79,7 @@ class ReviewerController extends Controller
         return view('proposals.show', compact('proposals', 'documentUrl', 'user'));
     }
 
-// Lolos Proposal
+    // Lolos Proposal
     public function approval_reviewer(Request $request)
     {
         $data = Proposal::with([
@@ -88,18 +88,17 @@ class ReviewerController extends Controller
             }
         ])->find($request->id);
         // dd($data);
-        if($data) {
+        if ($data) {
             $data->approval_reviewer = true;
             $x = $data->save();
             if ($x) {
-//kirim email
+                //kirim email
                 Mail::to($data->users->email)->send(new LOA('emails.approval', "Proposal Anda Lolos"));
             }
             return response()->json([
                 'success' => true,
                 'message' => 'Status berhasil diubah!'
             ]);
-
         } else {
             return response()->json([
                 'success' => false,
@@ -108,7 +107,7 @@ class ReviewerController extends Controller
         }
     }
 
-// Proposal Ditolak
+    // Proposal Ditolak
     public function reject(Request $request)
     {
         $data = Proposal::with([
@@ -117,11 +116,11 @@ class ReviewerController extends Controller
             }
         ])->find($request->id);
         // dd($data);
-        if($data) {
+        if ($data) {
             $data->status_id = 'S04';
             $x = $data->save();
             if ($x) {
-//kirim email
+                //kirim email
                 Mail::to($data->users->email)->send(new LOA('emails.rejection', "Proposal di tolak"));
             }
             return response()->json([
@@ -183,7 +182,7 @@ class ReviewerController extends Controller
     public function presentation(Request $request)
     {
         $data = Proposal::find($request->id);
-        if($data) {
+        if ($data) {
             $data->status_id = 'S05'; // Set the status to 'S05'
             $data->save(); // Save the changes to the database
             return response()->json([
@@ -202,7 +201,7 @@ class ReviewerController extends Controller
     public function mark_as_presented(Request $request)
     {
         $data = Proposal::find($request->id);
-        if($data) {
+        if ($data) {
             $data->mark_as_presented = true;
             $data->status_id = 'S07';
             $data->save();
@@ -232,6 +231,3 @@ class ReviewerController extends Controller
         return $pdf->stream('proposal.pdf');
     }
 }
-
-
-

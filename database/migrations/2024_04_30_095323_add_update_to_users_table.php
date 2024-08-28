@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nidn')->unique()->nullable();
             $table->string('image')->unique()->nullable();
             $table->string('username')->after('name')->nullable();
-
+            $table->string('schoolar')->after('username')->nullable();
         });
     }
 

@@ -8,7 +8,7 @@ class UserAnnouncementController extends Controller
 {
    public function index()
    {
-    $announcements = Announcement::all('*');
+   $announcements = Announcement::orderBy('created_at', 'desc')->get();
        return view('announcements.user.index', compact('announcements'));
    }
 }

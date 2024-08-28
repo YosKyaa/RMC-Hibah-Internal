@@ -149,6 +149,7 @@
                                 </span>
                             @enderror
                         </div>
+                        
                         <div class="mb-3 col-md-6">
                             <label class="form-label">Program Studi</label>
                             <select
@@ -189,7 +190,42 @@
                                 </span>
                             @enderror
                         </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Google Schoolar</label>
+                            <input type="text" class="form-control @error('schoolar') is-invalid @enderror"
+                                name="schoolar" value="{{ Auth::user()->schoolar }}" placeholder="Masukan Link Google Schoolar Anda"/>
+                            @error('schoolar')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Password Baru</label>
+                                <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                    name="password" placeholder="Masukkan password baru" />
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Konfirmasi Password Baru</label>
+                                <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror"
+                                    name="password_confirmation" placeholder="Konfirmasi password baru" />
+                                @error('password_confirmation')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
+
+                    
+                    
                     <div class="mt-2">
                         <button type="submit" class="btn btn-primary me-2" onclick="return confirmSubmit(event)">Simpan</button>
                         <a class="btn btn-outline-secondary" href="{{ route('dashboard') }}">Kembali</a>
