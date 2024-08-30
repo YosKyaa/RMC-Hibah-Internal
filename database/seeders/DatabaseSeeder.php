@@ -26,6 +26,9 @@ class DatabaseSeeder extends Seeder
         $this->call([ResearchThemesSeeder::class]);
         $this->call([ResearchTopicsSeeder::class]);
         $this->call([DocumentsSeeder::class]);
+        // $this->call([ReviewerSeeder::class]);
+        // $this->call([Warek1Seeder::class]);
+        // $this->call([Warek2Seeder::class]);
 
 
         // \App\Models\User::factory()->create([

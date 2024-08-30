@@ -9,7 +9,7 @@ class NotificationAdminController extends Controller
 {
     public function getTotalNullReviewers()
     {
-        $totalNullReviewers = Proposal::whereNull('reviewer_id')->count();
+        $totalNullReviewers = Proposal::whereNull('reviewer_id')->where('status_id', '!=', 'S00')->count();
         return response()->json(['totalNullReviewers' => $totalNullReviewers]);
     }
 

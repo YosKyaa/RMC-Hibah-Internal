@@ -49,7 +49,8 @@ class ProposalController extends Controller
      * Show the form for creating a new resource.
      */
 
-     public function data(Request $request) {
+    public function data(Request $request)
+    {
         // $this->authorize('setting/manage_data/department.read');
         $data = Proposal::with([
             'users' => function ($query) {
@@ -74,11 +75,13 @@ class ProposalController extends Controller
                 $query->select('id', 'username');
             },
             'documents' => function ($query) {
-                $query->select('id', 'proposals_id','proposal_doc', 'doc_type_id', 'created_by');
+                $query->select('id', 'proposals_id', 'proposal_doc', 'doc_type_id', 'created_by');
             },
         ])
-        ->select('*')
-        ->orderBy('id');
+            ->select('*')
+            ->where('status_id', '!=', 'S00')
+            ->orderBy('id');
+
         return DataTables::of($data)
             ->filter(function ($instance) use ($request) {
                 if (!empty($request->get('select_category'))) {
@@ -115,5 +118,5 @@ class ProposalController extends Controller
         return DataTables::of($proposals)->make(true);
     }
 
-    
+
 }
