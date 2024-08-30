@@ -124,17 +124,16 @@
                 </li>
             </ul>
         </div>
-    </div>
+      </div>
     <!--/ About User -->
-     
     </div>
-    <div class="col-xl-8 col-lg-7 col-md-7">
-     
-        <div class="row">
-            <!-- Connections -->
+    
+    <div class="col-xl col-lg-5 col-md-5">
+      <!-- About User -->
+        <div class="card mb-4">
+            <div class="card-body">
             @foreach ($proposals as $pr)
-                <div class="col-xl-12 col-lg-6 col-md-6 mb-3">
-                    <div class="card">
+                
                         {{-- <div class="card-body">
                             <div class=" justify-content-between align-items-left mb-3">
                                 <span
@@ -175,12 +174,13 @@
                             </div>
                             <p class="mt-3">{{ $pr->created_at->diffforhumans() }}</p>
                         </div> --}}
-                        <div class="card-body">
-                            <div class="row gy-6 mb-6">
-                              <div class="col-sm-6 col-lg-12">
-                                <div class="card p-2 h-100 shadow-none border">
-                                  <div class="rounded-2 text-center mb-4">
-                                    <ul class="list-unstyled d-flex align-items-center justify-content-center avatar-group mb-0">
+                            <br>
+                            <a class="badge bg-label-primary">{{ $pr->researchTopic->researchTheme->researchCategory->name }}</a>
+                                <a class="badge bg-label-primary">{{ $pr->tktType->title }}</a>
+                                <a class="badge bg-label-primary">{{ $pr->mainResearchTarget->title }}</a>
+                                <br> <br>
+                                  <div class="rounded-2 text-center">
+                                    <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
                                         @foreach ($pr->proposalTeams as $r)
                                             @if ($r->researcher->image)
                                                 <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title=" {{ ucfirst($r->researcher->username) }}" class="avatar avatar-sm pull-up">
@@ -194,11 +194,8 @@
                                         @endforeach
                                     </ul>
                                   </div>
-                                  <div class="card-body p-4 pt-2">
-                                    <span
-                                    class="badge bg-label-primary">{{ $pr->researchTopic->researchTheme->researchCategory->name }}</span>
-                                <span class="badge bg-label-primary">{{ $pr->tktType->title }}</span>
-                                <span class="badge bg-label-primary">{{ $pr->mainResearchTarget->title }}</span>
+                                  <!-- <div class="card-body"> -->
+                                    
                                     <div class="d-flex justify-content-between align-items-center mb-4">
                                       {{-- <span class="badge bg-label-primary">Web</span> --}}
                                      
@@ -211,27 +208,22 @@
                                     @elseif ($pr->status_id == 'S01')
                                     <a href="javascript:;"><span class="badge bg-label-warning col-lg-12 mb-3">Menunggu</span></a>
                                     @endif
-                                    <p class="d-flex align-items-center mb-1"><i class="bx bx-time-five me-1"></i>{{ $pr->created_at->diffforhumans() }}</p>
                                     
-                                    </div>
+                                    <br> <br>
+                                    <!-- </div> -->
+                                    <p class="d-flex align-items-center mb-1"><i class="bx bx-time-five me-1"></i>{{ $pr->created_at->diffforhumans() }}</p>
                                     <div class="d-flex flex-column flex-md-row gap-4 text-nowrap flex-wrap flex-md-nowrap flex-lg-wrap flex-xxl-nowrap">
-                                      <a class="w-50 btn btn-label-secondary d-flex align-items-center" href="{{ route('profile.details', encrypt($pr->id)) }}">
+                                      <a class="w-100 btn btn-label-secondary d-flex align-items-center" href="{{ route('profile.details', encrypt($pr->id)) }}">
                                         <i class="bx bx-rotate-right bx-sm align-middle scaleX-n1-rtl me-2"></i><span>Lihat Proposal</span>
                                       </a>
                                     
                                     </div>
-                                  </div>
-                                </div>
-                              </div>
-                    </div>
-                </div>
+                               
             @endforeach
-            <!--/ Connections -->
-           
         </div>
-  </div>
-  <!--/ User Profile Content -->
-        </div>
-        </div>
+    </div>
+
+</div>
         <!-- / Content -->
+</div>
 @endsection
