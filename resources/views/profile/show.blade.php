@@ -36,6 +36,7 @@
             border-top-left-radius: .375rem !important;
             border-top-right-radius: .375rem !important;
         }
+
         .layout-page,
         .content-wrapper,
         .content-wrapper>*,
@@ -90,51 +91,53 @@
             </div>
             <!--/ Header -->
 
-     <!-- User Profile Content -->
-<div class="row">
-    <div class="col-xl-4 col-lg-5 col-md-5">
-      <!-- About User -->
-      <div class="card mb-4">
-        <div class="card-body">
-            <small class="text-muted text-uppercase">Tentang saya</small>
-            <ul class="list-unstyled mb-4 mt-3">
-                <li class="d-flex align-items-center mb-3"><i class="bx bx-user"></i><span
-                        class="fw-semibold mx-2">Nama:</span>
-                    <span>{{ Auth::user()->name }}</span>
-                </li>
-                <li class="d-flex align-items-center mb-3"><i class="bx bx-user-check"></i><span
-                        class="fw-semibold mx-2">Username:</span>
-                    <span>{{ Auth::user()->username }}</span>
-                </li>
-                <li class="d-flex align-items-center mb-3"><i class="bx bx-mail-send"></i><span
-                        class="fw-semibold mx-2">Email:</span>
-                    <span>{{ Auth::user()->email }}</span>
-                </li>
-                <li class="d-flex align-items-center mb-3"><i class="bx bx-briefcase"></i><span
-                        class="fw-semibold mx-2">NIDN:</span>
-                    <span>{{ Auth::user()->nidn }}</span>
-                </li>
-                <li class="d-flex align-items-center mb-3"><i class="bx bx-home"></i><span
-                        class="fw-semibold mx-2">Department:</span>
-                    <span>{{ Auth::user()->department }}</span>
-                </li>
-                <li class="d-flex align-items-center mb-3"><i class="bx bx-home"></i><span
-                        class="fw-semibold mx-2">Study Program:</span>
-                    <span>{{ Auth::user()->study_program }}</span>
-                </li>
-            </ul>
-        </div>
-      </div>
-    <!--/ About User -->
-    </div>
-    
-    <div class="col-xl col-lg-5 col-md-5">
-      <!-- About User -->
-        <div class="card mb-4">
-            <div class="card-body">
-            @foreach ($proposals as $pr)
-                
-                        {{-- <div class="card-body">
+            <!-- User Profile Content -->
+            <div class="row">
+                <div class="col-xl-4 col-lg-5 col-md-5">
+                    <!-- About User -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <small class="text-muted text-uppercase">Tentang saya</small>
+                            <ul class="list-unstyled mb-4 mt-3">
+                                <li class="d-flex align-items-center mb-3"><i class="bx bx-user"></i><span
+                                        class="fw-semibold mx-2">Nama:</span>
+                                    <span>{{ Auth::user()->name }}</span>
+                                </li>
+                                <li class="d-flex align-items-center mb-3"><i class="bx bx-user-check"></i><span
+                                        class="fw-semibold mx-2">Username:</span>
+                                    <span>{{ Auth::user()->username }}</span>
+                                </li>
+                                <li class="d-flex align-items-center mb-3"><i class="bx bx-mail-send"></i><span
+                                        class="fw-semibold mx-2">Email:</span>
+                                    <span>{{ Auth::user()->email }}</span>
+                                </li>
+                                <li class="d-flex align-items-center mb-3"><i class="bx bx-briefcase"></i><span
+                                        class="fw-semibold mx-2">NIDN:</span>
+                                    <span>{{ Auth::user()->nidn }}</span>
+                                </li>
+                                <li class="d-flex align-items-center mb-3"><i class="bx bx-home"></i><span
+                                        class="fw-semibold mx-2">Department:</span>
+                                    <span>{{ Auth::user()->department->name }}</span>
+                                </li>
+                                {{-- <li class="d-flex align-items-center mb-3"><i class="bx bx-home"></i><span
+                                        class="fw-semibold mx-2">Study Program:</span>
+                                    <span>{{ Auth::user()->study_program
+                                     }}</span>
+                                </li> --}}
+                            </ul>
+                        </div>
+                    </div>
+                    <!--/ About User -->
+                </div>
+
+                <div class="col-xl col-lg-5 col-md-5">
+                    <!-- About User -->
+                    @foreach ($proposals as $pr)
+                        <div class="card mb-4">
+                            <div class="card-body">
+
+
+                                {{-- <div class="card-body">
                             <div class=" justify-content-between align-items-left mb-3">
                                 <span
                                     class="badge bg-label-primary">{{ $pr->researchTopic->researchTheme->researchCategory->name }}</span>
@@ -144,8 +147,8 @@
                             <a href="{{ route('user-proposals.show', $pr->id) }}">
                                 <p class="mb-3 pb-1"><strong>{{ $pr->research_title }}</strong></p>
                             </a>
-                           
-                            
+
+
                             <div class="d-flex align-items-center">
                                 <div class="d-flex align-items-center">
                                     <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
@@ -163,7 +166,7 @@
                                     </ul>
                                 </div>
 
-                                
+
                                 <div class="ms-auto">
                                     @if ($pr->status_id == 'S10')
                                     <a href="javascript:;"><span class="badge bg-label-success">Diterima</span></a>
@@ -174,56 +177,73 @@
                             </div>
                             <p class="mt-3">{{ $pr->created_at->diffforhumans() }}</p>
                         </div> --}}
-                            <br>
-                            <a class="badge bg-label-primary">{{ $pr->researchTopic->researchTheme->researchCategory->name }}</a>
+                                <br>
+                                <a
+                                    class="badge bg-label-primary">{{ $pr->researchTopic->researchTheme->researchCategory->name }}</a>
                                 <a class="badge bg-label-primary">{{ $pr->tktType->title }}</a>
                                 <a class="badge bg-label-primary">{{ $pr->mainResearchTarget->title }}</a>
                                 <br> <br>
-                                  <div class="rounded-2 text-center">
+                                <div class="rounded-2 text-center">
                                     <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
                                         @foreach ($pr->proposalTeams as $r)
                                             @if ($r->researcher->image)
-                                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title=" {{ ucfirst($r->researcher->username) }}" class="avatar avatar-sm pull-up">
-                                                    <img class="rounded-circle" src="{{ asset($r->researcher->image) }}" alt="Avatar">
+                                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom"
+                                                    data-bs-placement="top"
+                                                    title=" {{ ucfirst($r->researcher->username) }}"
+                                                    class="avatar avatar-sm pull-up">
+                                                    <img class="rounded-circle" src="{{ asset($r->researcher->image) }}"
+                                                        alt="Avatar">
                                                 </li>
                                             @else
-                                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title=" {{ ucfirst($r->researcher->username) }}" class="avatar avatar-sm pull-up">
-                                                    <img class="rounded-circle" src="../../assets/img/avatars/user.png" alt="Avatar">
+                                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom"
+                                                    data-bs-placement="top"
+                                                    title=" {{ ucfirst($r->researcher->username) }}"
+                                                    class="avatar avatar-sm pull-up">
+                                                    <img class="rounded-circle" src="../../assets/img/avatars/user.png"
+                                                        alt="Avatar">
                                                 </li>
                                             @endif
                                         @endforeach
                                     </ul>
-                                  </div>
-                                  <!-- <div class="card-body"> -->
-                                    
-                                    <div class="d-flex justify-content-between align-items-center mb-4">
-                                      {{-- <span class="badge bg-label-primary">Web</span> --}}
-                                     
-                                    </div>
-                                    <a href="app-academy-course-details.html" class="h5">  <p class="mb-3 pb-1"><strong>{{ $pr->research_title }}</strong></p></a>
-                                    @if ($pr->status_id == 'S10')
-                                    <a href="javascript:;"><span class="badge bg-label-success col-lg-12 mb-3">Diterima</span></a>
-                                    @elseif ($pr->status_id == 'S04')
-                                    <a href="javascript:;"><span class="badge bg-label-danger col-lg-12 mb-3">Ditolak</span></a>
-                                    @elseif ($pr->status_id == 'S01')
-                                    <a href="javascript:;"><span class="badge bg-label-warning col-lg-12 mb-3">Menunggu</span></a>
-                                    @endif
-                                    
-                                    <br> <br>
-                                    <!-- </div> -->
-                                    <p class="d-flex align-items-center mb-1"><i class="bx bx-time-five me-1"></i>{{ $pr->created_at->diffforhumans() }}</p>
-                                    <div class="d-flex flex-column flex-md-row gap-4 text-nowrap flex-wrap flex-md-nowrap flex-lg-wrap flex-xxl-nowrap">
-                                      <a class="w-100 btn btn-label-secondary d-flex align-items-center" href="{{ route('profile.details', encrypt($pr->id)) }}">
-                                        <i class="bx bx-rotate-right bx-sm align-middle scaleX-n1-rtl me-2"></i><span>Lihat Proposal</span>
-                                      </a>
-                                    
-                                    </div>
-                               
-            @endforeach
-        </div>
-    </div>
+                                </div>
+                                <!-- <div class="card-body"> -->
 
-</div>
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    {{-- <span class="badge bg-label-primary">Web</span> --}}
+
+                                </div>
+                                <a href="app-academy-course-details.html" class="h5">
+                                    <p class="mb-3 pb-1"><strong>{{ $pr->research_title }}</strong></p>
+                                </a>
+                                @if ($pr->status_id == 'S10')
+                                    <a href="javascript:;"><span
+                                            class="badge bg-label-success col-lg-12 mb-3">Diterima</span></a>
+                                @elseif ($pr->status_id == 'S04')
+                                    <a href="javascript:;"><span
+                                            class="badge bg-label-danger col-lg-12 mb-3">Ditolak</span></a>
+                                @elseif ($pr->status_id == 'S01')
+                                    <a href="javascript:;"><span
+                                            class="badge bg-label-warning col-lg-12 mb-3">Menunggu</span></a>
+                                @endif
+
+                                <br> <br>
+                                <!-- </div> -->
+                                <p class="d-flex align-items-center mb-1"><i
+                                        class="bx bx-time-five me-1"></i>{{ $pr->created_at->diffforhumans() }}</p>
+                                <div
+                                    class="d-flex flex-column flex-md-row gap-4 text-nowrap flex-wrap flex-md-nowrap flex-lg-wrap flex-xxl-nowrap">
+                                    <a class="w-100 btn btn-label-secondary d-flex align-items-center"
+                                        href="{{ route('profile.details', encrypt($pr->id)) }}">
+                                        <i class="bx bx-rotate-right bx-sm align-middle scaleX-n1-rtl me-2"></i><span>Lihat
+                                            Proposal</span>
+                                    </a>
+
+                                </div>
+                    @endforeach
+                </div>
+            </div>
+
+        </div>
         <!-- / Content -->
-</div>
+    </div>
 @endsection
