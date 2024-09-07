@@ -20,6 +20,7 @@ use App\Http\Controllers\StudyProgramController;
 use App\Http\Controllers\UserAnnouncementController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CmsController;
 use App\Http\Controllers\UserProposalController;
 use App\Http\Controllers\ViceRector1Controller;
 use App\Http\Controllers\ViceRector2Controller;
@@ -235,4 +236,15 @@ Route::group(['prefix' => 'setting', 'middleware' => ['auth']], function () {
             Route::put('/update/{id}', [DepartmentController::class, 'update'])->name('dept.update');
         });
     });
+});
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/cms', [CmsController::class, 'index'])->name('cms.index');
+    Route::get('/cms/create', [CmsController::class, 'create'])->name('cms.create');
+    Route::get('/posts/create/checkSlug', [CmsController::class, 'checkSlug'])->name('checkSlug');
+    Route::post('/cms/store', [CmsController::class, 'store'])->name('cms.store');
+    Route::delete('/delete/{id}', [CmsController::class, 'destroy'])->name('cms.destroy');
+    Route::get('/edit/{id}', [CmsController::class, 'edit'])->name('cms.edit');
+    Route::put('/update/{id}', [CmsController::class, 'update'])->name('cms.update');
 });

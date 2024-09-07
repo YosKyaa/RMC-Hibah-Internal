@@ -128,6 +128,13 @@
                         </li>
                     @endcan
                 </ul>
+                <li class="menu-item {{ request()->segment(1) == 'CMS' ? 'active' : '' }}">
+                    <a href="{{ route('cms.index') }}" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-book-reader"></i>
+                        <div data-i18n="Dashboards">CMS</div>
+                      
+                    </a>
+                </li>
             </li>
         @endcan
         @can('manage_admin')
