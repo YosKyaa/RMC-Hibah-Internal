@@ -11,9 +11,9 @@
 @section('style')
     <style>
         .img {
-            height: 120px;
-            width: 120px;
-            border-radius: 0%;
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
             object-fit: cover;
             background: #dfdfdf
         }
@@ -26,17 +26,22 @@
     </style>
 @section('content')
 
-<div class="card mb-6">
-      <!-- Account -->
-      <div class="card-body">
-      @if(session('msg'))
+<div class="row">
+    <div class="col-md-12">
+        @if(session('msg'))
         <div class="alert alert-primary alert-dismissible" role="alert">
             {{session('msg')}}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
-        <div class="d-flex align-items-start align-items-sm-center gap-6 pb-4 border-bottom">
-        @csrf
+        <div class="card mb-4 p-3">
+            <h4 class="card-header">Perbarui Profil
+            </h4>
+            <hr class="my-0">
+            <div class="card-body">
+                <form action="" method="POST" enctype="multipart/form-data" id="form-add-new-record">
+                    @csrf
+                <div class="row">
                     <div class="mb-2 col-md-2">
                         @if ($user->image)
                         <img src="{{ asset($user->image) }}" alt="user-avatar" class="img" id="uploadedAvatar">
@@ -45,86 +50,111 @@
                             id="uploadedAvatar">
                     @endif
                     </div>
-          <div class="button-wrapper">
-            <label for="image" class="btn btn-primary me-2 mb-4" tabindex="0">
-                <span class="d-none d-sm-block">Upload new photo</span>
-                <i class="bx bx-upload d-block d-sm-none"></i>
-                <input type="file" id="image" name="image" class="account-file-input" hidden="" accept="image/png, image/jpeg">
-                </label>
-                <button type="button" class="btn btn-label-secondary account-image-reset mb-4">
-                    <i class="bx bx-reset d-block d-sm-none"></i>
-                    <span class="d-none d-sm-block">Reset</span>
-                </button>
-            <div>Allowed JPG, GIF or PNG. Max size of 800K</div>
-          </div>
-        </div>
-      </div>
-      <div class="card-body pt-4">
-        <form action="" method="POST" enctype="multipart/form-data" id="form-add-new-record">
-        <h4>Update Profil</h4>
-          <div class="row g-6">
-            <div class="col-md-6 fv-plugins-icon-container">
-                <label class="form-label">Nama</label>
-                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ Auth::user()->name }}" placeholder="Nama Lengkap" autofocus />
-                @error('name')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div></div>
-            <div class="col-md-6 fv-plugins-icon-container">
-                <label class="form-label">Username</label>
-                <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ Auth::user()->username }}" placeholder="NIK/NIM"
-                @if (Auth::user()->username != null) readonly title="Silahkan hubungi Admin" @endif />
-                    @error('username')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
+
+                    <div class="mb-2 col-md-4">
+                        <div class="button-wrapper">
+                            <label for="image" class="btn btn-primary me-2 mb-4" tabindex="0">
+                                <span class="d-none d-sm-block">Upload new photo</span>
+                                <i class="bx bx-upload d-block d-sm-none"></i>
+                                <input type="file" id="image" name="image" class="account-file-input"
+                                    hidden="" accept="image/png, image/jpeg">
+                            </label>
+
+                            <button type="button" class="btn btn-label-secondary account-image-reset mb-4">
+                                <i class="bx bx-reset d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Reset</span>
+                            </button>
+                        </div>
+                        <p class="text-muted mb-0">Hanya diperbolehkan JPG, GIF, atau PNG. Ukuran maksimal 800K</p>
+
+                    </div>
+                </div>
+
+
+
+
+            <!-- Account -->
+            <hr class="my-0">
+            <div class="card-body">
+                    <div class="row">
+                        <div class="mb-3 col-md-6 fv-plugins-icon-container">
+                            <label class="form-label">Nama</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                name="name" value="{{ Auth::user()->name }}" placeholder="Nama Lengkap"
+                                autofocus />
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            <div
+                                class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
+                            </div>
+                        </div>
+                        <div class="mb-3 col-md-6 fv-plugins-icon-container">
+                            <label class="form-label">Username</label>
+                            <input type="text" class="form-control @error('username') is-invalid @enderror"
+                                name="username" value="{{ Auth::user()->username }}" placeholder="NIK/NIM"
+                                @if (Auth::user()->username != null) readonly title="Silahkan hubungi Admin" @endif />
+                            @error('username')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                             @if (Auth::user()->username == null)
                                 <span class="text-danger">
                                     <strong>Isi Username/NIM Anda</strong>
                                 </span>
                             @endif
-            <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div></div>
-            <div class="col-md-6">
-            <label class="form-label">Gelar Depan</label>
-            <input type="text" class="form-control @error('front_title') is-invalid @enderror" name="front_title" value="{{ Auth::user()->front_title }}" />
+                            <div
+                                class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
+                            </div>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Gelar Depan</label>
+                            <input type="text" class="form-control @error('front_title') is-invalid @enderror"
+                                name="front_title" value="{{ Auth::user()->front_title }}" />
                             @error('front_title')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-            </div>
-            <div class="col-md-6">
-            <label class="form-label">Gelar Belakang</label>
-            <input type="text" class="form-control @error('back_title') is-invalid @enderror" name="back_title" value="{{ Auth::user()->back_title }}" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Gelar Belakang</label>
+                            <input type="text" class="form-control @error('back_title') is-invalid @enderror"
+                                name="back_title" value="{{ Auth::user()->back_title }}" />
                             @error('back_title')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-            </div>
-            <div class="col-md-6">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') == null ? Auth::user()->email : old('email') }}" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                id="email" name="email"
+                                value="{{ old('email') == null ? Auth::user()->email : old('email') }}" />
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-            </div>
-            <div class="col-md-6">
-            <label for="nidn" class="form-label">NIDN</label>
-            <input type="nidn" class="form-control @error('nidn') is-invalid @enderror" id="nidn" name="nidn" value="{{ old('nidn') == null ? Auth::user()->nidn : old('nidn') }}" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="nidn" class="form-label">NIDN</label>
+                            <input type="nidn" class="form-control @error('nidn') is-invalid @enderror"
+                                id="nidn" name="nidn"
+                                value="{{ old('nidn') == null ? Auth::user()->nidn : old('nidn') }}" />
                             @error('nidn')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-            </div>
-            <div class="col-md-6">
-            <label class="form-label">Program Studi</label>
+                        </div>
+                        
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Program Studi</label>
                             <select
                                 class="select2 form-select col-sm-12 @error('study_programs') is-invalid @enderror"
                                 name="study_programs">
@@ -142,9 +172,9 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-            </div>
-            <div class="col-md-6">
-            <label class="form-label">Department</label>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Department</label>
                             <select
                                 class="select2 form-select col-sm-12 @error('departement') is-invalid @enderror"
                                 name="department">
@@ -162,9 +192,9 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-            </div>
-            <div class="col-md-6">
-            <label class="form-label">Google Schoolar</label>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Google Schoolar</label>
                             <input type="text" class="form-control @error('schoolar') is-invalid @enderror"
                                 name="schoolar" value="{{ Auth::user()->schoolar }}" placeholder="Masukan Link Google Schoolar Anda"/>
                             @error('schoolar')
@@ -172,43 +202,46 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-            </div>
-          </div>
-<br>
-          <hr class="my-0">
-          <br>
-          <h4>Ganti Password</h4>
-          <div class="row g-6">
-            <div class="col-md-6">
-                <label class="form-label">Password Baru</label>
-                <input type="password" class="form-control @error('password') is-invalid @enderror"
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Password Baru</label>
+                                <input type="password" class="form-control @error('password') is-invalid @enderror"
                                     name="password" placeholder="Masukkan password baru" />
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-            </div>
-            <div class="col-md-6">
-                <label class="form-label">Konfirmasi Password Baru</label>
-                <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror"
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Konfirmasi Password Baru</label>
+                                <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror"
                                     name="password_confirmation" placeholder="Konfirmasi password baru" />
                                 @error('password_confirmation')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    
+                    <div class="mt-2">
+                        <button type="submit" class="btn btn-primary me-2" onclick="return confirmSubmit(event)">Simpan</button>
+                        <a class="btn btn-outline-secondary" href="{{ route('dashboard') }}">Kembali</a>
+                    </div>
+                    <input type="hidden">
+                </form>
+                </div>
             </div>
-          </div>
-          <br>
-          <div class="mt-6">
-            <button type="submit" class="btn btn-primary me-2" onclick="return confirmSubmit(event)">Simpan</button>
-            <a class="btn btn-outline-secondary" href="{{ route('dashboard') }}">Kembali</a>
-          </div>
-        <input type="hidden"></form>
-      </div>
-      <!-- /Account -->
+            <!-- /Account -->
+        </div>
     </div>
+</div>
+
 
 @endsection
 
