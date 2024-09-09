@@ -113,17 +113,16 @@
                                 </li>
                                 <li class="d-flex align-items-center mb-3"><i class="bx bx-briefcase"></i><span
                                         class="fw-semibold mx-2">NIDN:</span>
-                                    <span>{{ Auth::user()->nidn }}</span>
+                                    <span>{{ Auth::user()->nidn ? Auth::user()->nidn : '-'}}</span>
                                 </li>
                                 <li class="d-flex align-items-center mb-3"><i class="bx bx-home"></i><span
                                         class="fw-semibold mx-2">Department:</span>
-                                    <span>{{ Auth::user()->department->name }}</span>
+                                    <span>{{ Auth::user()->department ? Auth::user()->department->name : '-' }}</span>
                                 </li>
-                                {{-- <li class="d-flex align-items-center mb-3"><i class="bx bx-home"></i><span
+                                <li class="d-flex align-items-center mb-3"><i class="bx bx-home"></i><span
                                         class="fw-semibold mx-2">Study Program:</span>
-                                    <span>{{ Auth::user()->study_program
-                                     }}</span>
-                                </li> --}}
+                                    <span>{{ Auth::user()->study_program ? Auth::user()->study_program->name : '-' }}</span>
+                                </li>
                             </ul>
                         </div>
                     </div>

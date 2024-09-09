@@ -122,22 +122,20 @@
         </div>
     </div>
     <br>
-
     <div class="col-md-12 mb-1">
-        <h4 class="responsive-text"> <strong>Rekaputulasi usulan Hibah Internal di Jakarta Global University</strong>
+        <h4 class="responsive-text"> <strong>Rekaputulasi usulan Riset Mandiri berdasarkan Program Studi</strong>
         </h4>
     </div>
-    <div class="row g-6">
+    <div class="row g-6 mb-3">
         <!-- Card Border Shadow -->
         <div class="col-lg-3 col-sm-6 mb-3">
             <div class="card card-border-shadow-primary h-100">
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <div class="avatar me-4">
-                            <span style="color: #e1a440;"><i
-                                    class="bx bx-baguette bx-lg"></i></span>
+                            <img src="{{ asset('assets/img/dashboard/informatics.png') }}" alt="">
                         </div>
-                        <p style="width: 65%; font-size: smaller;">Jumlah usulan draft / submited kategori Pangan</p>
+                        <p style="width: 65%; font-size: smaller;">Jumlah usulan <strong>draft / submited</strong> Teknik Informatika</p>
                     </div>
 
                     <p class="mb-0">
@@ -151,9 +149,9 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <div class="avatar me-4">
-                            <span style="color:#FFFF00"><i class='bx bxl-react bx-lg'></i></span>
+                            <img src="{{ asset('assets/img/dashboard/civil-engineering.png') }}" alt="">
                         </div>
-                        <p style="width: 65%; font-size: smaller;">Jumlah usulan draft / submited kategori Energi</p>
+                        <p style="width: 65%; font-size: smaller;">Jumlah usulan <strong>draft / submited</strong> Teknik Sipil</p>
                     </div>
                      <p class="mb-0">
                      <h3 class="mb-0 text-center"><strong>{{$energiCount}} / {{$energiCount2}}</strong></h3>
@@ -166,10 +164,9 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <div class="avatar me-4">
-                            <span style="color:#FF0000"><i
-                                    class='bx bx-heart bx-lg'></i></span>
+                            <img src="{{ asset('assets/img/dashboard/engineering.png') }}" alt="">
                         </div>
-                        <p style="width: 65%; font-size: smaller;">Jumlah usulan draft / submited kategori Kesehatan</p>
+                        <p style="width: 65%; font-size: smaller;">Jumlah usulan <strong>draft / submited</strong> Teknik Elektro</p>
                     </div>
                     <p class="mb-0">
                     <h3 class="mb-0 text-center"><strong>{{$kesehatanCount}} / {{$kesehatanCount2}}</strong></h3>
@@ -182,9 +179,9 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <div class="avatar me-4">
-                            <span style="color:#00FFFF"><i class='bx bx-car bx-lg'></i></span>
+                            <img src="{{ asset('assets/img/dashboard/factory.png') }}" alt="">
                         </div>
-                        <p style="width: 65%; font-size: smaller;">Jumlah usulan draft / submited kategori Transportasi</p>
+                        <p style="width: 65%; font-size: smaller;">Jumlah usulan <strong>draft / submited</strong> Teknik Industri</p>
                     </div>
 
                     <p class="mb-0">
@@ -198,9 +195,9 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <div class="avatar me-4">
-                            <span style="color: #008000;"><i class='bx bx-shield-quarter bx-lg'></i></span>
+                            <img src="{{ asset('assets/img/dashboard/machine.png') }}" alt="">
                         </div>
-                        <p style="width: 65%; font-size: smaller;">Jumlah usulan draft / submited kategori Pertahanan dan Keamanan</p>
+                        <p style="width: 65%; font-size: smaller;">Jumlah usulan <strong>draft / submited</strong> Teknik Mesin</p>
                     </div>
                     <p class="mb-0">
                         <h3 class="mb-0 text-center"><strong>{{$pertahananCount}} / {{$pertahananCount2}}</strong></h3>
@@ -213,9 +210,9 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <div class="avatar me-4">
-                            <span style="color: #000000"><i class='bx bx-git-repo-forked bx-lg'></i></span>
+                            <img src="{{ asset('assets/img/dashboard/project-management.png') }}" alt="">
                         </div>
-                        <p style="width: 65%; font-size: smaller;">Jumlah usulan draft / submited kategori Material Maju</p>
+                        <p style="width: 65%; font-size: smaller;">Jumlah usulan <strong>draft / submited</strong> Management</p>
                     </div>
                     <p class="mb-0">
                         <h3 class="mb-0 text-center"><strong>{{$majuCount}} / {{$majuCount2}}</strong></h3>
@@ -228,9 +225,9 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <div class="avatar me-4">
-                            <span style="color: aqua;"><i class='bx bxl-digitalocean bx-lg'></i></span>
+                            <img src="{{ asset('assets/img/dashboard/digital-marketing.png') }}" alt="">
                         </div>
-                        <p style="width: 65%; font-size: smaller;">Jumlah usulan draft / submited kategori Kemaritiman</p>
+                        <p style="width: 65%; font-size: smaller;">Jumlah usulan <strong>draft / submited</strong> Bisnis Digital</p>
                     </div>
                     <p class="mb-0">
                     <h3 class="mb-0 text-center"><strong>{{$keamaritimanCount}} / {{$keamaritimanCount2}}</strong></h3>
@@ -243,9 +240,138 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <div class="avatar me-4">
-                            <span style="color: #e1a440;"><i class='bx bx-error bx-lg'></i></span>
+                            <img src="{{ asset('assets/img/dashboard/accountant.png') }}" alt="">
                         </div>
-                        <p style="width: 65%; font-size: smaller;">Jumlah usulan draft / submited kategori Kebencanaan</p>
+                        <p style="width: 65%; font-size: smaller;">Jumlah usulan <strong>draft / submited</strong> Akuntansi</p>
+                    </div>
+                    <p class="mb-0">
+                        <h3 class="mb-0 text-center"><strong>{{$kebencanaanCount}} / {{$kebencanaanCount2}}</strong></h3>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 mb-1">
+        <h4 class="responsive-text"> <strong>Rekaputulasi usulan Riset Mandiri berdasarkan Kategori</strong>
+        </h4>
+    </div>
+    <div class="row g-6">
+        <!-- Card Border Shadow -->
+        <div class="col-lg-3 col-sm-6 mb-3">
+            <div class="card card-border-shadow-primary h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="avatar me-4">
+                            <img src="{{ asset('assets/img/dashboard/diet.png') }}" alt="">
+                        </div>
+                        <p style="width: 65%; font-size: smaller;">Jumlah usulan <strong>draft / submited</strong> Pangan</p>
+                    </div>
+
+                    <p class="mb-0">
+                    <h3 class="mb-0 text-center"><strong>{{ $panganCount }} / {{ $panganCount2 }}</strong></h3>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 mb-3">
+            <div class="card card-border-shadow-warning h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="avatar me-4">
+                            <img src="{{ asset('assets/img/dashboard/flash.png') }}" alt="">
+                        </div>
+                        <p style="width: 65%; font-size: smaller;">Jumlah usulan <strong>draft / submited</strong> Energi</p>
+                    </div>
+                     <p class="mb-0">
+                     <h3 class="mb-0 text-center"><strong>{{$energiCount}} / {{$energiCount2}}</strong></h3>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 mb-3">
+            <div class="card card-border-shadow-danger h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="avatar me-4">
+                            <img src="{{ asset('assets/img/dashboard/healthcare.png') }}" alt="">
+                        </div>
+                        <p style="width: 65%; font-size: smaller;">Jumlah usulan <strong>draft / submited</strong> Kesehatan</p>
+                    </div>
+                    <p class="mb-0">
+                    <h3 class="mb-0 text-center"><strong>{{$kesehatanCount}} / {{$kesehatanCount2}}</strong></h3>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 mb-3">
+            <div class="card card-border-shadow-info h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="avatar me-4">
+                            <img src="{{ asset('assets/img/dashboard/vehicles.png') }}" alt="">
+                        </div>
+                        <p style="width: 65%; font-size: smaller;">Jumlah usulan <strong>draft / submited</strong> Transportasi</p>
+                    </div>
+
+                    <p class="mb-0">
+                    <h3 class="mb-0 text-center"><strong>{{$transportasiCount}} / {{$transportasiCount2}}</strong></h3>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 mb-3">
+            <div class="card card-border-shadow-success h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="avatar me-4">
+                            <img src="{{ asset('assets/img/dashboard/army.png') }}" alt="">
+                        </div>
+                        <p style="width: 65%; font-size: smaller;">Jumlah usulan <strong>draft / submited</strong> Pertahanan dan Keamanan</p>
+                    </div>
+                    <p class="mb-0">
+                        <h3 class="mb-0 text-center"><strong>{{$pertahananCount}} / {{$pertahananCount2}}</strong></h3>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 mb-3">
+            <div class="card card-border-shadow-dark h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="avatar me-4">
+                            <img src="{{ asset('assets/img/dashboard/raw-materials.png') }}" alt="">
+                        </div>
+                        <p style="width: 65%; font-size: smaller;">Jumlah usulan <strong>draft / submited</strong> Material Maju</p>
+                    </div>
+                    <p class="mb-0">
+                        <h3 class="mb-0 text-center"><strong>{{$majuCount}} / {{$majuCount2}}</strong></h3>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 mb-3">
+            <div class="card card-border-shadow-info h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="avatar me-4">
+                            <img src="{{ asset('assets/img/dashboard/maritime-laws.png') }}" alt="">
+                        </div>
+                        <p style="width: 65%; font-size: smaller;">Jumlah usulan <strong>draft / submited</strong> Kemaritiman</p>
+                    </div>
+                    <p class="mb-0">
+                    <h3 class="mb-0 text-center"><strong>{{$keamaritimanCount}} / {{$keamaritimanCount2}}</strong></h3>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 mb-3">
+            <div class="card card-border-shadow-primary h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="avatar me-4">
+                            <img src="{{ asset('assets/img/dashboard/disaster.png') }}" alt="">
+                        </div>
+                        <p style="width: 65%; font-size: smaller;">Jumlah usulan <strong>draft / submited</strong> kategori Kebencanaan</p>
                     </div>
                     <p class="mb-0">
                         <h3 class="mb-0 text-center"><strong>{{$kebencanaanCount}} / {{$kebencanaanCount2}}</strong></h3>
@@ -258,10 +384,10 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <div class="avatar me-4">
-                            <span style="color: #FFFF00;"><i class='bx bx-laptop bx-lg'></i></span>
+                            <img src="{{ asset('assets/img/dashboard/robotic-hand.png') }}" alt="">
                         </div>
                     </div>
-                    <p style="font-size: smaller;">Jumlah usulan draft / submited kategori Teknologi informasi dan komunikasi</p>
+                    <p style="font-size: smaller;">Jumlah usulan <strong>draft / submited</strong> Teknologi informasi dan komunikasi</p>
                     <p class="mb-0">
                         <h3 class="mb-0 text-center"><strong>{{$tiCount}} / {{$tiCount2}}</strong></h3>
                     </p>
@@ -273,10 +399,10 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <div class="avatar me-4">
-                            <span style="color: #FF0000;"><i class='bx bx-street-view bx-lg'></i></span>
+                            <img src="{{ asset('assets/img/dashboard/education.png') }}" alt="">
                         </div>
                     </div>
-                    <p style="font-size: smaller;">Jumlah usulan draft / submited kategori Sosial humaniora, seni budaya, pendidikan</p>
+                    <p style="font-size: smaller;">Jumlah usulan <strong>draft / submited</strong> Sosial humaniora, seni budaya, pendidikan</p>
                     <p class="mb-0">
                         <h3 class="mb-0 text-center"><strong>{{$sosialHumanioraCount}} / {{$sosialHumanioraCount2}}</strong></h3>
                     </p>
